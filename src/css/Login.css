@@ -1,0 +1,10 @@
+.pngbackground{
+    background: url("C:\Users\faeza\OneDrive\Desktop\Project NEW-CO\newco\public\images\blob-scene-haikei.png") center center/cover no-repeat;
+  }
+
+.pinkpanther{
+    background: rgb(2,0,36);
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(167,0,255,1) 100%);
+    color: white;
+    border-radius: 25px
+  }
