@@ -12,10 +12,6 @@ export default function AllClubs(props) {
     useEffect(() => {
       make()
         .then((response) => {
-<<<<<<< Updated upstream
-          console.log(response)
-=======
->>>>>>> Stashed changes
           setRecentClubs(response)
         })
         .catch((error) => {
