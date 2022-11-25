@@ -42,7 +42,7 @@ export default function ClubsRow() {
     <>
     <div className="d-lg-flex">
       <div className='col-lg-8'>
-    <div className='mx-4 mt-4 d-flex align-items-baseline'><h4 className='mt-2 mb-0 mx-2'><strong>Hot Stuff 🔥</strong></h4><Link className='ml-auto d-block text-decoration-none d-md-none' to="/all-clubs" style={{color: "#9E0A0A"}}>View All Clubs</Link></div>
+    <div className='mx-md-4 mt-4 d-flex align-items-baseline'><h4 className='mt-2 mb-0 mx-2'><strong>Featured Clubs🔥</strong></h4><Link className='ml-auto d-block text-decoration-none d-md-none' to="/all-clubs" style={{color: "#9E0A0A"}}>View All Clubs</Link></div>
     <div className='d-flex flex-md-wrap overflow-auto  '>
         {recentClubs?.data.map((fields, index )=> {
       return <HPClubs className="col" key={index} identity={fields}></HPClubs>
@@ -50,7 +50,7 @@ export default function ClubsRow() {
     </div>
     </div>
     <div className='col-lg-4'>
-    <div className='mr-4 mt-4 d-flex align-items-baseline'><h4 className='mt-2 mb-0 mx-2'><strong>Ongoing Events🔥</strong></h4><Link className='ml-auto d-block text-decoration-none d-md-none' to="/all-clubs" style={{color: "#9E0A0A"}}>View Events</Link></div>
+    <div className='mr-4 mt-md-4 d-flex align-items-baseline'><h4 className='mt-2 mb-0 mx-2'><strong>Ongoing Events🔥</strong></h4><Link className='ml-auto d-block text-decoration-none d-md-none' to="/all-clubs" style={{color: "#9E0A0A"}}>View Events</Link></div>
     <div className='d-flex d-md-block flex-column align-items-center'>{recentEvents?.data.map((fields, index )=> {
       return <HPEvents className="col shadow-lg" key={index} identity={fields}></HPEvents>
     })} </div>
