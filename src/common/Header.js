@@ -20,13 +20,13 @@ export default function Header() {
           <Link className="nav-link pb-0 ml-2" style={{fontWeight: "800", fontSize: "19px"}} to="/all-clubs">Clubs</Link>
         </li>
         <li className="nav-item active d-none d-md-block hover-underline-animation">
-          <a className="nav-link pb-0 " style={{fontWeight: "800", fontSize: "19px"}} href="#" >Events</a>
+          <a className="nav-link pb-0 " style={{fontWeight: "800", fontSize: "19px"}} href="/" >Events</a>
         </li>
         <li className="nav-item active d-none d-md-block hover-underline-animation">
-          <a className="nav-link pb-0" style={{fontWeight: "800", fontSize: "19px"}} href="#">Suggested</a>
+          <a className="nav-link pb-0" style={{fontWeight: "800", fontSize: "19px"}} href="/">Suggested</a>
         </li>
         <li className="nav-item active ">
-          <a className="nav-link ml-2 ml-md-0 pb-0 hover-underline-animation" style={{fontWeight: "800", fontSize: "19px"}} href="#">Randomize</a>
+          <a className="nav-link ml-2 ml-md-0 pb-0 hover-underline-animation" style={{fontWeight: "800", fontSize: "19px"}} href="/">Randomize</a>
         </li>
       </ul>
       <i className="bi bi-person-circle pt-2 ml-auto ml-md-0" onClick={()=>{navigate('/stranger-login')}}style={{fontSize: "25px"}}></i>
