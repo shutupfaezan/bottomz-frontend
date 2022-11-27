@@ -20,7 +20,7 @@ export default function Header() {
           <Link className="nav-link pb-0 ml-2" style={{fontWeight: "800", fontSize: "19px"}} to="/all-clubs">Clubs</Link>
         </li>
         <li className="nav-item active d-none d-md-block hover-underline-animation">
-          <a className="nav-link pb-0 " style={{fontWeight: "800", fontSize: "19px"}} href="/" >Events</a>
+          <a className="nav-link pb-0 " style={{fontWeight: "800", fontSize: "19px"}} href="/all-events" >Events</a>
         </li>
         <li className="nav-item active d-none d-md-block hover-underline-animation">
           <a className="nav-link pb-0" style={{fontWeight: "800", fontSize: "19px"}} href="/">Suggested</a>

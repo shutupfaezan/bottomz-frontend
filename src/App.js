@@ -1,5 +1,6 @@
 import './App.css';
 import AllClubs from './components/AllClubs';
+import AllEvents from './components/AllEvents';
 import Login from './components/Login';
 import {
   BrowserRouter as Router,
@@ -19,6 +20,8 @@ function App() {
         <Route exact path="/stranger-login" element={<Login/>}>
         </Route>
         <Route exact path="/all-clubs" element={<AllClubs/>}>
+        </Route>
+        <Route exact path="/all-events" element={<AllEvents/>}>
         </Route>
         </Routes>
       </Router>
