@@ -3,13 +3,19 @@ import React from 'react'
 export default function RenderClubs(props) {
   return (
   <>
-    <div className="card m-2 allclubs shadow" style={{width: "22rem", border: "0px", borderRadius: "20px", padding: "10px"}}>
-      <img class="card-img " src="https://i0.wp.com/stanzaliving.wpcomstaging.com/wp-content/uploads/2022/04/8d5f9-shutterstock_1436812790.jpg?fit=1000%2C667&ssl=1" style={{borderRadius: "22px", marginLeft: "s"}} alt="..."/>
-      
-        <div className='d-flex '>
-          <p  className='card-img-overlay d-flex align-items-end justify-content-center' style={{fontSize: "25px"}}>{props.identity.name}</p>
+  <div className='col d-flex justify-content-center  p-2 m-2'>
+    <div className="card shadow" style={{minWidth: "14rem",maxWidth: "21rem", borderRadius: "20px"}}>
+      <img src="https://www.alux.com/wp-content/uploads/2014/09/Best-Nightclubs-In-Miami-Top-10-LIV.jpeg"  className="card-img-top p-2" style={{borderRadius: "22px"}} alt="..."/>
+      <div className="p-2">
+        <div className='d-flex'>
+          <h5 className="card-title m-0"><strong>{props.identity.name}</strong></h5>
+          <i className=" ml-auto bi bi-heart"></i>
         </div>
+        <p className='m-0' style={{fontSize: "13px"}}>{props.identity.area}</p>
+        <div className="mt-1 d-flex" style={{color: "#ffbe5b"}}><i className="bi bi-star-fill mr-1" style={{fontSize: "13px", color: "warning"}}></i>{props.identity.rating}<small className="ml-auto" style={{color: "grey"}}>Starting from ₹{props.identity.cost}</small></div>
       </div>
+    </div>
+  </div>
   </>
   )
 }
