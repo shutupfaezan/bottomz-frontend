@@ -3,9 +3,9 @@ import React from 'react'
 export default function RenderClubs(props) {
   return (
   <>
-  <div className='col d-flex justify-content-center  p-2 m-2'>
+  <div className='col  d-flex justify-content-center  p-2 m-2'>
     <div className="card shadow" style={{minWidth: "14rem",maxWidth: "21rem", borderRadius: "20px"}}>
-      <img src="https://www.alux.com/wp-content/uploads/2014/09/Best-Nightclubs-In-Miami-Top-10-LIV.jpeg"  className="card-img-top p-2" style={{borderRadius: "22px"}} alt="..."/>
+      <img src="https://www.alux.com/wp-content/uploads/2014/09/Best-Nightclubs-In-Miami-Top-10-LIV.jpeg"  className="allclubs card-img-top p-2" style={{borderRadius: "22px"}} alt="..."/>
       <div className="p-2">
         <div className='d-flex'>
           <h5 className="card-title m-0"><strong>{props.identity.name}</strong></h5>
