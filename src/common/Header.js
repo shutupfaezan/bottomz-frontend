@@ -25,9 +25,12 @@ export default function Header() {
         <li className="nav-item active d-none d-md-block hover-underline-animation">
           <a className="nav-link pb-0" style={{fontWeight: "800", fontSize: "19px"}} href="/">Host With Us</a>
         </li>
-        <li className="nav-item active ">
+        {/* <li className="nav-item active ">
           <a className="nav-link ml-2 ml-md-0 pb-0 hover-underline-animation" style={{fontWeight: "800", fontSize: "19px"}} href="/">Randomize</a>
         </li>
+        <li className="nav-item active ">
+          <a className="nav-link ml-2 ml-md-0 pb-0 hover-underline-animation" style={{fontWeight: "800", fontSize: "19px"}} href="/">Meet Cute</a>
+        </li> */}
       </ul>
       <i className="bi bi-person-circle pt-2 ml-auto ml-md-0" onClick={()=>{navigate('/stranger-login')}}style={{fontSize: "25px"}}></i>
     </div>
