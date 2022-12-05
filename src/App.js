@@ -8,6 +8,7 @@ import {
   Route,
 } from "react-router-dom";
 import HomePage from './components/HomePage';
+import SingularClubs from './components/SingularClubs';
 
 
 function App() {
@@ -22,6 +23,8 @@ function App() {
         <Route exact path="/all-clubs" element={<AllClubs/>}>
         </Route>
         <Route exact path="/all-events" element={<AllEvents/>}>
+        </Route>
+        <Route exact path="all-clubs/:name" element={<SingularClubs/>}>
         </Route>
         </Routes>
       </Router>

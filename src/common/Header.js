@@ -22,7 +22,7 @@ export default function Header() {
         <li className="nav-item active d-none d-md-block hover-underline-animation">
           <a className="nav-link pb-0 " style={{fontWeight: "800", fontSize: "19px"}} href="/all-events" >Events</a>
         </li>
-        <li className="nav-item active d-none d-md-block hover-underline-animation">
+        <li className="nav-item active   d-block hover-underline-animation">
           <a className="nav-link pb-0" style={{fontWeight: "800", fontSize: "19px"}} href="/">Host With Us</a>
         </li>
         {/* <li className="nav-item active ">
