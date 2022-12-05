@@ -1,11 +1,13 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 import { BrowserView, MobileView } from 'react-device-detect';
 
 export default function RenderEvents(props) {
+  const navigate = useNavigate()
   return (
     <>
-      <BrowserView >
-        <div class="d-flex flex-column mt-3" style={{width: "170px"}}>
+      <BrowserView>
+        <div class="d-flex flex-column mt-3" style={{width: "170px"}} onClick={()=>{navigate(props.identity.event_name)}}>
           <div>
             <img class="p-2 align-self-center" style={{ width: "170px", height: "220px", borderRadius: "20px"}} src="https://tse3.mm.bing.net/th?id=OIP.g-CHSQ0C-ZiK_3zZ2MUWQgHaK4&pid=Api&P=0" alt="Club"/>
               <div className='d-flex justify-content-center flex-column'> 
