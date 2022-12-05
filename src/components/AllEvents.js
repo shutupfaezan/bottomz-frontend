@@ -30,15 +30,18 @@ export default function AllEvents() {
     <span class="sr-only">Loading...</span>
     </div>}
     </div>
-    {!loading && <div className='d-flex'>
+    {!loading &&
+     <div className=''>
     <div className='col-lg-4'>
     <form class="d-flex" role="search">
         <input class="form-control" type="search" style={{borderRadius: "20px", border: "1px solid black"}} placeholder="Search Your Mind..." aria-label="Search"/>
-        <i class="bi bi-search position-relative" style={{float: "right", right: "30px", borderRadius: "20px", top: "8px" }}></i>   
+        <i class="bi bi-search position-relative" style={{float: "right", right: "30px", borderRadius: "20px", top: "8px", width: "0px"}}></i>   
       </form> 
-    {recentEvents?.data.map((fields, index )=> {
-      return <RenderEvents key={index} identity={fields}></RenderEvents>
-    })}
+        <div className='d-flex flex-wrap justify-content-center'>
+      {recentEvents?.data.map((fields, index )=> {
+        return <RenderEvents key={index} identity={fields}></RenderEvents>
+      })}
+      </div>  
     </div>
       </div>}
     </>
