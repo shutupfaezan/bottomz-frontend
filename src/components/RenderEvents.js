@@ -1,17 +1,29 @@
-import React from 'react'
-import { useNavigate } from 'react-router-dom'
+import React, { useEffect, useState} from 'react'
+import axios from 'axios'
 import { BrowserView, MobileView } from 'react-device-detect';
-
+import { useNavigate } from 'react-router-dom'
 export default function RenderEvents(props) {
+  // const [hitRun, setHitRun] = useState(false)
   const navigate = useNavigate()
+  // const singularEvent = async ()=> { return await axios.get(`https://nightlife-2710.herokuapp.com/fetch-single-event?event_name=${props?.identity.event_name}`)};
+  //   useEffect(() => {
+  //     singularEvent()
+  //     .then((response) => { 
+  //         console.log(response)
+  //     })
+  //     .catch((error) => {
+  //         console.log(error);
+  //     });
+  // }, []);
+ 
   return (
     <>
       <BrowserView>
-        <div class="d-flex flex-column mt-3" style={{width: "170px"}} onClick={()=>{navigate(props.identity.event_name)}}>
+        <div className="d-flex flex-column mt-3" style={{width: "170px"}}>
           <div>
-            <img class="p-2 align-self-center" style={{ width: "170px", height: "220px", borderRadius: "20px"}} src="https://tse3.mm.bing.net/th?id=OIP.g-CHSQ0C-ZiK_3zZ2MUWQgHaK4&pid=Api&P=0" alt="Club"/>
+            <img className="p-2 align-self-center" style={{ width: "170px", height: "220px", borderRadius: "20px"}} src="https://tse3.mm.bing.net/th?id=OIP.g-CHSQ0C-ZiK_3zZ2MUWQgHaK4&pid=Api&P=0" alt="Club"/>
               <div className='d-flex justify-content-center flex-column'> 
-                <h6 class="m-0 d-flex justify-content-center "><strong>{props.identity.event_name}</strong></h6>
+                <h6 className="m-0 d-flex justify-content-center "><strong>{props.identity.event_name}</strong></h6>
                 <p className='m-0 align-self-center text-truncate' style={{fontSize: "13px", color: "grey", width: "60%"}}>{props.identity.event_venue}</p>
                 <p className='m-0 d-flex justify-content-center' style={{fontSize: "13px", color: "grey"}}><strong>{props.identity.price}</strong></p>
               </div>
@@ -19,16 +31,16 @@ export default function RenderEvents(props) {
         </div>
       </BrowserView>
       <MobileView >
-        <div class="d-flex flex-column mt-3" style={{width: "170px"}}>
+        <div className="d-flex flex-column mt-3" style={{width: "170px"}}  onClick={()=>{navigate(`/all-events/${props.identity.event_name}`)}}>
             <div>
-              <img class="p-2 align-self-center" style={{ width: "170px", height: "220px", borderRadius: "20px"}} src="https://tse3.mm.bing.net/th?id=OIP.g-CHSQ0C-ZiK_3zZ2MUWQgHaK4&pid=Api&P=0" alt="Club"/>
+              <img className="p-2 align-self-center" style={{ width: "170px", height: "220px", borderRadius: "20px"}} src="https://tse3.mm.bing.net/th?id=OIP.g-CHSQ0C-ZiK_3zZ2MUWQgHaK4&pid=Api&P=0" alt="Club"/>
               <div className='d-flex justify-content-center flex-column'>
-                <h6 class="m-0 d-flex justify-content-center "><strong>{props.identity.event_name}</strong></h6>
+                <h6 className="m-0 d-flex justify-content-center "><strong>{props.identity.event_name}</strong></h6>
                 <p className='m-0 align-self-center text-truncate' style={{fontSize: "13px", color: "grey", width: "60%"}}>{props.identity.event_venue}</p>
                 <p className='m-0 d-flex justify-content-center' style={{fontSize: "13px", color: "grey"}}><strong>{props.identity.price}</strong></p>
               </div>
             </div>
-          </div>
+        </div>
       </MobileView>
   </>
   )

@@ -26,16 +26,16 @@ export default function AllEvents() {
     <Header/>
     {/* <div className='d-flex justify-content-center mt-5'><h1><strong>Events</strong></h1></div> */}
     <div className='d-flex justify-content-center mt-auto'>
-    {loading && <div class="my-auto spinner-border text-info " role="status">
-    <span class="sr-only">Loading...</span>
+    {loading && <div className="my-auto spinner-border text-info " role="status">
+    <span className="sr-only">Loading...</span>
     </div>}
     </div>
     {!loading &&
      <div className=''>
     <div className='col-lg-4'>
-    <form class="d-flex" role="search">
-        <input class="form-control" type="search" style={{borderRadius: "20px", border: "1px solid black"}} placeholder="Search Your Mind..." aria-label="Search"/>
-        <i class="bi bi-search position-relative" style={{float: "right", right: "30px", borderRadius: "20px", top: "8px", width: "0px"}}></i>   
+    <form className="d-flex" role="search">
+        <input className="form-control" type="search" style={{borderRadius: "20px", border: "1px solid black"}} placeholder="Search Your Mind..." aria-label="Search"/>
+        <i className="bi bi-search position-relative" style={{float: "right", right: "30px", borderRadius: "20px", top: "8px", width: "0px"}}></i>   
       </form> 
         <div className='d-flex flex-wrap justify-content-center'>
       {recentEvents?.data.map((fields, index )=> {

@@ -27,7 +27,7 @@ function App() {
         </Route>
         <Route exact path="all-clubs/:name" element={<SingularClubs/>}>
         </Route>
-        <Route exact path="all-events/:name" element={<SingularEvents/>}>
+        <Route exact path="all-events/:event_name" element={<SingularEvents/>}>
         </Route>
         </Routes>
       </Router>
