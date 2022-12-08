@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom'
 export default function RenderClubs(props) {
   const navigate = useNavigate()
   return (
-  
   <>
   <div className='col d-flex justify-content-center p-2 m-2' onClick={()=>{navigate(props.identity.name)}}>
     <div className="card shadow" style={{minWidth: "14rem",maxWidth: "21rem", borderRadius: "20px"}}>
