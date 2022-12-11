@@ -1,25 +1,24 @@
-import React, { useEffect, useState} from 'react'
+import React, {useContext} from 'react'
 import axios from 'axios'
+import { SingularContext } from "../contexts/Context";
 import { BrowserView, MobileView } from 'react-device-detect';
 import { useNavigate } from 'react-router-dom'
+
 export default function RenderEvents(props) {
-  // const [hitRun, setHitRun] = useState(false)
+  const {setHitRun, setRunInfo} = useContext(SingularContext);
   const navigate = useNavigate()
-  // const singularEvent = async ()=> { return await axios.get(`https://nightlife-2710.herokuapp.com/fetch-single-event?event_name=${props?.identity.event_name}`)};
-  //   useEffect(() => {
-  //     singularEvent()
-  //     .then((response) => { 
-  //         console.log(response)
-  //     })
-  //     .catch((error) => {
-  //         console.log(error);
-  //     });
-  // }, []);
+
+  function singularEvent(){
+    axios.get(`https://nightlife-2710.herokuapp.com/fetch-single-event?event_name=${props?.identity.event_name}`)
+    .then((response)=>
+      setRunInfo(response.data),
+    )
+  }
  
   return (
     <>
       <BrowserView>
-        <div className="d-flex flex-column mt-3" style={{width: "170px"}}>
+        <div className="d-flex flex-column mt-3" style={{width: "170px"}} onClick={()=>{setHitRun(true);singularEvent()}}>
           <div>
             <img className="p-2 align-self-center" style={{ width: "170px", height: "220px", borderRadius: "20px"}} src="https://tse3.mm.bing.net/th?id=OIP.g-CHSQ0C-ZiK_3zZ2MUWQgHaK4&pid=Api&P=0" alt="Club"/>
               <div className='d-flex justify-content-center flex-column'> 
