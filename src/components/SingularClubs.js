@@ -38,7 +38,8 @@ const [eventVariable, setEventVariable] = useState()
     <>
     <div>
     <div style={{height: "256px"}}>
-    <div className='d-flex flex-column text-white align-items-center justify-content-center bgclub' style={{height: "100%"}}>
+    <div className='d-flex flex-column text-white align-items-center justify-content-center' style={{height: "100%"}}>
+      <img src='http://pavbca.com/walldb/original/5/1/7/484530.jpg' style={{width: '100%', height: "100%"}} alt=''/>
     </div>
     <div className= "position-absolute text-white d-flex flex-column justify-content-center align-items-center w-100" style={{top: "0px", height: "inherit"}}>
     <h1 className='d-flex'><strong>{clubVariable?.name}</strong></h1>
@@ -46,7 +47,7 @@ const [eventVariable, setEventVariable] = useState()
      { clubVariable && <Button variant="outlined" className="mt-3" endIcon={<LocationOnOutlinedIcon />} style={{backgroundColor: "white", color: "black"}}>Locate</Button>}
     </div>
     </div>
-    <div className='col-lg-4'>
+    <div className='d-flex flex-wrap justify-content-center'>
     {eventVariable?.map((fields, index )=> {
       return <RenderEvents key={index} identity={fields}></RenderEvents>
     })}
