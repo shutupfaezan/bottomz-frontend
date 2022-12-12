@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/bottomz-frontend/static/css/main.716255fe.css",
-    "main.js": "/bottomz-frontend/static/js/main.aa4338f7.js",
+    "main.js": "/bottomz-frontend/static/js/main.d76647a1.js",
     "static/js/787.172a0347.chunk.js": "/bottomz-frontend/static/js/787.172a0347.chunk.js",
     "static/media/blob-scene-haikei.png": "/bottomz-frontend/static/media/blob-scene-haikei.c10c10e3a8faeeff8be6.png",
     "index.html": "/bottomz-frontend/index.html",
     "main.716255fe.css.map": "/bottomz-frontend/static/css/main.716255fe.css.map",
-    "main.aa4338f7.js.map": "/bottomz-frontend/static/js/main.aa4338f7.js.map",
+    "main.d76647a1.js.map": "/bottomz-frontend/static/js/main.d76647a1.js.map",
     "787.172a0347.chunk.js.map": "/bottomz-frontend/static/js/787.172a0347.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.716255fe.css",
-    "static/js/main.aa4338f7.js"
+    "static/js/main.d76647a1.js"
   ]
 }
