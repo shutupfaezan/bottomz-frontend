@@ -23,10 +23,10 @@ export default function AllClubs(props) {
   return (
     <>
     <div className='d-flex justify-content-center mt-5'><h1><strong>All Clubs</strong></h1></div>
-    <div className='d-flex flex-wrap justify-content-center'>
-    {recentClubs?.data.map((fields, index )=> {
-      return <RenderClubs key={index} identity={fields}></RenderClubs>
-    })}
+        <div className='d-flex flex-wrap ml-xl-4 '>
+        {recentClubs?.data.map((fields, index )=> {
+          return <RenderClubs key={index} identity={fields}></RenderClubs>
+        })}
     </div>
     </>
   )
