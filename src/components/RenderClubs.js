@@ -1,13 +1,14 @@
 import React from 'react'
+import { BrowserView, MobileOnlyView, TabletView } from 'react-device-detect';
 import { useNavigate } from 'react-router-dom'
 
 export default function RenderClubs(props) {
   const navigate = useNavigate()
   return (
   <>
-  <div className='col d-flex justify-content-center p-2 m-2' onClick={()=>{navigate(props.identity.name)}}>
-    <div className="card shadow" style={{minWidth: "14rem",maxWidth: "21rem", borderRadius: "20px"}}>
-      <img src="https://www.alux.com/wp-content/uploads/2014/09/Best-Nightclubs-In-Miami-Top-10-LIV.jpeg"  className="allclubs card-img-top p-2" style={{borderRadius: "22px"}} alt="..."/>
+  <BrowserView className='d-flex flex-column flex-wrap m-2 position-relative' style={{width: "23%"}} onClick={()=>{navigate(props.identity.name)}}>
+    <div className="card shadow w-100">
+      <img src="https://www.alux.com/wp-content/uploads/2014/09/Best-Nightclubs-In-Miami-Top-10-LIV.jpeg"  className="allclubs card-img-top p-2" style={{borderRadius: "22px", height: "200px"}} alt="..."/>
       <div className="p-2">
         <div className='d-flex'>
           <h5 className="card-title m-0"><strong>{props.identity.name}</strong></h5>
@@ -17,7 +18,33 @@ export default function RenderClubs(props) {
         <div className="mt-1 d-flex" style={{color: "#ffbe5b"}}><i className="bi bi-star-fill mr-1" style={{fontSize: "13px", color: "warning"}}></i>{props.identity.rating}<small className="ml-auto" style={{color: "grey"}}>Starting from ₹{props.identity.cost}</small></div>
       </div>
     </div>
-  </div>
+  </BrowserView>
+  <TabletView className='d-flex flex-column flex-wrap m-2 position-relative' style={{width: "47%"}} onClick={()=>{navigate(props.identity.name)}}>
+    <div className="card shadow w-100">
+      <img src="https://www.alux.com/wp-content/uploads/2014/09/Best-Nightclubs-In-Miami-Top-10-LIV.jpeg"  className="allclubs card-img-top p-2" style={{borderRadius: "22px", height: "200px"}} alt="..."/>
+      <div className="p-2">
+        <div className='d-flex'>
+          <h5 className="card-title m-0"><strong>{props.identity.name}</strong></h5>
+          <i className=" ml-auto bi bi-heart"></i>
+        </div>
+        <p className='m-0' style={{fontSize: "13px"}}>{props.identity.area}</p>
+        <div className="mt-1 d-flex" style={{color: "#ffbe5b"}}><i className="bi bi-star-fill mr-1" style={{fontSize: "13px", color: "warning"}}></i>{props.identity.rating}<small className="ml-auto" style={{color: "grey"}}>Starting from ₹{props.identity.cost}</small></div>
+      </div>
+    </div>
+  </TabletView>
+  <MobileOnlyView className='d-flex flex-column flex-wrap m-2 w-100 position-relative' onClick={()=>{navigate(props.identity.name)}}>
+    <div className="card shadow w-100">
+      <img src="https://www.alux.com/wp-content/uploads/2014/09/Best-Nightclubs-In-Miami-Top-10-LIV.jpeg"  className="allclubs card-img-top p-2" style={{borderRadius: "22px", height: "200px"}} alt="..."/>
+      <div className="p-2">
+        <div className='d-flex'>
+          <h5 className="card-title m-0"><strong>{props.identity.name}</strong></h5>
+          <i className=" ml-auto bi bi-heart"></i>
+        </div>
+        <p className='m-0' style={{fontSize: "13px"}}>{props.identity.area}</p>
+        <div className="mt-1 d-flex" style={{color: "#ffbe5b"}}><i className="bi bi-star-fill mr-1" style={{fontSize: "13px", color: "warning"}}></i>{props.identity.rating}<small className="ml-auto" style={{color: "grey"}}>Starting from ₹{props.identity.cost}</small></div>
+      </div>
+    </div>
+  </MobileOnlyView>
   </>
   )
 }
