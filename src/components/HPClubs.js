@@ -10,7 +10,7 @@ export default function HPClubs(props) {
   <>
   <div className='col p-2 m-2' onClick={()=>{navigate("all-clubs/" + props.identity.name)}}>
     <div className="card shadow" style={{minWidth: "14rem", maxWidth: "21rem", borderRadius: "20px"}}>
-      <img src="https://www.alux.com/wp-content/uploads/2014/09/Best-Nightclubs-In-Miami-Top-10-LIV.jpeg"  className="card-img-top p-2" style={{borderRadius: "22px"}} alt="..."/>
+      <img src={props.identity.images_url}  className="card-img-top p-2" style={{borderRadius: "22px"}} alt="..."/>
       <div className="p-2">
         <div className='d-flex'>
           <h5 className="card-title m-0"><strong>{props.identity.name}</strong></h5>
