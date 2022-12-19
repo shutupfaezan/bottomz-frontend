@@ -8,7 +8,7 @@ export default function RenderClubs(props) {
   <>
   <BrowserView className='d-flex flex-column flex-wrap m-2 position-relative' style={{width: "23%"}} onClick={()=>{navigate(props.identity.name)}}>
     <div className="card shadow w-100" style={{borderRadius: "20px"}}>
-      <img src="https://www.alux.com/wp-content/uploads/2014/09/Best-Nightclubs-In-Miami-Top-10-LIV.jpeg"  className="allclubs card-img-top p-2" style={{borderRadius: "22px", height: "200px"}} alt="..."/>
+      <img src={props.identity.images_url}  className="allclubs card-img-top p-2" style={{borderRadius: "22px", height: "200px"}} alt="..."/>
       <div className="p-2">
         <div className='d-flex'>
           <h5 className="card-title m-0"><strong>{props.identity.name}</strong></h5>
@@ -21,7 +21,7 @@ export default function RenderClubs(props) {
   </BrowserView>
   <TabletView className='d-flex flex-column flex-wrap m-2 position-relative' style={{width: "47%"}} onClick={()=>{navigate(props.identity.name)}}>
     <div className="card shadow w-100" style={{borderRadius: "20px"}}>
-      <img src="https://www.alux.com/wp-content/uploads/2014/09/Best-Nightclubs-In-Miami-Top-10-LIV.jpeg"  className="allclubs card-img-top p-2" style={{borderRadius: "22px", height: "200px"}} alt="..."/>
+      <img src={props.identity.images_url}  className="allclubs card-img-top p-2" style={{borderRadius: "22px", height: "200px"}} alt="..."/>
       <div className="p-2">
         <div className='d-flex'>
           <h5 className="card-title m-0"><strong>{props.identity.name}</strong></h5>
@@ -34,7 +34,7 @@ export default function RenderClubs(props) {
   </TabletView>
   <MobileOnlyView className='d-flex flex-column flex-wrap m-2 w-100 position-relative' onClick={()=>{navigate(props.identity.name)}}>
     <div className="card shadow w-100" style={{borderRadius: "20px"}}>
-      <img src="https://www.alux.com/wp-content/uploads/2014/09/Best-Nightclubs-In-Miami-Top-10-LIV.jpeg"  className="allclubs card-img-top p-2" style={{borderRadius: "22px", height: "200px"}} alt="..."/>
+      <img src={props.identity.images_url}  className="allclubs card-img-top p-2" style={{borderRadius: "22px", height: "200px"}} alt="..."/>
       <div className="p-2">
         <div className='d-flex'>
           <h5 className="card-title m-0"><strong>{props.identity.name}</strong></h5>
