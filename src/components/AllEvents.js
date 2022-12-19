@@ -37,7 +37,7 @@ export default function AllEvents() {
     <div className='d-flex'>
     <div className='col-md-4'>
     <form className="d-flex" role="search" style={{color: "white"}}>
-        <input className="form-control" type="search" style={{borderRadius: "20px", border: "1px solid black", background: "#2e3341"}} placeholder="Search Your Mind..." aria-label="Search"/>
+        <input className="form-control" type="search" style={{borderRadius: "20px", border: "1px solid black", background: "#2e3341", color: "white"}} placeholder="Search Your Mind..." aria-label="Search"/>
         <i className="bi bi-search position-relative" style={{float: "right", right: "30px", borderRadius: "20px", top: "8px", width: "0px"}}></i>   
       </form> 
         <div className='d-flex flex-wrap justify-content-center'>
