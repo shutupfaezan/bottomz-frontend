@@ -7,7 +7,7 @@ export default function RenderClubs(props) {
   return (
   <>
   <BrowserView className='d-flex flex-column flex-wrap m-2 position-relative' style={{width: "23%"}} onClick={()=>{navigate(props.identity.name)}}>
-    <div className="card shadow w-100">
+    <div className="card shadow w-100" style={{borderRadius: "20px"}}>
       <img src="https://www.alux.com/wp-content/uploads/2014/09/Best-Nightclubs-In-Miami-Top-10-LIV.jpeg"  className="allclubs card-img-top p-2" style={{borderRadius: "22px", height: "200px"}} alt="..."/>
       <div className="p-2">
         <div className='d-flex'>
@@ -20,7 +20,7 @@ export default function RenderClubs(props) {
     </div>
   </BrowserView>
   <TabletView className='d-flex flex-column flex-wrap m-2 position-relative' style={{width: "47%"}} onClick={()=>{navigate(props.identity.name)}}>
-    <div className="card shadow w-100">
+    <div className="card shadow w-100" style={{borderRadius: "20px"}}>
       <img src="https://www.alux.com/wp-content/uploads/2014/09/Best-Nightclubs-In-Miami-Top-10-LIV.jpeg"  className="allclubs card-img-top p-2" style={{borderRadius: "22px", height: "200px"}} alt="..."/>
       <div className="p-2">
         <div className='d-flex'>
@@ -33,7 +33,7 @@ export default function RenderClubs(props) {
     </div>
   </TabletView>
   <MobileOnlyView className='d-flex flex-column flex-wrap m-2 w-100 position-relative' onClick={()=>{navigate(props.identity.name)}}>
-    <div className="card shadow w-100">
+    <div className="card shadow w-100" style={{borderRadius: "20px"}}>
       <img src="https://www.alux.com/wp-content/uploads/2014/09/Best-Nightclubs-In-Miami-Top-10-LIV.jpeg"  className="allclubs card-img-top p-2" style={{borderRadius: "22px", height: "200px"}} alt="..."/>
       <div className="p-2">
         <div className='d-flex'>
