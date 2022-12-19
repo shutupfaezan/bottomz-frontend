@@ -8,6 +8,7 @@ import HPEvents from './HPEvents';
 
 export default function ClubsRow() {
     const [recentClubs, setRecentClubs] = useState()
+    const [loading, setLoading] = useState(true)
     const [recentEvents, setRecentEvents] = useState()
     const make = async ()=> { return await axios.get("https://nightlife-2710.herokuapp.com/fetch-popular-clubs")}
     const event = async ()=> { return await axios.get("https://nightlife-2710.herokuapp.com/fetch-popular-events")}
@@ -15,6 +16,7 @@ export default function ClubsRow() {
      useEffect(() => {
        make()
          .then((response) => {
+          setLoading(false)
            console.log(response)
            setRecentClubs(response)
          })
@@ -39,7 +41,12 @@ export default function ClubsRow() {
 
   return (
     <>
-    <div className="d-lg-flex">
+    {loading && <div className='d-flex justify-content-center mt-auto' style={{height: "500px"}}>
+    <div className="my-auto spinner-border text-black " role="status">
+    <span className="sr-only">Loading...</span>
+    </div>
+    </div>}
+    {!loading && <div className="d-lg-flex">
       <div className='col-lg-8'>
         <div className='mx-md-4 mt-4 d-flex align-items-baseline'><h4 className='mt-2 mb-0 mx-2'><strong>Featured Clubs🔥</strong></h4><Link className='ml-auto d-block text-decoration-none d-lg-none' to="/all-clubs" style={{color: "#9E0A0A"}}>View All Clubs</Link></div>
         <div className='d-flex flex-lg-wrap overflow-auto '>
@@ -55,7 +62,7 @@ export default function ClubsRow() {
         })}
         </div>
       </div>
-    </div>
+    </div>}
     </>
   )
 }
