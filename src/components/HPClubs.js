@@ -1,10 +1,14 @@
 import React from 'react'
 import "../css/ClubsRow.css"
+import { useNavigate } from 'react-router-dom'
+
 
 export default function HPClubs(props) {
+  const navigate = useNavigate()
+
   return (
   <>
-  <div className='col p-2 m-2'>
+  <div className='col p-2 m-2' onClick={()=>{navigate("all-clubs/" + props.identity.name)}}>
     <div className="card shadow" style={{minWidth: "14rem", maxWidth: "21rem", borderRadius: "20px"}}>
       <img src="https://www.alux.com/wp-content/uploads/2014/09/Best-Nightclubs-In-Miami-Top-10-LIV.jpeg"  className="card-img-top p-2" style={{borderRadius: "22px"}} alt="..."/>
       <div className="p-2">
