@@ -3,7 +3,7 @@ import AllClubs from './components/AllClubs';
 import AllEvents from './components/AllEvents';
 import Login from './components/Login';
 import {
-  BrowserRouter as Router,
+  HashRouter as Router,
   Routes,
   Route,
 } from "react-router-dom";
