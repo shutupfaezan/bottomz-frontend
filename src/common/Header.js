@@ -37,7 +37,7 @@ export default function Header() {
     <div className='w-100'>
       <form className="d-flex justify-content-center" role="search">
           <input className="form-control w-75" type="search" style={{height: "50px", border: "1px solid black"}} placeholder="Search Your Mind..." aria-label="Search"/>
-          <i className="bi bi-search position-relative" style={{float: "right", right: "30px", borderRadius: "20px", top: "8px", width: "0px"}}></i>   
+          <i className="bi bi-search position-relative" style={{float: "right", right: "30px", borderRadius: "20px", top: "15px", width: "0px"}}></i>   
       </form> 
     </div>
   </div>
