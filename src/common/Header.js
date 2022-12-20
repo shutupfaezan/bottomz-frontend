@@ -8,7 +8,7 @@ export default function Header() {
   return (
     <>
     
-  <div className="d-flex align-items-center" style={{background: `url('${process.env.PUBLIC_URL}/images/wave-haikei.png') no-repeat center/cover`, height: "250px" }}>
+  <div className="d-flex align-items-center" style={{background: `url('${process.env.PUBLIC_URL}/images/wave-haikei.png') no-repeat center/cover`, height: "300px" }}>
     <nav className="navbar navbar-expand navbar-light align-items-center headerback position-absolute w-100" style={{top: "0px"}}>
       <a className="navbar-brand text-white" style={{fontWeight: "800"}} href="/">BottmzUp.com</a>
       {/* <img src={process.env.PUBLIC_URL + "/images/doers-solutions-removebg-preview.png"} width="120" height="40" alt=""/> */}
@@ -35,7 +35,7 @@ export default function Header() {
       </div>
     </nav>
     <div className='d-flex flex-column w-100'>
-    <h5 className='d-flex justify-content-center text-white w-75 align-self-center text-center'>Lets give you a night to remember</h5>    
+    <h3 className='d-flex justify-content-center text-white w-75 align-self-center text-center' style={{fontWeight: "800"}}>Lets give you a night to remember</h3>  
     <div className='w-100'>
       <form className="d-flex justify-content-center" role="search">
           <input className="form-control w-75" type="search" style={{height: "50px", border: "1px solid black"}} placeholder="Search Any Event, Club or Area.." aria-label="Search"/>
