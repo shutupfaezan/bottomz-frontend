@@ -4,7 +4,7 @@ export default function HPEvents(props) {
   console.log(props.identity)
   return (
     <>
-  <div className="d-flex mt-3 w-100" style={{width: "24rem"}}>
+  <div className="d-flex w-100" style={{width: "24rem"}}>
     <img className="align-self-center mr-2" style={{width: "70px", height: "70px", borderRadius: "14px"}} src={props.identity.images_url} alt="Club"/>
     <div className="d-flex flex-column">
       <div className='d-flex'>
