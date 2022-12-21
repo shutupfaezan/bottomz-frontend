@@ -48,7 +48,7 @@ export default function AllEvents() {
     </div>
     <div  className='col-lg-4 d-none d-md-block'>
     {hitRun && <><div className='mt-5 d-flex'>
-      <img src='https://tse3.mm.bing.net/th?id=OIP.g-CHSQ0C-ZiK_3zZ2MUWQgHaK4&pid=Api&P=0' style={{width: "40%", borderRadius: "10px"}} alt=''></img>
+      <img src={runInfo?.images_url} style={{width: "40%", borderRadius: "10px"}} alt=''></img>
       <div className='ml-4'>
       <h3 className='align-items-center '><strong>{runInfo?.event_name}</strong></h3>
       <div className="p-2" style={{border: "2px solid #80808024", background: "rgb(125 124 123 / 8%)", borderRadius: "13px"}}> 
