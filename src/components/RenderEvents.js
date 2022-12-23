@@ -12,7 +12,7 @@ export default function RenderEvents(props) {
     axios.get(`https://nightlife-2710.herokuapp.com/fetch-single-event?event_name=${props?.identity.event_name}`)
     .then((response)=>
       setRunInfo(response.data),
-    )
+    )     
   }
  
   return (
@@ -47,7 +47,7 @@ export default function RenderEvents(props) {
           </div>
           <hr className="w-100" style={{height: "0.1px"}}/>
       </TabletView>
-      <MobileOnlyView>
+      <MobileOnlyView className='w-100'>
         <div className="d-flex w-100" style={{width: "24rem"}}>
           <img className="align-self-center mr-2" style={{width: "70px", height: "70px", borderRadius: "14px"}} src={props.identity.images_url} alt="Club"/>
           <div className="d-flex flex-column">
