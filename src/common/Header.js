@@ -8,21 +8,21 @@ export default function Header() {
   return (
     <>
     
-  <div className="d-flex align-items-center" style={{background: `url('${process.env.PUBLIC_URL}/images/edited0-wall.png') no-repeat center/cover`, height: "300px" }}>
+  <div className="d-flex align-items-center" style={{background: `url('${process.env.PUBLIC_URL}/images/stacked-peaks-haikei (1).png') no-repeat center/cover`, height: "300px" }}>
     <nav className="navbar navbar-expand navbar-light align-items-center headerback position-absolute w-100" style={{top: "0px"}}>
-      <a className="navbar-brand text-black" style={{fontWeight: "800"}} href="/">BottmzUp.com</a>
+      <a className="navbar-brand text-white" style={{fontWeight: "800"}} href="/">BottmzUp.com</a>
       {/* <img src={process.env.PUBLIC_URL + "/images/doers-solutions-removebg-preview.png"} width="120" height="40" alt=""/> */}
 
-      <div className="collapse navbar-collapse text-black" id="navbarSupportedContent">
+      <div className="collapse navbar-collapse text-white" id="navbarSupportedContent">
         <ul className="navbar-nav ml-md-auto mr-2">
           <li className="nav-item active d-none d-md-block hover-underline-animation">
-            <Link className="nav-link pb-0 ml-2 text-black" style={{fontSize: "19px"}} to="/all-clubs">Clubs</Link>
+            <Link className="nav-link pb-0 ml-2 text-white" style={{fontSize: "19px"}} to="/all-clubs">Clubs</Link>
           </li>
           <li className="nav-item active d-none d-md-block hover-underline-animation">
-            <Link className="nav-link pb-0 text-black" style={{fontSize: "19px"}} to="/all-events" >Events</Link>
+            <Link className="nav-link pb-0 text-white" style={{fontSize: "19px"}} to="/all-events" >Events</Link>
           </li>
           <li className="nav-item active d-block hover-underline-animation">
-            <a className="nav-link pb-0 text-black" style={{fontSize: "19px"}} href="/">Host With Us</a>
+            <a className="nav-link pb-0 text-white" style={{fontSize: "19px"}} href="/">Host With Us</a>
           </li>
           {/* <li className="nav-item active ">
             <a className="nav-link ml-2 ml-md-0 pb-0 hover-underline-animation" style={{fontWeight: "800", fontSize: "19px"}} href="/">Randomize</a>
@@ -35,7 +35,7 @@ export default function Header() {
       </div>
     </nav>
     <div className='d-flex flex-column w-100'>
-    <h3 className='d-flex justify-content-center text-black w-75 align-self-center text-center' style={{fontWeight: "800"}}>Lets give you a night to remember</h3>  
+    <h3 className='d-flex justify-content-center text-white w-75 align-self-center text-center' style={{fontWeight: "800"}}>Lets give you a night to remember</h3>  
     <div className='w-100'>
       <form className="d-flex justify-content-center" role="search">
           <input className="form-control w-75" type="search" style={{height: "50px", border: "1px solid black"}} placeholder="Search Any Event, Club or Area.." aria-label="Search"/>
