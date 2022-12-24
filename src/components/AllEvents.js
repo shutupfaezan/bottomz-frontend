@@ -33,8 +33,8 @@ export default function AllEvents() {
     }
     {!loading &&
     <div className='d-flex'>
-      <div className='col-md-8'>
-        <div className='col-md-6'>
+      <div className='col-lg-8'>
+        <div className='col-md-6 p-0'>
           <form className="d-flex mt-3 mb-3" role="search">
             <input className="form-control" type="search" style={{borderRadius: "20px", border: "1px solid black"}} placeholder="Search Your Mind..." aria-label="Search"/>
             <i className="bi bi-search position-relative" style={{float: "right", right: "30px", borderRadius: "20px", top: "8px", width: "0px"}}></i>   
