@@ -2,7 +2,7 @@ import React, { useState, useEffect} from 'react'
 import RenderEvents from './RenderEvents'
 import axios from 'axios'
 import "../css/AllEvents.css"
-import Header from '../common/Header'
+import GlobalHeader from '../common/GlobalHeader'
 
 
 export default function AllEvents() {
@@ -23,7 +23,8 @@ export default function AllEvents() {
 
     
   return (
-    <><Header/>
+    <>
+    <GlobalHeader/>
     {loading && 
     <div className='d-flex mt-3 justify-content-center mt-auto'>
       <div className="my-auto spinner-border text-info " role="status">
@@ -36,7 +37,7 @@ export default function AllEvents() {
       <div className='col-lg-8'>
         <div className='col-md-6 p-0'>
           <form className="d-flex mt-3 mb-3" role="search">
-            <input className="form-control" type="search" style={{borderRadius: "20px", border: "1px solid black"}} placeholder="Search Your Mind..." aria-label="Search"/>
+            <input className="form-control" type="search" style={{borderRadius: "10px", border: "1px solid black"}} placeholder="Search Your Mind..." aria-label="Search"/>
             <i className="bi bi-search position-relative" style={{float: "right", right: "30px", borderRadius: "20px", top: "8px", width: "0px"}}></i>   
           </form>
         </div>
