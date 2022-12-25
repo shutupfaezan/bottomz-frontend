@@ -8,7 +8,7 @@ export default function Header() {
   return (
     <>
     
-  <div className="d-flex align-items-center" style={{background: `url('${process.env.PUBLIC_URL}/images/stacked-peaks-haikei (1).png') no-repeat center/cover`, height: "300px" }}>
+  <div className="d-flex align-items-center" style={{background: `url('${process.env.PUBLIC_URL}/images/purplecanvas.jpeg') no-repeat center/cover`, height: "300px" }}>
     <nav className="navbar navbar-expand navbar-light align-items-center headerback position-absolute w-100" style={{top: "0px"}}>
       <a className="navbar-brand text-white" style={{fontWeight: "800"}} href="/">BottmzUp.com</a>
       {/* <img src={process.env.PUBLIC_URL + "/images/doers-solutions-removebg-preview.png"} width="120" height="40" alt=""/> */}
