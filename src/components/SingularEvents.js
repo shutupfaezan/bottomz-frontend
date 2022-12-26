@@ -2,7 +2,7 @@
     import axios from 'axios'
     import { useParams } from "react-router-dom";
 
-    export default function SingularEvents(props) {
+    export default function SingularEvents(props){
       const [singularEvents, setSingularEvents] = useState()
       const params = useParams()
       const singularEvent = async ()=> { return await axios.get(`https://nightlife-2710.herokuapp.com/fetch-single-event?event_name=${params.event_name}`)};
