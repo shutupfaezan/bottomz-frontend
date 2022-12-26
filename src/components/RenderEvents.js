@@ -11,7 +11,6 @@ export default function RenderEvents(props) {
   //     setRunInfo(response.data),
   //   )     
   // }
- 
   return (
     <>
       <BrowserView className='w-100'>
