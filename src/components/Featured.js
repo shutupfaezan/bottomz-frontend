@@ -41,9 +41,11 @@ export default function ClubsRow() {
 
   return (
     <>
-    {loading && <div className='d-flex justify-content-center mt-auto' style={{height: "500px"}}>
+    {loading && <div className='d-flex justify-content-center mt-auto'>
+    <div className='d-flex align-items-center'>
+    <span style={{fontSize: "35px"}}>Loading </span>
     <div className="my-auto spinner-border text-black " role="status">
-    <span className="sr-only">Loading...</span>
+    </div>
     </div>
     </div>}
     {!loading && <div className="d-lg-flex">

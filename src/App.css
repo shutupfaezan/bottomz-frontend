@@ -15,3 +15,7 @@ background: url(http://pavbca.com/walldb/original/5/1/7/484530.jpg)center center
   /* filter: blur(2px);
   z-index: -1; */
 }
+.carousel-item{
+  float:none; 
+  transition: 0s !important;
+}
