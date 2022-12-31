@@ -20,7 +20,7 @@ export default function RenderClubs(props) {
       </div>
     </div>
   </BrowserView>
-  <TabletView className='d-flex flex-column flex-wrap m-2 position-relative' style={{width: "47%"}} onClick={()=>{navigate(props.identity.name)}}>
+  <TabletView className='d-flex flex-column flex-wrap m-2 position-relative' style={{width: "47%"}} onClick={()=>{navigate(props.identity.club_name)}}>
     <div className="card shadow w-100" style={{borderRadius: "20px"}}>
       <img src={props.identity.images_url}  className="allclubs card-img-top p-2" style={{borderRadius: "22px", height: "200px"}} alt="..."/>
       <div className="p-2">
@@ -33,7 +33,7 @@ export default function RenderClubs(props) {
       </div>
     </div>
   </TabletView>
-  <MobileOnlyView className='d-flex flex-column flex-wrap m-2 w-100 position-relative' onClick={()=>{navigate(props.identity.name)}}>
+  <MobileOnlyView className='d-flex flex-column flex-wrap m-2 w-100 position-relative' onClick={()=>{navigate(props.identity.club_name)}}>
     <div className="card shadow w-100" style={{borderRadius: "20px"}}>
       <img src={props.identity.images_url}  className="allclubs card-img-top p-2" style={{borderRadius: "22px", height: "200px"}} alt="..."/>
       <div className="p-2">
