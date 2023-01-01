@@ -6,6 +6,7 @@ import { Carousel } from 'react-responsive-carousel';
 import { Tabs, Tab } from "baseui/tabs-motion";
 import { BrowserView, MobileOnlyView, TabletView } from 'react-device-detect';
 import HPEvents from './HPEvents';
+import Gallery from "react-photo-gallery";
 
 export default function SingularClubs() {
 const [activeKey, setActiveKey] = React.useState(0)
@@ -31,9 +32,41 @@ const [menuPhotos, setMenuPhotos] = useState()
         //eslint-disable-next-line
     }, []);
 
+    const photos = [
+      {
+        src: totalPhotos?.[4],
+        width: 1,
+        height: 1
+      },
+      {
+        src: totalPhotos?.[3],
+        width: 2,
+        height: 1
+      },
+      {
+        src: totalPhotos?.[2],
+        width: 2,
+        height: 1
+      },
+      {
+        src: totalPhotos?.[1],
+        width: 1,
+        height: 1
+      },
+      // {
+      //   src: totalPhotos?.[0],
+      //   width: 1,
+      //   height: .5
+      // }
+    ];
   return (
     <>
+    <BrowserView>
+    <Gallery photos={photos} />;
+    
+    </BrowserView>
     <MobileOnlyView>
+      <div>
       <Carousel showThumbs={false}>
         <div style={{height: "100%"}}>
           <img className="w-100" style={{height: "100%"}} src={totalPhotos?.[0]} alt=''/>
@@ -45,6 +78,7 @@ const [menuPhotos, setMenuPhotos] = useState()
           <img className="w-100" style={{height: "100%"}} src={totalPhotos?.[4]} alt=''/>
         </div>
       </Carousel>
+      </div>
       <div className='p-2 ml-1'>
        <div className='d-flex align-items-center'>
       <h1><strong>{clubVariable?.Club_info?.club_name}</strong></h1>
@@ -62,18 +96,22 @@ const [menuPhotos, setMenuPhotos] = useState()
       onChange={({ activeKey }) => {
         setActiveKey(activeKey);
       }} activateOnFocus>
-      <Tab title="Events"> <div className=''>
-        <div className='d-flex d-md-block flex-column align-items-center'>{eventsVariable?.map((fields, index )=> {
-          return <HPEvents className="col shadow-lg" key={index} identity={fields}></HPEvents>
-        })}
-        </div>
-      </div></Tab>
+      <Tab title="Events">
+        <div className=''>
+          <div className='d-flex d-md-block flex-column align-items-center'>{eventsVariable?.map((fields, index )=> {
+            return <HPEvents className="col shadow-lg" key={index} identity={fields}></HPEvents>
+          })}
+          </div>
+      </div>
+      </Tab>
       <Tab title="Photos"><div className='w-100 d-flex flex-wrap'>{totalPhotos?.map((fields, index )=> {
           return <img className='position-relative m-2' style={{width: "160px", height: "160px"}} src={fields}></img>
-        })}</div></Tab>
+        })}</div>
+      </Tab>
       <Tab title="Menu"><div className='w-100 d-flex flex-wrap'>{menuPhotos?.map((fields, index )=> {
           return <img className='position-relative m-2' style={{width: "160px", height: "160px"}} src={fields}></img>
-        })}</div></Tab>
+        })}</div>
+      </Tab>
     </Tabs>
      
     </MobileOnlyView>
