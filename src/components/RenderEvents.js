@@ -2,15 +2,6 @@ import React from 'react'
 import { BrowserView, TabletView, MobileOnlyView} from 'react-device-detect';
 
 export default function RenderEvents(props) {
-  // const {setHitRun, setRunInfo} = useContext(SingularContext);
-  // const navigate = useNavigate()
-
-  // function singularEvent(){
-  //   axios.get(`https://nightlife-2710.herokuapp.com/fetch-single-event?event_name=${props?.identity.event_name}`)
-  //   .then((response)=>
-  //     setRunInfo(response.data),
-  //   )     
-  // }
   return (
     <>
       <BrowserView className='w-100'>

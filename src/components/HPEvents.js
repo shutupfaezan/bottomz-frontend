@@ -1,7 +1,7 @@
 import React from 'react'
 
 export default function HPEvents(props) {
-  console.log(props.identity)
+  
   return (
     <>
   <div className="d-flex w-100" style={{width: "24rem"}}>
