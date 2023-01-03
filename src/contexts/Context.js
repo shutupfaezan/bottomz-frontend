@@ -2,11 +2,10 @@ import {createContext, useState} from "react"
  
 export const SingularContext = createContext()
 
-const Context =({children})=>{ 
-    const [hitRun, setHitRun] = useState()
-    const [runInfo, setRunInfo] = useState()
+const Context = ({children})=>{
+    const [clubVariable, setClubVariable] = useState()
 
-    return <SingularContext.Provider value={{hitRun, setHitRun, runInfo, setRunInfo}}>{children}</SingularContext.Provider>
+    return <SingularContext.Provider value={{clubVariable, setClubVariable}}>{children}</SingularContext.Provider>
 } 
 
 export default Context
