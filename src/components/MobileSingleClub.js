@@ -25,7 +25,7 @@ const {clubVariable} = useContext(SingularContext);
       </div>
       <div className='p-2 ml-1'>
         <div className='d-flex align-items-center'>
-            <h1><strong>{clubVariable?.Club_info?.club_name}</strong></h1>
+            <h2><strong>{clubVariable?.Club_info?.club_name}</strong></h2>
             <i className="bi bi-heart mr-3 ml-auto" style={{fontSize: "25px", color: "warning"}}></i>
         </div>
         <div className='d-flex'>
@@ -46,13 +46,13 @@ const {clubVariable} = useContext(SingularContext);
         </Tab>
         <Tab title="Photos">
             <div className='w-100 d-flex flex-wrap'>{clubVariable?.image_url?.map((fields, index )=> {
-                return <img className='position-relative m-1' style={{width: "165px", height: "165px"}} src={fields}></img>
+                return <img className='position-relative m-1' style={{width: "165px", height: "165px"}} src={fields} alt=""></img>
             })}
             </div>
         </Tab>
         <Tab title="Menu">
             <div className='w-100 d-flex flex-wrap'>{clubVariable?.menu_images_url?.map((fields, index )=> {
-                return <img className='position-relative m-2' style={{width: "160px", height: "160px"}} src={fields}></img>
+                return <img className='position-relative m-2' style={{width: "160px", height: "160px"}} src={fields} alt=""></img>
             })}
             </div>
         </Tab>
