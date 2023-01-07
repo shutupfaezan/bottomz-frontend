@@ -22,7 +22,7 @@ export default function GlobalHeader() {
             </li>
             </ul>
             <i className="bi bi-search ml-auto ml-md-0 mr-4 mt-2" style={{fontSize: "20px"}}></i>
-            <i className="bi bi-person-circle pt-2  ml-md-0" onClick={()=>{navigate('/stranger-login')}} data-toggle="modal" style={{fontSize: "25px"}}></i>
+            <i className="bi bi-person-circle pt-2 ml-md-0" data-toggle="modal" style={{fontSize: "25px"}}></i>
         </div>
         </nav>
     </>
