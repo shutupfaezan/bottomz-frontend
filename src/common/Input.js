@@ -7,7 +7,7 @@ export default function Input(props) {
    <>
   <div>
     <div className='mt-2 d-flex justify-content-center'>
-      <input className="form-control w-75" id={props.id} placeholder={props.placeholder} value={props.value} name={props.name} onChange={props.handleChange} style={{borderRadius: "20px"}}></input>
+      <input className="form-control" id={props.id} placeholder={props.placeholder} value={props.value} name={props.name} onChange={props.handleChange} style={{borderRadius: "20px", width: "85%"}}></input>
     </div>
   </div>
    </>

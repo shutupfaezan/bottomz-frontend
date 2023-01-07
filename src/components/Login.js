@@ -28,12 +28,12 @@ export default function Login() {
               Log In
             </div>
             <div className="mt-2 d-flex justify-content-center">
-                <button type="button" className="btn btn-light w-75" style={{border: "2px solid darkGray", borderRadius: "10px"}}><img src={process.env.PUBLIC_URL + "/images/Google_Icons-09-512.webp"} width="25px" alt=""/>Sign in with google</button>
+                <button type="button" className="btn btn-light" style={{border: "2px solid darkGray", borderRadius: "10px", width: "85%"}}><img src={process.env.PUBLIC_URL + "/images/Google_Icons-09-512.webp"} width="25px" alt=""/>Sign in with google</button>
             </div>
             <div className="mt-2 d-flex justify-content-center">
-                <button type="button" className="btn btn-light w-75" style={{border: "2px solid darkGray", borderRadius: "10px"}}><img src={process.env.PUBLIC_URL + "/images/apple-icon.png"} width="25px" alt=""/>Sign in with apple</button>
+                <button type="button" className="btn btn-light" style={{border: "2px solid darkGray", borderRadius: "10px", width: "85%"}}><img src={process.env.PUBLIC_URL + "/images/apple-icon.png"} width="25px" alt=""/>Sign in with apple</button>
             </div>
-            <hr className='rounded w-75 mx-auto'/>
+            <hr className='rounded mx-auto' style={{width: "85%"}}/>
             <form>
             <Input name="email_id" value={formik.values.email_id} id="email_id"  handleChange={formik.handleChange} placeholder="Email"/>
             <Input name="password" value={formik.values.password} id="password"  handleChange={formik.handleChange} placeholder="Password"/>
