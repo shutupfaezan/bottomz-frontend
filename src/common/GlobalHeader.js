@@ -21,8 +21,8 @@ export default function GlobalHeader() {
                 <Link className="nav-link pb-0 text-white" style={{fontSize: "19px"}} to="/">Host With Us</Link>
             </li>
             </ul>
-            <i class="bi bi-search ml-auto ml-md-0 mr-4 mt-2" style={{fontSize: "20px"}}></i>
-            <i className="bi bi-person-circle pt-2  ml-md-0" onClick={()=>{navigate('/stranger-login')}}style={{fontSize: "25px"}}></i>
+            <i className="bi bi-search ml-auto ml-md-0 mr-4 mt-2" style={{fontSize: "20px"}}></i>
+            <i className="bi bi-person-circle pt-2  ml-md-0" onClick={()=>{navigate('/stranger-login')}} data-toggle="modal" style={{fontSize: "25px"}}></i>
         </div>
         </nav>
     </>
