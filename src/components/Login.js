@@ -35,8 +35,8 @@ export default function Login() {
             </div>
             <hr className='rounded mx-auto' style={{width: "85%"}}/>
             <form>
-            <Input name="email_id" value={formik.values.email_id} id="email_id"  handleChange={formik.handleChange} placeholder="Email"/>
-            <Input name="password" value={formik.values.password} id="password"  handleChange={formik.handleChange} placeholder="Password"/>
+            <Input name="email_id" type="email" value={formik.values.email_id} id="email_id"  handleChange={formik.handleChange} placeholder="Enter Your Email"/>
+            <Input name="password" type="password" value={formik.values.password} id="password"  handleChange={formik.handleChange} placeholder="Enter Your Password!"/>
             <div className="mt-3 d-flex justify-content-center">
             <button type="submit" className="btn mb-3" onClick={formik.handleSubmit}>Continue</button>
             </div>
