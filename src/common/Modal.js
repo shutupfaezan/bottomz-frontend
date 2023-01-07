@@ -6,7 +6,7 @@ export default function Modal() {
    <>
 <div className="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div className="modal-dialog modal-dialog-centered">
-    <div className="modal-content" style={{background: "#212529"}}>
+    <div className="modal-content rounded" style={{color: "black"}}>
       <Login/>
       </div>
   </div>
