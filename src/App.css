@@ -40,3 +40,21 @@ background: url(http://pavbca.com/walldb/original/5/1/7/484530.jpg)center center
 .carousel{
   height: 250px;
 }
+.input {
+  color: white;
+  border: 2px solid #e8e8e8;
+  padding: 15px;
+  border-radius: 10px;
+  background-color: #212121;
+  font-size: small;
+  font-weight: bold;
+  text-align: center;
+ }
+ 
+ .input:focus {
+  outline-color: white;
+  background-color: #212121;
+  color: #e8e8e8;
+  box-shadow: 5px 5px #888888;
+ }
+ 
