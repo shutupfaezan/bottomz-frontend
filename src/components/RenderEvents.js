@@ -1,11 +1,13 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom';
 import { BrowserView, TabletView, MobileOnlyView} from 'react-device-detect';
 
 export default function RenderEvents(props) {
+  const navigate = useNavigate()
   return (
     <>
       <BrowserView className='w-100'>
-      <div className="d-flex w-100">
+      <div className="d-flex w-100" onClick={()=>{navigate(props.identity.event_name)}}>
         <img className="align-self-center mr-2" style={{width: "70px", height: "54px"}} src={props.identity.images_url} alt="Club"/>
         <div style={{width: "180px"}} className="mx-2">
         <p className="m-0 mr-2" style={{color: "#980098", fontSize: "17px"}}><strong>{props.identity.date}</strong></p>
