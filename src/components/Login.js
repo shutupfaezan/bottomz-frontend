@@ -4,6 +4,7 @@ import { useFormik } from 'formik'
 import axios from 'axios'
 import { Link, useNavigate } from 'react-router-dom'
 import "../css/Login.css"
+import GoogleLoginFunc from '../common/GoogleLoginFunc'
 
 export default function Login() {
   const navigate = useNavigate()
@@ -30,7 +31,7 @@ export default function Login() {
               </strong>
         </h3>
         <div className='d-flex mx-auto'>
-          <button type="button" className="btn btn-light mr-2" style={{border: "2px solid darkGray", borderRadius: "10px"}}><img src={process.env.PUBLIC_URL + "/images/Google_Icons-09-512.webp"} width="25px" alt=""/>Sign In</button>
+          <GoogleLoginFunc/>
           <button type="button" className="btn btn-light" style={{border: "2px solid darkGray", borderRadius: "10px"}}><img src={process.env.PUBLIC_URL + "/images/apple-icon.png"} width="25px" alt=""/>Sign In</button>
         </div>
         <hr className='rounded mx-auto mt-3 hrsp  ' style={{width: "55%"}}/>
