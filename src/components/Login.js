@@ -33,7 +33,7 @@ export default function Login() {
           <button type="button" className="btn btn-light mr-2" style={{border: "2px solid darkGray", borderRadius: "10px"}}><img src={process.env.PUBLIC_URL + "/images/Google_Icons-09-512.webp"} width="25px" alt=""/>Sign In</button>
           <button type="button" className="btn btn-light" style={{border: "2px solid darkGray", borderRadius: "10px"}}><img src={process.env.PUBLIC_URL + "/images/apple-icon.png"} width="25px" alt=""/>Sign In</button>
         </div>
-        <hr className='rounded mx-auto mt-3' style={{width: "55%"}}/>
+        <hr className='rounded mx-auto mt-3 hrsp  ' style={{width: "55%"}}/>
         <div>
           <form>
             <Input name="email_id" type="email" value={formik.values.email_id} id="email_id"  handleChange={formik.handleChange} placeholder="Enter Your Email"/>
