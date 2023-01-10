@@ -1,12 +1,15 @@
 import React from 'react'
 import Input from '../common/Input'
 import { useFormik } from 'formik'
+import { useContext } from 'react';
+import { SingularContext } from '../contexts/Context';
 import axios from 'axios'
 import { Link, useNavigate } from 'react-router-dom'
 import "../css/Login.css"
 import GoogleLoginFunc from '../common/GoogleLoginFunc'
 
 export default function Login() {
+  const {setSignActive, setLoginActive} = useContext(SingularContext);
   const navigate = useNavigate()
   const formik = useFormik({
     initialValues: {
@@ -45,7 +48,7 @@ export default function Login() {
           </form>
         </div>
         <div className='d-flex my-3'>
-          <Link className='ml-4'style={{color: "gray"}}>Newbie? Sign Up</Link>
+          <Link className='ml-4'style={{color: "gray"}} onClick={()=>{setSignActive(true); setLoginActive(false)}}>Newbie? Sign Up</Link>
           <Link className='mr-4 ml-auto' style={{color: "gray"}}>Forgot Password?</Link>
         </div>
       </div>

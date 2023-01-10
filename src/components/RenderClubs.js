@@ -3,7 +3,6 @@ import { BrowserView, MobileOnlyView, TabletView } from 'react-device-detect';
 import { useNavigate } from 'react-router-dom'
 
 export default function RenderClubs(props) {
- console.log(props)
   const navigate = useNavigate()
   return (
   <>
