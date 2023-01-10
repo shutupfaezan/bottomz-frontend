@@ -5,6 +5,7 @@ import { Tabs, Tab } from "baseui/tabs-motion";
 import HPEvents from './HPEvents';
 import Gallery from "react-photo-gallery";
 
+
 export default function BrowserSingleClub() {
     const [activeKey, setActiveKey] = React.useState(0)
     const {clubVariable} = useContext(SingularContext);
@@ -55,13 +56,13 @@ export default function BrowserSingleClub() {
                 </Tab>
                 <Tab title="Photos">
                     <div className='w-100 d-flex flex-wrap'>{clubVariable?.image_url?.map((fields, index )=> {
-                        return <img className='position-relative m-1' style={{width: "165px", height: "165px"}} alt="" src={fields}></img>
+                        return <img className='position-relative m-1' style={{width: "135px", height: "135px"}} alt="" src={fields}></img>
                     })}
                     </div>
                 </Tab>
                 <Tab title="Menu">
                     <div className='w-100 d-flex flex-wrap'>{clubVariable?.menu_images_url?.map((fields, index )=> {
-                        return <img className='position-relative m-2' style={{width: "160px", height: "160px"}} alt="" src={fields}></img>
+                        return <img className='position-relative m-1' style={{width: "135px", height: "135px"}} alt="" src={fields}></img>
                     })}
                     </div>
                 </Tab>

@@ -13,6 +13,7 @@
     "baseui": "^12.2.0",
     "bootstrap": "^4.6.0",
     "bootstrap-icons": "^1.9.1",
+    "embla-carousel-react": "^7.0.5",
     "formik": "^2.2.9",
     "gh-pages": "^4.0.0",
     "jwt-decode": "^3.1.2",

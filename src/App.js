@@ -9,7 +9,7 @@ import {
 } from "react-router-dom";
 import HomePage from './components/HomePage';
 import SingularClubs from './components/SingularClubs';
-import SingularEvents from './components/SingularEvents';
+// import SingularEvents from './components/SingularEvents';
 
 
 function App() {
@@ -27,8 +27,8 @@ function App() {
         </Route>
         <Route exact path="all-clubs/:name" element={<SingularClubs/>}>
         </Route>
-        <Route exact path="all-events/:event_name" element={<SingularEvents/>}>
-        </Route>
+        {/* <Route exact path="all-events/:event_name" element={<SingularEvents/>}>
+        </Route> */}
         </Routes>
       </Router>
     </>

@@ -35,7 +35,7 @@ const {clubVariable} = useContext(SingularContext);
             <i class="bi bi-clock mr-2" style={{fontSize: "18px"}}></i><p style={{color: "gray", width: "65%"}}>Opens at:   {clubVariable?.Club_info?.opening_time}</p>
         </div>
       </div>
-      <Tabs activeKey={activeKey} onChange={({ activeKey }) => { setActiveKey(activeKey); }} activateOnFocus>
+      <Tabs activeKey={activeKey} onChange={({ activeKey }) => {setActiveKey(activeKey);}} activateOnFocus>
         <Tab title="Events">
             <div className=''>
                 <div className='d-flex d-md-block flex-column align-items-center'>{clubVariable?.Event_info?.map((fields, index )=> {
@@ -46,7 +46,7 @@ const {clubVariable} = useContext(SingularContext);
         </Tab>
         <Tab title="Photos">
             <div className='w-100 d-flex flex-wrap'>{clubVariable?.image_url?.map((fields, index )=> {
-                return <img className='position-relative m-1' style={{width: "165px", height: "165px"}} src={fields} alt=""></img>
+                return <img className='position-relative m-1' style={{width: "110px", height: "110px"}} src={fields} alt=""></img>
             })}
             </div>
         </Tab>
