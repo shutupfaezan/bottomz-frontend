@@ -58,7 +58,7 @@ export default function ClubsRow() {
         </div>
       </div>
       <div className='col-lg-4'>
-        <div className='mt-md-4 d-flex align-items-baseline'><h4 className='mt-2 mb-3 mx-2' style={{color: "#88106f"}}><strong>Featured Events</strong></h4><Link className='ml-auto d-block text-decoration-none d-lg-none' to="/all-events" style={{color: "#9E0A0A"}}>View Events</Link></div>
+        <div className='mt-md-4 d-flex align-items-baseline mb-2'><h4 className='mt-2 mb-3 mx-2' style={{color: "#88106f"}}><strong>Featured Events</strong></h4><Link className='ml-auto d-block text-decoration-none d-lg-none' to="/all-events" style={{color: "#9E0A0A"}}>View Events</Link></div>
         <div className='d-flex d-md-block flex-column align-items-center'>{recentEvents?.data.map((fields, index )=> {
           return <HPEvents className="col shadow-lg" key={index} identity={fields}></HPEvents>
         })}
