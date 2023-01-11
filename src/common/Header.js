@@ -1,9 +1,14 @@
 import React from 'react'
+import { SingularContext } from '../contexts/Context';
+import {useContext} from 'react'
 import { Link } from "react-router-dom"
 import "../css/Header.css"
-import Modal from './Modal'
+import CommonModal from './CommonModal'
+
 
 export default function Header() {
+const {setShow,show} = useContext(SingularContext);
+
   return (
     <>
       <div className="d-flex align-items-center" style={{background: `url('${process.env.PUBLIC_URL}/images/purplecanvas.jpeg') no-repeat center/cover`, height: "300px" }}>
@@ -21,8 +26,8 @@ export default function Header() {
               <Link className="nav-link pb-0 text-white" style={{fontSize: "19px"}} to="/">Host With Us</Link>
             </li>
           </ul>
-          <i className="bi bi-person-circle pt-2 ml-auto ml-md-0" data-bs-toggle="modal" data-bs-target="#exampleModal" style={{fontSize: "25px"}}></i>
-        <Modal id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"/>
+          <i className="bi bi-person-circle pt-2 ml-auto ml-md-0" onClick={()=>{setShow(true)}} style={{fontSize: "25px"}}></i>
+        <CommonModal show={show}/>
         </div>
         </nav>
         <div className='d-flex flex-column w-100'>

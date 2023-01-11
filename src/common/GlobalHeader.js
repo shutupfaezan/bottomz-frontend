@@ -1,9 +1,13 @@
 import React from 'react'
+import { SingularContext } from '../contexts/Context';
+import {useContext} from 'react'
 import { Link } from "react-router-dom"
 import "../css/Header.css"
+import CommonModal from './CommonModal'
+
 
 export default function GlobalHeader() {
-
+const {setShow,show} = useContext(SingularContext);
   return (
     <>
         <nav className="navbar navbar-expand navbar-light align-items-center headerback w-100" style={{background: "#361532", color: "white"}}>
@@ -21,7 +25,8 @@ export default function GlobalHeader() {
             </li>
             </ul>
             <i className="bi bi-search ml-auto ml-md-0 mr-4 mt-2" style={{fontSize: "20px"}}></i>
-            <i className="bi bi-person-circle pt-2 ml-md-0" data-toggle="modal" style={{fontSize: "25px"}}></i>
+            <i className="bi bi-person-circle pt-2 ml-md-0" onClick={()=>{setShow(true)}} style={{fontSize: "25px"}}></i>
+            <CommonModal show={show}/>
         </div>
         </nav>
     </>
