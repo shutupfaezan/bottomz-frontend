@@ -7,7 +7,7 @@ export default function RenderEvents(props) {
   return (
     <>
       <BrowserView className='w-100'>
-      <div className="d-flex w-100" onClick={()=>{navigate(props.identity.event_name)}}>
+      <div className="d-flex w-100">
         <img className="align-self-center mr-2" style={{width: "70px", height: "54px"}} src={props.identity.images_url} alt="Club"/>
         <div style={{width: "180px"}} className="mx-2">
         <p className="m-0 mr-2" style={{color: "#980098", fontSize: "17px"}}><strong>{props.identity.date}</strong></p>
@@ -19,7 +19,9 @@ export default function RenderEvents(props) {
           <p className="m-0"><strong>{props.identity.event_name}</strong></p>
           <p className='m-0' style={{fontSize: "14px", color: "grey"}}>{props.identity.event_venue}</p>
         </div>
-        <div className='d-flex ml-auto'><i className="bi bi-three-dots-vertical" style={{fontSize: "30px", color: "gray"}}></i></div>
+        <div className='d-flex ml-auto'>
+          <button className="btn btn-primary" style={{height: "45px"}} onClick={()=>{navigate(props.identity.event_name)}}>See tickets</button>
+          <i className="bi bi-three-dots-vertical" style={{fontSize: "30px", color: "gray"}}></i></div>
       </div>
           <hr className="w-100" style={{height: "0.1px"}}/>
       </BrowserView>
