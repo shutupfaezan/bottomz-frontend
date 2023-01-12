@@ -21,15 +21,21 @@ export default function SingularEvents() {
     }, []);
 
     return (
+    <div>
       <div className='w-100 p-4 d-md-flex' style={{background: "#361532"}}>
-        <div>
-        <img style={{height:"auto", maxHeight: "100%", width: "100%"}} src={singleEvent?.images_url} alt=""/>
+        <div style={{maxWidth: "100%"}}>
+        <img style={{height:"auto", maxHeight: "250px", maxWidth: "100%"}} src={singleEvent?.images_url} alt=""/>
         </div>
-        <div className='mt-lg-4 mt-md-0 mt-4' style={{background: "#361532", width: "100"}}>
+        <div className='mt-lg-0 mt-md-0 mt-4 w-100'>
           <h1 className="ml-md-4" style={{color: "white"}}>{singleEvent?.event_name}</h1>
           <h4 className="ml-md-4" style={{color: "white"}}>{singleEvent?.event_venue}</h4>
             <p className="ml-md-4 d-inline-flex p-1 bg-white mt-2 px-3" style={{color: "#1c1d1f", border: "1px solid white", borderRadius: "10px"}}>{singleEvent?.genre}</p>
+          <h4 className="ml-md-4" style={{color: "white"}}>Curated by : {singleEvent?.curated_by}</h4>
         </div>
       </div>
+      <div>
+        
+      </div>
+    </div>
   )
 }
