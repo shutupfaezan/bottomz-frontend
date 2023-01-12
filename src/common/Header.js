@@ -4,9 +4,22 @@ import {useContext} from 'react'
 import { Link } from "react-router-dom"
 import "../css/Header.css"
 import CommonModal from './CommonModal'
+import { useState } from 'react';
 
 
 export default function Header() {
+  const [showDropBox, setShowDropBox] = useState(false)
+  function modalswitch(){
+    if(localStorage.token && !showDropBox){
+      setShowDropBox(true)
+    }
+    else if(localStorage.token && showDropBox){
+      setShowDropBox(false)
+    }
+    else{
+      setShow(true)
+    }
+  }
 const {setShow,show} = useContext(SingularContext);
 
   return (
@@ -26,8 +39,14 @@ const {setShow,show} = useContext(SingularContext);
               <Link className="nav-link pb-0 text-white" style={{fontSize: "19px"}} to="/">Host With Us</Link>
             </li>
           </ul>
-          <i className="bi bi-person-circle pt-2 ml-auto ml-md-0" onClick={()=>{setShow(true)}} style={{fontSize: "25px"}}></i>
+          <div className="btn-group dropleft ml-auto ml-md-0">
+          <i className="bi bi-person-circle pt-2" onClick={modalswitch} style={{fontSize: "25px"}}></i>
         <CommonModal show={show}/>
+        {showDropBox && <ul className="dropdown-menu show ">
+          <li><a className="dropdown-item" href="#">Favourites</a></li>
+          <li><Link className="dropdown-item" style={{color: "red"}} onClick={()=>{localStorage.clear(); window.location.reload()}}>Log Out</Link></li>
+         </ul>}
+         </div>
         </div>
         </nav>
         <div className='d-flex flex-column w-100'>

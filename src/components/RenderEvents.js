@@ -20,8 +20,9 @@ export default function RenderEvents(props) {
           <p className='m-0' style={{fontSize: "14px", color: "grey"}}>{props.identity.event_venue}</p>
         </div>
         <div className='d-flex ml-auto'>
-          <button className="btn btn-primary" style={{height: "45px"}} onClick={()=>{navigate(props.identity.event_name)}}>See tickets</button>
-          <i className="bi bi-three-dots-vertical" style={{fontSize: "30px", color: "gray"}}></i></div>
+          <button className="btn btn-outline-primary" style={{height: "45px"}} onClick={()=>{navigate(props.identity.event_name)}}>See tickets</button>
+          <i className="bi bi-three-dots-vertical" style={{fontSize: "30px", color: "gray"}}></i>
+          </div>
       </div>
           <hr className="w-100" style={{height: "0.1px"}}/>
       </BrowserView>
@@ -38,11 +39,14 @@ export default function RenderEvents(props) {
           <p className="m-0"><strong>{props.identity.event_name}</strong></p>
           <p className='m-0' style={{fontSize: "14px", color: "grey"}}>{props.identity.event_venue}</p>
         </div>
-        <div className='d-flex ml-auto'><i className="bi bi-three-dots-vertical" style={{fontSize: "30px", color: "gray"}}></i></div>
+        <div className='d-flex ml-auto'>
+        <button className="btn btn-outline-primary" style={{height: "45px"}} onClick={()=>{navigate(props.identity.event_name)}}>See tickets</button>
+          <i className="bi bi-three-dots-vertical" style={{fontSize: "30px", color: "gray"}}></i>
+          </div>
       </div>
           <hr className="w-100" style={{height: "0.1px"}}/>
       </TabletView>
-      <MobileOnlyView className='w-100'>
+      <MobileOnlyView className='w-100' onClick={()=>{navigate(props.identity.event_name)}}>
         <div className="d-flex w-100" style={{width: "24rem"}}>
           <img className="align-self-center mr-2" style={{width: "70px", height: "70px", borderRadius: "14px"}} src={props.identity.images_url} alt="Club"/>
           <div className="d-flex flex-column">

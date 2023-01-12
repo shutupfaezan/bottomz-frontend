@@ -16,6 +16,7 @@ export default function SingularClubs() {
     useEffect(() => {
         club()
         .then((response) => {
+          console.log(response)
             setClubVariable(response?.data[0])
         })
         .catch((error) => {

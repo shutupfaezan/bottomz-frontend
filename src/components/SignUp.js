@@ -1,15 +1,15 @@
 import React from 'react'
 import Input from '../common/Input'
 import { useFormik } from 'formik'
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { SingularContext } from '../contexts/Context';
 import axios from 'axios'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import "../css/Login.css"
 
 export default function SignUp() {
   const {setSignActive, setLoginActive, setShow} = useContext(SingularContext);
-  // const navigate = useNavigate()
+  const [isLoading, setisLoading] = useState(false);
   const formik = useFormik({
     initialValues: {
       name: "",
@@ -18,10 +18,16 @@ export default function SignUp() {
       contact: ""
     },
     onSubmit: (values)=> {
+      setisLoading(true);
       axios.post("https://nightlife-2710.herokuapp.com/registration", values)
       .then((response)=>{
         localStorage.setItem('token', response.data.access_token)
+        setisLoading(false);
         setShow(false)
+      }
+      )
+      .catch(()=>{
+        setisLoading(false)
       }
       )
     }
@@ -41,7 +47,11 @@ export default function SignUp() {
             <Input name="password" type="password" value={formik.values.password} id="password" bi bi-lock-fill icon="bi bi-lock-fill" handleChange={formik.handleChange} placeholder="Set a password!" icon2="bi bi-eye-fill position-relative" />
             <Input name="contact" type="number" value={formik.values.contact} id="contact" icon="fa-regular fa-address-book" handleChange={formik.handleChange} placeholder="Enter Your Contact"/>
             <div className="mt-3 d-flex justify-content-center">
-              <button type="submit" className="btn mb-3" style={{borderRadius: "20px", background: "#7d10bf", color: "white"}} onClick={formik.handleSubmit}>Sign Up</button>
+              <button type="submit" className="btn mb-3" style={{borderRadius: "20px", background: "#7d10bf", color: "white"}} onClick={formik.handleSubmit}>
+              {isLoading && (<span id="login-loader-span" className="spinner-border spinner-border-sm mx-1" role="status" aria-hidden="true"></span>)}
+              {isLoading && (<span id="login-loading-text-span">Loading</span>)}
+              {!isLoading && <span id="login-text-span">Sign Up</span>}
+              </button>
             </div>
           </form>
         </div>
