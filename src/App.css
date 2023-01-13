@@ -1,7 +1,5 @@
-/* @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap'); */
-/* @import url('https://fonts.googleapis.com/css2?family=Manrope&display=swap'); */
+
 @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
-/* @import url('https://fonts.googleapis.com/css2?family=Eczar&display=swap'); */
 
 *{
   font-family: 'Fredoka One', cursive;
@@ -63,3 +61,15 @@ background: url(http://pavbca.com/walldb/original/5/1/7/484530.jpg)center center
   padding: 0 0.25em;
   background: white;
 }
+
+
+/* suggestive fonts  */
+/* @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap'); */
+/* @import url('https://fonts.googleapis.com/css2?family=Manrope&display=swap'); */
+/* @import url('https://fonts.googleapis.com/css2?family=Eczar&display=swap'); */
+
+
+/* suggestive font family */
+  /* font-family: 'Quicksand', sans-serif;
+  font-family: 'Manrope', sans-serif;
+  font-family: 'Eczar', serif; */

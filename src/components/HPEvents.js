@@ -1,10 +1,12 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 
 export default function HPEvents(props) {
+  const navigate = useNavigate()
   
   return (
     <>
-  <div className="d-flex w-100" style={{width: "24rem"}}>
+  <div className="d-flex w-100" style={{width: "24rem"}} onClick={()=>{navigate("all-events/" + props.identity.event_name)}}>
     <img className="align-self-center mr-2" style={{width: "70px", height: "70px", borderRadius: "14px"}} src={props.identity.images_url} alt="Club"/>
     <div className="d-flex flex-column">
       <div className='d-flex'>

@@ -1,12 +1,25 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { SingularContext } from '../contexts/Context';
 import {useContext} from 'react'
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import "../css/Header.css"
 import CommonModal from './CommonModal'
 
 
 export default function GlobalHeader() {
+    const navigate = useNavigate()
+    const [showDropBox, setShowDropBox] = useState(false)
+    function modalswitch(){
+      if(localStorage.token && !showDropBox){
+        setShowDropBox(true)
+      }
+      else if(localStorage.token && showDropBox){
+        setShowDropBox(false)
+      }
+      else{
+        setShow(true)
+      }
+    }
 const {setShow,show} = useContext(SingularContext);
   return (
     <>
@@ -25,8 +38,14 @@ const {setShow,show} = useContext(SingularContext);
             </li>
             </ul>
             <i className="bi bi-search ml-auto ml-md-0 mr-4 mt-2" style={{fontSize: "20px"}}></i>
-            <i className="bi bi-person-circle pt-2 ml-md-0" onClick={()=>{setShow(true)}} style={{fontSize: "25px"}}></i>
+            <div className="btn-group dropleft ml-md-0">
+            <i className="bi bi-person-circle pt-2" onClick={modalswitch} style={{fontSize: "25px"}}></i>
             <CommonModal show={show}/>
+            {showDropBox && <ul className="dropdown-menu show ">
+                <li><a className="dropdown-item" href="/">Favourites</a></li>
+                <li><Link className="dropdown-item" style={{color: "red"}} onClick={()=>{localStorage.clear(); navigate("/"); window.location.reload()}}>Log Out</Link></li>
+            </ul>}
+         </div>
         </div>
         </nav>
     </>
