@@ -10,6 +10,7 @@ import {
 import HomePage from './components/HomePage';
 import SingularClubs from './components/SingularClubs';
 import SingularEvents from './components/SingularEvents';
+import HostWithUs from './components/HostWithUs';
 
 
 function App() {
@@ -28,6 +29,8 @@ function App() {
         <Route exact path="all-clubs/:name" element={<SingularClubs/>}>
         </Route>
         <Route exact path="all-events/:event_name" element={<SingularEvents/>}>
+        </Route>
+        <Route exact path="/host-with-us" element={<HostWithUs/>}>
         </Route>
         </Routes>
       </Router>

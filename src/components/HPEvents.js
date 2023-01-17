@@ -11,7 +11,7 @@ export default function HPEvents(props) {
     <div className="d-flex flex-column">
       <div className='d-flex'>
       <p className="m-0 mr-2" style={{color: "#980098"}}>{props.identity.date}</p>
-      <p className="m-0" style={{color: "gray"}}>{props.identity.day.slice(0,3)} • {props.identity.timings}</p>
+      <p className="m-0" style={{color: "gray"}}>{props.identity.day.slice(0,3)} • {props.identity.timings.slice(0,8)}</p>
       </div>
       <p className="m-0">{props.identity.event_name}</p>
       <p className='m-0' style={{fontSize: "12px", color: "grey"}}>{props.identity.event_venue}</p>

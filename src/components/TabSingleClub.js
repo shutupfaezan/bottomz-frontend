@@ -44,13 +44,13 @@ export default function TabSingleClub() {
                 </Tab>
                 <Tab title="Photos">
                     <div className='w-100 d-flex flex-wrap'>{clubVariable?.image_url?.map((fields, index )=> {
-                        return <img className='position-relative m-1' style={{width: "165px", height: "165px"}} alt="" src={fields}></img>
+                        return <img className='position-relative m-1' style={{width: "100px", height: "100px"}} alt="" src={fields}></img>
                     })}
                     </div>
                 </Tab>
                 <Tab title="Menu">
                     <div className='w-100 d-flex flex-wrap'>{clubVariable?.menu_images_url?.map((fields, index )=> {
-                        return <img className='position-relative m-2' style={{width: "160px", height: "160px"}} alt="" src={fields}></img>
+                        return <img className='position-relative m-1' style={{width: "100px", height: "100px"}} alt="" src={fields}></img>
                     })}
                     </div>
                 </Tab>

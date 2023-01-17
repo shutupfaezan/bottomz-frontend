@@ -52,7 +52,7 @@ const {clubVariable} = useContext(SingularContext);
         </Tab>
         <Tab title="Menu">
             <div className='w-100 d-flex flex-wrap'>{clubVariable?.menu_images_url?.map((fields, index )=> {
-                return <img className='position-relative m-2' style={{width: "160px", height: "160px"}} src={fields} alt=""></img>
+                return <img className='position-relative m-2' style={{width: "100px", height: "100px"}} src={fields} alt=""></img>
             })}
             </div>
         </Tab>
