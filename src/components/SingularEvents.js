@@ -35,13 +35,13 @@ export default function SingularEvents() {
         </div>
       </div>
       <div>
-        <div className='col-lg-5'>
+        <div className='col-lg-6'>
           <h4 className='mt-4' style={{color: "#88106f"}}>Description: </h4>
-          <h5>{singleEvent?.description}</h5>
+          <h6>{singleEvent?.description}</h6>
           <h4 className='mt-4' style={{color: "#88106f"}}>Terms and conditions: </h4>
-          <h5><ul className='pl-3'>{newTerms?.map((fields, index )=> {
+          <h6><ul className='pl-3'>{newTerms?.map((fields, index )=> {
           return <li>{fields + "."}</li>
-        })}</ul></h5>
+        })}</ul></h6>
         </div>
       </div>
       </div>

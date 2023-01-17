@@ -36,14 +36,15 @@ const {setShow,show} = useContext(SingularContext);
               <Link className="nav-link pb-0 text-white" style={{fontSize: "19px"}} to="/all-events" >Events</Link>
             </li>
             <li className="nav-item active d-none d-md-block hover-underline-animation">
-              <Link className="nav-link pb-0 text-white" style={{fontSize: "19px"}} to="/">Host With Us</Link>
+              <Link className="nav-link pb-0 text-white" style={{fontSize: "19px"}} to="/host-with-us">Host With Us</Link>
             </li>
           </ul>
           <div className="btn-group dropleft ml-auto ml-md-0">
           <i className="bi bi-person-circle pt-2" onClick={modalswitch} style={{fontSize: "25px"}}></i>
         <CommonModal show={show}/>
         {showDropBox && <ul className="dropdown-menu show ">
-          <li><a className="dropdown-item" href="#">Favourites</a></li>
+          <li><Link className="dropdown-item" to="/">Favourites</Link></li>
+          <li><Link className="dropdown-item" to="/host-with-us">Host with us</Link></li>
           <li><Link className="dropdown-item" style={{color: "red"}} onClick={()=>{localStorage.clear(); window.location.reload()}}>Log Out</Link></li>
          </ul>}
          </div>
@@ -53,7 +54,7 @@ const {setShow,show} = useContext(SingularContext);
           <h3 className='d-flex justify-content-center text-white align-self-center text-center' style={{fontWeight: "800"}}>Experiences of a Lifetime</h3>  
           <div className='w-100'>
             <form className="d-flex justify-content-center" role="search">
-                <input className="form-control w-75" type="search" style={{height: "50px", border: "1px solid black"}} placeholder="Search Any Event, Club or Area.." aria-label="Search"/>
+                <input className="form-control w-75" type="search" style={{height: "50px", border: "1px solid black"}} placeholder="Search Any Event or Club..." aria-label="Search"/>
                 <i className="bi bi-search position-relative" style={{float: "right", right: "30px", borderRadius: "20px", top: "15px", width: "0px"}}></i>   
             </form> 
           </div>

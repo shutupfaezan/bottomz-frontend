@@ -46,8 +46,8 @@ export default function Login() {
         <hr className='rounded mx-auto mt-3 hrsp' style={{width: "55%"}}/>
         <div>
           <form>
-            <Input name="email_id" type="email" value={formik.values.email_id} id="email_id"  handleChange={formik.handleChange} placeholder="Enter Your Email"/>
-            <Input name="password" type="password" value={formik.values.password} id="password"  handleChange={formik.handleChange} placeholder="Enter Your Password!" icon2="bi bi-eye-fill position-relative"/>
+            <div className="d-flex justify-content-center"><Input name="email_id" style={{width: "85%"}} type="email" value={formik.values.email_id} id="email_id"  handleChange={formik.handleChange} placeholder="Enter Your Email"/></div>
+            <div className="d-flex justify-content-center"><Input name="password" style={{width: "85%"}} type="password" value={formik.values.password} id="password"  handleChange={formik.handleChange} placeholder="Enter Your Password!" icon2="bi bi-eye-fill position-relative"/></div>
             <div className="mt-3 d-flex justify-content-center">
               <button type="submit" className="btn mb-3" style={{borderRadius: "20px", background: "#7d10bf", color: "white"}} onClick={formik.handleSubmit}>
               {isLoading && (<span id="login-loader-span" className="spinner-border spinner-border-sm mx-1" role="status" aria-hidden="true"></span>)}

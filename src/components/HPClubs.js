@@ -8,12 +8,12 @@ export default function HPClubs(props) {
 
   return (
   <>
-  <div className='col p-2 m-2' onClick={()=>{navigate("all-clubs/" + props.identity.name)}}>
+  <div className='col p-2 m-2' onClick={()=>{navigate("all-clubs/" + props.identity.club_name)}}>
     <div className="card shadow" style={{minWidth: "14rem", maxWidth: "21rem", borderRadius: "20px"}}>
       <img src={props.identity.images_url}  className="card-img-top p-2" style={{borderRadius: "22px", height: "163px"}} alt="..."/>
       <div className="p-2">
         <div className='d-flex'>
-          <h5 className="card-title m-0">{props.identity.name}</h5>
+          <h5 className="card-title text-truncate m-0" style={{width: "90%"}}>{props.identity.club_name}</h5>
           <i className=" ml-auto bi bi-heart"></i>
         </div>
         <p className='m-0' style={{fontSize: "13px"}}>{props.identity.area}</p>

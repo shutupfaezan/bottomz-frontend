@@ -34,7 +34,7 @@ const {setShow,show} = useContext(SingularContext);
                 <Link className="nav-link pb-0 text-white" style={{fontSize: "19px"}} to="/all-events" >Events</Link>
             </li>
             <li className="nav-item active d-none d-md-block hover-underline-animation">
-                <Link className="nav-link pb-0 text-white" style={{fontSize: "19px"}} to="/">Host With Us</Link>
+                <Link className="nav-link pb-0 text-white" style={{fontSize: "19px"}} to="/host-with-us">Host With Us</Link>
             </li>
             </ul>
             <i className="bi bi-search ml-auto ml-md-0 mr-4 mt-2" style={{fontSize: "20px"}}></i>
@@ -42,7 +42,8 @@ const {setShow,show} = useContext(SingularContext);
             <i className="bi bi-person-circle pt-2" onClick={modalswitch} style={{fontSize: "25px"}}></i>
             <CommonModal show={show}/>
             {showDropBox && <ul className="dropdown-menu show ">
-                <li><a className="dropdown-item" href="/">Favourites</a></li>
+                <li><Link className="dropdown-item" to="/">Favourites</Link></li>
+                <li><Link className="dropdown-item" to="/host-with-us">Host with us</Link></li>
                 <li><Link className="dropdown-item" style={{color: "red"}} onClick={()=>{localStorage.clear(); navigate("/"); window.location.reload()}}>Log Out</Link></li>
             </ul>}
          </div>

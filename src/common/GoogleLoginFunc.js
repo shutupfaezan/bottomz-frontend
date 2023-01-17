@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useGoogleLogin } from '@react-oauth/google';
 // import jwt_decode from "jwt-decode";
 import axios from 'axios';
 
+
 export default function GoogleLoginFunc() {
+  const [byGoogle, setByGoogle] = useState()
   const login = useGoogleLogin({
         onSuccess: async tokenResponse => {
           try{
@@ -12,13 +14,22 @@ export default function GoogleLoginFunc() {
                   "Authorization": `Bearer ${tokenResponse.access_token}`
               }
             })
-
-            console.log(data)
+            setByGoogle(data?.data)
         } catch(err){
           console.log(err)
         }
         }
   });
+  
+  const values={
+    name: byGoogle?.name,
+    email_id: byGoogle?.email,
+    password: byGoogle?.sub,
+    contact: 0,
+  }
+
+    byGoogle && axios.post("https://nightlife-2710.herokuapp.com/registration", values).then((response)=>{localStorage.setItem('token', response.data.access_token)})
+
   // var decoded = jwt_decode(credentialResponse);
   return (
     <>

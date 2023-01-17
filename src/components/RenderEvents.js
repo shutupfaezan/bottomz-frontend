@@ -11,7 +11,7 @@ export default function RenderEvents(props) {
         <img className="align-self-center mr-2" style={{width: "70px", height: "54px"}} src={props.identity.images_url} alt="Club"/>
         <div style={{width: "180px"}} className="mx-2">
         <p className="m-0 mr-2" style={{color: "#980098", fontSize: "17px"}}><strong>{props.identity.date}</strong></p>
-        <p className="m-0" style={{color: "gray"}}>{props.identity.day.slice(0,3)} • {props.identity.timings}</p>
+        <p className="m-0" style={{color: "gray"}}>{props.identity.day.slice(0,3)} • {props.identity.timings.slice(0,9)}</p>
         </div>
         <div className="d-flex flex-column">
           <div className='d-flex'>
@@ -31,7 +31,7 @@ export default function RenderEvents(props) {
         <img className="align-self-center mr-2" style={{width: "70px", height: "54px"}} src={props.identity.images_url} alt="Club"/>
         <div style={{width: "180px"}} className="mx-2">
         <p className="m-0 mr-2" style={{color: "#980098", fontSize: "17px"}}><strong>{props.identity.date}</strong></p>
-        <p className="m-0" style={{color: "gray"}}>{props.identity.day.slice(0,3)} • {props.identity.timings}</p>
+        <p className="m-0" style={{color: "gray"}}>{props.identity.day.slice(0,3)} • {props.identity.timings.slice(0,9)}</p>
         </div>
         <div className="d-flex flex-column">
           <div className='d-flex'>
@@ -52,7 +52,7 @@ export default function RenderEvents(props) {
           <div className="d-flex flex-column">
             <div className='d-flex'>
               <p className="m-0 mr-2" style={{color: "#980098"}}><strong>{props.identity.date}</strong></p>
-              <p className="m-0" style={{color: "gray"}}>{props.identity.day.slice(0,3)} • {props.identity.timings}</p>
+              <p className="m-0" style={{color: "gray"}}>{props.identity.day.slice(0,3)} • {props.identity.timings.slice(0,9)}</p>
             </div>
             <p className="m-0"><strong>{props.identity.event_name}</strong></p>
             <p className='m-0' style={{fontSize: "12px", color: "grey"}}>{props.identity.event_venue}</p>
