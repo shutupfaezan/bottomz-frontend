@@ -5,6 +5,7 @@ import { Link } from "react-router-dom"
 import "../css/Header.css"
 import CommonModal from './CommonModal'
 import { useState } from 'react';
+import SearchBar from './SearchBar';
 
 
 export default function Header() {
@@ -24,7 +25,7 @@ const {setShow,show} = useContext(SingularContext);
 
   return (
     <>
-      <div className="d-flex align-items-center" style={{background: `url('${process.env.PUBLIC_URL}/images/purplecanvas.jpeg') no-repeat center/cover`, height: "300px" }}>
+      <div className="d-flex align-items-center" style={{background: `url('${process.env.PUBLIC_URL}/images/sarah-kilian-7BQzWIQOv9E-unsplash.jpg') no-repeat center/cover`, height: "300px" }}>
         <nav className="navbar navbar-expand navbar-light align-items-center headerback position-absolute w-100" style={{top: "0px"}}>
           <a className="navbar-brand text-white" style={{fontWeight: "800"}} href="/">BottmzUp.com</a>
         <div className="collapse navbar-collapse text-white" id="navbarSupportedContent">
@@ -52,12 +53,7 @@ const {setShow,show} = useContext(SingularContext);
         </nav>
         <div className='d-flex flex-column w-100'>
           <h3 className='d-flex justify-content-center text-white align-self-center text-center' style={{fontWeight: "800"}}>Experiences of a Lifetime</h3>  
-          <div className='w-100'>
-            <form className="d-flex justify-content-center" role="search">
-                <input className="form-control w-75" type="search" style={{height: "50px", border: "1px solid black"}} placeholder="Search Any Event or Club..." aria-label="Search"/>
-                <i className="bi bi-search position-relative" style={{float: "right", right: "30px", borderRadius: "20px", top: "15px", width: "0px"}}></i>   
-            </form> 
-          </div>
+          <SearchBar/>
         </div>
       </div>
     </>

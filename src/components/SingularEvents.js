@@ -34,14 +34,96 @@ export default function SingularEvents() {
           <h6 className="ml-md-4" style={{color: "white"}}>Curated by : {singleEvent?.curated_by}</h6>
         </div>
       </div>
-      <div>
+      <div className='d-lg-flex'>
         <div className='col-lg-6'>
           <h4 className='mt-4' style={{color: "#88106f"}}>Description: </h4>
           <h6>{singleEvent?.description}</h6>
           <h4 className='mt-4' style={{color: "#88106f"}}>Terms and conditions: </h4>
           <h6><ul className='pl-3'>{newTerms?.map((fields, index )=> {
-          return <li>{fields + "."}</li>
+          return <li key={index}>{fields + "."}</li>
         })}</ul></h6>
+        </div>
+        <div className='col-lg-6'>
+        <h4 className='mt-4 mb-4' style={{color: "#88106f"}}>Ticket Info </h4>
+          <table className="table table-hover">
+            <tbody>
+              <tr>
+                <th style={{fontWeight: "100", alignItems: "center", width: "33%"}} scope="row">
+                  <div>Phase 1</div>
+                  <div>only Entry</div>
+                  <div style={{color: "gray"}}>No cover</div>
+                </th>
+                <td style={{fontWeight: "100", verticalAlign: "middle"}}>$499</td>
+                <td style={{fontWeight: "100", verticalAlign: "middle", textAlign: "center"}}>
+                  <div className="input-group mb-3 w-50 float-right">
+                    <label className="input-group-text w-50" htmlFor="inputGroupSelect01">Qty</label>
+                    <select className="form-select" id="inputGroupSelect01">
+                      <option defaultValue>0</option>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="3">4</option>
+                      <option value="3">5</option>
+                      <option value="3">6</option>
+                      <option value="3">7</option>
+                      <option value="3">8</option>
+                      <option value="3">10</option>
+                    </select>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <th style={{fontWeight: "100", alignItems: "center", width: "33%"}} scope="row">
+                  <div>Phase 1</div>
+                  <div>only Entry</div>
+                  <div style={{color: "gray"}}>No cover</div>
+                </th>
+                <td style={{fontWeight: "100", verticalAlign: "middle"}}>$499</td>
+                <td style={{fontWeight: "100", verticalAlign: "middle", textAlign: "center"}}>
+                  <div className="input-group mb-3 w-50 float-right">
+                    <label className="input-group-text w-50 float-right" htmlFor="inputGroupSelect01">Qty</label>
+                    <select className="form-select" id="inputGroupSelect01">
+                      <option defaultValue>0</option>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="3">4</option>
+                      <option value="3">5</option>
+                      <option value="3">6</option>
+                      <option value="3">7</option>
+                      <option value="3">8</option>
+                      <option value="3">10</option>
+                    </select>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <th style={{fontWeight: "100", alignItems: "center", width: "33%"}} scope="row">
+                  <div>Phase 1</div>
+                  <div>only Entry</div>
+                  <div style={{color: "gray"}}>No cover</div>
+                </th>
+                <td style={{fontWeight: "100", verticalAlign: "middle"}}>$499</td>
+                <td style={{fontWeight: "100", verticalAlign: "middle", textAlign: "center"}}>
+                  <div className="input-group mb-3 w-50 float-right">
+                    <label className="input-group-text w-50" htmlFor="inputGroupSelect01">Qty</label>
+                    <select className="form-select" id="inputGroupSelect01">
+                      <option defaultValue>0</option>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="3">4</option>
+                      <option value="3">5</option>
+                      <option value="3">6</option>
+                      <option value="3">7</option>
+                      <option value="3">8</option>
+                      <option value="3">10</option>
+                    </select>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
       </div>

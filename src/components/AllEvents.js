@@ -4,8 +4,8 @@ import axios from 'axios'
 import "../css/AllEvents.css"
 import GlobalHeader from '../common/GlobalHeader'
 
-
 export default function AllEvents() {
+  const [searchTerm, setSearhTerm] = useState()
   const [recentEvents, setRecentEvents] = useState()
   const [loading, setLoading] = useState(true)
   const  eventData = async ()=> { return await axios.get("https://nightlife-2710.herokuapp.com/events")}
@@ -26,7 +26,7 @@ export default function AllEvents() {
     <>
     <GlobalHeader/>
     {loading && 
-    <div className='d-flex mt-5 justify-content-center'>
+    <div className='d-flex mt-5 justify-content-center'>\
       <div className="my-auto spinner-border text-black" role="status">
         <span className="sr-only">Loading...</span>
       </div>
@@ -35,16 +35,32 @@ export default function AllEvents() {
     {!loading &&
     <div className='d-flex'>
       <div className='col-lg-8'>
-        <div className='col-md-6 p-0'>
+        <div className='col-md-7 p-0'>
           <form className="d-flex mt-3 mb-3" role="search">
-            <input className="form-control" type="search" style={{borderRadius: "10px", border: "1px solid black"}} placeholder="Search Your Mind..." aria-label="Search"/>
-            <i className="bi bi-search position-relative" style={{float: "right", right: "30px", borderRadius: "20px", top: "8px", width: "0px"}}></i>   
+            <input className="form-control" type="search" style={{borderRadius: "20px", border: "0.5px solid black"}} placeholder="Search Event or Venue..." onChange={(event)=>setSearhTerm(event.target.value)} aria-label="Search"/>
+            <i className="bi bi-search position-relative" style={{float: "right", right: "30px", borderRadius: "20px", top: "7px", width: "0px"}}></i>
           </form>
         </div>
         <div className='d-flex flex-wrap justify-content-center'>
-          {recentEvents?.data.map((fields, index )=> {
+        {/* eslint-disable-next-line */}
+          {recentEvents?.data?.filter((val)=>{
+            if(searchTerm === undefined){
+              return val
+            }
+            else if(searchTerm === ""){
+              return val
+            }
+            else if(val.event_name.toLowerCase().includes(searchTerm?.toLowerCase())){
+              return val
+            }
+            else if(val.event_venue.toLowerCase().includes(searchTerm?.toLowerCase())){
+              return val
+            }
+            
+          }).map((fields, index )=> {
             return <RenderEvents key={index} identity={fields}></RenderEvents>
-          })}
+          })
+          }
         </div>    
       </div>
     </div>
