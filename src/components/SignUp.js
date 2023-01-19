@@ -5,7 +5,6 @@ import { useContext, useState } from 'react';
 import { SingularContext } from '../contexts/Context';
 import axios from 'axios'
 import { Link } from 'react-router-dom'
-import "../css/Login.css"
 
 export default function SignUp() {
   const {setSignActive, setLoginActive, setShow} = useContext(SingularContext);
