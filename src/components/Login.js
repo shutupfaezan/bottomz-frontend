@@ -32,7 +32,7 @@ export default function Login() {
     }
   })
 
-  return ( 
+  return (
       <div className='d-flex flex-column justify-content-center'>
         <h3 className="d-flex justify-content-center mt-5 mb-3">
           <strong>

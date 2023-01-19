@@ -37,8 +37,8 @@ const {setShow,show} = useContext(SingularContext);
                 <Link className="nav-link pb-0 text-white" style={{fontSize: "19px"}} to="/host-with-us">Host With Us</Link>
             </li>
             </ul>
-            <i className="bi bi-search ml-auto ml-md-0 mr-4 mt-2" style={{fontSize: "20px"}}></i>
-            <div className="btn-group dropleft ml-md-0">
+            {/* <i className="bi bi-search ml-auto ml-md-0 mr-4 mt-2" style={{fontSize: "20px"}}></i> */}
+            <div className="btn-group dropleft ml-md-0 ml-auto">
             <i className="bi bi-person-circle pt-2" onClick={modalswitch} style={{fontSize: "25px"}}></i>
             <CommonModal show={show}/>
             {showDropBox && <ul className="dropdown-menu show ">
