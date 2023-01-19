@@ -25,7 +25,7 @@ const {setShow,show} = useContext(SingularContext);
 
   return (
     <>
-      <div className="d-flex align-items-center" style={{background: `url('${process.env.PUBLIC_URL}/images/sarah-kilian-7BQzWIQOv9E-unsplash.jpg') no-repeat center/cover`, height: "300px" }}>
+      <div className="d-flex align-items-center" style={{background: `url('${process.env.PUBLIC_URL}/images/purplecanvas.jpeg') no-repeat center/cover`, height: "300px" }}>
         <nav className="navbar navbar-expand navbar-light align-items-center headerback position-absolute w-100" style={{top: "0px"}}>
           <a className="navbar-brand text-white" style={{fontWeight: "800"}} href="/">BottmzUp.com</a>
         <div className="collapse navbar-collapse text-white" id="navbarSupportedContent">

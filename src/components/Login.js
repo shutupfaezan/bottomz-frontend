@@ -5,7 +5,6 @@ import { useContext, useState } from 'react';
 import { SingularContext } from '../contexts/Context';
 import axios from 'axios'
 import { Link } from 'react-router-dom'
-import "../css/Login.css"
 import GoogleLoginFunc from '../common/GoogleLoginFunc'
 
 export default function Login() {
