@@ -26,7 +26,7 @@ export default function AllEvents() {
     <>
     <GlobalHeader/>
     {loading && 
-    <div className='d-flex mt-5 justify-content-center'>\
+    <div className='d-flex mt-5 justify-content-center'>
       <div className="my-auto spinner-border text-black" role="status">
         <span className="sr-only">Loading...</span>
       </div>
