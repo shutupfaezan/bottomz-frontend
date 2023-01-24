@@ -1,0 +1,76 @@
+.leHLON {
+  /* position: absolute; */
+  margin-left: auto;
+  margin-right: auto;
+  width: 95%;
+  /* top: -42px;
+  left: 0px;
+  right: 0px; */
+}
+.imPEHI {
+  display: flex;
+  flex-direction: column;
+}
+.uAaqh{
+  /* padding: 16px; */
+  border-radius: 172px;
+  display: flex;
+}
+.jksHKM {
+  background-color: rgb(255, 255, 255);
+  border-radius: 8px;
+  /* box-shadow: rgb(0 0 0 / 9%) 0px 1px 2px 0px, rgb(0 0 0 / 5%) 0px 4px 8px 0px; */
+  /* height: 100%; */
+  /* padding: 40px; */
+}
+.dLUKiG {
+  background-color: rgb(136,16,111);
+  box-sizing: border-box;
+  height: 64px;
+  padding: 20px 16px;
+  position: relative;
+  width: 100%;
+  text-align: center;
+}
+.dLUKiG:first-child {
+  border-radius: 64px 0px 0px 64px;
+}
+.dLUKiG:not(:last-child) {
+  margin-right: 10px;
+}
+.dLUKiG:last-child {
+  border-radius: 0px 64px 64px 0px;
+}
+.fcxZkm {
+  /* font-family: "Nunito Sans", sans-serif; */
+  /* font-weight: 600;
+  letter-spacing: normal; */
+  color: rgb(255, 255, 255);
+  /* font-size: 18px;
+  line-height: 27px; */
+}
+.dLUKiG:not(:last-child)::before {
+  content: "";
+  height: 0px;
+  border-top: 32px solid transparent;
+  border-bottom: 32px solid transparent;
+  border-left: 17px solid rgb(255, 255, 255);
+  left: 100%;
+  margin-left: 10px;
+  position: absolute;
+  top: 0px;
+  width: 0px;
+  z-index: 1;
+}
+.dLUKiG:not(:last-child)::after {
+  content: "";
+  height: 0px;
+  border-top: 32px solid transparent;
+  border-bottom: 32px solid transparent;
+  border-left: 17px solid rgb(136,16,111);
+  left: 100%;
+  position: absolute;
+  top: 0px;
+  width: 0px;
+  z-index: 2;
+}

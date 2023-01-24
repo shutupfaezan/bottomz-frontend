@@ -6,8 +6,9 @@ import "../css/AllClubs.css"
 import "../css/ClubsRow.css"
 import GlobalHeader from '../common/GlobalHeader'
 export default function AllClubs(props) {
+    const [searchTerm, setSearhTerm] = useState()
     const [recentClubs, setRecentClubs] = useState()
-   const clubList = async ()=> { return await axios.get("https://nightlife-2710.herokuapp.com/club")}
+    const clubList = async ()=> { return await axios.get("https://nightlife-2710.herokuapp.com/club")}
 
     useEffect(() => {
       clubList()
@@ -22,8 +23,25 @@ export default function AllClubs(props) {
     <>
     <GlobalHeader/>
     <div className='d-flex justify-content-center mt-5'><h1><strong>All Clubs</strong></h1></div>
-        <div className='d-flex flex-wrap ml-xl-4 '>
-        {recentClubs?.data.map((fields, index )=> {
+    <div className='d-flex col-md-4 p-0'>
+          <form className="d-flex mt-3 mb-3 w-100 ml-md-5 mx-4" role="search">
+            <input className="form-control" type="search" style={{borderRadius: "20px", border: "0.5px solid black"}} onChange={(event)=>setSearhTerm(event.target.value)} placeholder="Search Club Name" aria-label="Search"/>
+            <i className="bi bi-search position-relative" style={{float: "right", right: "30px", borderRadius: "20px", top: "7px", width: "0px"}}></i>
+          </form>
+        </div>
+        <div className='d-flex px-3 px-md-2 flex-wrap ml-xl-4'>
+        {/* eslint-disable-next-line */}
+        {recentClubs?.data?.filter((val)=>{
+            if(searchTerm === undefined){
+              return val
+            }
+            else if(searchTerm === ""){
+              return val
+            }
+            else if(val.club_name.toLowerCase().includes(searchTerm?.toLowerCase())){
+              return val
+            }
+          }).map((fields, index )=> {
           return <RenderClubs key={index} identity={fields}></RenderClubs>
         })}
     </div>
