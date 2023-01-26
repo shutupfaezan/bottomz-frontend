@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/static/css/main.a6bbc631.css",
-    "main.js": "/static/js/main.8088d4d0.js",
+    "main.js": "/static/js/main.0b85ae78.js",
     "static/js/787.172a0347.chunk.js": "/static/js/787.172a0347.chunk.js",
     "static/media/rose-petals.png": "/static/media/rose-petals.94e20ec320aab692e901.png",
     "index.html": "/index.html",
     "main.a6bbc631.css.map": "/static/css/main.a6bbc631.css.map",
-    "main.8088d4d0.js.map": "/static/js/main.8088d4d0.js.map",
+    "main.0b85ae78.js.map": "/static/js/main.0b85ae78.js.map",
     "787.172a0347.chunk.js.map": "/static/js/787.172a0347.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.a6bbc631.css",
-    "static/js/main.8088d4d0.js"
+    "static/js/main.0b85ae78.js"
   ]
 }
