@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 
 export default function HPEvents(props) {
   const navigate = useNavigate()
+  console.log(props)
   
   return (
     <>
@@ -18,7 +19,7 @@ export default function HPEvents(props) {
     </div>
     <div className='d-flex ml-auto'><i className="bi bi-three-dots-vertical" style={{fontSize: "30px", color: "gray"}}></i></div>
   </div>
-  <hr className="w-100" style={{height: "0.1px"}}/>
+  {props.index !== 4 && <hr className="w-100" style={{height: "0.1px"}}/>}
   </>
   )
 }
