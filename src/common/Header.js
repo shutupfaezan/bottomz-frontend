@@ -1,6 +1,7 @@
 import React from 'react'
 import { SingularContext } from '../contexts/Context';
 import {useContext} from 'react'
+import { BrowserView, MobileView} from 'react-device-detect' 
 import { Link } from "react-router-dom"
 import "../css/Header.css"
 import CommonModal from './CommonModal'
@@ -21,7 +22,7 @@ function modalswitch(){
 
   return (
     <>
-      <div className="d-flex align-items-center" style={{background: `url('${process.env.PUBLIC_URL}/images/purplecanvas.jpeg') no-repeat center/cover`, height: "300px" }}>
+      <div className="d-flex align-items-center svgbg" style={{height: "300px"}}>
         <nav className="navbar navbar-expand navbar-light align-items-center headerback position-absolute w-100" style={{top: "0px"}}>
           <Hamburger/>
           <a className="navbar-brand text-white" style={{fontWeight: "800"}} href="/">BottmzUp</a>
@@ -38,14 +39,21 @@ function modalswitch(){
             </li>
           </ul>
           <div className="btn-group dropleft ml-auto ml-md-0">
-          <i className="bi bi-person-circle pt-2" onClick={modalswitch} style={{fontSize: "25px", cursor: "pointer"}}></i>
-          {/* <p className="m-0 px-3 mt-1 py-1" style={{border: "1px solid white", borderRadius: "10px", cursor: "pointer"}}  onClick={modalswitch}>Sign Up</p> */}
+          {/* <i className="bi bi-person-circle pt-2" onClick={modalswitch} style={{fontSize: "25px", cursor: "pointer"}}></i>   */}
+          <p className="m-0 px-3 mt-1 py-1" style={{border: "1px solid white", borderRadius: "10px", cursor: "pointer"}}  onClick={modalswitch}>Sign Up</p>
           <CommonModal show={show}/>  
          </div>
         </div>
         </nav>
-        <div className='d-flex flex-column w-100'>
-          <h3 className='d-flex justify-content-center text-white align-self-center text-center' style={{fontWeight: "800"}}>Experiences of a Lifetime</h3>  
+        <div className='d-flex flex-column w-100 position-absolute' style={{top: "85px"}}>
+          <BrowserView>
+          <h2 className='d-flex justify-content-center text-white align-self-center text-center mb-2' style={{fontWeight: "800"}}>Clubbing done right</h2>
+          <p className='d-flex justify-content-center text-white align-self-center text-center mb-4' style={{fontWeight: "800", fontSize: "20px"}}>Shop millions of live events and discover can't-miss concerts, games, theater and more.</p>  
+          </BrowserView>
+          <MobileView>
+          <h4 className='d-flex justify-content-center text-white align-self-center text-center mb-2' style={{fontWeight: "800"}}>Clubbing done right</h4>
+          <p className='d-flex justify-content-center text-white align-self-center text-center mb-3 px-3' style={{fontWeight: "800", fontSize: "12px"}}>Shop millions of live events and discover can't-miss concerts, games, theater and more.</p>  
+          </MobileView>
           <SearchBar/>
         </div>
       </div>

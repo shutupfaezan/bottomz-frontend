@@ -24,7 +24,7 @@ export default function RenderEvents(props) {
           <i className="bi bi-three-dots-vertical" style={{fontSize: "30px", color: "gray"}}></i>
           </div>
       </div>
-          <hr className="w-100" style={{height: "0.1px"}}/>
+        <hr className="w-100" style={{height: "0.1px"}}/>
       </BrowserView>
       <TabletView className='w-100'>
       <div className="d-flex w-100">

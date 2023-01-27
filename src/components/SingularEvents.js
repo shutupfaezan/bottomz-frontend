@@ -36,7 +36,7 @@ export default function SingularEvents() {
       </div>
       <div className='d-lg-flex'>
         <div className='col-lg-6'>
-          <h4 className='mt-4' style={{color: "#88106f"}}>Description: </h4>
+         {singleEvent?.description !== null && <h4 className='mt-4' style={{color: "#88106f"}}>Description: </h4>}
           <h6>{singleEvent?.description}</h6>
           <h4 className='mt-4' style={{color: "#88106f"}}>Terms and conditions: </h4>
           <h6><ul className='pl-3'>{newTerms?.map((fields, index )=> {

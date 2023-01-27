@@ -25,13 +25,13 @@ export default function AllEvents() {
   return (
     <>
     <GlobalHeader/>
-    {loading && 
-    <div className='d-flex mt-5 justify-content-center'>
-      <div className="my-auto spinner-border text-black" role="status">
-        <span className="sr-only">Loading...</span>
-      </div>
+    {loading && <div className='d-flex justify-content-center mt-auto'>
+    <div className='d-flex align-items-center'>
+    <span style={{fontSize: "35px"}}>Loading </span>
+    <div className="my-auto spinner-border text-black " role="status">
     </div>
-    }
+    </div>
+    </div>}
     {!loading &&
     <div className='d-flex'>
       <div className='col-lg-8'>
