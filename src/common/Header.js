@@ -22,7 +22,8 @@ function modalswitch(){
 
   return (
     <>
-      <div className="d-flex align-items-center svgbg" style={{height: "300px"}}>
+    <div className='svgbg'  style={{height: "300px"}}></div>
+      <div className="d-flex align-items-center">
         <nav className="navbar navbar-expand navbar-light align-items-center headerback position-absolute w-100" style={{top: "0px"}}>
           <Hamburger/>
           <a className="navbar-brand text-white" style={{fontWeight: "800"}} href="/">BottmzUp</a>
@@ -36,6 +37,9 @@ function modalswitch(){
             </li>
             <li className="nav-item active d-none d-md-block hover-underline-animation">
               <Link className="nav-link pb-0 text-white" style={{fontSize: "19px"}} to="/host-with-us">Host With Us</Link>
+            </li>
+            <li className="nav-item active d-none d-md-block hover-underline-animation">
+              <Link className="nav-link pb-0 text-white" style={{fontSize: "19px"}} to="/host-with-us">Help</Link>
             </li>
           </ul>
           <div className="btn-group dropleft ml-auto ml-md-0">

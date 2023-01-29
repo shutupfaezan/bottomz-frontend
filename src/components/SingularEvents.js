@@ -5,14 +5,15 @@ import { useParams } from "react-router-dom";
 
 export default function SingularEvents() {
     const [singleEvent, setSingleEvent] = useState()
+    const [ticketConfig, setTicketConfig] = useState()
     const params = useParams()
     const event = async ()=> { return await axios.get(`https://nightlife-2710.herokuapp.com/events/${params.event_name}`)}
     
     useEffect(() => {
       event()
       .then((response) => {
-        console.log(response.data)
-        setSingleEvent(response?.data)
+        setSingleEvent(response?.data?.event_data)
+        setTicketConfig(response?.data?.ticket_categories)
       })
       .catch((error) => {
         console.log(error);
@@ -47,15 +48,17 @@ export default function SingularEvents() {
         <h4 className='mt-4 mb-4' style={{color: "#88106f"}}>Ticket Info </h4>
           <table className="table table-hover">
             <tbody>
-              <tr>
+              {ticketConfig?.map((identity, fields)=>{
+                return <tr key={fields}>
                 <th style={{fontWeight: "100", alignItems: "center", width: "33%"}} scope="row">
-                  <div>Phase 1</div>
-                  <div>only Entry</div>
-                  <div style={{color: "gray"}}>No cover</div>
+                  <div>{identity.ticket_categories}</div>
+                  <div>{identity.description}</div>
+                  <div style={{color: "gray"}}>{identity.cover_description}</div>
                 </th>
-                <td style={{fontWeight: "100", verticalAlign: "middle"}}>$499</td>
+                {/* eslint-disable-next-line */}
+                <td style={{fontWeight: "100", verticalAlign: "middle"}}>{identity.price != 0 && "₹"}{identity.price != 0 ? identity.price : "Free"}</td>
                 <td style={{fontWeight: "100", verticalAlign: "middle", textAlign: "center"}}>
-                  <div className="input-group mb-3 w-50 float-right">
+                  <div className="input-group mb-3 float-right" style={{width: "55%"}}>
                     <label className="input-group-text w-50" htmlFor="inputGroupSelect01">Qty</label>
                     <select className="form-select" id="inputGroupSelect01">
                       <option defaultValue>0</option>
@@ -72,56 +75,7 @@ export default function SingularEvents() {
                   </div>
                 </td>
               </tr>
-              <tr>
-                <th style={{fontWeight: "100", alignItems: "center", width: "33%"}} scope="row">
-                  <div>Phase 1</div>
-                  <div>only Entry</div>
-                  <div style={{color: "gray"}}>No cover</div>
-                </th>
-                <td style={{fontWeight: "100", verticalAlign: "middle"}}>$499</td>
-                <td style={{fontWeight: "100", verticalAlign: "middle", textAlign: "center"}}>
-                  <div className="input-group mb-3 w-50 float-right">
-                    <label className="input-group-text w-50 float-right" htmlFor="inputGroupSelect01">Qty</label>
-                    <select className="form-select" id="inputGroupSelect01">
-                      <option defaultValue>0</option>
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
-                      <option value="3">4</option>
-                      <option value="3">5</option>
-                      <option value="3">6</option>
-                      <option value="3">7</option>
-                      <option value="3">8</option>
-                      <option value="3">10</option>
-                    </select>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <th style={{fontWeight: "100", alignItems: "center", width: "33%"}} scope="row">
-                  <div>Phase 1</div>
-                  <div>only Entry</div>
-                  <div style={{color: "gray"}}>No cover</div>
-                </th>
-                <td style={{fontWeight: "100", verticalAlign: "middle"}}>$499</td>
-                <td style={{fontWeight: "100", verticalAlign: "middle", textAlign: "center"}}>
-                  <div className="input-group mb-3 w-50 float-right">
-                    <label className="input-group-text w-50" htmlFor="inputGroupSelect01">Qty</label>
-                    <select className="form-select" id="inputGroupSelect01">
-                      <option defaultValue>0</option>
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
-                      <option value="3">4</option>
-                      <option value="3">5</option>
-                      <option value="3">6</option>
-                      <option value="3">7</option>
-                      <option value="3">8</option>
-                      <option value="3">10</option>
-                    </select>
-                  </div>
-                </td>
-              </tr>
+              })}
             </tbody>
           </table>
         </div>
