@@ -7,7 +7,7 @@ export default function HPEvents(props) {
   
   return (
     <>
-  <div className="d-flex w-100" style={{width: "24rem"}} onClick={()=>{navigate("all-events/" + props.identity.event_name)}}>
+  <div className="d-flex w-100" style={{width: "24rem"}} onClick={()=>{navigate("/all-events/" + props.identity.event_name)}}>
     <img className="align-self-center mr-2" style={{width: "70px", height: "70px", borderRadius: "14px"}} src={props.identity.images_url} alt="Club"/>
     <div className="d-flex flex-column">
       <div className='d-flex'>
