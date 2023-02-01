@@ -2,13 +2,26 @@ import React, { useState } from 'react'
 import axios from 'axios'
 import { useEffect } from 'react'
 import { useParams } from "react-router-dom";
+import { useFormik } from 'formik';
+import QuantityFields from './QuantityFields';
+import { SingularContext } from '../contexts/Context';
+import {useContext} from 'react'
 
 export default function SingularEvents() {
+    const { inputValues} = useContext(SingularContext);
     const [singleEvent, setSingleEvent] = useState()
     const [ticketConfig, setTicketConfig] = useState()
+    const makeinput= {
+      "event_name": singleEvent?.event_name,
+      "user_name": localStorage.token,
+      "order details": [...inputValues]
+
+    }
     const params = useParams()
     const event = async ()=> { return await axios.get(`https://nightlife-2710.herokuapp.com/events/${params.event_name}`)}
-    
+    function submitinter(){
+      axios.post(`https://nightlife-2710.herokuapp.com/orders`, makeinput)
+    }
     useEffect(() => {
       event()
       .then((response) => {
@@ -26,12 +39,12 @@ export default function SingularEvents() {
     <div>
       <div className='w-100 p-4 d-md-flex' style={{background: "#361532"}}>
         <div style={{maxWidth: "100%"}}>
-        <img style={{height:"auto", maxHeight: "250px", maxWidth: "100%"}} src={singleEvent?.images_url} alt=""/>
+          <img style={{height:"auto", maxHeight: "250px", maxWidth: "100%"}} src={singleEvent?.images_url} alt=""/>
         </div>
         <div className='mt-lg-0 mt-md-0 mt-4 w-100'>
           <h2 className="ml-md-4" style={{color: "white"}}>{singleEvent?.event_name}</h2>
           <h5 className="ml-md-4" style={{color: "white"}}>{singleEvent?.event_venue}</h5>
-            <p className="ml-md-4 d-inline-flex p-1 bg-white mt-2 px-3" style={{color: "#1c1d1f", border: "1px solid white", borderRadius: "10px", fontSize: "13px"}}>{singleEvent?.genre}</p>
+          <p className="ml-md-4 d-inline-flex p-1 bg-white mt-2 px-3" style={{color: "#1c1d1f", border: "1px solid white", borderRadius: "10px", fontSize: "13px"}}>{singleEvent?.genre}</p>
           <h6 className="ml-md-4" style={{color: "white"}}>Curated by : {singleEvent?.curated_by}</h6>
         </div>
       </div>
@@ -45,41 +58,17 @@ export default function SingularEvents() {
         })}</ul></h6>
         </div>
         <div className='col-lg-6'>
-        <h4 className='mt-4 mb-4' style={{color: "#88106f"}}>Ticket Info </h4>
+          <h4 className='mt-4 mb-4' style={{color: "#88106f"}}>Ticket Info </h4>
           <table className="table table-hover">
             <tbody>
               {ticketConfig?.map((identity, fields)=>{
-                return <tr key={fields}>
-                <th style={{fontWeight: "100", alignItems: "center", width: "33%"}} scope="row">
-                  <div>{identity.ticket_categories}</div>
-                  <div>{identity.description}</div>
-                  <div style={{color: "gray"}}>{identity.cover_description}</div>
-                </th>
-                {/* eslint-disable-next-line */}
-                <td style={{fontWeight: "100", verticalAlign: "middle"}}>{identity.price != 0 && "₹"}{identity.price != 0 ? identity.price : "Free"}</td>
-                <td style={{fontWeight: "100", verticalAlign: "middle", textAlign: "center"}}>
-                  <div className="input-group mb-3 float-right" style={{width: "55%"}}>
-                    <label className="input-group-text w-50" htmlFor="inputGroupSelect01">Qty</label>
-                    <select className="form-select" id="inputGroupSelect01">
-                      <option defaultValue>0</option>
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
-                      <option value="3">4</option>
-                      <option value="3">5</option>
-                      <option value="3">6</option>
-                      <option value="3">7</option>
-                      <option value="3">8</option>
-                      <option value="3">10</option>
-                    </select>
-                  </div>
-                </td>
-              </tr>
-              })}
+                  return <QuantityFields identity={identity} key={fields} index={fields}></QuantityFields>
+                })}
             </tbody>
           </table>
+          <button className='btn btn-primary w-100' onClick={submitinter}>submit</button>
         </div>
       </div>
-      </div>
+    </div>
   )
 }

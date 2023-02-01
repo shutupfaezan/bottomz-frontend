@@ -6,3 +6,10 @@
 div::-webkit-scrollbar{
     display: none
 }
+
+@media screen and (min-width: 2200px) {
+.col-xxl-3{
+flex: 0 0 25%;
+} 
+}
+

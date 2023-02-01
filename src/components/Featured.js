@@ -52,9 +52,9 @@ export default function ClubsRow() {
     {!loading && <div className="d-lg-flex">
       <div className='col-lg-8'>
         <div className='mx-md-4 mt-4 d-flex align-items-baseline'><h4 className='mt-2 mb-0 mx-2' style={{color: "#88106f"}}><strong>Featured Clubs</strong></h4><Link className='ml-auto d-block text-decoration-none d-lg-none' to="/all-clubs" style={{color: "#9E0A0A"}}>View All Clubs</Link></div>
-        <div className='d-flex flex-lg-wrap overflow-auto '>
+        <div className='d-flex flex-lg-wrap overflow-auto w-100 justify-content-lg-start align-items-lg-center '>
             {reverseClubs?.map((fields, index )=> {
-          return <HPClubs className="col" key={index} identity={fields}></HPClubs>
+          return <HPClubs key={index} identity={fields}></HPClubs>
         })} 
         </div>
       </div>
