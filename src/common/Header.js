@@ -22,7 +22,7 @@ function modalswitch(){
 
   return (
     <>
-    <div className='svgbg'  style={{height: "300px"}}></div>
+    <div className='svgbg'  style={{height: "300px", boxShadow: "1px 1px 10px grey"}}></div>
       <div className="d-flex align-items-center">
         <nav className="navbar navbar-expand navbar-light align-items-center headerback position-absolute w-100" style={{top: "0px"}}>
           <Hamburger/>
@@ -49,7 +49,7 @@ function modalswitch(){
          </div>
         </div>
         </nav>
-        <div className='d-flex flex-column w-100 position-absolute' style={{top: "85px"}}>
+        <div className='d-flex flex-column w-100 position-absolute' style={{top: "105px"}}>
           <BrowserView>
           <h2 className='d-flex justify-content-center text-white align-self-center text-center mb-2' style={{fontWeight: "800"}}>Clubbing done right</h2>
           <p className='d-flex justify-content-center text-white align-self-center text-center mb-4' style={{fontWeight: "800", fontSize: "20px"}}>Shop millions of live events and discover can't-miss concerts, games, theater and more.</p>  
