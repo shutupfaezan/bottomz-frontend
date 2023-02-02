@@ -1,6 +1,7 @@
 import React from 'react'
 import { SingularContext } from '../contexts/Context';
 import {useContext} from 'react'
+import { BrowserView, MobileOnlyView } from 'react-device-detect';
 
 export default function QuantityFields(props) {
   const { inputValues, setInputValues } = useContext(SingularContext);
@@ -29,7 +30,12 @@ export default function QuantityFields(props) {
         <td style={{fontWeight: "100", verticalAlign: "middle"}}>{props.identity.price != 0 && "₹"}{props.identity.price != 0 ? props.identity.price : "Free"}</td>
         <td style={{fontWeight: "100", verticalAlign: "middle", textAlign: "center"}}>
             <div className="input-group mb-3 float-right" style={{width: "55%"}}>
-            <label className="input-group-text w-50" htmlFor="inputGroupSelect01">Qty</label>
+              <BrowserView className='w-50'>
+                <label className="input-group-text " htmlFor="inputGroupSelect01">Qty</label>
+              </BrowserView>
+              <MobileOnlyView className='w-100'>
+                <label className="input-group-text" htmlFor="inputGroupSelect01">Qty</label>
+              </MobileOnlyView>
             <select className="form-select" id={"TicketDropdown" + props.index} name={"TicketDropdown" + props.index} value={inputValues[props.index] ? inputValues[props.index]["TicketDropdown" + props.index] : ''} onChange={(event) => handleInputChange(event, props.index)}>
                 <option defaultValue>0</option>
                 <option value="1">1</option>  

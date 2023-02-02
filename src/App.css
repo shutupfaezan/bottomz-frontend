@@ -71,6 +71,20 @@ background: url(http://pavbca.com/walldb/original/5/1/7/484530.jpg)center center
 }
 
 
+/* @media screen and (min-width: 991px) {
+  .posab{
+    position: absolute !important;
+    background: white;
+    border: 1px solid black;
+    border-radius: 10px;
+    height: 430px;
+    overflow: scroll;
+    margin-right: 10px;
+    top: 100px;
+    right: 0px;
+  }
+} */
+
 /* suggestive fonts  */
 /* @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap'); */
 /* @import url('https://fonts.googleapis.com/css2?family=Manrope&display=swap'); */

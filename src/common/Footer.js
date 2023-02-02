@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 export default function Footer() {
   return (
-    <section className="pt-5 pb-4 d-flex flex-column justify-content-md-end" style={{minHeight: "325px", fontSize: "14px", maxHeight: "auto", background: "#f1f2f3"}}>
+    <section className="pt-5 pb-4 d-flex flex-column justify-content-md-end" style={{minHeight: "325px", fontSize: "14px", maxHeight: "auto", background: "rgb(244 244 244)"}}>
    		<div className="pt-5 d-flex flex-column flex-lg-row ml-3 mr-0" style={{marginTop: "100px"}}>
            <div className="col-xs-12 mb-4 col-md-2">
             	<h4>Bottmzup</h4>

@@ -36,7 +36,7 @@ export default function GlobalHeader() {
             </li>
             </ul>
             <div className="btn-group dropleft ml-md-0 ml-auto">
-            <i className="bi bi-person-circle pt-2" onClick={modalswitch} style={{fontSize: "25px", color: "white "}}></i>
+          <p className="m-0 px-3 mt-1 py-1 text-white" style={{border: "1px solid white", borderRadius: "10px", cursor: "pointer"}}  onClick={modalswitch}>Sign Up</p>
             <CommonModal show={show}/>
          </div>
         </div>

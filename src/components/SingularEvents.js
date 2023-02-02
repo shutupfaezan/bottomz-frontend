@@ -2,25 +2,28 @@ import React, { useState } from 'react'
 import axios from 'axios'
 import { useEffect } from 'react'
 import { useParams } from "react-router-dom";
-import { useFormik } from 'formik';
 import QuantityFields from './QuantityFields';
 import { SingularContext } from '../contexts/Context';
 import {useContext} from 'react'
+import GlobalHeader from '../common/GlobalHeader';
 
 export default function SingularEvents() {
-    const { inputValues} = useContext(SingularContext);
+    const {setShow, inputValues} = useContext(SingularContext);
     const [singleEvent, setSingleEvent] = useState()
     const [ticketConfig, setTicketConfig] = useState()
-    const makeinput= {
-      "event_name": singleEvent?.event_name,
-      "user_name": localStorage.token,
-      "order details": [...inputValues]
+    const order_details = inputValues.filter(obj => obj != null)
 
+    // const makeinput= {
+    //   "order_details": [...filteredOrderedArray]
+    // }
+    let sum = 0
+    for (var i = 0; i < order_details.length; i++) {
+      sum += order_details?.[i]?.total_price;
     }
     const params = useParams()
     const event = async ()=> { return await axios.get(`https://nightlife-2710.herokuapp.com/events/${params.event_name}`)}
     function submitinter(){
-      axios.post(`https://nightlife-2710.herokuapp.com/orders`, makeinput)
+      axios.post(`https://nightlife-2710.herokuapp.com/orders?event_name=${singleEvent?.event_name}&user_name=${localStorage.token.slice(0,10)}`, order_details )
     }
     useEffect(() => {
       event()
@@ -37,6 +40,7 @@ export default function SingularEvents() {
     const newTerms  = singleEvent?.terms?.slice(2, singleEvent?.terms?.length - 2).split(".,")
     return (
     <div>
+      <GlobalHeader/>
       <div className='w-100 p-4 d-md-flex' style={{background: "#361532"}}>
         <div style={{maxWidth: "100%"}}>
           <img style={{height:"auto", maxHeight: "250px", maxWidth: "100%"}} src={singleEvent?.images_url} alt=""/>
@@ -66,7 +70,8 @@ export default function SingularEvents() {
                 })}
             </tbody>
           </table>
-          <button className='btn btn-primary w-100' onClick={submitinter}>submit</button>
+         {sum !== 0 && <h5 className='w-100 d-flex justify-content-center p-2 align-items-center' style={{border: "1px solid black", borderRadius: "10px"}}>Checkout: ₹{sum} </h5>}
+          <button className='btn btn-primary mb-2 w-100' onClick={()=>localStorage.token ? submitinter : setShow(true)}>{localStorage.token ? "Submit" : "Log In/Sign Up"}</button>
         </div>
       </div>
     </div>
