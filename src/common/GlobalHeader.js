@@ -20,7 +20,7 @@ export default function GlobalHeader() {
   }
   return (
     <>
-        <nav className="navbar navbar-expand navbar-light align-items-center headerback w-100" style={{background: "#361532"}}>
+        <nav className="navbar navbar-expand navbar-light align-items-center headerback w-100" style={{background: "#276f93"}}>
         <Hamburger/>
         <a className="navbar-brand text-white" style={{fontWeight: "800"}} href="/">BottmzUp</a>
         <div className="collapse navbar-collapse text-black" id="navbarSupportedContent">
@@ -33,6 +33,9 @@ export default function GlobalHeader() {
             </li>
             <li className="nav-item active d-none d-md-block hover-underline-animation">
                 <Link className="nav-link pb-0 text-white" style={{fontSize: "19px"}} to="/host-with-us">Host With Us</Link>
+            </li>
+            <li className="nav-item active d-none d-md-block hover-underline-animation">
+                <Link className="nav-link pb-0 text-white" style={{fontSize: "19px"}} to="/host-with-us">Help</Link>
             </li>
             </ul>
             <div className="btn-group dropleft ml-md-0 ml-auto">

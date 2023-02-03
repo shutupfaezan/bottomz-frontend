@@ -32,8 +32,8 @@ export default function AllClubs(props) {
     </div>
     </div>
     </div>}
-    {!loading && <><div className='d-flex col-md-4 p-0'>
-          <form className="d-flex mt-3 mb-3 w-100 ml-md-5 mx-4" role="search">
+    {!loading && <><div className='d-flex col-lg-4 col-md-6 p-0'>
+          <form className="d-flex mt-3 mb-3 w-100 ml-lg-5 ml-md-4 mx-4" role="search">
             <input className="form-control" type="search" style={{borderRadius: "20px", border: "0.5px solid black"}} onChange={(event)=>setSearhTerm(event.target.value)} placeholder="Search Club Name" aria-label="Search"/>
             <i className="bi bi-search position-relative" style={{float: "right", right: "30px", borderRadius: "20px", top: "7px", width: "0px"}}></i>
           </form>

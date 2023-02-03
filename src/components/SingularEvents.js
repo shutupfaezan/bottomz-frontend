@@ -41,8 +41,8 @@ export default function SingularEvents() {
     return (
     <div>
       <GlobalHeader/>
-      <div className='w-100 p-4 d-md-flex' style={{background: "#361532"}}>
-        <div style={{maxWidth: "100%"}}>
+      <div className='w-100 p-4 d-md-flex' style={{background:   "#361532"}}>
+        <div style={{maxWidth: "100%"}}>  
           <img style={{height:"auto", maxHeight: "250px", maxWidth: "100%"}} src={singleEvent?.images_url} alt=""/>
         </div>
         <div className='mt-lg-0 mt-md-0 mt-4 w-100'>
@@ -61,17 +61,19 @@ export default function SingularEvents() {
           return <li key={index}>{fields + "."}</li>
         })}</ul></h6>
         </div>
-        <div className='col-lg-6'>
+       <div className='col-lg-6'>
           <h4 className='mt-4 mb-4' style={{color: "#88106f"}}>Ticket Info </h4>
-          <table className="table table-hover">
-            <tbody>
-              {ticketConfig?.map((identity, fields)=>{
-                  return <QuantityFields identity={identity} key={fields} index={fields}></QuantityFields>
-                })}
-            </tbody>
-          </table>
-         {sum !== 0 && <h5 className='w-100 d-flex justify-content-center p-2 align-items-center' style={{border: "1px solid black", borderRadius: "10px"}}>Checkout: ₹{sum} </h5>}
-          <button className='btn btn-primary mb-2 w-100' onClick={()=>localStorage.token ? submitinter : setShow(true)}>{localStorage.token ? "Submit" : "Log In/Sign Up"}</button>
+          {ticketConfig?.[0] ? <div>
+            <table className="table table-hover">
+                <tbody>
+                  {ticketConfig?.map((identity, fields)=>{
+                      return <QuantityFields identity={identity} key={fields} index={fields}></QuantityFields>
+                    })}
+                </tbody>
+              </table>
+            {sum !== 0 && <h5 className='w-100 d-flex justify-content-center p-2 align-items-center' style={{border: "1px solid black", borderRadius: "10px"}}>Checkout: ₹{sum} </h5>}
+            <button className='btn btn-primary mb-2 w-100' onClick={()=>localStorage.token ? submitinter : setShow(true)}>{localStorage.token ? "Continue" : "Log In/Sign Up to Continue"}</button>
+          </div> : <div><h5>Ticketing info doesnt exist</h5><p style={{color: "#6a6868"}}>Be the first to report the error and get some perks</p></div>}
         </div>
       </div>
     </div>
