@@ -24,6 +24,7 @@ export default function AllEvents() {
     
   return (
     <>
+    <div>
     <GlobalHeader/>
     {loading && <div className='d-flex justify-content-center mt-auto'>
     <div className='d-flex align-items-center'>
@@ -65,6 +66,7 @@ export default function AllEvents() {
       </div>
     </div>
     }
+    </div>
     </>
   )
 }

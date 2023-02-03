@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from "react";
 import { SingularContext } from '../contexts/Context';
 import {useContext} from 'react'
 import { BrowserView, MobileView} from 'react-device-detect' 
@@ -10,6 +10,13 @@ import Hamburger from '../extra/Hamburger';
 
 
 export default function Header() {
+const [scroll, setScroll] = useState(0);
+
+useEffect(() => {
+  window.addEventListener("scroll", () => {
+    setScroll(window.pageYOffset);
+  });
+}, []);
 const {setShow,show} = useContext(SingularContext);
 function modalswitch(){
   if(localStorage.token){
@@ -24,7 +31,7 @@ function modalswitch(){
     <>
     <div className='svgbg'  style={{height: "300px", boxShadow: "1px 1px 10px grey"}}></div>
       <div className="d-flex align-items-center">
-        <nav className="navbar navbar-expand navbar-light align-items-center headerback position-absolute w-100" style={{top: "0px"}}>
+        <nav className="navbar navbar-expand navbar-light align-items-center headerback position-fixed w-100" style={{top: "0px", zIndex: "2", backgroundColor: scroll > 0 ? "#276f93" : "transparent", transition: "background-color 0.3s ease-in-out"}}>
           <Hamburger/>
           <a className="navbar-brand text-white" style={{fontWeight: "800"}} href="/">BottmzUp</a>
         <div className="collapse navbar-collapse text-white" id="navbarSupportedContent">
