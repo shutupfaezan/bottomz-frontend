@@ -20,7 +20,8 @@ export default function SignUp() {
       setisLoading(true);
       axios.post("https://nightlife-2710.herokuapp.com/registration", values)
       .then((response)=>{
-        localStorage.setItem('token', response.data.access_token)
+        sessionStorage.setItem('token', response.data.access_token)
+        sessionStorage.setItem("username", response?.data?.User_name)
         setisLoading(false);
         setShow(false)
       }

@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom'
 
 export default function HPEvents(props) {
   const navigate = useNavigate()
-  console.log(props)
   
   return (
     <>
