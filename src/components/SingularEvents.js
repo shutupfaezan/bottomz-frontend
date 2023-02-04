@@ -3,19 +3,19 @@ import axios from 'axios'
 import { useEffect } from 'react'
 import { useParams } from "react-router-dom";
 import QuantityFields from './QuantityFields';
+import { useNavigate } from 'react-router-dom';
 import { SingularContext } from '../contexts/Context';
 import {useContext} from 'react'
 import GlobalHeader from '../common/GlobalHeader';
 
 export default function SingularEvents() {
+    const navigate = useNavigate()
     const {setShow, inputValues} = useContext(SingularContext);
     const [singleEvent, setSingleEvent] = useState()
+    const [isLoading, setisLoading] = useState(false);
     const [ticketConfig, setTicketConfig] = useState()
     const order_details = inputValues.filter(obj => obj != null)
 
-    // const makeinput= {
-    //   "order_details": [...filteredOrderedArray]
-    // }
     let sum = 0
     for (var i = 0; i < order_details.length; i++) {
       sum += order_details?.[i]?.total_price;
@@ -23,8 +23,18 @@ export default function SingularEvents() {
     const params = useParams()
     const event = async ()=> { return await axios.get(`https://nightlife-2710.herokuapp.com/events/${params.event_name}`)}
     function submitinter(){
+      setisLoading(true)
       axios.post(`https://nightlife-2710.herokuapp.com/orders?event_name=${singleEvent?.event_name}&user_name=${sessionStorage.token.slice(0,10)}`, order_details )
+      .then((response)=>{
+        navigate(`/${response?.data}`)
+        console.log(response?.data);
+        setisLoading(false)}
+      ).catch((err)=>{
+        console.log(err);
+        setisLoading(false)
+      })
     }
+
     useEffect(() => {
       event()
       .then((response) => {
@@ -72,7 +82,11 @@ export default function SingularEvents() {
                 </tbody>
               </table>
             {sum !== 0 && <h5 className='w-100 d-flex justify-content-center p-2 align-items-center' style={{border: "1px solid black", borderRadius: "10px"}}>Checkout: ₹{sum} </h5>}
-            <button className='btn btn-primary mb-2 w-100' onClick={()=>sessionStorage.token ? submitinter : setShow(true)}>{sessionStorage.token ? "Continue" : "Log In/Sign Up to Continue"}</button>
+            <button className='btn btn-primary mb-2 w-100' type="submit" onClick={()=>{sessionStorage.token ? submitinter() : setShow(true)}}>
+              {!isLoading && (<span>{sessionStorage.token ? "Continue" : "Log In/Sign Up to Continue"}</span>)}
+              {isLoading && (<span id="login-loader-span" className="spinner-border spinner-border-sm mx-1" role="status" aria-hidden="true"></span>)}
+              {isLoading && (<span id="login-loading-text-span">Loading</span>)}
+              </button>
           </div> : <div><h5>Ticketing info doesnt exist</h5><p style={{color: "#6a6868"}}>Be the first to report the error and get some perks</p></div>}
         </div>
       </div>
