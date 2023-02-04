@@ -23,7 +23,7 @@ export default function SingularEvents() {
     const params = useParams()
     const event = async ()=> { return await axios.get(`https://nightlife-2710.herokuapp.com/events/${params.event_name}`)}
     function submitinter(){
-      axios.post(`https://nightlife-2710.herokuapp.com/orders?event_name=${singleEvent?.event_name}&user_name=${localStorage.token.slice(0,10)}`, order_details )
+      axios.post(`https://nightlife-2710.herokuapp.com/orders?event_name=${singleEvent?.event_name}&user_name=${sessionStorage.token.slice(0,10)}`, order_details )
     }
     useEffect(() => {
       event()
@@ -41,7 +41,7 @@ export default function SingularEvents() {
     return (
     <div>
       <GlobalHeader/>
-      <div className='w-100 p-4 d-md-flex' style={{background:   "#361532"}}>
+      <div className='w-100 p-4 d-md-flex' style={{background:   "#014765"}}>
         <div style={{maxWidth: "100%"}}>  
           <img style={{height:"auto", maxHeight: "250px", maxWidth: "100%"}} src={singleEvent?.images_url} alt=""/>
         </div>
@@ -72,7 +72,7 @@ export default function SingularEvents() {
                 </tbody>
               </table>
             {sum !== 0 && <h5 className='w-100 d-flex justify-content-center p-2 align-items-center' style={{border: "1px solid black", borderRadius: "10px"}}>Checkout: ₹{sum} </h5>}
-            <button className='btn btn-primary mb-2 w-100' onClick={()=>localStorage.token ? submitinter : setShow(true)}>{localStorage.token ? "Continue" : "Log In/Sign Up to Continue"}</button>
+            <button className='btn btn-primary mb-2 w-100' onClick={()=>sessionStorage.token ? submitinter : setShow(true)}>{sessionStorage.token ? "Continue" : "Log In/Sign Up to Continue"}</button>
           </div> : <div><h5>Ticketing info doesnt exist</h5><p style={{color: "#6a6868"}}>Be the first to report the error and get some perks</p></div>}
         </div>
       </div>

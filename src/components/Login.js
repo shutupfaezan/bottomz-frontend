@@ -19,8 +19,9 @@ export default function Login() {
       setisLoading(true);
       axios.post("https://nightlife-2710.herokuapp.com/login", values)
       .then((response)=>{
+        sessionStorage.setItem("username", response?.data?.User_name)
         setisLoading(false);
-        localStorage.setItem('token', response.data.access_token)
+        sessionStorage.setItem('token', response.data.access_token)
         setShow(false)
       }
       )

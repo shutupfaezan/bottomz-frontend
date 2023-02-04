@@ -9,7 +9,7 @@ const Context = ({children})=>{
     const [loginActive, setLoginActive] = useState(true)
     const [signActive, setSignActive] = useState()
 
-    return <SingularContext.Provider value={{clubVariable, setClubVariable, loginActive, setLoginActive, signActive, setSignActive, show, setShow, inputValues, setInputValues }}>{children}</SingularContext.Provider>
+    return <SingularContext.Provider value={{clubVariable, setClubVariable, loginActive, setLoginActive, signActive, setSignActive, show, setShow, inputValues, setInputValues}}>{children}</SingularContext.Provider>
 } 
 
 export default Context

@@ -72,11 +72,11 @@ const addInput = () => {
                 <span className='fcxZkm'>Review</span>
             </div>
         </div>
-      {!localStorage.token && <div className='mt-4 d-flex flex-column justify-content-center' style={{border: "1px dashed rgb(136,16,111)", height: "250px", borderRadius: "15px"}}>
+      {!sessionStorage.token && <div className='mt-4 d-flex flex-column justify-content-center' style={{border: "1px dashed rgb(136,16,111)", height: "250px", borderRadius: "15px"}}>
             <p className='d-flex justify-content-center'>Looks like your not logged in to your account</p>
             <button type="submit" onClick={()=>setShow(true)} className="btn mt-2 mx-auto " style={{borderRadius: "20px", color: "#7d10bf", border: "1px solid #7d10bf", width: "fit-content"}}>Log In</button>
         </div>}
-      {localStorage.token && <div className='mt-4 ml-2'>
+      {sessionStorage.token && <div className='mt-4 ml-2'>
                 <form className='d-flex'>
                     <div className='d-flex flex-column' style={{width: "60%"}}>
                         <label className='ml-2 mb-1'>Event Name:</label>

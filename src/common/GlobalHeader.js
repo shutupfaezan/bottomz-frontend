@@ -20,28 +20,44 @@ export default function GlobalHeader() {
   }
   return (
     <>
-        <nav className="navbar navbar-expand navbar-light align-items-center headerback w-100" style={{background: "#276f93"}}>
-        <Hamburger/>
+        <nav className="navbar navbar-expand navbar-light align-items-center headerback w-100 text-white" style={{background: "#014765"}}>
         <a className="navbar-brand text-white" style={{fontWeight: "800"}} href="/">BottmzUp</a>
         <div className="collapse navbar-collapse text-black" id="navbarSupportedContent">
-            <ul className="navbar-nav ml-md-auto mr-3">
+        <ul className="navbar-nav ml-md-auto mr-2">
             <li className="nav-item active d-none d-md-block hover-underline-animation">
-                <Link className="nav-link pb-0 ml-2 text-white" style={{fontSize: "19px"}} to="/all-clubs">Clubs</Link>
+              <Link className="nav-link pb-0 ml-2 text-white" style={{fontSize: "19px"}} to="/all-clubs">Clubs</Link>
             </li>
             <li className="nav-item active d-none d-md-block hover-underline-animation">
-                <Link className="nav-link pb-0 text-white" style={{fontSize: "19px"}} to="/all-events" >Events</Link>
+              <Link className="nav-link pb-0 text-white" style={{fontSize: "19px"}} to="/all-events" >Events</Link>
             </li>
             <li className="nav-item active d-none d-md-block hover-underline-animation">
-                <Link className="nav-link pb-0 text-white" style={{fontSize: "19px"}} to="/host-with-us">Host With Us</Link>
+              <Link className="nav-link pb-0 text-white" style={{fontSize: "19px"}} to="/host-with-us">Sell</Link>
             </li>
             <li className="nav-item active d-none d-md-block hover-underline-animation">
-                <Link className="nav-link pb-0 text-white" style={{fontSize: "19px"}} to="/host-with-us">Help</Link>
+              <Link className="nav-link pb-0 text-white" style={{fontSize: "19px"}} to="/host-with-us">Help</Link>
             </li>
-            </ul>
-            <div className="btn-group dropleft ml-md-0 ml-auto">
-          <p className="m-0 px-3 mt-1 py-1 text-white" style={{border: "1px solid white", borderRadius: "10px", cursor: "pointer"}}  onClick={modalswitch}>Sign Up</p>
-            <CommonModal show={show}/>
-         </div>
+          </ul>
+            <div className="dropleft ml-auto ml-md-0 align-self-end d-md-block d-none">
+          {sessionStorage?.username ?  
+          <div className="dropdown">
+          <p className="mb-0" style={{ background: "transparent", fontSize: "19px"}} data-bs-toggle="dropdown" aria-expanded="false">
+            Your Account
+          </p>
+          <ul className="dropdown-menu">
+            <li><Link className="dropdown-item" to="/favourites">Favorites</Link></li>
+            <li><Link className="dropdown-item" to="/ticket-info">Tickets</Link></li>
+            <li><Link onClick={()=>{sessionStorage.clear(); window.location.reload()}} style={{color: "red"}} className="dropdown-item" to="/">Log Out</Link></li>
+          </ul>
+        </div>
+           : <p className="m-0" style={{fontSize: "19px", cursor: "pointer"}}  onClick={modalswitch}>Sign In</p>}
+          <CommonModal show={show}/>
+          </div>
+          <div className="ml-auto d-md-none d-block">
+          {!sessionStorage?.username ? <i style={{fontSize: "24px"}} onClick={()=>{setShow(true)}} class="fa-regular fa-circle-user mr-1"></i> : <p className="m-0 rounded-circle d-flex justify-content-center align-items-center mr-1" style={{width: "25px", height: "25px", border: "2px solid white"}}>{sessionStorage?.username.slice(0,1)}</p>}
+          </div>
+          <div className="d-md-none d-block">
+            <Hamburger/>
+          </div>
         </div>
         </nav>
     </>
