@@ -63,6 +63,7 @@ background: url(http://pavbca.com/walldb/original/5/1/7/484530.jpg)center center
 }
 .svgbg{
   background-color: #01374e;
+  /* background-color: #33014e; */
   background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/1462889/pat-back.svg');
   background-position: center;
   background-repeat: repeat;

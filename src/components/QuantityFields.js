@@ -11,10 +11,11 @@ export default function QuantityFields(props) {
     const newInputValues = [...inputValues];
     newInputValues[index] = {
       ...newInputValues[index],
-      "ticket_category": props.identity.ticket_categories,
+      "ticket_categories": props.identity.ticket_categories,
+      "cover_description": props.identity.cover_description,
+      "description": props.identity.description,
       "quantity": event.target.value,
       "total_price": event.target.value * props.identity.price
-
     };
     setInputValues(newInputValues);
   };
@@ -27,6 +28,7 @@ export default function QuantityFields(props) {
             <div>{props.identity.description}</div>
             <div style={{color: "gray"}}>{props.identity.cover_description}</div>
         </th>
+        {/* eslint-disable-next-line */}
         <td style={{fontWeight: "100", verticalAlign: "middle"}}>{props.identity.price != 0 && "₹"}{props.identity.price != 0 ? props.identity.price : "Free"}</td>
         <td style={{fontWeight: "100", verticalAlign: "middle", textAlign: "center"}}>
             <div className="input-group mb-3 float-right" style={{width: "55%"}}>

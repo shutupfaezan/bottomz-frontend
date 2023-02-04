@@ -28,7 +28,6 @@ export default function ClubsRow() {
      useEffect(() => {
        event()
          .then((response) => {
-          //  console.log(response)
            setRecentEvents(response)
          })
          .catch((error) => {
