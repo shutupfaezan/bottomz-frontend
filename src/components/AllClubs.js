@@ -24,7 +24,7 @@ export default function AllClubs(props) {
   return (
     <>
     <GlobalHeader/>
-    <div className='d-flex justify-content-center mt-5'><h1><strong>All Clubs</strong></h1></div>
+    <div className='d-flex justify-content-center' style={{marginTop: "69px"}}><h1><strong>All Clubs</strong></h1></div>
     {loading && <div className='d-flex justify-content-center mt-auto'>
     <div className='d-flex align-items-center'>
     <span style={{fontSize: "35px"}}>Loading </span>

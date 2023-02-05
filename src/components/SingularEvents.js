@@ -26,8 +26,7 @@ export default function SingularEvents() {
       setisLoading(true)
       axios.post(`https://nightlife-2710.herokuapp.com/orders?event_name=${singleEvent?.event_name}&user_name=${sessionStorage.token.slice(0,10)}`, order_details )
       .then((response)=>{
-        navigate(`/${response?.data}`)
-        console.log(response?.data);
+        navigate(`${response?.data}`)
         setisLoading(false)}
       ).catch((err)=>{
         console.log(err);
@@ -51,7 +50,7 @@ export default function SingularEvents() {
     return (
     <div>
       <GlobalHeader/>
-      <div className='w-100 p-4 d-md-flex' style={{background:   "#014765"}}>
+      <div className='w-100 p-4 d-md-flex' style={{background:"#014765", marginTop: "56px"}}>
         <div style={{maxWidth: "100%"}}>  
           <img style={{height:"auto", maxHeight: "250px", maxWidth: "100%"}} src={singleEvent?.images_url} alt=""/>
         </div>

@@ -11,6 +11,7 @@ import HomePage from './components/HomePage';
 import SingularClubs from './components/SingularClubs';
 import SingularEvents from './components/SingularEvents';
 import HostWithUs from './components/HostWithUs';
+import Checkout from './components/Checkout';
 
 
 function App() {
@@ -29,6 +30,8 @@ function App() {
         <Route exact path="all-clubs/:name" element={<SingularClubs/>}>
         </Route>
         <Route exact path="all-events/:event_name" element={<SingularEvents/>}>
+        </Route>
+        <Route exact path="all-events/:event_name/:order_id" element={<Checkout/>}>
         </Route>
         <Route exact path="/host-with-us" element={<HostWithUs/>}>
         </Route>
