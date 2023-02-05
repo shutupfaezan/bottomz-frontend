@@ -1,14 +1,22 @@
-import React from 'react'
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom"
+import {useLocation} from "react-router-dom";
 import { SingularContext } from '../contexts/Context';
 import {useContext} from 'react'
-import { Link } from "react-router-dom"
 import "../css/Header.css"
 import CommonModal from './CommonModal'
 import Hamburger from '../extra/Hamburger';
 
 
 export default function GlobalHeader() {
-
+  const [scroll, setScroll] = useState(0);
+  useEffect(() => {
+    window.addEventListener("scroll", () => {
+      setScroll(window.pageYOffset);
+    });
+  }, []);
+  const location = useLocation();
+  
   const {setShow,show} = useContext(SingularContext);
   function modalswitch(){
     if(localStorage.token){
@@ -20,7 +28,7 @@ export default function GlobalHeader() {
   }
   return (
     <>
-        <nav className="navbar navbar-expand navbar-light align-items-center headerback w-100 text-white" style={{background: "#014765"}}>
+        <nav className="navbar navbar-expand navbar-light align-items-center headerback w-100 text-white" style={{position: "fixed", top: "0px", zIndex: "3", backgroundColor: location.pathname === '/' ? (scroll > 0 ? "#014765" : "transparent") : "#014765", transition: "background-color 0.3s ease-in-out"}}>
         <a className="navbar-brand text-white" style={{fontWeight: "800"}} href="/">BottmzUp</a>
         <div className="collapse navbar-collapse text-black" id="navbarSupportedContent">
         <ul className="navbar-nav ml-md-auto mr-2">
@@ -40,7 +48,7 @@ export default function GlobalHeader() {
             <div className="dropleft ml-auto ml-md-0 align-self-end d-md-block d-none">
           {sessionStorage?.username ?  
           <div className="dropdown">
-          <p className="mb-0" style={{ background: "transparent", fontSize: "19px"}} data-bs-toggle="dropdown" aria-expanded="false">
+          <p className="mb-0 text-white" style={{ background: "transparent", fontSize: "19px"}} data-bs-toggle="dropdown" aria-expanded="false">
             Your Account
           </p>
           <ul className="dropdown-menu">
