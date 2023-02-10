@@ -5,6 +5,7 @@ import RenderClubs from './RenderClubs';
 import "../css/AllClubs.css"
 import "../css/ClubsRow.css"
 import GlobalHeader from '../common/GlobalHeader'
+
 export default function AllClubs(props) {
     const [loading, setLoading] = useState(true)
     const [searchTerm, setSearhTerm] = useState()
