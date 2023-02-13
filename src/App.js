@@ -1,17 +1,18 @@
 import './App.css';
-import AllClubs from './components/AllClubs';
-import AllEvents from './components/AllEvents';
-import Login from './components/Login';
+import AllClubs from './components/UserComponents/AllClubs';
+import AllEvents from './components/UserComponents/AllEvents';
+import Login from './components/UserComponents/Login';
 import {
   HashRouter as Router,
   Routes,
   Route,
 } from "react-router-dom";
-import HomePage from './components/HomePage';
-import SingularClubs from './components/SingularClubs';
-import SingularEvents from './components/SingularEvents';
-import HostWithUs from './components/HostWithUs';
-import Checkout from './components/Checkout';
+import HomePage from './components/LandingComponents/HomePage';
+import SingularClubs from './components/UserComponents/SingularClubs';
+import SingularEvents from './components/UserComponents/SingularEvents';
+import HostWithUs from './components/UserComponents/HostWithUs';
+import Checkout from './components/UserComponents/Checkout';
+import PromoterLogin from './components/PromoterComponents/PromoterLogin';
 
 
 function App() {
@@ -34,6 +35,8 @@ function App() {
         <Route exact path="all-events/:event_name/:order_id" element={<Checkout/>}>
         </Route>
         <Route exact path="/host-with-us" element={<HostWithUs/>}>
+        </Route>
+        <Route exact path="/promoter-login" element={<PromoterLogin/>}>
         </Route>
         </Routes>
       </Router>

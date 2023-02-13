@@ -1,10 +1,10 @@
 import axios from 'axios'
 import React, { useState, useEffect } from 'react'
 import "bootstrap/dist/css/bootstrap.min.css";
-import RenderClubs from './RenderClubs';
-import "../css/AllClubs.css"
-import "../css/ClubsRow.css"
-import GlobalHeader from '../common/GlobalHeader'
+import RenderClubs from '../UserComponents/RenderClubs';
+import "../../css/AllClubs.css"
+import "../../css/ClubsRow.css"
+import GlobalHeader from '../../common/GlobalHeader'
 
 export default function AllClubs(props) {
     const [loading, setLoading] = useState(true)

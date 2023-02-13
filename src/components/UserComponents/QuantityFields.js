@@ -1,5 +1,5 @@
 import React from 'react'
-import { SingularContext } from '../contexts/Context';
+import { SingularContext } from '../../contexts/Context';
 import {useContext} from 'react'
 import { BrowserView, MobileOnlyView } from 'react-device-detect';
 

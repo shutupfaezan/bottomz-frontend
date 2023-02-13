@@ -3,10 +3,10 @@ import axios from 'axios'
 import { useEffect } from 'react'
 import { useParams } from "react-router-dom";
 import QuantityFields from './QuantityFields';
-import { SingularContext } from '../contexts/Context';
+import { SingularContext } from '../../contexts/Context';
 import {useContext} from 'react'
-import GlobalHeader from '../common/GlobalHeader';
-import AttendeeModal from '../common/AttendeeModal';
+import GlobalHeader from '../../common/GlobalHeader';
+import AttendeeModal from '../../common/AttendeeModal';
 
 export default function SingularEvents() {
     const {setShow, setInputModal, singleEvent, setSingleEvent} = useContext(SingularContext);

@@ -1,5 +1,5 @@
 import React from 'react'
-import "../css/ClubsRow.css"
+import "../../css/ClubsRow.css"
 import { useNavigate } from 'react-router-dom'
 import { BrowserView, MobileView } from 'react-device-detect'
 
@@ -15,7 +15,7 @@ export default function HPClubs(props) {
       <div className="p-2">
         <div className='d-flex'>
           <h5 className="card-title text-truncate m-0" style={{width: "90%"}}>{props.identity.club_name}</h5>
-          <i className=" ml-auto bi bi-heart"></i>
+          {/* <i className=" ml-auto bi bi-heart"></i> */}
         </div>
         <p className='m-0' style={{fontSize: "13px"}}>{props.identity.area}</p>
         <div className="mt-1 d-flex" style={{color: "#ffbe5b"}}><i className="bi bi-star-fill mr-1" style={{fontSize: "13px", color: "warning"}}></i>{props.identity.rating}<small className="ml-auto" style={{color: "grey"}}>Starting from ₹{props.identity.cost}</small></div>
@@ -28,7 +28,7 @@ export default function HPClubs(props) {
       <div className="p-2">
         <div className='d-flex'>
           <h5 className="card-title text-truncate m-0" style={{width: "90%"}}>{props.identity.club_name}</h5>
-          <i className=" ml-auto bi bi-heart"></i>
+          {/* <i className=" ml-auto bi bi-heart"></i> */}
         </div>
         <p className='m-0' style={{fontSize: "13px"}}>{props.identity.area}</p>
         <div className="mt-1 d-flex" style={{color: "#ffbe5b"}}><i className="bi bi-star-fill mr-1" style={{fontSize: "13px", color: "warning"}}></i>{props.identity.rating}<small className="ml-auto" style={{color: "grey"}}>Starting from ₹{props.identity.cost}</small></div>

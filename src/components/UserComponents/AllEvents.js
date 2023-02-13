@@ -1,8 +1,8 @@
 import React, { useState, useEffect} from 'react'
-import RenderEvents from './RenderEvents'
+import RenderEvents from '../UserComponents/RenderEvents'
 import axios from 'axios'
-import "../css/AllEvents.css"
-import GlobalHeader from '../common/GlobalHeader'
+import "../../css/AllEvents.css"
+import GlobalHeader from '../../common/GlobalHeader'
 
 export default function AllEvents() {
   const [searchTerm, setSearhTerm] = useState()

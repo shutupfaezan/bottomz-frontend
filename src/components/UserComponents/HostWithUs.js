@@ -1,6 +1,6 @@
 import React from 'react'
-import GlobalHeader from '../common/GlobalHeader'
-import AutoHost from '../extra/AutoHost';
+import GlobalHeader from '../../common/GlobalHeader'
+import AutoHost from '../../extra/AutoHost';
 
 
 export default function HostWithUs() {

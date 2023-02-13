@@ -1,6 +1,6 @@
 import axios from 'axios'
 import React from 'react'
-import GlobalHeader from '../common/GlobalHeader'
+import GlobalHeader from '../../common/GlobalHeader'
 import { useState } from 'react';
 import { useEffect } from 'react'
 import { useParams } from "react-router-dom";

@@ -31,7 +31,7 @@ export default function Footer() {
     		    <ul className="list-unstyled">
     			 <li><Link to="/host-with-us">Host with us</Link></li>
     			 <li><Link to="/host-with-us">Contact Us</Link></li>
-    			 <li><Link to="about.html">Promoter Login</Link></li>
+    			 <li><Link to="/promoter-login">Promoter Login</Link></li>
     			</ul>
     		</div>
     	   <div  className='col-lg-3 col-md-3'>

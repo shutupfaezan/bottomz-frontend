@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 import React, { useState, useEffect } from 'react'
 import "bootstrap/dist/css/bootstrap.min.css";
 import HPClubs from './HPClubs';
-import "../css/ClubsRow.css"
+import "../../css/ClubsRow.css"
 import HPEvents from './HPEvents';
 
 export default function ClubsRow() {

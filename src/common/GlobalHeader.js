@@ -52,7 +52,7 @@ export default function GlobalHeader() {
             Your Account
           </p>
           <ul className="dropdown-menu">
-            <li><Link className="dropdown-item" to="/favourites">Favorites</Link></li>
+            {/* <li><Link className="dropdown-item" to="/favourites">Favorites</Link></li> */}
             <li><Link className="dropdown-item" to="/ticket-info">Tickets</Link></li>
             <li><Link onClick={()=>{sessionStorage.clear(); window.location.reload()}} style={{color: "red"}} className="dropdown-item" to="/">Log Out</Link></li>
           </ul>
