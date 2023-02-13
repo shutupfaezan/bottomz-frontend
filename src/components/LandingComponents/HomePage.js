@@ -1,10 +1,9 @@
 import React from 'react'
-import Footer from '../common/Footer'
-import Header from '../common/Header'
-import "../css/HomePage.css"
+import Footer from '../../common/Footer'
+import Header from '../../common/Header'
+import "../../css/HomePage.css"
 import Featured from './Featured'
 import Newsletter from './Newsletter'
-import ExploreBar from "../extra/ExploreBar"
 
 
 export default function HomePage() {

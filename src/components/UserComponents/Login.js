@@ -1,11 +1,11 @@
 import React from 'react'
-import Input from '../common/Input'
+import Input from '../../common/Input'
 import { useFormik } from 'formik'
 import { useContext, useState } from 'react';
-import { SingularContext } from '../contexts/Context';
+import { SingularContext } from '../../contexts/Context';
 import axios from 'axios'
 import { Link } from 'react-router-dom'
-import GoogleLoginFunc from '../common/GoogleLoginFunc'
+import GoogleLoginFunc from '../../common/GoogleLoginFunc'
 
 export default function Login() {
   const {setSignActive, setLoginActive, setShow} = useContext(SingularContext);

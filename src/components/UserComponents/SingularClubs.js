@@ -2,10 +2,10 @@ import React, { useEffect, useContext} from 'react'
 import { useParams } from "react-router-dom";
 import axios from 'axios'
 import { Tabs, Tab } from "baseui/tabs-motion";
-import HPEvents from './HPEvents';
+import HPEvents from '../../components/LandingComponents/HPEvents';
 import { Carousel } from 'react-responsive-carousel';
 import Gallery from "react-photo-gallery";
-import {SingularContext} from '../contexts/Context';
+import {SingularContext} from '../../contexts/Context';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { BrowserView, MobileOnlyView, TabletView } from 'react-device-detect';
 

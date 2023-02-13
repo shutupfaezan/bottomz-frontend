@@ -1,9 +1,9 @@
 import React from 'react';
 import { useContext } from 'react';
 import { SingularContext } from '../contexts/Context';
-import Login from '../components/Login'
+import Login from '../components/UserComponents/Login'
 import Modal from 'react-bootstrap/Modal';
-import SignUp from '../components/SignUp';
+import SignUp from '../components/UserComponents/SignUp';
 
 export default function CommonModal() {
   const handleClose = () => setShow(false);
