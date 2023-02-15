@@ -13,6 +13,7 @@ import SingularEvents from './components/UserComponents/SingularEvents';
 import HostWithUs from './components/UserComponents/HostWithUs';
 import Checkout from './components/UserComponents/Checkout';
 import PromoterLogin from './components/PromoterComponents/PromoterLogin';
+import PromoterDasboard from './components/PromoterComponents/PromoterDasboard';
 
 
 function App() {
@@ -37,6 +38,8 @@ function App() {
         <Route exact path="/host-with-us" element={<HostWithUs/>}>
         </Route>
         <Route exact path="/promoter-login" element={<PromoterLogin/>}>
+        </Route>
+        <Route exact path="/promoter-dashboard" element={<PromoterDasboard/>}>
         </Route>
         </Routes>
       </Router>

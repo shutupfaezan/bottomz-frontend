@@ -5,6 +5,10 @@ import axios from 'axios'
 import {Link, useNavigate } from 'react-router-dom'
 
 export default function PromoterLogin() {
+  
+  // ID: fm@gmail.com
+  // PASSWORD: fm123
+
   const [isLoading, setisLoading] = useState(false);
   const navigate = useNavigate()
   const formik = useFormik({
@@ -44,7 +48,7 @@ export default function PromoterLogin() {
                   <Input icon="fa-sharp fa-solid fa-at" name="email_id" style={{marginTop: "10px"}} value={formik.values.email_id} id="email_id"  handleChange={formik.handleChange} placeholder="Enter the provided email"/>
                   <Input icon="fa-solid fa-unlock" name="password" value={formik.values.password} id="password"  handleChange={formik.handleChange} placeholder="Enter the provided password"/>
                   <div className=" mt-3 d-flex justify-content-center">
-                    <button type="submit" className="btn btn-primary" style={{borderRadius: "20px",}} onClick={formik.handleSubmit}>
+                    <button type="button" className="btn btn-primary" style={{borderRadius: "20px",}} onClick={formik.handleSubmit}>
                     {isLoading && (<span id="login-loader-span" className="spinner-border spinner-border-sm mx-1" role="status" aria-hidden="true"></span>)}
                     {isLoading && (<span id="login-loading-text-span">Loading</span>)}
                     {!isLoading && <span id="login-text-span">Continue</span>}
