@@ -7,6 +7,8 @@ import Input from '../common/Input';
 
 
 export default function AutoHost() {
+    const eventInfoValue = []
+    const terminal = {}
     const [arr, setArr] = useState(['']);
     
     const addInput = () => {
@@ -29,14 +31,19 @@ export default function AutoHost() {
             price: "",    
             description: "",    
             featuring: "",
-            terms: [...arr]
+            terms: []
         }
-console.log(initialValues)
+        
     const formik = useFormik({
-        initialValues,
-        onSubmit: ()=>{
-        axios.post("https://nightlife-2710.herokuapp.com/login", initialValues)
-    }})
+        initialValues
+    })
+
+    function SubmitEventInfo(event){
+        event.preventDefault()
+        eventInfoValue.push(formik.values)
+        eventInfoValue[0].terms = [...arr]
+        axios.post("https://nightlife-2710.herokuapp.com/login", eventInfoValue)
+    }
   return (
     <div className='imPEHI leHLON'> 
         <div elevation="2" className='jksHKM uAaqh'>
@@ -118,7 +125,7 @@ console.log(initialValues)
                         <label className='ml-2 mb-1'>Description:</label>
                         <textarea name="description" onChange={formik.handleChange} value={formik.values.description} placeholder="About The Event" className="form-control ml-lg-2" style={{borderRadius: "20px", height: "100px"}}></textarea>
                 </div>
-                <button type="submit" onClick={formik.handleSubmit} className="btn mt-3 ml-2" style={{borderRadius: "20px", color: "#7d10bf", border: "1px solid #7d10bf", width: "100%"}}>Submit</button>
+                <button type="submit" onClick={SubmitEventInfo} className="btn mt-3 ml-2" style={{borderRadius: "20px", color: "#7d10bf", border: "1px solid #7d10bf", width: "100%"}}>Submit</button>
                 </form>
          </div>
         <div>
