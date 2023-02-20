@@ -24,7 +24,7 @@
   /* padding: 40px; */
 }
 .dLUKiG {
-  background-color: rgb(136,16,111);
+  background-color: #800aca;
   box-sizing: border-box;
   height: 64px;
   padding: 20px 16px;
@@ -67,7 +67,7 @@
   height: 0px;
   border-top: 32px solid transparent;
   border-bottom: 32px solid transparent;
-  border-left: 17px solid rgb(136,16,111);
+  border-left: 17px solid #800aca;
   left: 100%;
   position: absolute;
   top: 0px;
