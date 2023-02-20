@@ -1,12 +1,26 @@
-import React from 'react';
+import React, {useState} from 'react';
+// import { useFormikContext } from 'formik';
 import { useFormik } from 'formik'
+import axios from 'axios';
 import "../css/HostBarExtra.css"
 import Input from '../common/Input';
 
 
 export default function AutoHost() {
-    const formik = useFormik({
-        initialValues: {
+    const eventInfoValue = []
+    const terminal = {}
+    const [arr, setArr] = useState(['']);
+    
+    const addInput = () => {
+        setArr([...arr, '']);
+    };
+    const handleChange = (index, event) => {
+        const newValues = [...arr];
+        newValues[index] = event.target.value;
+        setArr(newValues);
+    }
+
+    const initialValues = {
             event_name: "",
             event_venue: "",
             curated_by: "",
@@ -17,9 +31,19 @@ export default function AutoHost() {
             price: "",    
             description: "",    
             featuring: "",
-            terms: [] 
-        }})
-console.log(formik.values)
+            terms: []
+        }
+        
+    const formik = useFormik({
+        initialValues
+    })
+
+    function SubmitEventInfo(event){
+        event.preventDefault()
+        eventInfoValue.push(formik.values)
+        eventInfoValue[0].terms = [...arr]
+        axios.post("https://nightlife-2710.herokuapp.com/login", eventInfoValue)
+    }
   return (
     <div className='imPEHI leHLON'> 
         <div elevation="2" className='jksHKM uAaqh'>
@@ -68,7 +92,7 @@ console.log(formik.values)
                 <div className='d-flex'>
                     <div className='d-flex flex-column w-100'>
                         <label className='ml-2 mb-1'>Featuring:</label>
-                        <Input name="featuring" handleChange={formik.handleChange} value={formik.values.featurings} placeholder="Enter Artist/Dj"></Input>
+                        <Input name="featuring" handleChange={formik.handleChange} value={formik.values.featuring} placeholder="Enter Artist/Dj"></Input>
                     </div>  
                 </div>
                 <div className='d-flex'>
@@ -81,11 +105,27 @@ console.log(formik.values)
                         <Input name="genre" handleChange={formik.handleChange} value={formik.values.genre} placeholder="Select"></Input>
                     </div>  
                 </div>
+                <div className='d-flex flex-column mt-2' style={{width: "100%"}}>
+                        <div className="d-flex align-items-center"><label className='ml-2 mb-1'>Terms And Conditions:</label><i onClick={addInput} className="fa-solid fa-plus ml-auto mr-2 mb-1" style={{fontSize: "18px"}} ></i></div>
+                        {arr.map((item, index) => {
+                        return (
+                        <Input
+                            key={`item.${index}.value`}
+                            name={`item.${index}.value`}
+                            id={index}
+                            value={item}
+                            type={item.type}
+                            placeholder="Enter event terms and conditions"
+                            handleChange={(event)=> handleChange(index, event)}
+                        />
+                        );
+                    })}
+                </div>
                 <div className='d-flex flex-column w-100'>
                         <label className='ml-2 mb-1'>Description:</label>
                         <textarea name="description" onChange={formik.handleChange} value={formik.values.description} placeholder="About The Event" className="form-control ml-lg-2" style={{borderRadius: "20px", height: "100px"}}></textarea>
                 </div>
-                <button type="submit" className="btn mt-3 ml-2" style={{borderRadius: "20px", color: "#7d10bf", border: "1px solid #7d10bf", width: "100%"}}>Submit</button>
+                <button type="submit" onClick={SubmitEventInfo} className="btn mt-3 ml-2" style={{borderRadius: "20px", color: "#7d10bf", border: "1px solid #7d10bf", width: "100%"}}>Submit</button>
                 </form>
          </div>
         <div>
