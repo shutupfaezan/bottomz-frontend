@@ -8,10 +8,12 @@ const Context = ({children})=>{
     const [inputValues, setInputValues] = useState([]);
     const [clubVariable, setClubVariable] = useState()
     const [singleEvent, setSingleEvent] = useState()
+    const [eventStepper, setEventStepper] = useState(1)
     const [loginActive, setLoginActive] = useState(true)
     const [signActive, setSignActive] = useState()
+    const [eventInfoValue] = useState([])
 
-    return <SingularContext.Provider value={{clubVariable, setClubVariable, loginActive, setLoginActive, signActive, setSignActive, show, setShow, inputValues, setInputValues, inputModal, setInputModal,singleEvent, setSingleEvent}}>{children}</SingularContext.Provider>
+    return <SingularContext.Provider value={{clubVariable, setClubVariable, loginActive, setLoginActive, signActive, setSignActive, show, setShow, inputValues, setInputValues, inputModal, setInputModal,singleEvent, setSingleEvent, eventInfoValue, eventStepper, setEventStepper}}>{children}</SingularContext.Provider>
 } 
 
 export default Context
