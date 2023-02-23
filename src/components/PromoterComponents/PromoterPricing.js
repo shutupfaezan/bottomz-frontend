@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import Input from '../../common/Input';
-import axios from 'axios'
 import { useContext } from 'react';
 import { SingularContext } from '../../contexts/Context';
 
@@ -12,7 +11,7 @@ export default function PromoterPricing() {
     const [coverDescription, setCoverDescription] = useState('')
     const [price, setPrice] = useState(0)
     const [totalQuantity, setTotalQuantity] = useState(0)
-    const { eventInfoValue } = useContext(SingularContext);
+    const { eventInfoValue, setEventStepper, eventStepper} = useContext(SingularContext);
 
 
     function handleAddItem(event){
@@ -30,7 +29,7 @@ export default function PromoterPricing() {
 
     function submitPricing(){
         eventInfoValue.push(items)
-        axios.post("https://nightlife-2710.herokuapp.com/login", eventInfoValue)
+        setEventStepper(eventStepper + 1)
     }
     
   return (
