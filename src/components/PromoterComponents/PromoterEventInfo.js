@@ -8,7 +8,7 @@ import { SingularContext } from '../../contexts/Context';
 
 export default function PromoterEventInfo() {
   const { eventInfoValue , setEventStepper, eventStepper } = useContext(SingularContext);
-
+  const [selectedFile, setSelectedFile] = useState(null);
     const [arr, setArr] = useState(['']);
     
     const addInput = () => {
@@ -28,9 +28,10 @@ export default function PromoterEventInfo() {
             date: "",
             timings: "",
             genre: "",
-            price: "",    
+            price: "",   
             description: "",    
             featuring: "",
+            poster: null,
             terms: []
         }
         
@@ -41,6 +42,7 @@ export default function PromoterEventInfo() {
     function SubmitEventInfo(event){
         event.preventDefault()
         formik.values.terms = [...arr]
+        formik.values.poster = selectedFile
         eventInfoValue.push(formik.values)
         setEventStepper( eventStepper + 1)
     }
@@ -92,6 +94,10 @@ export default function PromoterEventInfo() {
                         <label className='ml-2 mb-1'>Genre:</label>
                         <Input name="genre" handleChange={formik.handleChange} value={formik.values.genre} placeholder="Select"></Input>
                     </div>  
+                </div>
+                <div className="d-flex flex-column">
+                    <label htmlFor="formFile" class=" ml-2 mb-1">Event Poster <small>(only one jpeg/jpg/png)</small></label>
+                    <Input className="form-control" handleChange={(event)=>setSelectedFile(event.target.files[0])} type="file" id="formFile"/>
                 </div>
                 <div className='d-flex flex-column mt-2' style={{width: "100%"}}>
                     <div className="d-flex align-items-center"><label className='ml-2 mb-1'>Terms And Conditions:</label><i onClick={addInput} className="fa-solid fa-plus ml-auto mr-2 mb-1" style={{fontSize: "18px"}} ></i></div>
