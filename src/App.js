@@ -14,6 +14,7 @@ import HostWithUs from './components/UserComponents/HostWithUs';
 import Checkout from './components/UserComponents/Checkout';
 import PromoterLogin from './components/PromoterComponents/PromoterLogin';
 import PromoterDasboard from './components/PromoterComponents/PromoterDasboard';
+import AutoHost from './extra/AutoHost';
 
 
 function App() {
@@ -40,6 +41,8 @@ function App() {
         <Route exact path="/promoter-login" element={<PromoterLogin/>}>
         </Route>
         <Route exact path="/promoter-dashboard" element={<PromoterDasboard/>}>
+        </Route>
+        <Route exact path="/Host-an-event" element={<AutoHost/>}>
         </Route>
         </Routes>
       </Router>
