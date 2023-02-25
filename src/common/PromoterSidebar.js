@@ -1,19 +1,20 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import "../css/Sidebar.css"
 
 
 export default function PromoterSidebar() {
+  const navigate = useNavigate()
   return (
     <>
       <div className="d-flex p-0 w-100">
         <div className=" d-flex flex-column flex-shrink-0 p-3 bg-white w-100" style={{height: "100%"}}>
-        <Link to="/" className="d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom"> 
+        <Link to="/promoter-dashboard" className="d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom"> 
           <span className="fs-5 fw-semibold">Bottmzup</span>
         </Link>
         <ul className="list-unstyled ps-0">
           <li className="mb-2">
-            <Link className="btn d-inline-flex align-items-center rounded border-0 collapsed w-100 text-white justify-content-center" style={{background: "#800aca"}} data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">
+            <Link onClick={()=>navigate('/host-an-event')} className="btn d-inline-flex align-items-center rounded border-0 collapsed w-100 text-white justify-content-center" style={{background: "#800aca"}} data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">
               Host An Event
           </Link>
           </li>
