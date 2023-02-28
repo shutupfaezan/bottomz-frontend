@@ -12,7 +12,7 @@ export default function AutoHost() {
   const { eventStepper } = useContext(SingularContext);
   return(
     <>
-    <div className='d-md-flex'>
+  <div className='d-md-flex'>
     <div className='col-md-3 p-0'>
         <PromoterSidebar/>
     </div>

@@ -15,6 +15,8 @@ import Checkout from './components/UserComponents/Checkout';
 import PromoterLogin from './components/PromoterComponents/PromoterLogin';
 import PromoterDasboard from './components/PromoterComponents/PromoterDasboard';
 import AutoHost from './extra/AutoHost';
+import PromoterOngoingOrders from './components/PromoterComponents/PromoterOngoingOrders';
+import PromoterEventStat from './components/PromoterComponents/PromoterEventStat';
 
 
 function App() {
@@ -42,7 +44,11 @@ function App() {
         </Route>
         <Route exact path="/promoter-dashboard" element={<PromoterDasboard/>}>
         </Route>
-        <Route exact path="/Host-an-event" element={<AutoHost/>}>
+        <Route exact path="/promoter-events" element={<PromoterOngoingOrders/>}>
+        </Route>
+        <Route exact path="/host-an-event" element={<AutoHost/>}>
+        </Route>
+        <Route exact path="promoter-events/:event_name" element={<PromoterEventStat/>}>
         </Route>
         </Routes>
       </Router>
