@@ -11,7 +11,7 @@ export default function QuantityFields(props) {
     const newInputValues = [...inputValues];
     newInputValues[index] = {
       ...newInputValues[index],
-      "ticket_categories": props.identity.ticket_categories,
+      "ticket_categories": props.identity.ticket_category,
       "cover_description": props.identity.cover_description,
       "description": props.identity.description,
       "quantity": event.target.value,
@@ -24,7 +24,7 @@ export default function QuantityFields(props) {
   return (
     <tr>
         <th style={{fontWeight: "100", alignItems: "center", width: "33%"}} scope="row">
-            <div>{props.identity.ticket_categories}</div>
+            <div>{props.identity.ticket_category}</div>
             <div>{props.identity.description}</div>
             <div style={{color: "gray"}}>{props.identity.cover_description}</div>
         </th>

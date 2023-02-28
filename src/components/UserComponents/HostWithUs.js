@@ -1,6 +1,6 @@
 import React from 'react'
 import GlobalHeader from '../../common/GlobalHeader'
-import AutoHost from '../../extra/AutoHost';
+// import AutoHost from '../../extra/AutoHost';
 
 
 export default function HostWithUs() {
@@ -10,8 +10,8 @@ export default function HostWithUs() {
       <GlobalHeader/>
       <div className='d-lg-flex' style={{marginTop: "69px"}}>
         <div className='col-lg-8 pl-0 pr-0 mb-4'>
-          <h3 className=' mb-4 ml-lg-3 ml-2' style={{color: "#88106f"}}>Host Your Event</h3>
-          <AutoHost/>
+          {/* <h3 className=' mb-4 ml-lg-3 ml-2' style={{color: "#88106f"}}>Host Your Event</h3> */}
+          {/* <AutoHost/> */}
         </div>
         <div className='col-lg-4'>
           <h3 className='mt-3 mb-lg-5 mb-3' style={{color: "#88106f"}}>Contact Us</h3>

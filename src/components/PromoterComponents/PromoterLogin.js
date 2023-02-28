@@ -18,7 +18,7 @@ export default function PromoterLogin() {
     },
     onSubmit: (values)=> {
       setisLoading(true)
-      axios.post("https://nightlife-2710.herokuapp.com/club-login", values)
+      axios.post("https://nightlife-2710.herokuapp.com/promoter-login", values)
       .then((response)=>{
         setisLoading(false)
         sessionStorage.setItem('token', response.data.access_token)
