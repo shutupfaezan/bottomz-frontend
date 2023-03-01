@@ -1,13 +1,17 @@
-
-/* @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap'); */
-@import url('https://fonts.googleapis.com/css2?family=Carter+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
 
 *{
-  font-family: 'Carter One', cursive;
-  /* font-family: 'Fredoka One', cursive; */
-  /* font-family: 'Quicksand', sans-serif; */
-  /* font-family: 'Manrope', sans-serif; */
-  /* font-family: 'Eczar', serif; */
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 700;
+}
+
+.primary-header{
+  font-family: 'Righteous', cursive !important;
+}
+small{
+  font-weight: 700 !important;
+  font-size: 16px;
 }
 
 input::-ms-reveal,
@@ -62,16 +66,13 @@ background: url(http://pavbca.com/walldb/original/5/1/7/484530.jpg)center center
   background: white;
 }
 .svgbg{
-  background-color: #01374e;
-  /* background-color: #33014e; */
-  background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/1462889/pat-back.svg');
+  /* background-color: #01374e; */
+  background-image: url('../public/images/figmaimg.jpeg');
   background-position: center;
-  background-repeat: repeat;
-  background-size: 190%;
-  filter: brightness(1.3) ;
-  /* background: linear-gradient(90deg, rgba(0, 35, 77, 0.63) 11.46%, rgba(0, 35, 77, 0.607029) 34.12%, rgba(0, 35, 77, 0.607029) 34.12%, rgba(0, 35, 77, 0.607029) 77.37%, rgba(0, 35, 77, 0.63) 77.37%), url('../public/images/rose-petals.png') center center/cover;
-  background-position: bottom;
-  filter: brightness(1.3) */
+  background-size: cover;
+  background-repeat: no-repeat;
+  /* background-size: 190%; */
+  filter: brightness(0.4)
 }
 
 .dot {
@@ -90,30 +91,6 @@ background: url(http://pavbca.com/walldb/original/5/1/7/484530.jpg)center center
   border-top: 5px solid black;
 
   }
-/* @media screen and (min-width: 991px) {
-  .posab{
-    position: absolute !important;
-    background: white;
-    border: 1px solid black;
-    border-radius: 10px;
-    height: 430px;
-    overflow: scroll;
-    margin-right: 10px;
-    top: 100px;
-    right: 0px;
-  }
-} */
-
-/* suggestive fonts  */
-/* @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap'); */
-/* @import url('https://fonts.googleapis.com/css2?family=Manrope&display=swap'); */
-/* @import url('https://fonts.googleapis.com/css2?family=Eczar&display=swap'); */
-
-
-/* suggestive font family */
-  /* font-family: 'Quicksand', sans-serif;
-  font-family: 'Manrope', sans-serif;
-  font-family: 'Eczar', serif; */
 
 .dropdown-menu{
   /* position: absolute; */
