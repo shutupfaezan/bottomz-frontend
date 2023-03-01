@@ -23,7 +23,7 @@ const [orderData, setOrderData] = useState()
         }, []);
   return (
     <div>
-        <img style={{width: "20%"}} src={eventData?.images_url}/>
+        <img style={{width: "20%"}} alt="" src={eventData?.images_url}/>
     </div>
   )
 }
