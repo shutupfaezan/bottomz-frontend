@@ -11,9 +11,7 @@ export default function HomePage() {
     <>
       <Header></Header>
       <Featured></Featured>
-      <div className='px-md-5 position-relative' style={{top: "145px"}}>
         <Newsletter></Newsletter>
-      </div>
       <Footer></Footer>
     </>
   )

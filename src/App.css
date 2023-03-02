@@ -16,14 +16,9 @@ small{
 
 input::-ms-reveal,
 input::-ms-clear {
-        display: none;
-      }
-/* 
-.bgclub{
-background: url(http://pavbca.com/walldb/original/5/1/7/484530.jpg)center center/cover no-repeat;
-  filter: blur(2px);
-  z-index: -1;
-} */
+  display: none;
+}
+
 .carousel-item{
   float:none; 
   transition: 0s !important;
@@ -39,10 +34,6 @@ background: url(http://pavbca.com/walldb/original/5/1/7/484530.jpg)center center
 .css-fgANvS{
   margin-bottom: 10px !important;
 }
-/* .css-iHXJtn{
-  padding-left: 0px !important;
-  padding-right: 0px !important;
-} */
 
 .carousel{
   height: 250px;
@@ -66,12 +57,10 @@ background: url(http://pavbca.com/walldb/original/5/1/7/484530.jpg)center center
   background: white;
 }
 .svgbg{
-  /* background-color: #01374e; */
   background-image: url('../public/images/figmaimg.jpeg');
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  /* background-size: 190%; */
   filter: brightness(0.4)
 }
 

@@ -40,8 +40,10 @@ export default function GlobalHeader() {
             <div className="dropleft d-md-block d-none">
           {sessionStorage?.username ?  
           <div className="dropdown">
-          <p className="mb-0 text-white" style={{ background: "transparent", fontSize: "19px"}} data-bs-toggle="dropdown" aria-expanded="false">
+          <p style={{fontSize: "19px", color: "black", margin: "0px"}}  data-bs-toggle="dropdown" aria-expanded="false">
+          <small className="mb-0 text-black">
             Your Account
+          </small>
           </p>
           <ul className="dropdown-menu">
             <li><Link className="dropdown-item" to="/ticket-info">Tickets</Link></li>
@@ -52,7 +54,7 @@ export default function GlobalHeader() {
           <CommonModal show={show}/>
           </div>
           <div className="ml-auto d-md-none d-flex align-items-center">
-          {!sessionStorage?.username ? <i style={{fontSize: "24px"}} onClick={()=>{setShow(true)}} class="fa-regular fa-circle-user mr-1"></i> : <p className="m-0 rounded-circle d-flex justify-content-center align-items-center mr-1" style={{width: "25px", height: "25px", border: "2px solid white"}}>{sessionStorage?.username.slice(0,1)}</p>}
+          {!sessionStorage?.username ? <i style={{fontSize: "24px"}} onClick={()=>{setShow(true)}} class="fa-regular fa-circle-user mr-1"></i> : <p className="m-0 rounded-circle d-flex justify-content-center align-items-center mr-1" style={{width: "25px", height: "25px", border: "2px solid black"}}>{sessionStorage?.username.slice(0,1)}</p>}
           </div>
           <div className="d-md-none d-block">
             <Hamburger/>
