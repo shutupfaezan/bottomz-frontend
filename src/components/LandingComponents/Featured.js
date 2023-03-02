@@ -1,10 +1,10 @@
 import axios from 'axios'
-import { Link } from "react-router-dom"
 import React, { useState, useEffect } from 'react'
 import "bootstrap/dist/css/bootstrap.min.css";
 import HPClubs from './HPClubs';
 import "../../css/ClubsRow.css"
 import HPEvents from './HPEvents';
+import { Link } from 'react-router-dom';
 
 export default function ClubsRow() {
     const [recentClubs, setRecentClubs] = useState()
@@ -36,35 +36,41 @@ export default function ClubsRow() {
 
      }, []);
 
-     const reverseClubs = recentClubs?.data.reverse().slice(0,6)
-     const reverseEvents = recentEvents?.data.reverse().slice(0,5)
+     const reverseClubs = recentClubs?.data.reverse().slice(0,3)
+     const reverseEvents = recentEvents?.data.reverse().slice(0,4)
 
   return (
     <>
-    {loading && <div className='d-flex justify-content-center mt-auto'>
-    <div className='d-flex align-items-center'>
-    <span style={{fontSize: "35px"}}>Loading </span>
-    <div className="my-auto spinner-border text-black " role="status">
-    </div>
-    </div>
-    </div>}
-    {!loading && <div className="d-lg-flex">
-      <div className='col-lg-8'>
-        <div className='mx-md-4 mt-4 d-flex align-items-baseline'><h4 className='mt-2 mb-0 mx-2' style={{color: "#88106f"}}><strong>Featured Clubs</strong></h4><Link className='ml-auto d-block text-decoration-none d-lg-none' to="/all-clubs" style={{color: "#9E0A0A"}}>View All Clubs</Link></div>
-        <div className='d-flex flex-lg-wrap overflow-auto w-100 justify-content-lg-start align-items-lg-center '>
+      {loading && <div className='d-flex justify-content-center mt-auto'>
+      <div className='d-flex align-items-center'>
+      <span style={{fontSize: "35px"}}>Loading </span>
+      <div className="my-auto spinner-border text-black " role="status">
+      </div>
+      </div>
+      </div>}
+      {!loading && 
+      <div className="my-2 px-0">
+        <section className='px-lg-5 py-3'>
+          <div className='mt-md-4 d-flex align-items-baseline mb-2 container-xl flex-column px-lg-5 px-2'>
+            <h4 className='mt-2 mx-3 primary-header mb-0' style={{fontSize: "40px", color: "transparent", WebkitTextStroke: "1px black"}}>Browse By</h4>
+            <h4 className="primary-header mb-3 mt-2 mx-3" style={{fontSize: "40px"}}>Upcoming Events</h4></div>
+          <div className='d-flex container-xl flex-wrap align-items-center px-md-5 p-0'>{reverseEvents?.map((fields, index )=> {
+            return <HPEvents className="" key={index} index={index} identity={fields}></HPEvents>
+          })}
+          </div>
+          <Link to="/all-events" className='mt-3 d-flex justify-content-center' style={{color: "blueviolet"}}>See All<i class="bi bi-arrow-right ml-2"></i></Link>
+        </section>
+        <section className='px-lg-5 pt-lg-5 pb-lg-4 px-4 py-5' style={{background: "#01040D"}}>
+          <div className=' d-flex align-items-baseline mb-2 container-xl p-0 flex-column px-md-5 ml-md-0 ml-3'><h4 className='mt-2 primary-header' style={{fontSize: "40px", color: "transparent", WebkitTextStroke: "1px white"}}>Browse Events</h4><h4 className="primary-header mb-3" style={{fontSize: "40px", color: "white"}}> By Clubs</h4></div>
+          <div className='d-flex col col-lg flex-wrap px-md-4 mx-md-3'>
             {reverseClubs?.map((fields, index )=> {
-          return <HPClubs key={index} identity={fields}></HPClubs>
-        })} 
-        </div>
+              return <HPClubs key={index} identity={fields}></HPClubs>
+            })}
+          <Link to="/all-clubs" className='mx-auto my-md-auto mt-lg-3 mb-lg-0 mb-0 mt-3 d-flex ' style={{color: "blueviolet"}}>See All <i class="bi bi-arrow-right ml-2"></i></Link>
+          </div>
+        </section>
       </div>
-      <div className='col-lg-4'>
-        <div className='mt-md-4 d-flex align-items-baseline mb-2'><h4 className='mt-2 mb-3 mx-2' style={{color: "#88106f"}}><strong>Featured Events</strong></h4><Link className='ml-auto d-block text-decoration-none d-lg-none' to="/all-events" style={{color: "#9E0A0A"}}>View Events</Link></div>
-        <div className='d-flex d-md-block flex-column align-items-center'>{reverseEvents?.map((fields, index )=> {
-          return <HPEvents className="col shadow-lg" key={index} index={index} identity={fields}></HPEvents>
-        })}
-        </div>
-      </div>
-    </div>}
+      }
     </>
   )
 }
