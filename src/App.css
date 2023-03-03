@@ -57,11 +57,13 @@ input::-ms-clear {
   background: white;
 }
 .svgbg{
-  background-image: url('../public/images/figmaimg.jpeg');
+  background: blueviolet;
+  filter: brightness(0.5);
+  /* background-image: url('../public/images/figmaimg.jpeg'); */
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  filter: brightness(0.4)
+  /* filter: brightness(0.3) */
 }
 
 .dot {

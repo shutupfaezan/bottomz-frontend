@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 export default function Footer() {
   return (
-    <section className="pt-5 pb-4 d-flex flex-column justify-content-md-end text-white" style={{fontSize: "14px", background: "#01040D"}}>
+    <section className="pt-5 pb-4 d-flex flex-column position-relative w-100 justify-content-md-end text-white" style={{fontSize: "14px", background: "#01040D", bottom: "0"}}>
    		<div className="d-flex flex-column flex-lg-row ml-3 mr-0">
            <div className="col-xs-12 d-md-flex justify-content-center mt-md-4 mb-4 mb-md-0 pt-2 col-md-3">
             	<h1 className='primary-header'>Bottmzup</h1>

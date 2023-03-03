@@ -1,5 +1,6 @@
 import React from 'react'
 import "../../css/ClubsRow.css"
+import { MobileOnlyView, TabletView, BrowserView } from 'react-device-detect'
 import { useNavigate } from 'react-router-dom'
 
 
@@ -8,20 +9,28 @@ export default function HPClubs(props) {
 
   return (
   <>
-  <div className='p-2 m-md-0 col-lg-4 col-md-6 m-lg-0' onClick={()=>{navigate("all-clubs/" + props.identity.club_name)}}>
-    <div className="card w-100" style={{ borderRadius: "10px"}}>
-      <img src={props.identity.images_url}  className="card-img-top p-3" style={{borderRadius: "22px", height: "169px"}} alt="..."/>
-      <div className="px-3 mb-3">
+ <div className='p-1 m-md-0 col-lg-3 col-xxl-2 col-md-6 m-lg-0' onClick={()=>{navigate("/all-clubs/" + props.identity.club_name)}}>
+    <div className="card p-1 w-100 shadow" style={{ borderRadius: "10px"}}>
+      <BrowserView>
+      <img src={props.identity.images_url}  className="card-img-top p-2" style={{borderRadius: "22px", height: "150px"}} alt="..."/>
+      </BrowserView>
+      <TabletView>
+      <img src={props.identity.images_url}  className="card-img-top p-2" style={{borderRadius: "22px", height: "200px"}} alt="..."/>
+      </TabletView>
+      <MobileOnlyView>
+      <img src={props.identity.images_url}  className="card-img-top p-2" style={{borderRadius: "22px", height: "200px"}} alt="..."/>
+      </MobileOnlyView>
+      <div className="px-2 mb-3">
         <div className='d-flex justify-content-between'>
-          <h5 className="card-title text-truncate m-0 mb-1" style={{fontWeight: "700"}}>{props.identity.club_name}</h5>
-        <div className="mt-1 d-flex align-items-center"><i className="bi bi-star-fill mr-1" style={{fontSize: "13px", color: "#ffbe5b"}}></i>{props.identity.rating}</div>
+          <b className="card-title text-truncate m-0" style={{fontWeight: "700", fontSize: "22px"}}>{props.identity.club_name}</b>
+        <div className="mt-1 d-flex align-items-center ml-1"><i className="bi bi-star-fill mr-1" style={{fontSize: "13px", color: "#ffbe5b"}}></i>{props.identity.rating}</div>
         </div>
-        <p className='m-0 mt-1' style={{fontSize: "14px"}}><small><i className="bi bi-geo mr-2"></i>{props.identity.area}</small></p>
+        <p className='m-0 text-truncate' style={{fontSize: "14px", fontWeight: "400"}}><i className="bi bi-geo mr-2"></i>{props.identity.area}</p>
         <div className='d-flex justify-content-between'>
-          <p className='m-0' style={{fontSize: "14px"}}><small><i className="bi bi-clock mr-2"></i>{props.identity.opening_time}</small></p>
-          <p className='m-0' style={{fontSize: "14px"}}><small><i className="bi bi-currency-rupee"></i>{props.identity.cost}</small></p>
+          <p className='m-0 text-truncate' style={{fontSize: "14px", fontWeight: "400", width: "65%"}}><i className="bi bi-clock mr-2"></i>{props.identity.opening_time}</p>
+          <p className='m-0' style={{fontSize: "14px", fontWeight: "400"}}><i className="bi bi-currency-rupee"></i>{props.identity.cost}</p>
           </div>
-          <button className="btn btn-dark rounded-pill mt-4 mr-1" style={{padding: "8px 25px", background: "black"}}>Book Now</button>
+          {/* <button className="btn rounded-pill mt-2 mr-1 w-100" style={{padding: "8px 25px"}}>See tickets</button> */}
       </div>
     </div>
   </div>
