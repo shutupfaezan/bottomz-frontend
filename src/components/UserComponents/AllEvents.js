@@ -37,7 +37,7 @@ export default function AllEvents() {
     <div className='d-flex'>
       <div className='col-lg-8'>
         <div className='col-md-7 p-0'>
-          <form className="d-flex mb-3" style={{marginTop: "75px"}} role="search">
+          <form className="d-flex mb-3" role="search">
             <input className="form-control" type="search" style={{borderRadius: "20px", border: "0.5px solid black"}} placeholder="Search Event or Venue..." onChange={(event)=>setSearhTerm(event.target.value)} aria-label="Search"/>
             <i className="bi bi-search position-relative" style={{float: "right", right: "30px", borderRadius: "20px", top: "7px", width: "0px"}}></i>
           </form>

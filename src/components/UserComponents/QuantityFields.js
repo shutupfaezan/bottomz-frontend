@@ -1,7 +1,7 @@
 import React from 'react'
 import { SingularContext } from '../../contexts/Context';
 import {useContext} from 'react'
-import { BrowserView, MobileOnlyView } from 'react-device-detect';
+import { BrowserView, MobileOnlyView, TabletView } from 'react-device-detect';
 
 export default function QuantityFields(props) {
   const { inputValues, setInputValues } = useContext(SingularContext);
@@ -23,18 +23,21 @@ export default function QuantityFields(props) {
 
   return (
     <tr>
-        <th style={{fontWeight: "100", alignItems: "center", width: "33%"}} scope="row">
+        <td className="col-5" style={{fontWeight: "100", alignItems: "center"}}>
             <div>{props.identity.ticket_category}</div>
             <div>{props.identity.description}</div>
             <div style={{color: "gray"}}>{props.identity.cover_description}</div>
-        </th>
+        </td>
         {/* eslint-disable-next-line */}
-        <td style={{fontWeight: "100", verticalAlign: "middle"}}>{props.identity.price != 0 && "₹"}{props.identity.price != 0 ? props.identity.price : "Free"}</td>
-        <td style={{fontWeight: "100", verticalAlign: "middle", textAlign: "center"}}>
-            <div className="input-group mb-3 float-right" style={{width: "55%"}}>
-              <BrowserView className='w-50'>
+        <td  className="col-2" style={{fontWeight: "100", verticalAlign: "middle"}}>{props.identity.price != 0 && "₹"}{props.identity.price != 0 ? props.identity.price : "Free"}</td>
+        <td className="col-5" style={{fontWeight: "100", verticalAlign: "middle", textAlign: "center", width: "100%"}}>
+            <div className="input-group mb-3 pr-0 float-md-right col-11 col-md-5 col-lg-4" style={{width: '100%'}}>
+              <BrowserView className='w-100'>
                 <label className="input-group-text " htmlFor="inputGroupSelect01">Qty</label>
               </BrowserView>
+              <TabletView className='w-100'>
+                <label className="input-group-text " htmlFor="inputGroupSelect01">Qty</label>
+              </TabletView>
               <MobileOnlyView className='w-100'>
                 <label className="input-group-text" htmlFor="inputGroupSelect01">Qty</label>
               </MobileOnlyView>
