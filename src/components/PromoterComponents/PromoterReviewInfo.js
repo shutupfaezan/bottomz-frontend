@@ -1,93 +1,85 @@
-import axios from 'axios';
+// import axios from 'axios';
 import React from 'react'
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import { SingularContext } from '../../contexts/Context';
 
 export default function PromoterReviewInfo() {
-  const [file, setFile] = useState(null);
   const { eventInfoValue } = useContext(SingularContext);
   const uploaded = eventInfoValue?.[0]?.poster
-  // console.log(uploaded)
-    const reader = new FileReader();
-
-    reader.readAsArrayBuffer(uploaded);
-
-    reader.onload = () => {
-      const blob = new Blob([reader.result], { type: uploaded.type });
-      setFile(blob)
-    }
-function submitEventRequest(){
-  axios.post("https://nightlife-2710.herokuapp.com/login", eventInfoValue)
-}
+  const fileBlob = new Blob([uploaded], { type: uploaded?.type })
+  function submitEventRequest(){
+    console.log(eventInfoValue)
+    // axios.post(`https://nightlife-2710.herokuapp.com/login`, eventInfoValue)
+  }
   return (
     <div className='mt-4 ml-2'>
       <div className='d-md-flex'>
       <div className="col px-0 ">
         <div className="form-floating">
-          <input type="text" className="form-control" id="floatingInputGrid"  value={eventInfoValue?.[0]?.event_name} disabled/>
-          <label for="floatingInputGrid">Event Name</label>
+          <input type="text" style={{border: "0px", background: "white"}} className="form-control" id="floatingInputGrid" disabled={true}  defaultValue={eventInfoValue?.[0]?.event_name}/>
+          <label htmlFor="floatingInputGrid">Event Name</label>
         </div>
       </div>
       <div className="col px-0 mt-2 mt-md-0 ml-md-2 ml-0">
         <div className="form-floating">
-          <input type="text" className="form-control" id="floatingInputGrid"  value={eventInfoValue?.[0]?.event_venue} disabled/>
-          <label for="floatingInputGrid">Venue/Club Name:</label>
+          <input type="text" style={{border: "0px", background: "white"}}  className="form-control" id="floatingInputGrid" disabled={true}  defaultValue={eventInfoValue?.[0]?.event_venue}/>
+          <label htmlFor="floatingInputGrid">Venue/Club Name:</label>
         </div>
       </div>
       </div>
       <div className='d-md-flex mt-2'>
       <div className="col px-0 ">
         <div className="form-floating">
-          <input type="text" className="form-control" id="floatingInputGrid"  value={eventInfoValue?.[0]?.date} disabled/>
-          <label for="floatingInputGrid">Date:</label>
+          <input style={{border: "0px", background: "white"}} type="text" className="form-control" id="floatingInputGrid" disabled={true} defaultValue={eventInfoValue?.[0]?.date}/>
+          <label htmlFor="floatingInputGrid">Date:</label>
         </div>
       </div>
       <div className="col px-0 mt-2 mt-md-0 ml-md-2 ml-0">
         <div className="form-floating">
-          <input type="text" className="form-control" id="floatingInputGrid"  value={eventInfoValue?.[0]?.day} disabled/>
-          <label for="floatingInputGrid">Day:</label>
+          <input style={{border: "0px", background: "white"}} type="text" className="form-control" id="floatingInputGrid" disabled={true} defaultValue={eventInfoValue?.[0]?.day}/>
+          <label htmlFor="floatingInputGrid">Day:</label>
         </div>
       </div>
       <div className="col px-0 mt-2 mt-md-0 ml-md-2 ml-0">
         <div className="form-floating">
-          <input type="text" className="form-control" id="floatingInputGrid"  value={eventInfoValue?.[0]?.timings} disabled/>
-          <label for="floatingInputGrid">Timings:</label>
+          <input  style={{border: "0px", background: "white"}} type="text" className="form-control" id="floatingInputGrid" disabled={true} defaultValue={eventInfoValue?.[0]?.timings}/>
+          <label htmlFor="floatingInputGrid">Timings:</label>
         </div>
       </div>
       </div>
       <div className='d-md-flex mt-2'>
       <div className="col px-0 mt-2 mt-md-0">
         <div className="form-floating">
-          <input type="text" className="form-control" id="floatingInputGrid"  value={eventInfoValue?.[0]?.curated_by} disabled/>
-          <label for="floatingInputGrid">Curated By:</label>
+          <input  style={{border: "0px", background: "white"}} type="text" className="form-control" id="floatingInputGrid" disabled={true} defaultValue={eventInfoValue?.[0]?.curated_by}/>
+          <label htmlFor="floatingInputGrid">Curated By:</label>
         </div>
       </div>
       <div className="col px-0 mt-2 mt-md-0 ml-md-2 ml-0">
         <div className="form-floating">
-          <input type="text" className="form-control" id="floatingInputGrid"  value={eventInfoValue?.[0]?.genre} disabled/>
-          <label for="floatingInputGrid">Genre:</label>
+          <input  style={{border: "0px", background: "white"}} type="text" className="form-control" id="floatingInputGrid" disabled={true} defaultValue={eventInfoValue?.[0]?.genre}/>
+          <label htmlFor="floatingInputGrid">Genre:</label>
         </div>
       </div>
       <div className="col px-0 mt-2 mt-md-0 ml-md-2 ml-0">
         <div className="form-floating">
-          <input type="text" className="form-control" id="floatingInputGrid"  value={eventInfoValue?.[0]?.price} disabled/>
-          <label for="floatingInputGrid">Price:</label>
+          <input  style={{border: "0px", background: "white"}} type="text" className="form-control" id="floatingInputGrid" disabled={true} defaultValue={eventInfoValue?.[0]?.price}/>
+          <label htmlFor="floatingInputGrid">Price:</label>
         </div>
       </div>
       </div>
       <div className='d-md-flex mt-2'>
       <div className="col px-0 mt-2 mt-md-0">
         <div className="form-floating">
-          <input type="text" className="form-control" id="floatingInputGrid"  value={eventInfoValue?.[0]?.featuring} disabled/>
-          <label for="floatingInputGrid">Featuring:</label>
+          <input style={{border: "0px", background: "white"}} type="text" className="form-control" id="floatingInputGrid" disabled={true} defaultValue={eventInfoValue?.[0]?.featuring}/>
+          <label htmlFor="floatingInputGrid">Featuring:</label>
         </div>
       </div>
       </div>
       <div className='d-md-flex mt-2'>
       <div className="col px-0 mt-2 mt-md-0">
         <div className="form-floating">
-          <input type="text" className="form-control" id="floatingInputGrid"  value={eventInfoValue?.[0]?.description} disabled/>
-          <label for="floatingInputGrid">Description:</label>
+          <input style={{border: "0px", background: "white"}} type="text" className="form-control" id="floatingInputGrid" disabled={true} defaultValue={eventInfoValue?.[0]?.description}/>
+          <label htmlFor="floatingInputGrid">Description:</label>
         </div>
       </div>
       </div>
@@ -95,8 +87,8 @@ function submitEventRequest(){
         return <div className='d-md-flex mt-2'>
         <div className="col px-0 mt-2 mt-md-0">
         <div className="form-floating">
-          <input type="text" className="form-control" id="floatingInputGrid"  value={identity} disabled/>
-          <label for="floatingInputGrid">T&C {fields + 1}:</label>
+          <input style={{border: "0px", background: "white"}} type="text" className="form-control" id="floatingInputGrid" disabled={true} defaultValue={identity}/>
+          <label htmlFor="floatingInputGrid">T&C {fields + 1}:</label>
         </div>
       </div>
         </div>
@@ -125,18 +117,17 @@ function submitEventRequest(){
               </div>
               <div className='d-md-block d-none'>
                 <h5 className='mt-4 ml-2'>Event Image:</h5>
-                {file && (
-                  <img className='w-50 ml-2' src={URL.createObjectURL(file)} alt="uploaded file" />
+                {fileBlob && (
+                  <img className='w-50 ml-2' src={URL.createObjectURL(fileBlob)} alt="Oops..Looks like you forgot to upload an event poster" />
                 )}
               </div>
               <div className='d-md-none d-block'>
                 <h5 className='mt-4 ml-2'>Event Image:</h5>
-                {file && (
-                  <img className='w-100 ml-2' src={URL.createObjectURL(file)} alt="uploaded file" />
+                {fileBlob && (
+                  <img className='w-100 ml-2' src={URL.createObjectURL(fileBlob)} alt="Oops..Looks like you forgot to upload an event poster" />
                 )}
               </div>
               <button type="submit" onClick={submitEventRequest}className="btn btn-primary mt-3 ml-2 w-100">Create Event Request</button>
-
     </div>
   )
 }

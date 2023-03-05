@@ -31,7 +31,6 @@ export default function SingularEvents() {
       //eslint-disable-next-line
     }, []);
     
-
     const newTerms  = singleEvent?.terms?.slice(2, singleEvent?.terms?.length - 2).split(".,")
     const genre = singleEvent?.genre?.split(", ")
 
@@ -90,7 +89,7 @@ export default function SingularEvents() {
           return <li style={{color: "black", fontWeight: 400}} key={index}>{fields + "."}</li>
         })}</ul></p>
         </div>
-       {!clubDetail?.[0] && <div  className='mx-md-5 my-md-5 my-4'>
+       {clubDetail !== undefined && <div  className='mx-md-5 my-md-5 my-4'>
         <b>- Hosted Club</b>
         <div className='p-md-3 p-3 w-100 col-md-6 mt-3 d-flex shadow-sm' style={{borderRadius: "10px", background: "white", border: "2px solid black"}} onClick={()=>{navigate(`/all-clubs/` + clubDetail?.club_name)}}>
           <img className="col-3 w-100 p-0" style={{height: "90px", borderRadius: "7px"}} alt="" src={clubDetail?.images_url}/> 

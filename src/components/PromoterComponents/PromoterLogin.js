@@ -35,7 +35,8 @@ export default function PromoterLogin() {
   return (
         <>
         <div className='svgbg' style={{height: "100vh"}}>
-          <div className="container w-100 d-flex flex-column justify-content-center" style={{height: "100%"}}>       
+        </div>
+          <div className=" w-100 d-flex flex-column justify-content-center position-absolute top-0" style={{height: "100%"}}>       
             <div className='d-flex flex-column justify-content-center card p-4 p-md-5 align-self-center' style={{width: "fit-content"}}>
               <div className="d-flex flex-column justify-content-center mb-3 text-center">
                 <h3 style={{fontWeight: "600"}}>
@@ -58,7 +59,6 @@ export default function PromoterLogin() {
               </div>
             </div>
           </div>
-        </div>
         </>
   )
 }
