@@ -38,6 +38,7 @@ export default function ClubsRow() {
 
      const reverseClubs = recentClubs?.data.reverse().slice(0,4)
      const reverseEvents = recentEvents?.data.slice(0,6)
+     console.log(reverseEvents)
 
   return (
     <>

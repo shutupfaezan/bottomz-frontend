@@ -59,8 +59,8 @@ input::-ms-clear {
 .svgbg{
   background: blueviolet;
   filter: brightness(0.6);
-  /* background-image: url('../public/images/figmaimg.jpeg');
-  filter: blur(4px) brightness(0.3); */
+  /* background-image: url('../public/images/newmainimg.png'); */
+  /* filter: blur(1px) brightness(0.7);  */
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -90,4 +90,8 @@ input::-ms-clear {
   inset: 0px auto auto 0px;
   /* margin: 0px; */
   transform: translate3d(0px, 39.3333px, 0px);
+}
+
+.bi::before, [class^="bi-"]::before, [class*=" bi-"]::before {
+  font-weight: 800 !important;
 }

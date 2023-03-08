@@ -6,39 +6,39 @@ import "../css/Sidebar.css"
 export default function PromoterSidebar() { 
   return (
     <>
-      <div class="d-flex flex-column flex-shrink-0 p-3 bg-light w-100" style={{height: "100%"}}>
-      <Link to="/promoter-dashboard" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
-        <div className='d-flex align-items-center align-items-md-start w-100 flex-md-column'>
-        <span class="fs-4">BottmzUp</span>
-        <span class="fs-6 ml-auto">Promoter Portal</span>
-        </div>
+      <div class="d-flex flex-column flex-shrink-0 p-lg-3">
+      <Link to="/promoter-dashboard" class="d-flex flex-column mb-3 m-2 mb-lg-0 me-lg-auto link-dark text-decoration-none">
+        <span class="primary-header fs-2 mr-2" style={{color: "transparent", WebkitTextStroke: "0.5px black"}}>Promoter</span>
+        <span class="primary-header fs-2">Portal</span>
       </Link>
-      <hr className='mb-0'/>
-      <ul class="nav nav-pills flex-column">
-        <small className='nav-link mt-0' style={{color: "#6b6b6b", fontSize: "12px"}}>Events</small>
-        <li class="nav-item">
-          <Link to="/host-an-event" class="nav-link active" style={{background: "#800aca"}} aria-current="page">
-          <i class="bi bi-collection-play mr-2"></i>Host With Us
+      <div className='d-flex d-lg-block w-100 overflow-scroll'>
+      <div class="nav nav-pills flex-column col-10 col-md-6 col-lg p-0">
+        <div className='p-2 p-md-3 p-lg-0'>
+        <small className='nav-link mt-0 pl-1 pb-0 ' style={{color: "black", fontSize: "14px"}}>Events</small>
+        <div className='d-flex d-lg-block w-100'>
+        <Link to="/host-an-event" class="nav-link my-2 mr-2 p-3 d-flex flex-column d-lg-block col-6 col-lg mr-md-3" style={{color: "black", border: "2px solid black", borderRadius: "10px"}} aria-current="page">
+        <i class="bi bi-collection-play mr-2"></i>Host With Us
+        </Link>
+        <Link to="/promoter-events" class="nav-link my-2 mr-2 p-3 d-flex flex-column d-lg-block col-6 col-lg" style={{color: "black", border: "2px solid black", borderRadius: "10px"}}>
+          <i class="bi bi-columns-gap mr-2"></i><span>All Events</span>
+        </Link>
+        </div>
+        </div>
+      </div>
+      <div class="nav nav-pills flex-column col-10 col-md-6 col-lg p-0 mt-auto">
+        <div className='p-2 p-md-3 p-lg-0'>
+        <small className='nav-linkmt-0 pl-1 pb-0 mt-lg-3' style={{color: "black", fontSize: "14px"}}>Account</small>
+        <div className='d-flex d-lg-block w-100'>
+        <Link to="/host-an-event" class="nav-link my-2 p-3 mr-2 d-flex flex-column d-lg-block col-6 col-lg mr-md-3" aria-current="page" style={{color: "black", border: "2px solid black", borderRadius: "10px"}}>
+        <i class="bi bi-question-circle mr-2"></i>Help
+        </Link>
+          <Link href="/" class="nav-link my-2 mr-2 p-3 d-flex flex-column d-lg-block col-6 col-lg" style={{color: "black", border: "2px solid black", borderRadius: "10px"}}>
+          <i class="bi bi-box-arrow-left mr-2" style={{fontWeight: "800"}}></i>Sign Out
           </Link>
-        </li>
-        <li>
-          <Link to="/promoter-events" class="nav-link link-dark"> <i class="bi bi-columns-gap mr-2"></i>All Events</Link>
-        </li>
-      </ul>
-      <hr className='mb-0'/>
-      <ul class="nav nav-pills flex-column mb-auto">
-        <small className='nav-link mt-0'  style={{color: "#6b6b6b", fontSize: "12px"}}>Account</small>
-        <li class="nav-item">
-          <Link to="/host-an-event" class="nav-link link-dark" aria-current="page">
-          <i class="bi bi-question-circle mr-2"></i>Help
-          </Link>
-        </li>
-        <li>
-          <a href="/" class="nav-link link-danger">
-          <i class="bi bi-box-arrow-left mr-2"></i>Sign Out
-          </a>
-        </li>
-      </ul>
+          </div>
+      </div>
+      </div>
+      </div>
       </div>
     </>
   )
