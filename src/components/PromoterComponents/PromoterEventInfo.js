@@ -34,7 +34,8 @@ export default function PromoterEventInfo() {
             poster: null,
             terms: []
         }
-        
+        const me = window.location.hash
+        console.log(me)
     const formik = useFormik({
         initialValues
     })
@@ -47,7 +48,7 @@ export default function PromoterEventInfo() {
         setEventStepper( eventStepper + 1)
     }
   return (
-    <div className='mt-4 ml-2'>
+    <div className='mt-0 mt-md-4  ml-2'>
             <form className='d-flex flex-column' style={{height: "100%"}}>
                 <div className='d-flex'>
                     <div className='d-flex flex-column' style={{width: "60%"}}>
