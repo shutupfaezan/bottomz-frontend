@@ -59,7 +59,7 @@ input::-ms-clear {
 .svgbg{
   background: blueviolet;
   filter: brightness(0.6);
-  /* background-image: url('../public/images/newmainimg.png'); */
+    /* background-image: url('../public/images/lottapeeps.jpeg'); */
   /* filter: blur(1px) brightness(0.7);  */
   background-position: center;
   background-size: cover;
