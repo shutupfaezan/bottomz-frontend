@@ -95,3 +95,11 @@ input::-ms-clear {
 .bi::before, [class^="bi-"]::before, [class*=" bi-"]::before {
   font-weight: 800 !important;
 }
+.promoter-pic{
+    background-image: url('../public/images/lottapeeps.jpeg');
+  /* filter: blur(1px) brightness(0.7);  */
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  /* filter: brightness(0.3) */
+}

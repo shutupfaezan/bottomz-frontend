@@ -1,64 +1,38 @@
-import React, {useState} from 'react'
-import Input from '../../common/Input'
-import { useFormik } from 'formik'
-import axios from 'axios'
-import {Link, useNavigate } from 'react-router-dom'
+import React from 'react'
+import { Link } from 'react-router-dom'
 
 export default function PromoterLogin() {
-  
-  // ID: fm@gmail.com
-  // PASSWORD: fm123
-
-  const [isLoading, setisLoading] = useState(false);
-  const navigate = useNavigate()
-  const formik = useFormik({
-    initialValues: {
-      email_id: "",
-      password: ""
-    },
-    onSubmit: (values)=> {
-      setisLoading(true)
-      axios.post("https://nightlife-2710.herokuapp.com/promoter-login", values)
-      .then((response)=>{
-        setisLoading(false)
-        sessionStorage.setItem('token', response.data.access_token)
-        navigate('/promoter-dashboard')
-      }
-      ).catch((response)=>{
-        setisLoading(false)
-        console.log(response)
-      }
-      )
-    }
-  })
-
   return (
-        <>
-        <div className='svgbg' style={{height: "100vh"}}>
+    <div className='d-lg-flex vh-100'>
+      <div className='col-lg-6 px-0' style={{background: "#F5F5F5"}}>
+        <nav className="navbar navbar-expand navbar-light align-items-center headerback w-100 py-2 pt-md-3 px-3 px-lg-5 px-md-3" style={{backgroundColor: "transparent"}}>
+        <a className="navbar-brand ml-lg-5 ml-2 mb-3 py-3 py-md-1" style={{fontWeight: "800", color: "black"}} href="/"> <h3 className="primary-header m-0">BottmzUp</h3></a>
+        </nav>
+        <div className=''>
+        <div className="align-items-center headerback w-100 py-2 py-md-2 px-3 px-lg-5 px-md-3">
+        <h1 className="ml-lg-5 ml-2 py-3 mb-0 py-md-1 primary-header" style={{color: "transparent", WebkitTextStroke: "1px black"}}>Promoter/Club</h1>
+        <h1 className="ml-lg-5 ml-2 primary-header mb-0" style={{color: "black"}}>Log In</h1>
         </div>
-          <div className=" w-100 d-flex flex-column justify-content-center position-absolute top-0" style={{height: "100%"}}>       
-            <div className='d-flex flex-column justify-content-center card p-4 p-md-5 align-self-center' style={{width: "fit-content"}}>
-              <div className="d-flex flex-column justify-content-center mb-3 text-center">
-                <h3 style={{fontWeight: "600"}}>
-                Promoter/Club Log In
-                </h3>
-                <Link style={{color: 'gray'}} to="/host-with-us">Not a promoter? Be one now</Link>
-              </div>
-              <div className='d-flex justify-content-center'>
-                <div className=' d-flex flex-column justify-content-center w-100'>
-                  <Input icon="fa-sharp fa-solid fa-at" name="email_id" style={{marginTop: "10px"}} value={formik.values.email_id} id="email_id"  handleChange={formik.handleChange} placeholder="Enter the provided email"/>
-                  <Input icon="fa-solid fa-unlock" name="password" value={formik.values.password} id="password"  handleChange={formik.handleChange} placeholder="Enter the provided password"/>
-                  <div className=" mt-3 d-flex justify-content-center">
-                    <button type="button" className="btn btn-primary" style={{borderRadius: "20px",}} onClick={formik.handleSubmit}>
-                    {isLoading && (<span id="login-loader-span" className="spinner-border spinner-border-sm mx-1" role="status" aria-hidden="true"></span>)}
-                    {isLoading && (<span id="login-loading-text-span">Loading</span>)}
-                    {!isLoading && <span id="login-text-span">Continue</span>}
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
+        <div className="align-items-center headerback w-100 py-2 py-md-3 px-3 px-lg-5 px-md-3">
+          <div className='col-lg-8 p-0 ml-lg-5 mb-2 ml-2 py-3 mb-0 py-md-1 d-flex flex-column'>
+          <label className='mb-1' style={{fontSize: "14px"}}>Email:</label>
+          <input className="p-2" name="featuring" style={{border: "2px solid black", borderRadius: "10px"}}></input>
           </div>
-        </>
+          <div className='col-lg-8 p-0 ml-lg-5 mb-2 ml-2 py-3 mb-0 py-md-1 d-flex flex-column'>
+          <label className='mb-1' style={{fontSize: "14px"}}>Password:</label>
+          <input className="p-2" name="featuring" style={{border: "2px solid black", borderRadius: "10px"}}></input>
+          </div>
+          <div className='col-8 p-0 ml-lg-5 mb-2 ml-2 py-3 mb-0 py-md-1 d-flex flex-column'>
+          <button className='btn mt-2 p-2 text-white' style={{background: "black"}}>Log In</button>
+          </div>
+        </div>
+      <div className='d-flex justify-content-center mr-4'>
+        <Link className='mr-5'>Not a promoter? Be one now</Link>
+        </div>
+        </div>
+        </div>
+      <div className='col-lg-6 promoter-pic'>
+      </div>
+    </div>
   )
 }
