@@ -7,6 +7,7 @@ import { SingularContext } from '../../contexts/Context';
 
 
 export default function PromoterEventInfo() {
+    console.log(window.location.hash)
   const { eventInfoValue , setEventStepper, eventStepper } = useContext(SingularContext);
   const [selectedFile, setSelectedFile] = useState(null);
     const [arr, setArr] = useState(['']);
