@@ -35,8 +35,6 @@ export default function PromoterEventInfo() {
             poster: null,
             terms: []
         }
-        const me = window.location.hash
-        console.log(me)
     const formik = useFormik({
         initialValues
     })
@@ -49,62 +47,65 @@ export default function PromoterEventInfo() {
         setEventStepper( eventStepper + 1)
     }
   return (
-    <div className='mt-0 mt-md-4  ml-2'>
-            <form className='d-flex flex-column' style={{height: "100%"}}>
-                <div className='d-flex'>
-                    <div className='d-flex flex-column' style={{width: "60%"}}>
-                        <label className='ml-2 mb-1'>Event Name:</label>
+    <div className='mt-0 mt-md-4 pl-md-2 pr-lg-5 pr-md-2'>
+            <form className='d-flex flex-column' style={{height: "100%", fontSize: "14px", fontWeight: "400 !important"}}>
+                <div className='d-md-flex'>
+                    <div className='d-flex flex-column col-lg-6 px-0 pr-md-3'>
+                        <label className='ml-2 mb-1' style={{fontWeight: "400"}}>Event Name:</label>
                         <Input name="event_name" handleChange={formik.handleChange} value={formik.values.event_name} placeholder="Enter Event Name"></Input>
                     </div>
-                    <div className='d-flex flex-column'  style={{width: "40%"}}>
-                        <label className='ml-2 mb-1'>Date:</label>
-                        <Input name="date" handleChange={formik.handleChange} value={formik.values.date} type="date"></Input>
+                    <div className='d-flex flex-column col-lg-6 px-0 pl-md-3'>
+                        <label className='ml-2 mb-1' style={{fontWeight: "400"}}>Date:</label>
+                        <Input name="date" placeholder="DD-MM-YYYY" handleChange={formik.handleChange} value={formik.values.date} type="date"></Input>
                     </div>
                 </div>
-                <div className='d-flex'>
-                    <div className='d-flex flex-column' style={{width: "60%"}}>
-                        <label className='ml-2 mb-1'>Venue/Club Name:</label>
+                <div className='d-md-flex'>
+                    <div className='d-flex flex-column col-lg-6 px-0 pr-md-3'>
+                        <label className='ml-2 mb-1' style={{fontWeight: "400"}}>Venue/Club Name:</label>
                         <Input name="event_venue" handleChange={formik.handleChange} value={formik.values.event_venue} placeholder="Enter Club Name"></Input>
                     </div>
-                    <div className='d-flex flex-column' style={{width: "40%"}}>
-                        <label className='ml-2 mb-1'>Day:</label>
+                    <div className='d-flex flex-column col-lg-6 p-0 px-0 pl-md-3'>
+                        <label className='ml-2 mb-1' style={{fontWeight: "400"}}>Day:</label>
                         <Input name="day" handleChange={formik.handleChange} value={formik.values.day} placeholder="Select"></Input>
                     </div>
                 </div>
-                <div className='d-flex'>
-                    <div className='d-flex flex-column' style={{width: "60%"}}>
-                        <label className='ml-2 mb-1'>Curated By:</label>
+                <div className='d-md-flex'>
+                    <div className='d-flex flex-column col-lg-6 px-0 pr-md-3'>
+                        <label className='ml-2 mb-1' style={{fontWeight: "400"}}>Curated By:</label>
                         <Input name="curated_by" handleChange={formik.handleChange} value={formik.values.curated_by} placeholder="Enter Organizer Name"></Input>
                     </div>  
-                    <div className='d-flex flex-column' style={{width: "40%"}}>
-                        <label className='ml-2 mb-1'>Timings:</label>
+                    <div className='d-flex flex-column col-lg-6 px-0 pl-md-3'>
+                        <label className='ml-2 mb-1' style={{fontWeight: "400"}}>Timings:</label>
                         <Input name="timings" handleChange={formik.handleChange} value={formik.values.timings} placeholder='00:00-00:00'></Input>
                     </div>  
                 </div>
-                <div className='d-flex'>
-                    <div className='d-flex flex-column w-100'>
-                        <label className='ml-2 mb-1'>Featuring:</label>
-                        <Input name="featuring" handleChange={formik.handleChange} value={formik.values.featuring} placeholder="Enter Artist/Dj"></Input>
+                <div className='d-md-flex'>
+                    <div className='d-flex flex-column col p-0'>
+                        <label className='ml-2 mb-1' style={{fontWeight: "400"}}>Featuring:</label>
+                        <Input name="featuring" handleChange={formik.handleChange} value={formik.values.featuring} placeholder="Enter Artist/Dj Name"></Input>
                     </div>  
                 </div>
-                <div className='d-flex'>
-                    <div className='d-flex flex-column' style={{width: "50%"}}>
-                        <label className='ml-2 mb-1'>Price:</label>
-                        <Input name="price" handleChange={formik.handleChange} value={formik.values.price} placeholder="Select price range"></Input>
+                <div className='d-md-flex'>
+                    <div className='d-flex flex-column col-lg-6  px-0 pr-md-3'>
+                        <label className='ml-2 mb-1' style={{fontWeight: "400"}}>Price Range:</label>
+                        <Input name="price" handleChange={formik.handleChange} value={formik.values.price} placeholder="Eg: 1000 - 3000"></Input>
                     </div>  
-                    <div className='d-flex flex-column' style={{width: "50%"}}>
-                        <label className='ml-2 mb-1'>Genre:</label>
+                    <div className='d-flex flex-column col-lg-6 px-0 pl-md-3'>
+                        <label className='ml-2 mb-1' style={{fontWeight: "400"}}>Genre:</label>
                         <Input name="genre" handleChange={formik.handleChange} value={formik.values.genre} placeholder="Select"></Input>
                     </div>  
                 </div>
-                <div className="d-flex flex-column">
-                    <label htmlFor="formFile" class=" ml-2 mb-1">Event Poster <small>(only one jpeg/jpg/png)</small></label>
-                    <Input className="form-control" handleChange={(event)=>setSelectedFile(event.target.files[0])} type="file" id="formFile"/>
+                <div className="d-flex flex-column col p-0">
+                    <label htmlFor="formFile" className=" ml-2 mb-1" style={{fontWeight: "400"}}>Event Poster <small>(only one jpeg/jpg/png)</small></label>
+                    <input className="p-2 ml-1" style={{border: "2px solid black", borderRadius: "10px", fontSize: "14px", fontWeight: "400"}}onChange={(event)=>setSelectedFile(event.target.files[0])} type="file" id="formFile"/>
                 </div>
-                <div className='d-flex flex-column mt-2' style={{width: "100%"}}>
-                    <div className="d-flex align-items-center"><label className='ml-2 mb-1'>Terms And Conditions:</label><i onClick={addInput} className="fa-solid fa-plus ml-auto mr-2 mb-1" style={{fontSize: "18px"}} ></i></div>
+                <div className='d-flex flex-column mt-2 col p-0'>
+                    <div className="d-flex align-items-center"><label className='ml-2 mb-1'  style={{fontWeight: "400"}}>Terms And Conditions:</label></div>
                     {arr.map((item, index) => {
                     return (
+                        <>
+                        <div className='d-flex'>
+                        <div className='col-10 p-0 pr-2'>
                     <Input
                         key={`item.${index}.value`}
                         name={`item.${index}.value`}
@@ -114,14 +115,23 @@ export default function PromoterEventInfo() {
                         placeholder="Enter event terms and conditions"
                         handleChange={(event)=> handleChange(index, event)}
                     />
+                    </div>
+                    <div  onClick={addInput} className='d-flex justify-content-center align-items-center col-2 mb-2' style={{background: "black", borderRadius: "10px"}}>
+                    <i onClick={addInput} className="fa-solid fa-plus ml-auto col-md-none mr-2 d-block d-md-none mb-1 align-self-center" style={{fontSize: "18px", color: "white"}} ></i>
+                    <p className='text-white m-0 d-md-block d-none'>Add More</p>
+                    </div>
+                    </div>
+                    </>
                     );
                     })}
                 </div>
-                <div className='d-flex flex-column w-100'>
-                    <label className='ml-2 mb-1'>Description:</label>
-                    <textarea name="description" onChange={formik.handleChange} value={formik.values.description} placeholder="About The Event" className="form-control ml-lg-2" style={{borderRadius: "20px", height: "100px"}}></textarea>
+                <div className='d-flex flex-column col p-0'>
+                    <label className='ml-2 mb-1' style={{fontWeight: "400"}}>Description:</label>
+                    <textarea name="description" onChange={formik.handleChange} value={formik.values.description} placeholder="About The Event" className="form-control ml-lg-2" style={{borderRadius: "10px", height: "100px", border: "2px solid black"}}></textarea>
                 </div>
-                <button type="submit" onClick={SubmitEventInfo} className="btn btn-primary mt-3 ml-2 w-100">Continue to Pricing...</button>
+                <div className='d-flex justify-content-center w-100'>
+                <button type="submit" onClick={SubmitEventInfo} className="btn mt-3 col-lg-4 px-3 py-2 text-white" style={{background: "black", borderRadius: '10px'}}>Continue to Pricing...</button>
+                </div>
             </form>
     </div>
   )
