@@ -9,8 +9,8 @@ export default function PromoterPricing() {
     const [ticketCategories, setTicketCategories] = useState('')
     const [description, setDescription] = useState('')
     const [coverDescription, setCoverDescription] = useState('')
-    const [price, setPrice] = useState(0)
-    const [totalQuantity, setTotalQuantity] = useState(0)
+    const [price, setPrice] = useState(null)
+    const [totalQuantity, setTotalQuantity] = useState(null)
     const { eventInfoValue, setEventStepper, eventStepper} = useContext(SingularContext);
 
 
@@ -21,8 +21,8 @@ export default function PromoterPricing() {
         setTicketCategories('')
         setDescription('')
         setCoverDescription('')
-        setPrice(0)
-        setTotalQuantity(0)
+        setPrice(null)
+        setTotalQuantity(null)
 
         event.target.value = null
     }
@@ -33,52 +33,59 @@ export default function PromoterPricing() {
     }
     
   return (
-    <div className='mt-4 ml-2'>
-            <div>
-            <label className='ml-3 mb-1'>Ticket Categories:</label>
+    <div className='mt-0 mt-md-4 pl-md-2 pr-lg-5 pr-md-2'>
+            <div className='col p-0'>
+            <label className='ml-2 mb-1'>Ticket Categories:</label>
             <Input name="ticket_category" placeholder="Eg:- Male Stag" id="ticket_category" value={ticketCategories} handleChange={event=>setTicketCategories(event.target.value)}></Input>
             </div>
-            <div className='d-flex'>
-                <div className='w-50'>
-                <label className='ml-3 mb-1'>Cover Description:</label>
+            <div className='d-md-flex'>
+                <div className='col-lg-6 px-0 pr-md-3'>
+                <label className='ml-2 mb-1'>Cover Description:</label>
                 <Input name="ticket_category" placeholder="Eg:- No Cover" id="ticket_category" value={coverDescription} handleChange={event=>setCoverDescription(event.target.value)}></Input>
                 </div>
-                <div  className='w-50'>
+                <div  className='col-lg-6 px-0 pl-md-3'>
                 <label className='ml-3 mb-1'>Description:</label>
                 <Input name="description" placeholder="Eg:- Entry Only" id="description" value={description} handleChange={event=>setDescription(event.target.value)}></Input>
                 </div>
             </div>
-            <div className='d-flex'>
-                <div className='w-50'>
+            <div className='d-md-flex'>
+                <div className='col-lg-6 px-0 pr-md-3'>
                 <label className='ml-3 mb-1'>Price (per ticket):</label>
-                <Input name="price" placeholder="Eg:- Rs. 1000" id="price" value={price} handleChange={event=>setPrice(event.target.value)}></Input>
+                <Input name="price" type="number" placeholder="Eg:- Rs. 1000" id="price" value={price} handleChange={event=>setPrice(event.target.value)}></Input>
                 </div>
-                <div  className='w-50'>
+                <div  className='col-lg-6 px-0 pl-md-3'>
                 <label className='ml-3 mb-1'>Total Quantity:</label>
-                <Input name="total_quantity" placeholder="Eg:- 100" id="total_quantity" value={totalQuantity} handleChange={event=>setTotalQuantity(event.target.value)}></Input>
+                <Input name="total_quantity" type="number" placeholder="Eg:- 100" id="total_quantity" value={totalQuantity} handleChange={event=>setTotalQuantity(event.target.value)}></Input>
                 </div>
             </div>
-        <div className='d-flex'>
-        <button type="submit"  onClick={handleAddItem} className="m-2 btn btn-primary w-50">Add Pricing Category</button>
-        <button type="submit" onClick={submitPricing} className="m-2 btn btn-primary w-50">Review and Submit</button>
+        <div className='d-md-flex justify-content-between my-3 col p-0'>
+        <button type="submit" style={{background: "crimson", borderRadius: "10px"}} onClick={handleAddItem} className="m-md-2 my-2 btn col-md-5 text-white p-0 py-2 ml-md-5">Add Pricing Category</button>
+        <button type="submit" style={{background: "black", borderRadius: "10px"}} onClick={submitPricing} className="m-md-2 my-2 btn col-md-5 text-white p-0 py-2 mr-md-5">Review & Submit</button>
         </div>
         <div>
-        <h5 className='my-3 ml-3'>Your added categories apper here:</h5> 
-        {items?.[0] && <div>
+        <b className='my-3 ml-3'>Your added categories apper here:</b> 
+        {items?.[0] && <div className='mt-3'>
             <table className="table table-hover">
+            <thead style={{color: "white", background: "black"}}>
+                <tr>
+                    <th scope="col"></th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Quantity</th>
+                </tr>
+            </thead>
                 <tbody>
                   {items?.map((identity, fields)=>{
                       return <tr key={fields}>
-                        <th style={{alignItems: "center", width: "33%", fontWeight: "lighter"}} scope="row">
-                        <div>{identity.ticketCategories}</div>
-                        <div>{identity.coverDescription}</div>
-                        <div>{identity.description}</div>
-                        </th>
-                        <td>
-                            Price: {identity.price}
+                        <td style={{alignItems: "center", width: "33%", fontWeight: "400"}}>
+                        <b style={{display: "block"}}>{identity.ticketCategories}</b>
+                        <span style={{display: "block"}}>{identity.coverDescription}</span>
+                        <span style={{display: "block"}}>{identity.description}</span>
                         </td>
                         <td>
-                            Oty: {identity.totalQuantity}
+                            <span>{identity.price}</span>
+                        </td>
+                        <td>
+                            <span>{identity.totalQuantity}</span>
                         </td>
                         </tr>
                     })}
