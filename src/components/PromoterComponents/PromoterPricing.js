@@ -21,8 +21,8 @@ export default function PromoterPricing() {
         setTicketCategories('')
         setDescription('')
         setCoverDescription('')
-        setPrice(null)
-        setTotalQuantity(null)
+        setPrice('')
+        setTotalQuantity('')
 
         event.target.value = null
     }
