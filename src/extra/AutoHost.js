@@ -7,6 +7,8 @@ import PromoterEventInfo from '../components/PromoterComponents/PromoterEventInf
 import PromoterPricing from '../components/PromoterComponents/PromoterPricing';
 import PromoterReviewInfo from '../components/PromoterComponents/PromoterReviewInfo';
 import PromoterSidebar from '../common/PromoterSidebar';
+import Stepper from '../common/Stepper';
+import { BrowserView, MobileOnlyView, TabletView } from 'react-device-detect';
 
 
 export default function AutoHost() {
@@ -22,6 +24,16 @@ export default function AutoHost() {
           <PromoterSidebar/>
         </div>
     <div className='px-0 col-lg-9 mt-0 mt-md-4 '>
+      <BrowserView className='d-flex justify-content-center'>
+        <h3 className='primary-header' style={{color: "crimson"}}>Making Hosting Events Faster</h3>
+      </BrowserView>
+      <TabletView className='d-flex justify-content-center'>
+      <h3 className='primary-header' style={{color: "crimson"}}>Making Hosting Events Faster</h3>
+      </TabletView>
+      <MobileOnlyView className='d-flex justify-content-center text-center'>
+      <h5 className='primary-header mb-4' style={{color: "crimson"}}>Making Hosting Events Faster</h5>
+      </MobileOnlyView>
+      <Stepper></Stepper>
         {eventStepper === 1 && <PromoterEventInfo/>}
         {eventStepper === 2 && <PromoterPricing/>}
         {eventStepper === 3 && <PromoterReviewInfo/>}

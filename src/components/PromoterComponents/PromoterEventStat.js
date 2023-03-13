@@ -54,7 +54,7 @@ export default function PromoterEventStat() {
         <div className='overflow-scroll'>
         <ThemeProvider
       theme={createTheme(lightThemePrimitives, {
-        colors: { borderSelected: " blueviolet" }
+        colors: { borderSelected: "blueviolet" }
       })}
     >
         <Tabs activeKey={activeKey}  onChange={({ activeKey }) => {setActiveKey(activeKey)}} fill={FILL.fixed} activateOnFocus>
