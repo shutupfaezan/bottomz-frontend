@@ -57,14 +57,13 @@ input::-ms-clear {
   background: white;
 }
 .svgbg{
-  background: blueviolet;
-  filter: brightness(0.6);
-    /* background-image: url('../public/images/lottapeeps.jpeg'); */
-  /* filter: blur(1px) brightness(0.7);  */
+  /* background: blueviolet; */
+  filter: brightness(0.5);
+    background-image: url('../public/images/aleksandr-popov-hTv8aaPziOQ-unsplash.jpg');
+  /* filter: blur(1px) brightness(0.3);  */
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  /* filter: brightness(0.3) */
 }
 
 .dot {
@@ -110,4 +109,13 @@ input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
+}
+.form-check-input{
+  position: static !important;
+  margin-top: 0rem !important;
+  margin-left: 0rem !important
+}
+.form-check-input:checked {
+  background-color: crimson !important;
+  border-color: crimson !important;
 }
