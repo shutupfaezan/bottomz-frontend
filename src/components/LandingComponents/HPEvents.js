@@ -7,7 +7,7 @@ export default function   HPEvents(props) {
   return (
     <>
       <div className='col-lg-4 col-md-6 p-2 w-100 my-1' key={props.fields} onClick={()=>navigate("/all-events/" + props.identity.event_name)}>
-        <div className='p-md-3 p-3 w-100 d-flex' style={{borderRadius: "10px", border: "2px solid black", boxShadow: "5px 5px #2e2929"}}>
+        <div className='p-md-3 p-3 w-100 d-flex' style={{borderRadius: "10px", border: "2px solid black", boxShadow: "3px 3px #2e2929"}}>
           <img className="col-3 w-100 p-0" style={{height: "80px", borderRadius: "7px"}} alt="" src={props.identity.images_url}/> 
           <div className='overflow-auto col'>
             <div  className='text-truncate overflow-hidden'><b>{props.identity.event_name}</b></div>
