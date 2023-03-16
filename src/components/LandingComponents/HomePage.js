@@ -11,7 +11,7 @@ export default function HomePage() {
     <>
       <Header></Header>
       <Featured></Featured>
-        <Newsletter></Newsletter>
+      <Newsletter></Newsletter>
       <Footer></Footer>
     </>
   )
