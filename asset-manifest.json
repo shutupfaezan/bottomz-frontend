@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/static/css/main.4fbd4bde.css",
-    "main.js": "/static/js/main.bc6e4b0c.js",
+    "main.js": "/static/js/main.5298911c.js",
     "static/js/787.172a0347.chunk.js": "/static/js/787.172a0347.chunk.js",
     "static/media/aleksandr-popov-hTv8aaPziOQ-unsplash.jpg": "/static/media/aleksandr-popov-hTv8aaPziOQ-unsplash.92f61981d09009ff3ca3.jpg",
     "static/media/lottapeeps.jpeg": "/static/media/lottapeeps.fcf47891787aae184bf7.jpeg",
     "index.html": "/index.html",
     "main.4fbd4bde.css.map": "/static/css/main.4fbd4bde.css.map",
-    "main.bc6e4b0c.js.map": "/static/js/main.bc6e4b0c.js.map",
+    "main.5298911c.js.map": "/static/js/main.5298911c.js.map",
     "787.172a0347.chunk.js.map": "/static/js/787.172a0347.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.4fbd4bde.css",
-    "static/js/main.bc6e4b0c.js"
+    "static/js/main.5298911c.js"
   ]
 }
