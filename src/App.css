@@ -248,3 +248,28 @@ input::-webkit-inner-spin-button {
 .embla__slide:nth-child(9) {
   flex: 0 0 30%;
 }
+
+.offcanvas {
+  opacity: 0 !important;
+  transition: opacity 1s ease !important;
+}
+.offcanvas.show {
+  opacity: 1 !important;
+}
+
+@media (max-width: 768px) {
+  tr td:first-child,
+tr td:nth-child(2) {
+  display: inline-block;
+  border-bottom: none !important;
+}
+
+tr td:nth-child(3) {
+  display: block;
+  border: none !important
+}
+}
+
+option {
+  direction: rtl;
+}

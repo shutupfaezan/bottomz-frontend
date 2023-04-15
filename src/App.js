@@ -17,6 +17,8 @@ import PromoterDasboard from './components/PromoterComponents/PromoterDasboard';
 import AutoHost from './extra/AutoHost';
 import PromoterOngoingOrders from './components/PromoterComponents/PromoterOngoingOrders';
 import PromoterEventStat from './components/PromoterComponents/PromoterEventStat';
+import TermsConditions from './components/UserComponents/TermsConditions';
+import PrivacyPolicy from './components/UserComponents/PrivacyPolicy';
 
 
 function App() {
@@ -39,6 +41,10 @@ function App() {
         <Route exact path="all-events/:event_name/:order_id" element={<Checkout/>}>
         </Route>
         <Route exact path="/host-with-us" element={<HostWithUs/>}>
+        </Route>
+        <Route exact path="/terms-and-conditions" element={<TermsConditions/>}>
+        </Route>
+        <Route exact path="/privacy-policy" element={<PrivacyPolicy/>}>
         </Route>
         <Route exact path="/promoter-login" element={<PromoterLogin/>}>
         </Route>

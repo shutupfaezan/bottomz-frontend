@@ -7,7 +7,7 @@
   import { BrowserView, MobileOnlyView, TabletView } from 'react-device-detect';
 
   export default function AllEvents() {
-const [searchTerm, setSearchTerm] = useState('')
+  const [searchTerm, setSearchTerm] = useState('')
   const [recentEvents, setRecentEvents] = useState([])
   const [filteredEvents, setFilteredEvents] = useState([])
 
@@ -43,7 +43,7 @@ const [searchTerm, setSearchTerm] = useState('')
   }
 
   const formatDate = (dateStr) => {
-    const [day, month, year] = dateStr.split("-")
+    const [year, month, day] = dateStr.split("-")
     const date = new Date(year, month - 1, day)
     const options = {year: 'numeric', month: 'long', day: 'numeric', weekday: "long" }
     return date.toLocaleDateString('en-US', options)
