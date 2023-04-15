@@ -1,7 +1,6 @@
 import React from 'react'
 import { SingularContext } from '../../contexts/Context';
 import {useContext} from 'react'
-import { BrowserView, MobileOnlyView, TabletView } from 'react-device-detect';
 
 export default function QuantityFields(props) {
   const { inputValues, setInputValues } = useContext(SingularContext);
@@ -23,25 +22,19 @@ export default function QuantityFields(props) {
 
   return (
     <tr>
-        <td className="col-5" style={{fontWeight: "100", alignItems: "center"}}>
+        <td className="col-6 col-md-5" style={{fontWeight: "100", alignItems: "center"}}>
             <div>{props.identity.ticket_category}</div>
             <div>{props.identity.description}</div>
             <div style={{color: "gray"}}>{props.identity.cover_description}</div>
         </td>
         {/* eslint-disable-next-line */}
-        <td  className="col-2" style={{fontWeight: "100", verticalAlign: "middle"}}>{props.identity.price != 0 && "₹"}{props.identity.price != 0 ? props.identity.price : "Free"}</td>
-        <td className="col-5" style={{fontWeight: "100", verticalAlign: "middle", textAlign: "center", width: "100%"}}>
-            <div className="input-group mb-3 pr-0 float-md-right col-11 col-md-5 col-lg-4" style={{width: '100%'}}>
-              <BrowserView className='w-100'>
+          <td  className="col-6 col-md-2 text-md-start text-end" style={{fontWeight: "100", verticalAlign: "middle"}}>{props.identity.price != 0 && "₹"}{props.identity.price != 0 ? props.identity.price : "Free"}</td>
+        <td className="col col-md-5 p-md-3 p-0" style={{fontWeight: "100", verticalAlign: "middle", textAlign: "center", width: "100%"}}>
+            <div className="input-group mb-3 ml-2 ml-md-0 p-0 pr-0 float-md-right col-12 col-md-7 col-lg-4 w-100"  style={{border: "1px solid black", overflow: "hidden", borderRadius: "10px"}}>
+              <div className='col-3 px-0 col-md-6'>
                 <label className="input-group-text " htmlFor="inputGroupSelect01">Qty</label>
-              </BrowserView>
-              <TabletView className='w-100'>
-                <label className="input-group-text " htmlFor="inputGroupSelect01">Qty</label>
-              </TabletView>
-              <MobileOnlyView className='w-100'>
-                <label className="input-group-text" htmlFor="inputGroupSelect01">Qty</label>
-              </MobileOnlyView>
-            <select className="form-select" id={"TicketDropdown" + props.index} name={"TicketDropdown" + props.index} value={inputValues[props.index] ? inputValues[props.index]["TicketDropdown" + props.index] : ''} onChange={(event) => handleInputChange(event, props.index)}>
+              </div>
+            <select className="form-select text-end" id={"TicketDropdown" + props.index} name={"TicketDropdown" + props.index} value={inputValues[props.index] ? inputValues[props.index]["TicketDropdown" + props.index] : ''} onChange={(event) => handleInputChange(event, props.index)}>
                 <option defaultValue>0</option>
                 <option value="1">1</option>  
                 <option value="2">2</option>

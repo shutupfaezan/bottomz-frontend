@@ -28,7 +28,7 @@ export default function SingularClubs() {
        <>
     <div className='position-relative'>
     <GlobalHeader/>
-    <div className="svgbg" style={{height: "100px", position: "relative"}}></div>
+    <div className="" style={{height: "100px", position: "relative", background: `url(${clubVariable?.Club_info?.images_url}) center/cover no-repeat`, filter: "blur(3px)"}}></div>
     <div className='d-flex justify-content-center w-100' style={{top: "-70px", height: "100%", position: "relative"}}>
     <div className='col-lg-6 col-md-8 p-2 w-100'>
         <div className='p-md-3 p-3 w-100 d-flex shadow-sm' style={{borderRadius: "10px", background: "white", border: "2px solid black"}}>
@@ -72,7 +72,7 @@ export default function SingularClubs() {
                 return (
                   <>
                   <div className='col-md-3 col-4 p-1'>
-                    <img src={fields} alt="" style={{width: "100%", height: "100px", borderRadius: "10px"}}></img>
+                    <img src={fields} alt="" style={{width: "100%", height: "100px", borderRadius: "5px"}}></img>
                   </div>
                   </>
                 )
@@ -86,7 +86,7 @@ export default function SingularClubs() {
                 return (
                   <>
                   <div className='col-md-3 col-4 p-1'>
-                    <img src={fields} alt="" style={{width: "100%", height: "110px", borderRadius: "10px"}}></img>
+                    <img src={fields} alt="" style={{width: "100%", height: "110px", borderRadius: "5px"}}></img>
                   </div>
                   </>
                 )

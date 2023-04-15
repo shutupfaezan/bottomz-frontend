@@ -1,46 +1,91 @@
 import React from 'react'
 import GlobalHeader from '../../common/GlobalHeader'
-// import AutoHost from '../../extra/AutoHost';
+import Footer from "../../common/Footer"
+import { useFormik } from 'formik'
+import Input from '../../common/Input'
+import axios from 'axios'
 
 
 export default function HostWithUs() {
 
+  const formik = useFormik({
+    initialValues: {
+      name: "",
+      email: "",
+      query_type: "",
+      contact: 0,
+      description: ""
+    },
+    onSubmit: (values)=> {
+      console.log(values)
+      axios.post(`https://nightlife-2710.herokuapp.com/query`, values)
+    }
+  })
   return (
     <>
-      <GlobalHeader/>
-      <div className='d-lg-flex'>
-        <div className='col-lg-8 mb-4 mt-4'>
-        <h3 className='mt-3 mb-lg-5 mb-3' style={{color: "#88106f"}}>Query Form</h3>
-        <div className="input-group mb-3 pr-0 pl-0 col-11 col-md-5 col-lg-4 d-flex flex-column w-100">
-        <label className='ml-2 mb-1'>Query:</label>
-            <select className="form-select w-100" >
-                <option defaultValue>Select a Query</option>
-                <option value="1">Be a Promoter</option>  
-                <option value="2">Ticket Query</option>
-                <option value="3">Feedback</option>
-                <option value="4">Others</option>
-            </select>
+      <div className='100vh position-relative'>
+        <GlobalHeader/>
+        <section className='position-relative'>
+          <div className='svgbg mb-4 mb-md-3' style={{height: "200px"}}></div>
+          <div className='d-md-flex justify-content-center position-absolute align-items-center w-100 px-4' style={{top: "50%", left: "50%", transform: "translate(-50%, -50%)"}}>
+            <div className='d-flex justify-content-center flex-column text-center flex-md-row px-md-5 mx-lg-4 mx-md-2'>
+              <div className='primary-header ml-2' style={{color: "transparent", WebkitTextStroke: "1px white", fontSize: "40px"}}>Get In Touch</div>
+              <div className='primary-header ml-2 text-white' style={{fontSize: "40px"}}>With Us</div>
             </div>
-        <div className="input-group mb-3 pr-0 w-100">
-            <div className='d-flex flex-column w-100'>
-                <label className='ml-2 mb-1'>Email:</label>
-                <input className="form-control w-100" name="event_name" placeholder="Enter Event Name"></input>
-            </div>    
           </div>
-        <div className="input-group mb-3 pr-0 w-100">
-            <div className='d-flex flex-column w-100'>
-                <label className='ml-2 mb-1'>Message:</label>
-                <textarea className="form-control w-100" name="date" placeholder='Enter your message' type="text"></textarea>
+        </section>
+        <section className='mx-md-5 my-4'>
+          <div className='px-md-5 px-3'>
+            <b>Do you need help or have any questions?</b>
+            <p className="mt-1" style={{fontWeight: "100"}}>Fill out this form and we will get back to you shortly!</p>
+          </div>
+          <div className='px-md-5 mt-4 pl-md-3 pl-2 pr-2'>
+            <div className="d-flex p-3 flex-wrap" style={{border: "2px solid black", borderRadius: "10px"}}>
+              <div className='d-flex flex-column col-lg-6 px-0 pr-lg-3'>
+                  <label className='ml-2 mb-1' style={{fontWeight: "400"}}>Name:</label>
+                  <Input name="name" handleChange={formik.handleChange} value={formik.values.name} placeholder="Enter Name"></Input>
+              </div>
+              <div className='d-flex flex-column col-lg-6 px-0 pr-lg-3'>
+                  <label className='ml-2 mb-1' style={{fontWeight: "400"}}>Choose Enquiry Type:</label>
+                  <div className='mb-2 d-flex justify-content-center align-items-center'>
+                  <select className="form-select w-100" name="query_type" id="query_type" onChange={formik.handleChange} value={formik.values.query_type} style={{border: "2px solid black", borderRadius: "10px", fontSize: "12px", padding: "10px"}}>
+                    <option selected value="Select">Select</option>
+                    <option value="Ticket Trouble">Ticket Trouble</option>
+                    <option value="Be a Promoter">Be a Promoter</option>
+                    <option value="Forgot Promoter Credentails">Forgot Promoter Credentails</option>
+                    <option value="Feedback">Feedback</option>
+                    <option value="Others">Others</option>
+                  </select>
+                  </div>
+              </div>
+              <div className='d-flex flex-column col-lg-6 px-0 pr-lg-3'>
+                  <label className='ml-2 mb-1' style={{fontWeight: "400"}}>Email:</label>
+                  <Input name="email" handleChange={formik.handleChange}  type="email" value={formik.values.email} placeholder="Enter Email"></Input>
+              </div>
+              <div className='d-flex flex-column col-lg-6 px-0 pr-lg-3'>
+                  <label className='ml-2 mb-1' style={{fontWeight: "400"}}>Phone:</label>
+                  <Input name="contact" type='number' handleChange={formik.handleChange} value={formik.values.contact} placeholder="Enter Contact"></Input>
+              </div>
+              <div className='col pr-lg-3 p-0'>
+                  <label className='ml-2 mb-1' style={{fontWeight: "400"}}>Description:</label>
+                  <textarea name="description" onChange={formik.handleChange} value={formik.values.description} placeholder="About The Event" className="form-control" style={{borderRadius: "10px", height: "100px", border: "2px solid black"}}></textarea>
+              </div>
+              <div className='d-flex justify-content-center w-100'>
+                <button type="submit" className="btn mt-3 col px-3 py-2 text-white" onClick={formik.handleSubmit} style={{background: "black", borderRadius: '10px'}}>Submit Form</button>
+              </div>
             </div>
-        </div>
-        </div>
-        <div className='col-lg-4'>
-          <h3 className='mt-3 mb-lg-5 mb-3' style={{color: "#88106f"}}>Contact Us</h3>
-          <div className='d-flex align-items-center mb-2'><i className="fa-solid fa-phone mr-3" style={{fontSize: "17px"}}></i><h5 className='mb-1'>9167250041</h5></div>
-          <div className='d-flex align-items-center mb-2'><i className="fa-solid fa-at mr-3" style={{fontSize: "17px"}}></i><h5 className='mb-1'>bottmzupevents@gmail.com</h5></div>
-          <div className='d-flex align-items-start'><i className="fa-solid fa-location-dot mr-3" style={{fontSize: "17px"}}></i><h5 className='mb-1'>The Garage, Sun Mill Compound, 210, Senapati Bapat Marg, Lower Parel, Mumbai, Maharashtra 400013</h5></div>
-          <div className='d-flex justify-content-start mt-3 ml-4 mb-4'><img src={process.env.PUBLIC_URL + "/images/garagelocation.png"} style={{width: "70%", height: "100%", borderRadius: "10px"}} alt=""></img></div>
-        </div>
+          </div>
+          <div className='px-md-5 px-3 mt-4'>
+            <b>For trouble regarding mail on the purchases made:</b>
+            <li className="mt-1" style={{fontWeight: "100", color: "black"}}>The person who booked the ticket has a copy of it in the ticket section from the hamburger menu.</li>
+          </div>
+          <div className='px-md-5 px-3 mt-4'>
+            <b>For requests regarding promoter access:</b>
+            <li className="mt-1 mb-0" style={{fontWeight: "100", color: "black"}}>Submit a form with your email and query as "Be a promoter" and we'll reach out.</li>
+            <li className="" style={{fontWeight: "100", color: "black"}}>If you forgot your login info send a form for the same or call us (if urgent) and we'll reach out.</li>
+          </div>
+        </section>
+        <Footer/>
       </div>
     </>
   )

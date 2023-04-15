@@ -10,11 +10,11 @@ export default function ClubsRow() {
     const [recentClubs, setRecentClubs] = useState()
     const [loading, setLoading] = useState(true)
     const [recentEvents, setRecentEvents] = useState()
-    const make = async ()=> { return await axios.get("https://nightlife-2710.herokuapp.com/club")}
+    const club = async ()=> { return await axios.get("https://nightlife-2710.herokuapp.com/club")}
     const event = async ()=> { return await axios.get("https://nightlife-2710.herokuapp.com/events")}
     
     useEffect(() => {
-      make()
+      club()
       .then((response) => {
         setLoading(false)
         setRecentClubs(response)
@@ -29,6 +29,7 @@ export default function ClubsRow() {
        event()
          .then((response) => {
            setRecentEvents(response)
+           console.log(response)
          })
          .catch((error) => {
            console.log(error);
@@ -36,8 +37,8 @@ export default function ClubsRow() {
 
      }, []);
 
-     const reverseClubs = recentClubs?.data.reverse().slice(0,4)
-     const reverseEvents = recentEvents?.data.slice(0,6)
+     const reverseClubs = recentClubs?.data?.reverse()?.slice(0,4)
+     const reverseEvents = recentEvents?.data?.slice(0,6)
 
   return (
     <>
