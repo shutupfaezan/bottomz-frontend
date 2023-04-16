@@ -4,7 +4,7 @@
   import { useState } from 'react';
   import { useEffect } from 'react'
   import { useParams } from "react-router-dom";
-  import { RadioGroup, Radio, ALIGN } from "baseui/radio";
+  import Footer from "../../common/Footer"
 
   export default function Checkout() {
     const [billInfo, setBillInfo] = useState()
@@ -51,67 +51,83 @@
     return (
       <div>
         <GlobalHeader/>
-        <div className="p-lg-5 mx-md-3 mx-lg-0 d-flex flex-column flex-lg-row">
-          <div className='col-lg-8 mb-5 mb-lg-0 order-2 order-lg-0'>
+        <div className='mb-5 mb-2 mb-md-3' style={{height: "200px", background: "black"}}>
+        <div className='d-flex justify-content-center align-items-center flex-md-row flex-column px-5 mx-lg-4 mx-md-2' style={{height: "100%"}}>
+          <div className='primary-header ml-2' style={{color: "transparent", WebkitTextStroke: "1px white", fontSize: "40px"}}>Check</div>
+          <div className='primary-header ml-2 text-white' style={{fontSize: "40px"}}>Out</div>
+        </div>
+        </div>
+              <h1 className='primary-header px-lg-5 mx-3 my-md-4 my-5 mpt-lg-5'>Choose your mode of payment</h1>
+        <div className="px-lg-5 py-lg-3 mx-md-3 mx-lg-0 d-flex flex-column flex-lg-row">
+          <div className='col-lg-7 mb-5 mb-lg-0 order-2 order-lg-0 mr-auto'>
             <div className=' mt-lg-0'>
-              <h4 className='primary-header'>Choose your mode of payment</h4>
               <div>
-                <RadioGroup value={value} onChange={e => setValue(e.currentTarget.value)} name="number" align={ALIGN.vertical}>
-                  <Radio value="1" description="If its a small amount, might as well just pay now and be reserved">
-                    Pay Now
-                    </Radio>
-                  <Radio value="2" description="Usually used for larger amounts and table bookings">
-                    Pay At Venue
-                  </Radio>
-                </RadioGroup>
-                <p className="ml-2 mt-4" style={{color: "gray", fontSize: "15px"}}>(Pay at Venue does not guarantee entry as such events function as a first come first serve basis.)</p>
+                <div class="form-check d-flex align-items-center py-3 p-md-3 mb-4"  style={{border: "2px solid black", borderRadius: "10px", boxShadow: "7px 7px #E8EBEE"}}>
+                  <input class="form-check-input mr-4 align-self-center my-1" style={{border: "5px solid gray"}} type="radio" name="flexRadioDefault" id="flexRadioDefault1"/>
+                  <div className='d-flex flex-column'>
+                  <label class="form-check-label mb-2" for="flexRadioDefault1">
+                      Pay at Venue
+                  </label>
+                  <p  className="mb-1" style={{fontWeight: "100", fontSize: "14px"}}>Usually used for larger amounts and table bookings</p>
+                  </div>
+                </div>
+                <div class="form-check d-flex align-items-center py-3 p-md-3"  style={{border: "2px solid black", borderRadius: "10px", boxShadow: "7px 7px #E8EBEE"}}>
+                  <input class="form-check-input mr-4 align-self-center my-1" style={{border: "5px solid gray"}} type="radio" name="flexRadioDefault" id="flexRadioDefault1"/>
+                  <div className='d-flex flex-column'>
+                  <label class="form-check-label mb-2" for="flexRadioDefault1">
+                      Pay now
+                  </label>
+                  <p  className="mb-1" style={{fontWeight: "100", fontSize: "14px"}}>If its a small amount, might as well just pay now and be reserved.</p>
+                  </div>
+                </div>
+                <p className="ml-2 mt-4" style={{fontSize: "15px"}}>*Pay at Venue does not guarantee entry as such events function as a first come first serve basis.</p>
               </div>
             </div>
-            <div className='card mt-lg-0 col-lg-6 col p-2'>
-              <h4 className='primary-header bg-dark text-center p-2 text-white'>Attendee List</h4>
-  <table class="table">
+              <h2 className='primary-header ml-2'>Attendee List</h2>
+            <div className='card mt-lg-0 col-lg-10 col p-md-4 p-2' style={{border: "none", borderRadius: "10px", background: "#F4F6F6"}}>
+          <table class="table">
+          <thead>
+            <tr class="" style={{background: "black", color: "white"}}>
+              <th  scope="col" style={{border: "none", borderTopLeftRadius: "10px", borderBottomLeftRadius: "10px"}}>No.</th>
+              <th  scope="col" style={{border: "none", borderTopRightRadius: "10px", borderBottomRightRadius: "10px"}}>Name</th>
+            </tr>
+            </thead> 
               <tbody>
               {attendeeInfo?.map((identity, fields)=>{
-            return <><tr>
-            <td className='col-2'>{fields + 1}</td>
-            <td>{identity?.attendee_name}</td>
+            return <><tr >
+            <th style={{border: "none"}} scope="row">{fields + 1}</th>
+            <td className='ml-3'>{identity?.attendee_name}</td>
           </tr></>
             })}
               </tbody>
             </table>
             </div>
           </div>
-          <div className='col-lg-4 mb-4 mb-lg-0'>
-            <div className="card p-3">
-            <div className="d-flex w-100" style={{width: "24rem"}}>
-            <img className="align-self-center mr-2" style={{width: "70px", height: "70px", borderRadius: "14px"}} src={eventInfo?.images_url} alt="Club"/>
+          <div className='col-lg-4 mb-4 mb-lg-0 px-4 px-mb-2' style={{order: "3"}}>
+            <div className="card p-3" style={{ border: "2px  solid black", borderRadius: "10px"}}>
+            <div className="d-flex w-100 pb-3 mb-3" style={{width: "24rem", borderBottom: "1px solid #E8EBEE"}}>
+            <img className="align-self-center" style={{width: "70px", height: "70px", borderRadius: "10px"}} src={eventInfo?.images_url} alt="Club"/>
             <div className="d-flex flex-column ml-3">
-              <div className='d-flex'>
-                <p className="m-0 mr-2" style={{color: "#980098"}}>{formattedDate}</p>
-                <p className="m-0" style={{color: "gray"}}>{eventInfo?.day.slice(0,3)} • {eventInfo?.timings.slice(0,9)}</p>
-              </div>
-              <p className="m-0">{eventInfo?.event_name}</p>
-              <p className='m-0' style={{fontSize: "12px", color: "grey"}}>{eventInfo?.event_venue}</p>
+              <p className="m-0 mb-2 primary-header" style={{fontSize: "20px", fontWeight: '400'}}>{eventInfo?.event_name}</p>
+              <div className='d-flex align-items-start' style={{fontSize: "14px", fontWeight: "100"}}><i class="bi bi-geo-alt-fill mr-1"></i><p className='m-0' style={{fontSize: "11px", fontWeight: "400"}}>{eventInfo?.event_venue}</p></div>
+              <div className='d-flex align-items-start' style={{fontSize: "14px", fontWeight: "100"}}><i class="bi bi-calendar mr-1"></i><p className='m-0' style={{fontSize: "11px", fontWeight: "400"}}>{eventInfo?.timings?.slice(0,9)}. {formattedDate.slice(0,9)}</p></div>
             </div>
             </div>
-            <hr style={{height: "0.2px", marginBottom: "0px"}}/>
-            <p style={{fontSize: "12px", color: "grey", margin: "11px 0px"}}>Your booking is protected by <strong style={{color: "black", fontWeight: "100"}}>BottmzUp</strong></p>
-            <hr style={{height: "0.1px", marginTop: "0px"}}/>
             <div>
-              <p style={{fontStyle: "italic"}}>Price Info</p>
+              <p className='primary-header' style={{fontSize: "18px", fontWeight: "400"}}>Price Info</p>
               {billInfo?.map((identity, fields)=>{
-                return  <div className='d-flex align-items-center mb-2' key={fields}><div className='d-flex flex-column'><p className='m-0'>{identity.ticket_category}<small className='ml-1' style={{fontSize: "11px", color: "#014765"}}>{identity.quantity}x{identity.total_price}</small></p>
-                <small style={{color: "#8a8a8a", fontSize: "12px"}}>{identity.description}</small></div>
-                <div className='ml-auto'>₹{identity.total_price}</div></div>
+                return  <div className='d-flex align-items-center mb-2 pb-3' key={fields} style={{borderBottom: "1px solid #E8EBEE"}}><div className='d-flex flex-column'><p className='m-0'>{identity.ticket_category}<small className='ml-1' style={{fontSize: "11px", color: "crimson"}}>{identity.quantity}x{identity.total_price}</small></p>
+                <p className='m-0' style={{fontWeight: "100", fontSize: "12px"}}>{identity.description}</p></div>
+                <div className='ml-auto mr-4' style={{fontSize: "20px", color: "crimson"}}>₹{identity.total_price}</div></div>
               })} 
             </div>
-            <hr style={{height: "0.1px"}}/>
-            <div className='d-flex align-items-center mb-2'><p className='m-0 d-flex flex-column'>Total<small style={{color: "#8a8a8a", fontSize: "12px"}}>(Tax Exclusive)</small></p>
-                <div className='ml-auto'>₹{sum}</div></div>
+            <div className='d-flex align-items-center mb-2 p-3' style={{background: "#F6F7F8", borderRadius: "10px"}}><p className='m-0 d-flex flex-column'>Total<small style={{fontSize: "12px", fontWeight: "100"}}>(Tax Exclusive)</small></p>
+                <div className='ml-auto mr-2' style={{fontSize: "20px"}}>₹{sum}</div></div>
+          <button onClick={paymentsCreate} className='btn col-lg-12 mt-2 text-white' style={{background: "black", borderRadius: "10px"}}>Pay Now</button>
             </div>
-          <button onClick={paymentsCreate} className='btn btn-dark col-lg-12 mt-3 '>Confirm Purchase</button>
           </div>
         </div>
+        <Footer/>
       </div>
     )
   }
