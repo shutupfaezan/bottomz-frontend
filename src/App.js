@@ -38,9 +38,11 @@ function App() {
         </Route>
         <Route exact path="all-events/:event_name" element={<SingularEvents/>}>
         </Route>
-        <Route exact path="all-events/:event_name/:order_id" element={<Checkout/>}>
-        </Route>
+        {/* <Route exact path="all-events/:event_name/:order_id" element={<Checkout/>}>
+        </Route> */}
         <Route exact path="/host-with-us" element={<HostWithUs/>}>
+        </Route>
+        <Route exact path="/all-events/:event_name/checkout" element={<Checkout/>}>
         </Route>
         <Route exact path="/terms-and-conditions" element={<TermsConditions/>}>
         </Route>

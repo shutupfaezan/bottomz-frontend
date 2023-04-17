@@ -61,7 +61,7 @@ export default function GlobalHeader() {
           <CommonModal show={show}/>
           </div>
           <div className="ml-auto d-md-none d-flex align-items-center">
-          {!sessionStorage?.username ? <i style={{fontSize: "30px"}} onClick={()=>{setShow(true)}} class="fa-regular fa-circle-user mr-1"></i> : <p className="m-0 rounded-circle d-flex justify-content-center align-items-center mr-1" style={{width: "30px", height: "30px", border: location.pathname === '/' ? (scroll > 0 ? "2px solid black" : "2px solid white") : "2px solid black"}}>{sessionStorage?.username.slice(0,1)}</p>}
+          {!sessionStorage?.username ? <i style={{fontSize: "30px"}} onClick={()=>{setShow(true)}} class="fa-regular fa-circle-user mr-1"></i> : <p className="m-0 rounded-circle d-flex justify-content-center align-items-center mr-2 mt-0" style={{width: "30px", height: "30px", border: location.pathname === '/' ? (scroll > 0 ? "2px solid black" : "2px solid white") : "2px solid black"}}>{sessionStorage?.username.slice(0,1)}</p>}
           </div>
           <div className="d-md-none d-block">
             <Hamburger/>

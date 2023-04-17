@@ -3,12 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import { SingularContext } from '../contexts/Context';
 import {useContext} from 'react'
 import Modal from 'react-bootstrap/Modal';
-import axios from 'axios'
 
 
 export default function AttendeeModal() {
     const navigate = useNavigate()
-    const {inputValues, inputModal, setInputModal, singleEvent} = useContext(SingularContext);
+    const {inputValues, inputModal, setInputModal} = useContext(SingularContext);
     const [attendeeValue, setAttendeeValue] = useState([])
     const [isLoading, setisLoading] = useState(false);
     const order_details = inputValues.filter(obj => obj != null)
@@ -38,15 +37,10 @@ export default function AttendeeModal() {
 
     function submitinter(){
     setisLoading(true)
-    axios.post(`https://nightlife-2710.herokuapp.com/orders?event_name=${singleEvent?.event_name}&access_token=${sessionStorage.token}`, plus)
-    .then((response)=>{
-        navigate(`${response?.data}`)
-        setisLoading(false)
-    }
-    ).catch((err)=>{
-        console.log(err);
-        setisLoading(false)
-    })
+    sessionStorage.setItem('checkoutData', JSON.stringify(plus));
+    setisLoading(false)
+    navigate(`checkout`)
+    // axios.post(`https://nightlife-2710.herokuapp.com/orders?event_name=${singleEvent?.event_name}&access_token=${sessionStorage.token}`, plus)
     }
   return (
     <Modal show={inputModal} onHide={handleClose} centered>

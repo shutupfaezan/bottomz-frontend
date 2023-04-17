@@ -10,7 +10,8 @@
   import AttendeeModal from '../../common/AttendeeModal';
 
   export default function SingularEvents() {
-      const {setShow, setInputModal, singleEvent, setSingleEvent} = useContext(SingularContext);
+      const {setShow, setInputModal} = useContext(SingularContext);
+      const [singleEvent, setSingleEvent] = useState()
       const [ticketConfig, setTicketConfig] = useState()
       const [clubDetail, setClubDetail] = useState()
       const [isloading, setIsLoading] = useState(true)

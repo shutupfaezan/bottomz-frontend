@@ -7,31 +7,28 @@
   import Footer from "../../common/Footer"
 
   export default function Checkout() {
-    const [billInfo, setBillInfo] = useState()
+    const savedCheckoutInfo = JSON.parse(sessionStorage.getItem('checkoutData'));
+    const [billInfo] = useState(savedCheckoutInfo?.order_details);
+    const [attendeeInfo] = useState(savedCheckoutInfo?.attendeeValue);
     const [eventInfo, setEventInfo] = useState()
-    const [attendeeInfo, setAttendeeInfo] = useState()
       const params = useParams()
-      const bill = async ()=> { return await axios.get(`https://nightlife-2710.herokuapp.com/purchase-details?order_id=${params.order_id}&event_name=${params.event_name}&access_token=${sessionStorage.token}`)}
+      const bill = async ()=> { return await axios.get(`https://nightlife-2710.herokuapp.com/events/${params?.event_name}`)}
       useEffect(() => {
-          bill()
-          .then((response) => {
-            setEventInfo(response?.data?.event[0])
-            setBillInfo(response?.data?.tickets_bought)
-            setAttendeeInfo(response?.data?.attendee_details)
-          })
-          .catch((error) => {
-            console.log(error);
-          });
-          // eslint-disable-next-line
+        bill()
+        .then((response) => {
+          setEventInfo(response?.data?.event_data)
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+        // eslint-disable-next-line
       }, [])
-
       const date = new Date(eventInfo?.date);
       const day = date.getDate();
       const month = date.toLocaleString('default', { month: 'long' });
       const year = date.toLocaleString('default', { year: 'numeric' });
       const formattedDate = `${day} ${month} ${year}`;
 
-      const [value, setValue] = React.useState("2");
       let sum = 0
       for (var i = 0; i < billInfo?.length; i++) {
         sum += parseInt(billInfo?.[i]?.total_price);
@@ -62,19 +59,19 @@
           <div className='col-lg-7 mb-5 mb-lg-0 order-2 order-lg-0 mr-auto'>
             <div className=' mt-lg-0'>
               <div>
-                <div class="form-check d-flex align-items-center py-3 p-md-3 mb-4"  style={{border: "2px solid black", borderRadius: "10px", boxShadow: "7px 7px #E8EBEE"}}>
-                  <input class="form-check-input mr-4 align-self-center my-1" style={{border: "5px solid gray"}} type="radio" name="flexRadioDefault" id="flexRadioDefault1"/>
+                <div className="form-check d-flex align-items-center py-3 p-md-3 mb-4"  style={{border: "2px solid black", borderRadius: "10px", boxShadow: "7px 7px #E8EBEE"}}>
+                  <input className="form-check-input mr-4 align-self-center my-1" style={{border: "5px solid gray"}} type="radio" name="flexRadioDefault" id="flexRadioDefault1"/>
                   <div className='d-flex flex-column'>
-                  <label class="form-check-label mb-2" for="flexRadioDefault1">
+                  <label className="form-check-label mb-2" htmlFor="flexRadioDefault1">
                       Pay at Venue
                   </label>
                   <p  className="mb-1" style={{fontWeight: "100", fontSize: "14px"}}>Usually used for larger amounts and table bookings</p>
                   </div>
                 </div>
-                <div class="form-check d-flex align-items-center py-3 p-md-3"  style={{border: "2px solid black", borderRadius: "10px", boxShadow: "7px 7px #E8EBEE"}}>
-                  <input class="form-check-input mr-4 align-self-center my-1" style={{border: "5px solid gray"}} type="radio" name="flexRadioDefault" id="flexRadioDefault1"/>
+                <div className="form-check d-flex align-items-center py-3 p-md-3"  style={{border: "2px solid black", borderRadius: "10px", boxShadow: "7px 7px #E8EBEE"}}>
+                  <input className="form-check-input mr-4 align-self-center my-1" style={{border: "5px solid gray"}} type="radio" name="flexRadioDefault" id="flexRadioDefault1"/>
                   <div className='d-flex flex-column'>
-                  <label class="form-check-label mb-2" for="flexRadioDefault1">
+                  <label className="form-check-label mb-2" htmlFor="flexRadioDefault1">
                       Pay now
                   </label>
                   <p  className="mb-1" style={{fontWeight: "100", fontSize: "14px"}}>If its a small amount, might as well just pay now and be reserved.</p>
@@ -85,9 +82,9 @@
             </div>
               <h2 className='primary-header ml-2'>Attendee List</h2>
             <div className='card mt-lg-0 col-lg-10 col p-md-4 p-2' style={{border: "none", borderRadius: "10px", background: "#F4F6F6"}}>
-          <table class="table">
+          <table className="table">
           <thead>
-            <tr class="" style={{background: "black", color: "white"}}>
+            <tr className="" style={{background: "black", color: "white"}}>
               <th  scope="col" style={{border: "none", borderTopLeftRadius: "10px", borderBottomLeftRadius: "10px"}}>No.</th>
               <th  scope="col" style={{border: "none", borderTopRightRadius: "10px", borderBottomRightRadius: "10px"}}>Name</th>
             </tr>
@@ -109,14 +106,14 @@
             <img className="align-self-center" style={{width: "70px", height: "70px", borderRadius: "10px"}} src={eventInfo?.images_url} alt="Club"/>
             <div className="d-flex flex-column ml-3">
               <p className="m-0 mb-2 primary-header" style={{fontSize: "20px", fontWeight: '400'}}>{eventInfo?.event_name}</p>
-              <div className='d-flex align-items-start' style={{fontSize: "14px", fontWeight: "100"}}><i class="bi bi-geo-alt-fill mr-1"></i><p className='m-0' style={{fontSize: "11px", fontWeight: "400"}}>{eventInfo?.event_venue}</p></div>
-              <div className='d-flex align-items-start' style={{fontSize: "14px", fontWeight: "100"}}><i class="bi bi-calendar mr-1"></i><p className='m-0' style={{fontSize: "11px", fontWeight: "400"}}>{eventInfo?.timings?.slice(0,9)}. {formattedDate.slice(0,9)}</p></div>
+              <div className='d-flex align-items-start' style={{fontSize: "14px", fontWeight: "100"}}><i className="bi bi-geo-alt-fill mr-1"></i><p className='m-0' style={{fontSize: "11px", fontWeight: "400"}}>{eventInfo?.event_venue}</p></div>
+              <div className='d-flex align-items-start' style={{fontSize: "14px", fontWeight: "100"}}><i className="bi bi-calendar mr-1"></i><p className='m-0' style={{fontSize: "11px", fontWeight: "400"}}>{eventInfo?.timings?.slice(0,9)}. {formattedDate.slice(0,9)}</p></div>
             </div>
             </div>
             <div>
               <p className='primary-header' style={{fontSize: "18px", fontWeight: "400"}}>Price Info</p>
               {billInfo?.map((identity, fields)=>{
-                return  <div className='d-flex align-items-center mb-2 pb-3' key={fields} style={{borderBottom: "1px solid #E8EBEE"}}><div className='d-flex flex-column'><p className='m-0'>{identity.ticket_category}<small className='ml-1' style={{fontSize: "11px", color: "crimson"}}>{identity.quantity}x{identity.total_price}</small></p>
+                return  <div className='d-flex align-items-center mb-2 pb-3' key={fields} style={{borderBottom: "1px solid #E8EBEE"}}><div className='d-flex flex-column'><p className='m-0'>{identity.ticket_categories}<small className='ml-1' style={{fontSize: "11px", color: "crimson"}}>{identity.quantity}x{identity.total_price}</small></p>
                 <p className='m-0' style={{fontWeight: "100", fontSize: "12px"}}>{identity.description}</p></div>
                 <div className='ml-auto mr-4' style={{fontSize: "20px", color: "crimson"}}>₹{identity.total_price}</div></div>
               })} 
