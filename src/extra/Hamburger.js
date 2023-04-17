@@ -1,8 +1,18 @@
 import React, { useCallback } from 'react'
+import { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom'
+import {useLocation} from "react-router-dom";
+
 
 export default function Hamburger() {
   const navigate = useNavigate()
+  const [scroll, setScroll] = useState(0);
+  useEffect(() => {
+    window.addEventListener("scroll", () => {
+      setScroll(window.pageYOffset);
+    });
+  }, []);
+  const location = useLocation();
 
   const handleNavigate = useCallback((path) => {
     navigate(path)
@@ -15,14 +25,14 @@ export default function Hamburger() {
 
   return (
     <>
-      <i className="bi bi-list align-items-center justify-content-end" style={{fontSize: "30px", cursor: 'pointer'}} data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample"></i>
+    <i class="fa-solid fa-bars  align-items-center justify-content-end" style={{ color: location.pathname === '/' ? (scroll > 0 ? "black" : "white") : "black", fontSize: "30px", cursor: 'pointer'}} data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample"></i>
+
       <div className="offcanvas offcanvas-end" style={{width: "100%", height: "auto"}} tabIndex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel"  data-bs-no-jquery  data-bs-backdrop="false" data-bs-scroll="false">
         <div className="offcanvas-header" style={{justifyContent: "start"}}>
           <a className="navbar-brand mx-md-5 py-0 mr-auto" style={{fontWeight: "800"}} href="/">
             <h3 className="primary-header m-0"  style={{ color:"black", fontSize: "25px"}}>BottmzUp</h3>
           </a>
-          {/* <small className='mb-0 text-black px-3 py-1 text-dark mr-2' style={{border: "2px solid black", borderRadius: "10px"}}>Log In</small> */}
-          <small className='mb-0 text-black px-3 py-1 text-white' style={{ borderRadius: "10px",background: "linear-gradient(90deg, #8d49f7, #6b53ff)"}}>Sign Up</small>
+          <small className='mb-0 text-black px-4 py-2 text-white' style={{ borderRadius: "10px",background: "black"}}>Sign Up</small>
           <button type="button" className="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div className="offcanvas-body py-4">
