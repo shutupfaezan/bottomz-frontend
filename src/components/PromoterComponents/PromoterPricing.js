@@ -6,42 +6,45 @@ import { SingularContext } from '../../contexts/Context';
 
 export default function PromoterPricing() {
     const [items, setItems] = useState([]);
-    const [ticketCategories, setTicketCategories] = useState('')
+    const [ticket_category, setTicket_Category] = useState('')
     const [description, setDescription] = useState('')
-    const [coverDescription, setCoverDescription] = useState('')
+    const [cover_description, setCover_Description] = useState('')
     const [price, setPrice] = useState(null)
-    const [totalQuantity, setTotalQuantity] = useState(null)
+    const [total_quantity, set_Total_Quantity] = useState(null)
     const { eventInfoValue, setEventStepper, eventStepper} = useContext(SingularContext);
 
 
     function handleAddItem(event){
-        const newItem = { ticketCategories, description, coverDescription, price, totalQuantity };
+        const newItem = { ticket_category, description, cover_description, price, total_quantity };
         setItems([...items, newItem]);
 
-        setTicketCategories('')
+        setTicket_Category('')
         setDescription('')
-        setCoverDescription('')
+        setCover_Description('')
         setPrice('')
-        setTotalQuantity('')
+        set_Total_Quantity('')
 
         event.target.value = null
     }
 
-    function submitPricing(){
-        eventInfoValue.push(items)
-        setEventStepper(eventStepper + 1)
-    }
+    function submitPricing() {
+        const price_info = items;
+        eventInfoValue.ticket_information = price_info;
+        console.log(eventInfoValue)
+        setEventStepper(eventStepper + 1);
+      }
+      
     
   return (
     <div className='mt-0 mt-md-4 pl-md-2 pr-lg-5 pr-md-2'>
             <div className='col p-0'>
             <label className='ml-2 mb-1'>Ticket Categories:</label>
-            <Input name="ticket_category" placeholder="Eg:- Male Stag" id="ticket_category" value={ticketCategories} handleChange={event=>setTicketCategories(event.target.value)}></Input>
+            <Input name="ticket_category" placeholder="Eg:- Male Stag" id="ticket_category" value={ticket_category} handleChange={event=>setTicket_Category(event.target.value)}></Input>
             </div>
             <div className='d-md-flex'>
                 <div className='col-lg-6 px-0 pr-md-3'>
                 <label className='ml-2 mb-1'>Cover Description:</label>
-                <Input name="ticket_category" placeholder="Eg:- No Cover" id="ticket_category" value={coverDescription} handleChange={event=>setCoverDescription(event.target.value)}></Input>
+                <Input name="ticket_category" placeholder="Eg:- No Cover" id="ticket_category" value={cover_description} handleChange={event=>setCover_Description(event.target.value)}></Input>
                 </div>
                 <div  className='col-lg-6 px-0 pl-md-3'>
                 <label className='ml-3 mb-1'>Description:</label>
@@ -55,7 +58,7 @@ export default function PromoterPricing() {
                 </div>
                 <div  className='col-lg-6 px-0 pl-md-3'>
                 <label className='ml-3 mb-1'>Total Quantity:</label>
-                <Input name="total_quantity" type="number" placeholder="Eg:- 100" id="total_quantity" value={totalQuantity} handleChange={event=>setTotalQuantity(event.target.value)}></Input>
+                <Input name="total_quantity" type="number" placeholder="Eg:- 100" id="total_quantity" value={total_quantity} handleChange={event=>set_Total_Quantity(event.target.value)}></Input>
                 </div>
             </div>
         <div className='d-md-flex justify-content-between my-3 col p-0'>
@@ -77,15 +80,15 @@ export default function PromoterPricing() {
                   {items?.map((identity, fields)=>{
                       return <tr key={fields}>
                         <td style={{alignItems: "center", width: "33%", fontWeight: "400"}}>
-                        <b style={{display: "block"}}>{identity.ticketCategories}</b>
-                        <span style={{display: "block"}}>{identity.coverDescription}</span>
+                        <b style={{display: "block"}}>{identity.ticket_category}</b>
+                        <span style={{display: "block"}}>{identity.cover_description}</span>
                         <span style={{display: "block"}}>{identity.description}</span>
                         </td>
                         <td>
                             <span>{identity.price}</span>
                         </td>
                         <td>
-                            <span>{identity.totalQuantity}</span>
+                            <span>{identity.total_quantity}</span>
                         </td>
                         </tr>
                     })}

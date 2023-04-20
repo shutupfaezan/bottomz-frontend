@@ -66,6 +66,12 @@ const formatDate = (dateStr) => {
             <b className='px-md-2 px-2 ml-2'>{formatDate(date)}</b>
             <div className='d-md-flex w-100 px-md-2'>
               {objects.map((identity, index) => {
+               const formatDate = (dateStr) => {
+                const [day, month, year] = dateStr.split("-");
+                const date = new Date(year, month - 1, day);
+                const options = { day: 'numeric', month: 'short' };
+                return date.toLocaleDateString('en-US', options);
+              }           
                return(
                 <>
                <div className='col-md-6 p-2 w-100' key={index} onClick={()=>navigate(`${identity.event_name}`)}>
@@ -74,7 +80,7 @@ const formatDate = (dateStr) => {
                     <div className='overflow-auto col'>
                         <div  className='text-truncate overflow-hidden'><b>{identity.event_name}</b></div>
                         <div className='d-flex overflow-auto align-items-center'><div className="overflow-hidden text-truncate" style={{fontSize: "0.7rem", fontWeight: "400"}}>{identity.event_venue}</div></div>
-                        <div className='d-flex'><div style={{fontSize: "0.7rem", fontWeight: "400"}}>{identity.timings} • {identity.date}</div></div>
+                        <div className='d-flex'><div style={{fontSize: "0.7rem", fontWeight: "400"}}>{identity.timings} • {formatDate(identity.date)}</div></div>
                         <div className='d-flex align-items-center'><div style={{fontSize: "0.7rem", fontWeight: "400"}}>{identity.price_range}</div></div>
                     </div>
                 </div>

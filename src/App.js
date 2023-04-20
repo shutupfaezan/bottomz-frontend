@@ -19,6 +19,7 @@ import PromoterOngoingOrders from './components/PromoterComponents/PromoterOngoi
 import PromoterEventStat from './components/PromoterComponents/PromoterEventStat';
 import TermsConditions from './components/UserComponents/TermsConditions';
 import PrivacyPolicy from './components/UserComponents/PrivacyPolicy';
+import TicketOutput from './components/UserComponents/TicketOutput';
 
 
 function App() {
@@ -38,8 +39,8 @@ function App() {
         </Route>
         <Route exact path="all-events/:event_name" element={<SingularEvents/>}>
         </Route>
-        {/* <Route exact path="all-events/:event_name/:order_id" element={<Checkout/>}>
-        </Route> */}
+        <Route exact path="all-events/:event_name/confirmation" element={<TicketOutput/>}>
+        </Route>
         <Route exact path="/host-with-us" element={<HostWithUs/>}>
         </Route>
         <Route exact path="/all-events/:event_name/checkout" element={<Checkout/>}>

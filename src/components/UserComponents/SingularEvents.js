@@ -8,6 +8,7 @@
   import Footer from "../../common/Footer"
   import GlobalHeader from '../../common/GlobalHeader';
   import AttendeeModal from '../../common/AttendeeModal';
+  import "../../css/SingularEvent.css"
 
   export default function SingularEvents() {
       const {setShow, setInputModal} = useContext(SingularContext);
@@ -78,7 +79,7 @@
             <h1 className='primary-header ml-2'>Ticket Info</h1>
             {ticketConfig?.[0] ? <div>
               <table className="table">
-                  <tbody>
+                  <tbody id="tickselect">
                     {ticketConfig?.map((identity, fields)=>{
                         return <QuantityFields identity={identity} key={fields} index={fields}></QuantityFields>
                       })}

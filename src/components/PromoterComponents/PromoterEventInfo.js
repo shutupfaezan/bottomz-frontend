@@ -7,7 +7,6 @@ import { SingularContext } from '../../contexts/Context';
 
 
 export default function PromoterEventInfo() {
-    console.log(window.location.hash)
   const { eventInfoValue , setEventStepper, eventStepper } = useContext(SingularContext);
   const [selectedFile, setSelectedFile] = useState(null);
     const [arr, setArr] = useState(['']);
@@ -29,23 +28,24 @@ export default function PromoterEventInfo() {
             date: "",
             timings: "",
             genre: "",
-            price: "",   
+            price_range: "",   
             description: "",    
             featuring: "",
-            poster: null,
+            images_url: "",
             terms: []
         }
     const formik = useFormik({
         initialValues
     })
 
-    function SubmitEventInfo(event){
-        event.preventDefault()
-        formik.values.terms = [...arr]
-        formik.values.poster = selectedFile
-        eventInfoValue.push(formik.values)
-        setEventStepper( eventStepper + 1)
-    }
+    function SubmitEventInfo(event) {
+        event.preventDefault();
+        
+        const eventInfo = { ...formik.values, terms: [...arr], images_url: selectedFile };
+        eventInfoValue.event_information = eventInfo;
+        console.log(eventInfoValue)
+        setEventStepper(eventStepper + 1);
+      }
   return (
     <div className='mt-0 mt-md-4 pl-md-2 pr-lg-5 pr-md-2'>
             <form className='d-flex flex-column' style={{height: "100%", fontSize: "14px", fontWeight: "400 !important"}}>
@@ -88,7 +88,7 @@ export default function PromoterEventInfo() {
                 <div className='d-md-flex'>
                     <div className='d-flex flex-column col-lg-6  px-0 pr-md-3'>
                         <label className='ml-2 mb-1' style={{fontWeight: "400"}}>Price Range:</label>
-                        <Input name="price" handleChange={formik.handleChange} value={formik.values.price} placeholder="Eg: 1000 - 3000"></Input>
+                        <Input name="price_range" handleChange={formik.handleChange} value={formik.values.price_range} placeholder="Eg: 1000 - 3000"></Input>
                     </div>  
                     <div className='d-flex flex-column col-lg-6 px-0 pl-md-3'>
                         <label className='ml-2 mb-1' style={{fontWeight: "400"}}>Genre:</label>

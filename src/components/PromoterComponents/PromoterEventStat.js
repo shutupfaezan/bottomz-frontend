@@ -9,10 +9,7 @@ import 'react-tabs/style/react-tabs.css';
 
 export default function PromoterEventStat() {
   const params = useParams()
-  const [show, setShow] = useState(false)
-  const handleClose = () => setShow(false);
     const [eventData, setEventData] = useState()
-    // const [activeKey, setActiveKey] = useState(0);
     const [orderData, setOrderData] = useState()
     useEffect(() => {
       const fetchEventData = async () => {
@@ -53,8 +50,12 @@ export default function PromoterEventStat() {
     const commisionPrice = totalPaidPrice * 0.02
 
   return (
+  <div>
+    <nav className="navbar navbar-expand navbar-light align-items-center headerback w-100 py-2 py-md-3 px-3 px-lg-5 px-md-3" style={{backgroundColor: "black"}}>
+      <a className="navbar-brand ml-lg-4 ml-2 py-3 py-md-1 text-white" style={{fontWeight: "800"}} href="/"> <h3 className="primary-header m-0">BottmzUp</h3></a>
+      </nav>
     <div className='pt-4 w-100'>
-      <SearchBar show={show} handleClose={handleClose} orders={()=>orderData}/>
+    <SearchBar orders={()=>orderData}/>
       <div className='d-md-flex flex-md-column flex-lg-row my-5 px-md-5 px-0'>
         <div className='d-md-flex col-lg-8 p-0'>
         <div className="p-3 ml-md-5 mr-md-4 mx-auto" style={{maxWidth: "100%", border: "2px solid black", minWidth: "fit-content", display: "flex", borderRadius: "10px", width: "fit-content", height: "fit-content"}}>  
@@ -70,78 +71,66 @@ export default function PromoterEventStat() {
           })}
         </div>
       </div>
-      <div className='col-lg-4 d-flex flex-column p-0 mt-5 ml-auto' style={{height: "fit-content", border: "2px solid #49cc90"}}>
+     <div className='w-100 d-flex flex-lg-column flex-md-row flex-column mt-md-5 mt-lg-0 p-3'>
+      <div className='w-100 d-flex  mr-3' style={{height: "100%"}}>
+        <div className='col col-lg d-flex flex-column mb-3 mr-3 p-4' style={{color: "white", background: "black", borderRadius: "10px"}}><h3 className='mt-auto'>{totalPaidPrice}</h3><p className='mb-0' style={{fontSize: "14px", fontWeight: "400"}}>Total Revenue</p></div>
+        <div className='col col-lg d-flex flex-column mb-3 mr-lg-3 p-4' style={{color: "white", background: "black", borderRadius: "10px"}}><h3 className='mt-auto'>{totalTicks}</h3><p className='mb-0' style={{fontSize: "14px", fontWeight: "400"}}>Paid Tickets</p></div>
+      </div>
+      <div className='w-100 d-flex' style={{height: "100%"}}>
+        <div className='col col-lg d-flex flex-column mb-3 mr-3 p-4' style={{color: "white", background: "black", borderRadius: "10px"}}><h3 className='mt-auto'>{commisionPrice}</h3><p className='mb-0' style={{fontSize: "14px", fontWeight: "400"}}>Commission</p></div>
+        <div className='col col-lg d-flex flex-column mb-3 mr-lg-3 p-4' style={{color: "white", background: "black", borderRadius: "10px"}}><h3 className='mt-auto'>{upaidQty}</h3><p className='mb-0' style={{fontSize: "14px", fontWeight: "400"}}>Unpaid Tickets</p></div>
+      </div>
+    </div>
 
-        <div className='d-flex w-100' style={{height: "fit-content", borderRadius: "20px 20px"}}>
-          <div className="col-lg-6 d-flex flex-column py-4 justify-content-center align-items-center" style={{background: "#ecfaf4", height: "fit-content"}}>
-          <small style={{color: "#49cc90"}}>Total Rev</small>
-          <small>{totalPaidPrice}</small>
-        </div>
-          <div className="col-lg-6 d-flex flex-column py-4 justify-content-center align-items-center" style={{background: "#ecfaf4", height: "fit-content"}}>
-          <small style={{color: "#49cc90"}}>Tick Bought (P)</small>
-          <small>{totalTicks}</small>
-        </div>
-        </div>
-        <div className='d-flex w-100' style={{height: "fit-content",  borderRadius: "20px 20px"}}>
-          <div className="col-lg-6 d-flex flex-column py-4 justify-content-center align-items-center" style={{background: "#ecfaf4", height: "fit-content"}}>
-          <small style={{color: "#49cc90"}}>2% Comm</small>
-          <small>{commisionPrice}</small>
-        </div>
-          <div className="col-lg-6 d-flex flex-column py-4 justify-content-center align-items-center" style={{background: "#ecfaf4", height: "fit-content"}}>
-          <small style={{color: "#49cc90"}}>Unpaid Ticks</small>
-          <small>{upaidQty}</small>
-        </div>
-        </div>
       </div>
-      </div>
-        <div className='overflow-scroll mx-md-5'>
+      <div className='overflow-scroll mx-md-5 d-flex d-md-block'>
         <Tabs>
-  <TabList style={{padding: "5px", marginBottom: "3rem"}}>
-    {controlled_orders?.map((identity, index) => (
-      <Tab key={index}>{identity}</Tab>
-    ))}
-  </TabList>
-  {controlled_orders?.map((identity, index) => {
-    const filteredOrders = orderData?.filter(
-      (order) => order.ticket_category === identity
-    );
-    return (
-      <TabPanel key={index}>
-        <table className="table">
-          <thead style={{color: "white", background: "black"}}>
-            <tr>
-              <th>Order Id</th>
-              <th>UserName</th>
-              <th>Quantity</th>
-              <th>Bill Total</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            {filteredOrders?.map((order, key) => (
-              <tr key={key}>
-                <td>{order.order_id}</td>
-                <td>{order.user_name}</td>
-                <td>{order.quantity}</td>
-                <td>{order.total_price}</td>
-                <td
-                  style={{
-                    color:
-                      order?.status === "Unpaid" ? "#b10808" : "green",
-                  }}
-                >
-                  {order.status}
-                </td>
-              </tr>
+          <TabList style={{padding: "5px", marginBottom: "3rem"}}>
+            {controlled_orders?.map((identity, index) => (
+              <Tab key={index}>{identity}</Tab>
             ))}
-          </tbody>
-        </table>
-      </TabPanel>
-    );
-  })}
-</Tabs>
-
-        </div>
+          </TabList>
+          {controlled_orders?.map((identity, index) => {
+            const filteredOrders = orderData?.filter(
+              (order) => order.ticket_category === identity
+            );
+            return (
+              <TabPanel key={index}>
+                <table className="table">
+                  <thead style={{color: "white", background: "black"}}>
+                    <tr>
+                      <th>Order Id</th>
+                      <th>UserName</th>
+                      <th>Quantity</th>
+                      <th>Bill Total</th>
+                      <th>Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {filteredOrders?.map((order, key) => (
+                      <tr key={key}>
+                        <td>{order.order_id}</td>
+                        <td>{order.user_name}</td>
+                        <td>{order.quantity}</td>
+                        <td>{order.total_price}</td>
+                        <td
+                          style={{
+                            color:
+                              order?.status === "Unpaid" ? "#b10808" : "green",
+                          }}
+                        >
+                          {order.status}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </TabPanel>
+            );
+          })}
+        </Tabs>
+      </div>
+    </div>
     </div>
   )
 }

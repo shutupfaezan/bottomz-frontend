@@ -1,48 +1,82 @@
   import axios from 'axios'
   import React from 'react'
+  import { useNavigate } from 'react-router-dom';
   import GlobalHeader from '../../common/GlobalHeader'
   import { useState } from 'react';
   import { useEffect } from 'react'
   import { useParams } from "react-router-dom";
-  import Footer from "../../common/Footer"
-
+  import Footer from "../../common/Footer"  
+  // import {SingularContext} from '../../contexts/Context';
+  
+  
   export default function Checkout() {
+    // const {setOrderId} = useContext(SingularContext);
+    const [updatedCheckoutInfo, setUpdatedCheckoutInfo] = useState()
     const savedCheckoutInfo = JSON.parse(sessionStorage.getItem('checkoutData'));
     const [billInfo] = useState(savedCheckoutInfo?.order_details);
     const [attendeeInfo] = useState(savedCheckoutInfo?.attendeeValue);
     const [eventInfo, setEventInfo] = useState()
+    const [isLoading, setisLoading] = useState(false);
       const params = useParams()
       const bill = async ()=> { return await axios.get(`https://nightlife-2710.herokuapp.com/events/${params?.event_name}`)}
       useEffect(() => {
-        bill()
-        .then((response) => {
-          setEventInfo(response?.data?.event_data)
+        bill().then((response) => {
+          setEventInfo(response?.data?.event_data);
+          const newCheckout = {
+            ...savedCheckoutInfo,
+            request: {
+              "event_name": response?.data?.event_data?.event_name,
+              "event_venue": response?.data?.event_data?.event_venue,
+              "timings": response?.data?.event_data?.timings,
+              "date": response?.data?.event_data?.date,
+              "images_url": response?.data?.event_data?.images_url
+            }
+          };
+          setUpdatedCheckoutInfo(newCheckout)
         })
         .catch((error) => {
           console.log(error);
         });
         // eslint-disable-next-line
       }, [])
+
       const date = new Date(eventInfo?.date);
       const day = date.getDate();
       const month = date.toLocaleString('default', { month: 'long' });
       const year = date.toLocaleString('default', { year: 'numeric' });
       const formattedDate = `${day} ${month} ${year}`;
-
+      const navigate = useNavigate()
       let sum = 0
       for (var i = 0; i < billInfo?.length; i++) {
         sum += parseInt(billInfo?.[i]?.total_price);
       }
 
-      const paymentObj ={
-        access_token: sessionStorage?.token,
-        purpose: eventInfo?.event_name,
-        amount: sum
-      }
-    function paymentsCreate(){
-      axios.post(`https://nightlife-2710.herokuapp.com/payments/create`, paymentObj)
+      // const paymentObj ={
+      //   access_token: sessionStorage?.token,
+      //   purpose: eventInfo?.event_name,
+      //   amount: sum
+      // }
+    // function paymentsCreate(){
+    //   axios.post(`https://nightlife-2710.herokuapp.com/payments/create`, paymentObj)
+    //   .then((response)=>{
+    //     window.location.href = response?.data?.[0];
+    //   })
+    // }
+
+
+
+
+    function CreateOrder(){
+      setisLoading(true)
+      axios.post(`https://nightlife-2710.herokuapp.com/orders?event_name=${params?.event_name}&access_token=${sessionStorage.token}`, updatedCheckoutInfo)
       .then((response)=>{
-        window.location.href = response?.data?.[0];
+        setisLoading(false)
+        sessionStorage.setItem('order_id', response?.data)
+        navigate(`/all-events/${params.event_name}/confirmation`)
+      })
+      .catch((error)=>{
+        setisLoading(false)
+        console.log(error)
       })
     }
     return (
@@ -118,9 +152,15 @@
                 <div className='ml-auto mr-4' style={{fontSize: "20px", color: "crimson"}}>₹{identity.total_price}</div></div>
               })} 
             </div>
-            <div className='d-flex align-items-center mb-2 p-3' style={{background: "#F6F7F8", borderRadius: "10px"}}><p className='m-0 d-flex flex-column'>Total<small style={{fontSize: "12px", fontWeight: "100"}}>(Tax Exclusive)</small></p>
-                <div className='ml-auto mr-2' style={{fontSize: "20px"}}>₹{sum}</div></div>
-          <button onClick={paymentsCreate} className='btn col-lg-12 mt-2 text-white' style={{background: "black", borderRadius: "10px"}}>Pay Now</button>
+            <div className='d-flex align-items-center mb-2 p-3' style={{background: "#F6F7F8", borderRadius: "10px"}}>
+              <p className='m-0 d-flex flex-column'>Total<small style={{fontSize: "12px", fontWeight: "100"}}>(Tax Exclusive)</small></p>
+              <div className='ml-auto mr-2' style={{fontSize: "20px"}}>₹{sum}</div>
+            </div>
+            <button onClick={CreateOrder} className='btn col-lg-12 mt-2 text-white' style={{background: "black", borderRadius: "10px"}}>
+              {!isLoading && <span>Pay Now</span>}
+              {isLoading && (<span id="login-loader-span" className="spinner-border spinner-border-sm mx-1" role="status" aria-hidden="true"></span>)}
+              {isLoading && (<span id="login-loading-text-span">Loading</span>)}
+            </button>
             </div>
           </div>
         </div>

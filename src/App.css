@@ -257,19 +257,6 @@ input::-webkit-inner-spin-button {
   opacity: 1 !important;
 }
 
-@media (max-width: 768px) {
-  tr td:first-child,
-tr td:nth-child(2) {
-  display: inline-block;
-  border-bottom: none !important;
-}
-
-tr td:nth-child(3) {
-  display: block;
-  border: none !important
-}
-}
-
 option {
   direction: rtl;
 }

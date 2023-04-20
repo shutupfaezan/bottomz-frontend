@@ -22,13 +22,14 @@ export default function SingularClubs() {
     });
     //eslint-disable-next-line
   }, []);
-
+  
   const navigate = useNavigate()
+  console.log(clubVariable)
   return (
        <>
     <div className='position-relative'>
     <GlobalHeader/>
-    <div className="" style={{height: "100px", position: "relative", background: `url(${clubVariable?.Club_info?.images_url}) center/cover no-repeat`, filter: "blur(3px)"}}></div>
+    <div className="" style={{height: "150px", position: "relative", background: `url(${clubVariable?.Club_info?.images_url}) center/cover no-repeat`}}></div>
     <div className='d-flex justify-content-center w-100' style={{top: "-70px", height: "100%", position: "relative"}}>
     <div className='col-lg-6 col-md-8 p-2 w-100'>
         <div className='p-md-3 p-3 w-100 d-flex shadow-sm' style={{borderRadius: "10px", background: "white", border: "2px solid black"}}>
@@ -46,9 +47,16 @@ export default function SingularClubs() {
           <div className='m-2 d-flex justify-content-center align-items-center' onClick={()=>setActiveTab(2)} style={{height: "75px", width: "100px", border: "2px solid black", borderRadius: "10px", background: activeTab === 2 ? "black" : "white", color: activeTab === 2 ? "white" : "black"}}>Photos</div>
           <div className='m-2 d-flex justify-content-center align-items-center' onClick={()=>setActiveTab(3)} style={{height: "75px", width: "100px", border: "2px solid black", borderRadius: "10px", background: activeTab === 3 ? "black" : "white", color: activeTab === 3 ? "white" : "black"}}>Menu</div>
         </div>
-        <div className='d-flex'>
+        <div>
         {activeTab === 1 && <div className='d-lg-flex justify-content-center w-100 flex-wrap mt-3'>
-        <p className='w-100 d-flex justify-content-center'>Upcoming Events</p> 
+        <p className='w-100 d-flex justify-content-center'>Upcoming Events</p>
+        {clubVariable?.Event_info?.length === 0 && 
+        <div className='w-100 px-4'>
+        <div className='w-100 d-flex justify-content-center align-items-center flex-column' style={{background: "#E8EBEE", height: "250px", borderRadius: "10px"}}>
+          <p className='px-2 text-center'>Sorry! No events available at the moment</p>
+        </div>
+        </div>
+        }
         {clubVariable && clubVariable?.Event_info?.map((fields, index )=> {
                 return (
                   <div className='col-lg-10 col p-2 w-100' key={index} onClick={()=>{navigate(`/all-events/` + fields.event_name)}}>
@@ -81,7 +89,7 @@ export default function SingularClubs() {
             </div>}
             {activeTab === 3 && <div className='mt-3 d-flex justify-content-center flex-wrap'>
               <p className='w-100 d-flex justify-content-center'>Menu Photos</p>
-              <div className='d-flex flex-wrap'>
+              <div className='d-flex flex-wrap w-100'>
                {clubVariable && clubVariable?.menu_images_url?.map((fields, index )=> {
                 return (
                   <>

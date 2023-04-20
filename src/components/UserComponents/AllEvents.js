@@ -101,7 +101,7 @@
             <b className='px-md-5 px-2 ml-2'>{formatDate(date)}</b>
             <div className='d-md-flex w-100 px-md-5'>
               {objects.map((obj, index) => (
-                  <RenderEvents identity={obj} index={index}></RenderEvents>
+                  <RenderEvents identity={obj} index={index} key={index}></RenderEvents>
               ))}
             </div>
           </div>

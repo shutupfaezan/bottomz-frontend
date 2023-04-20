@@ -8,14 +8,19 @@ export default function QuantityFields(props) {
 
   const handleInputChange = (event, index) => {
     const newInputValues = [...inputValues];
-    newInputValues[index] = {
-      ...newInputValues[index],
-      "ticket_categories": props.identity.ticket_category,
-      "cover_description": props.identity.cover_description,
-      "description": props.identity.description,
-      "quantity": event.target.value,
-      "total_price": event.target.value * props.identity.price
-    };
+    const newQuantity = event.target.value;
+    if (newQuantity > 0) {
+      newInputValues[index] = {
+        ...newInputValues[index],
+        "ticket_categories": props.identity.ticket_category,
+        "cover_description": props.identity.cover_description,
+        "description": props.identity.description,
+        "quantity": newQuantity,
+        "total_price": newQuantity * props.identity.price
+      };
+    } else {
+      newInputValues.splice(index, 1);
+    }
     setInputValues(newInputValues);
   };
 

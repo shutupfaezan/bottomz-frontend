@@ -40,7 +40,6 @@ export default function AttendeeModal() {
     sessionStorage.setItem('checkoutData', JSON.stringify(plus));
     setisLoading(false)
     navigate(`checkout`)
-    // axios.post(`https://nightlife-2710.herokuapp.com/orders?event_name=${singleEvent?.event_name}&access_token=${sessionStorage.token}`, plus)
     }
   return (
     <Modal show={inputModal} onHide={handleClose} centered>
