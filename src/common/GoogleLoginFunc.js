@@ -28,7 +28,7 @@ export default function GoogleLoginFunc() {
     contact: 0,
   }
 
-    byGoogle && axios.post("https://nightlife-2710.herokuapp.com/registration", values).then((response)=>{localStorage.setItem('token', response.data.access_token)})
+    byGoogle && axios.post("https://nightlife-2710.herokuapp.com/registration", values).then((response)=>{console.log(response)})
 
   // var decoded = jwt_decode(credentialResponse);
   return (

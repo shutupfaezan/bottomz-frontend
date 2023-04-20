@@ -50,7 +50,7 @@ export default function PromoterLogin() {
               </div>
             <div className='col-lg-10 p-0 py-0 mb-0 py-md-1 d-flex flex-column'> 
               <label className='mb-1' style={{fontSize: "14px"}}>Password:</label>
-              <input className="p-lg-2 p-2" name="password" style={{border: "2px solid black", borderRadius: "10px"}} value={formik.values.password} id="password"  onChange={formik.handleChange}></input>
+              <input className="p-lg-2 p-2" name="password" type="password" style={{border: "2px solid black", borderRadius: "10px"}} value={formik.values.password} id="password"  onChange={formik.handleChange}></input>
             </div>
             <div className='col-lg-10 p-0 py-3 mb-0 mt-1 mt-lg-3 py-md-1 d-flex flex-column'>
               <button onClick={formik.handleSubmit} className='btn p-lg-2 p-3 text-white' style={{background: "black", borderRadius: "10px"}}>

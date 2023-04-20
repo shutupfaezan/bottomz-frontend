@@ -25,7 +25,7 @@ export default function Hamburger() {
 
   return (
     <>
-    <i class="fa-solid fa-bars  align-items-center justify-content-end" style={{ color: location.pathname === '/' ? (scroll > 0 ? "black" : "white") : "black", fontSize: "30px", cursor: 'pointer'}} data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample"></i>
+    <i className="fa-solid fa-bars  align-items-center justify-content-end" style={{ color: location.pathname === '/' ? (scroll > 0 ? "black" : "white") : "black", fontSize: "30px", cursor: 'pointer'}} data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample"></i>
 
       <div className="offcanvas offcanvas-end" style={{width: "100%", height: "auto"}} tabIndex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel"  data-bs-no-jquery  data-bs-backdrop="false" data-bs-scroll="false">
         <div className="offcanvas-header" style={{justifyContent: "start"}}>
@@ -43,7 +43,6 @@ export default function Hamburger() {
             <li style={{cursor: "pointer", fontSize: "20px", color: "#2b2a35", listStyle: "none", fontWeight: "100"}}>Your Tickets</li>
             {sessionStorage.token && <p onClick={handleLogout} style={{color: "red", cursor: "pointer", fontSize: "19px"}}>Log Out</p>}
           </ul>
-          dolll
         </div>
       </div>
     </>
