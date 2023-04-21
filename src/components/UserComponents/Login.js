@@ -41,7 +41,7 @@ export default function Login() {
         </h3>
         <div className='d-flex mx-auto'>
           <GoogleLoginFunc/>
-          <button type="button" className="btn btn-light" style={{border: "2px solid darkGray", borderRadius: "10px"}}><img src={process.env.PUBLIC_URL + "/images/apple-icon.png"} width="25px" alt=""/>Sign In</button>
+          {/* <button type="button" className="btn btn-light" style={{border: "2px solid darkGray", borderRadius: "10px"}}><img src={process.env.PUBLIC_URL + "/images/apple-icon.png"} width="25px" alt=""/>Sign In</button> */}
         </div>
         <hr className='rounded mx-auto mt-3 hrsp' style={{width: "55%"}}/>
         <div>
