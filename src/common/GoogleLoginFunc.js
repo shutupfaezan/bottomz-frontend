@@ -1,11 +1,10 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext } from 'react'
 import { useGoogleLogin } from '@react-oauth/google';
 import { SingularContext } from '../contexts/Context';
 import axios from 'axios';
 
 export default function GoogleLoginFunc() {
   const {setShow} = useContext(SingularContext);
-  const [byGoogle, setByGoogle] = useState()
 
   const onSuccess = async (tokenResponse) => {
     try {
@@ -14,7 +13,6 @@ export default function GoogleLoginFunc() {
           "Authorization": `Bearer ${tokenResponse.access_token}`
         }
       })
-      setByGoogle(data?.data)
       const values={
         user_name: data?.data?.name,
         email_id: data?.data?.email,

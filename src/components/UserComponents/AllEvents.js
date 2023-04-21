@@ -4,7 +4,7 @@
   import RenderEvents from '../UserComponents/RenderEvents'
   import axios from 'axios'
   import "../../css/AllEvents.css"
-  import { BrowserView, MobileOnlyView, TabletView } from 'react-device-detect';
+import CarouselWithInfo from '../../common/CarouselWithInfo'
 
   export default function AllEvents() {
   const [searchTerm, setSearchTerm] = useState('')
@@ -48,54 +48,27 @@
     const options = {year: 'numeric', month: 'long', day: 'numeric', weekday: "long" }
     return date.toLocaleDateString('en-US', options)
   }
+
     return (
       <>
       <div className='100vh position-relative'>
       <GlobalHeader/>
-      <div className='svgbg mb-5 mb-2 mb-md-3' style={{height: "200px"}}></div>
-      <BrowserView>
-<div className='d-md-flex justify-content-between position-absolute align-items-center w-100 px-4' style={{top: '125px'}}>
-        <div className='d-flex justify-content-center px-5 mx-lg-4 mx-md-2'>
-          <div className='primary-header ml-2' style={{color: "transparent", WebkitTextStroke: "1px white", fontSize: "40px"}}>All</div>
-          <div className='primary-header ml-2 text-white' style={{fontSize: "40px"}}>Events</div>
-        </div>
-        <div className='d-flex col-lg-4 col-md-6 p-0'>
-          <form className="d-flex mt-3 mb-3 w-100 mx-md-4" role="search">
-            <input className="form-control py-4" type="search" style={{borderRadius: "20px", fontSize: "20px", border: "0.5px solid black", paddingLeft: "45px"}} onChange={(event)=>setSearchTerm(event.target.value)} placeholder="Search for ..." aria-label="Search"/>
-            <i className="bi bi-search position-relative" style={{float: "left", right: "95%", borderRadius: "20px", top: "10px", width: "0px", fontSize: "20px"}}></i>
-          </form>
-        </div>
-</div>
-</BrowserView>
-<TabletView>
-<div className='d-md-flex justify-content-between position-absolute align-items-center w-100 px-4' style={{top: '125px'}}>
-        <div className='d-flex justify-content-center px-5 mx-lg-4 mx-md-2'>
-          <div className='primary-header ml-2' style={{color: "transparent", WebkitTextStroke: "1px white", fontSize: "40px"}}>All</div>
-          <div className='primary-header ml-2 text-white' style={{fontSize: "40px"}}>Events</div>
-        </div>
-        <div className='d-flex col-lg-4 col-md-6 p-0'>
-          <form className="d-flex mt-3 mb-3 w-100 mx-md-4" role="search">
-            <input className="form-control py-4" type="search" style={{borderRadius: "20px", fontSize: "20px", border: "0.5px solid black", paddingLeft: "45px"}} onChange={(event)=>setSearchTerm(event.target.value)} placeholder="Search for ..." aria-label="Search"/>
-            <i className="bi bi-search position-relative" style={{float: "left", right: "95%", borderRadius: "20px", top: "10px", width: "0px", fontSize: "20px"}}></i>
-          </form>
-        </div>
+      <div style={{height: "px", background: "black", color: "white"}}>
+        <CarouselWithInfo items={recentEvents}></CarouselWithInfo>
       </div>
-</TabletView>
-<MobileOnlyView>
-<div className='d-md-flex justify-content-between position-absolute align-items-center w-100 px-4' style={{top: '100px'}}>
-        <div className='d-flex justify-content-center px-5 mx-lg-4 mx-md-2'>
-          <div className='primary-header ml-2' style={{color: "transparent", WebkitTextStroke: "1px white", fontSize: "40px"}}>All</div>
-          <div className='primary-header ml-2 text-white' style={{fontSize: "40px"}}>Events</div>
+      <div className='d-md-flex justify-content-between  align-items-center w-100 px-lg-5 px-md-4 mt-4 px-3'>
+        <div className='d-flex flex-md-column justify-md-content-center px-lg-4 px-md-3 mx-lg-4 mx-md-2'>
+          <div className='primary-header ml-2' style={{color: "transparent", WebkitTextStroke: "1px black", fontSize: "40px"}}>All</div>
+          <div className='primary-header ml-2' style={{fontSize: "40px", color: "black"}}>Events</div>
         </div>
-        <div className='d-flex col-lg-4 col-md-6 p-0'>
+        {/* <div className='d-flex col-lg-4 col-md-6 p-0'>
           <form className="d-flex mt-3 mb-3 w-100 mx-md-4" role="search">
             <input className="form-control py-4" type="search" style={{borderRadius: "20px", fontSize: "20px", border: "0.5px solid black", paddingLeft: "45px"}} onChange={(event)=>setSearchTerm(event.target.value)} placeholder="Search for ..." aria-label="Search"/>
             <i className="bi bi-search position-relative" style={{float: "left", right: "95%", borderRadius: "20px", top: "10px", width: "0px", fontSize: "20px"}}></i>
           </form>
-        </div>
+        </div> */}
       </div>
-</MobileOnlyView>
-      <div className="d-flex flex-wrap my-5">
+      <div className="d-flex flex-wrap my-3">
       {Object.entries(result)?.map(([date, objects]) => (
           <div className="w-100 px-lg-5" key={date}>
             <b className='px-md-5 px-2 ml-2'>{formatDate(date)}</b>
