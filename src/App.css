@@ -260,3 +260,7 @@ input::-webkit-inner-spin-button {
 option {
   direction: rtl;
 }
+
+.react-multi-carousel-list{
+  height: 100%;
+}
