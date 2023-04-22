@@ -264,3 +264,7 @@ option {
 .react-multi-carousel-list{
   height: 100%;
 }
+
+.active{
+  border: 5px solid white;
+}
