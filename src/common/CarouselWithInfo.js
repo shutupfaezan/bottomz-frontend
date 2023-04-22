@@ -1,4 +1,5 @@
-import React from "react";
+import { useRef, useEffect} from "react";
+import React, {useState} from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 
@@ -21,25 +22,41 @@ const responsive = {
 };
 
 const CarouselWithInfo = ({ items }) => {
+  const [activeThumbnail , setActiveThumbnail] = useState(0);
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const carouselRef = useRef(null);
+
+  useEffect(() => {
+    setActiveThumbnail(currentSlide);
+  }, [currentSlide]);
+
+  const goToSlide = (slideIndex) => {
+    carouselRef.current.goToSlide(slideIndex);
+    setCurrentSlide(slideIndex);
+  };
+
   return (
+    <>
     <Carousel
-      swipeable={false}
-      draggable={false}
-      showDots={true}
-      responsive={responsive}
-      ssr={true} // means to render carousel on server-side.
-      infinite={true}
-      autoPlay={true}
-      autoPlaySpeed={5000}
-      keyBoardControl={true}
-      arrows={false}
-      customTransition="all .5"
-      transitionDuration={500}
-      containerClass="carousel-container"
-      dotListClass="custom-dot-list-style"
-      itemClass="carousel-item-padding-40-px"
-    >
-      {items?.map((item) => {
+    ref={carouselRef}
+  swipeable={false}
+  draggable={false}
+  showDots={false}
+  responsive={responsive}
+  ssr={true}
+  infinite={true}
+  autoPlay={true}
+  autoPlaySpeed={5000}
+  keyBoardControl={true}
+  arrows={false}
+  customTransition="all .5"
+  transitionDuration={500}
+  containerClass="carousel-container"
+  dotListClass="custom-dot-list-style"
+  itemClass="carousel-item-padding-40-px"
+  beforeChange={(oldIndex, newIndex) => setCurrentSlide(newIndex)}
+>
+      {items?.map((item, index) => {
       const formatDate = (dateStr) => {
         const [day, month, year] = dateStr.split("-");
         const date = new Date(year, month - 1, day);
@@ -47,7 +64,7 @@ const CarouselWithInfo = ({ items }) => {
         return date.toLocaleDateString('en-US', options);
       }    
       return(
-        <div style={{height: '100%'}}>
+        <div  index={index} style={{height: '100%'}}>
           <div className="d-flex w-100 p-3 my-4">
             <div className="p-2 col-lg-4 col-12 col-md-5 mx-md-5 my-auto" style={{height: "230px", width: "100%", border: "7px solid white", borderRadius: "15px"}}>
               <div style={{background: `url(${item?.images_url}) no-repeat center/cover`, height: "100%", width: "100%", filter: "blur(3px)"}}></div>
@@ -59,13 +76,26 @@ const CarouselWithInfo = ({ items }) => {
               <p className="" style={{color: "white"}}><i class="fa-regular fa-calendar mr-2"></i>{item?.timings.slice(0,9)} • {formatDate(item?.date)}</p>
               <div><button className="btn btn-primary px-4 rounded-pill my-3 py-2" style={{background: "white", color: "black", fontWeight: "700"}}>See Now</button></div>
               </div>
-              <div className="col-lg-3">
-
+              <div className="col w-100">
+              <div className="w-100">
+                {items.map((item, index) => (
+                  <div
+                    key={item.id}
+                    className={currentSlide === index ? "active col-12" : "col-12"}
+                    onClick={() => goToSlide(index)}
+                  >
+                    <img src={item?.images_url} alt={item.title} />
+                  </div>
+                ))}
               </div>
+            </div>
+
           </div>
         </div>
         )})}
             </Carousel>
+           
+          </>
           );
         };
 
