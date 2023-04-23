@@ -1,4 +1,4 @@
-import { useRef, useEffect} from "react";
+import { useRef} from "react";
 import React, {useState} from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
@@ -7,29 +7,30 @@ const responsive = {
   desktop: {
     breakpoint: { max: 3000, min: 1024 },
     items: 1,
-    slidesToSlide: 1, // optional, default to 1.
+    slidesToSlide: 1,
   },
   tablet: {
     breakpoint: { max: 1024, min: 464 },
     items: 1,
-    slidesToSlide: 1, // optional, default to 1.
+    slidesToSlide: 1,
   },
   mobile: {
     breakpoint: { max: 464, min: 0 },
     items: 1,
-    slidesToSlide: 1, // optional, default to 1.
+    slidesToSlide: 1, 
   },
 };
 
 const CarouselWithInfo = ({ items }) => {
-  const [activeThumbnail , setActiveThumbnail] = useState(0);
   const [currentSlide, setCurrentSlide] = useState(0);
   const carouselRef = useRef(null);
 
-  useEffect(() => {
-    setActiveThumbnail(currentSlide);
-  }, [currentSlide]);
+  const beforeChangeHandler = (oldIndex, newIndex) => {
+    setCurrentSlide(newIndex.currentSlide - 1);
 
+  };
+  
+  
   const goToSlide = (slideIndex) => {
     carouselRef.current.goToSlide(slideIndex);
     setCurrentSlide(slideIndex);
@@ -54,7 +55,7 @@ const CarouselWithInfo = ({ items }) => {
   containerClass="carousel-container"
   dotListClass="custom-dot-list-style"
   itemClass="carousel-item-padding-40-px"
-  beforeChange={(oldIndex, newIndex) => setCurrentSlide(newIndex)}
+  beforeChange={beforeChangeHandler}
 >
       {items?.map((item, index) => {
       const formatDate = (dateStr) => {
@@ -77,14 +78,17 @@ const CarouselWithInfo = ({ items }) => {
               <div><button className="btn btn-primary px-4 rounded-pill my-3 py-2" style={{background: "white", color: "black", fontWeight: "700"}}>See Now</button></div>
               </div>
               <div className="col w-100">
-              <div className="w-100">
-                {items.map((item, index) => (
+              <div className="w-100 d-flex justify-content-center align-items-center flex-column" style={{height: "100%"}}>
+                {items?.map((item, index) => (
+                  <div className="col">
                   <div
                     key={item.id}
-                    className={currentSlide === index ? "active col-12" : "col-12"}
+                    className={currentSlide === index ? "active p-0 my-2 d-flex align-items-center" : " p-0 my-2 d-flex align-items-center"}
                     onClick={() => goToSlide(index)}
+                    style={{width: "96px ", height: "56px", borderRadius: '10px'}}
                   >
-                    <img src={item?.images_url} alt={item.title} />
+                    <img src={item?.images_url} alt={item.title} style={{width: "100%", height: "100%", borderRadius: "10px"}}/>
+                  </div>
                   </div>
                 ))}
               </div>
