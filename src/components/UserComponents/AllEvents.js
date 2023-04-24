@@ -53,7 +53,7 @@ import CarouselWithInfo from '../../common/CarouselWithInfo'
       <>
       <div className='100vh position-relative'>
       <GlobalHeader/>
-      <div style={{background: "black", color: "white"}}>
+      <div className="swipeImprove" style={{background: "black", color: "white"}}>
         <CarouselWithInfo items={recentEvents}></CarouselWithInfo>
       </div>
       <div className='d-md-flex justify-content-between  align-items-center w-100 px-lg-5 px-md-4 mt-4 px-3'>

@@ -1,5 +1,5 @@
 import React from 'react'
-// import axios from 'axios';
+import axios from 'axios';
 import { useContext } from 'react';
 import { SingularContext } from '../../contexts/Context';
 
@@ -8,18 +8,15 @@ export default function PromoterReviewInfo() {
   const uploaded = eventInfoValue?.event_information?.images_url
   const fileBlob = new Blob([uploaded], { type: uploaded?.type })
   function submitEventRequest(){
-    console.log(eventInfoValue)
-    // axios.post(`https://nightlife-2710.herokuapp.com/appli?promoter_access_token=${sessionStorage.token}`, eventInfoValue)
+    axios.post(`https://nightlife-2710.herokuapp.com/complete-promoter-hosting?promoter_access_token=${sessionStorage.token}`, eventInfoValue)
       .then(() => {
         try {
           const formData = new FormData();
-          formData.append('msg', eventInfoValue?.event_information?.images_url);
-          console.log(formData)
-          // axios.post(`https://nightlife-2710.herokuapp.com/event-poster?event_name=${eventInfoValue?.event_information?.event_name}`, formData);
+          formData.append('file', eventInfoValue?.event_information?.images_url);
+          axios.post(`https://nightlife-2710.herokuapp.com/event-poster?event_name=${eventInfoValue?.event_information?.event_name}`, formData);
         } catch (error) {
           console.log(error);
         }
-        // axios.post(``, eventInfoValue?.event_information?.images_url)
       })
   }
   
@@ -72,9 +69,9 @@ export default function PromoterReviewInfo() {
       </div>
       </div>
       <div className=' my-3'>
-      <label className="form-label mb-0 d-block mb-2" style={{fontWeight: "400"}}>Event images_url:</label>
+      <label className="form-label mb-0 d-block mb-2" style={{fontWeight: "400"}}>Event Poster:</label>
           {fileBlob && (
-            <img className='col-md-6 colml-0 p-2' src={URL.createObjectURL(fileBlob)} alt="Oops..Looks like you forgot to upload an event images_url" style={{border: "2px solid black", borderRadius: "20px"}}/>
+            <img className='col-md-6 colml-0 p-2' src={URL.createObjectURL(fileBlob)} alt="Oops..Looks like you forgot to upload an event poster" style={{border: "2px solid black", borderRadius: "20px"}}/>
           )}
         </div>
       <div className='d-md-flex mt-2'>
