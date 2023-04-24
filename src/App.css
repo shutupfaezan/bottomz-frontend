@@ -151,103 +151,6 @@ input::-webkit-inner-spin-button {
 .tab.active {
   border-bottom-color: blue;
 }
-.embla {
-  overflow: hidden !important;
-}
-.embla__container {
-  display: flex !important;
-}
-.embla__slide {
-  flex: 0 0 100% !important;
-  min-width: 0 !important;
-}
-
-.embla {
-  --slide-spacing: 1rem;
-  --slide-size: 100%;
-  --slide-height: 19rem;
-  padding: 1.6rem;
-}
-.embla__viewport {
-  overflow: hidden;
-}
-.embla__container {
-  display: flex;
-  flex-direction: row;
-  height: auto;
-  margin-left: calc(var(--slide-spacing) * -1);
-}
-.embla__slide {
-  flex: 0 0 var(--slide-size);
-  min-width: 0;
-  padding-left: var(--slide-spacing);
-  position: relative;
-}
-.embla__slide__img {
-  display: block;
-  height: var(--slide-height);
-  width: 100%;
-  object-fit: cover;
-}
-.embla__slide__number {
-  width: 4.6rem;
-  height: 4.6rem;
-  z-index: 1;
-  position: absolute;
-  top: 0.6rem;
-  right: 0.6rem;
-  border-radius: 50%;
-  background-color: rgba(var(--background-site-rgb-value), 0.85);
-  line-height: 4.6rem;
-  font-weight: 900;
-  text-align: center;
-  pointer-events: none;
-}
-.embla__slide__number > span {
-  color: var(--brand-primary);
-  background-image: linear-gradient(
-    45deg,
-    var(--brand-primary),
-    var(--brand-secondary)
-  );
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  font-size: 1.6rem;
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-}
-.embla__slide:nth-child(1) {
-  flex: 0 0 60%;
-}
-.embla__slide:nth-child(2) {
-  flex: 0 0 40%;
-}
-.embla__slide:nth-child(3) {
-  flex: 0 0 30%;
-}
-.embla__slide:nth-child(4) {
-  flex: 0 0 90%;
-}
-.embla__slide:nth-child(5) {
-  flex: 0 0 35%;
-}
-.embla__slide:nth-child(6) {
-  flex: 0 0 55%;
-}
-.embla__slide:nth-child(7) {
-  flex: 0 0 85%;
-}
-.embla__slide:nth-child(8) {
-  flex: 0 0 46%;
-}
-.embla__slide:nth-child(9) {
-  flex: 0 0 30%;
-}
 
 .offcanvas {
   opacity: 0 !important;
@@ -261,10 +164,48 @@ option {
   direction: rtl;
 }
 
-.react-multi-carousel-list{
-  height: 100%;
-}
 
 .activeCarousel{
   border: 5px solid white;
+}
+
+.react-multi-carousel-dot button{
+  background: black !important;
+}
+
+.react-multi-carousel-dot--active button{
+    width: 24px !important;
+    height: 11px !important;
+    background: white !important;
+    border-radius: 25% !important;
+}
+
+@media only screen and (max-width: 464px) {
+  .imageContainer {
+    height: 230px;
+  };
+}
+
+@media only screen and (min-width: 465px) {
+  .imageContainer {
+    height: 320px;
+  }
+}
+
+@media only screen and (max-width: 464px) {
+  .react-multiple-carousel__arrow{
+    display: none;
+  }
+}
+
+@media only screen and (min-width: 465px) {
+  .react-multi-carousel-dot-list{
+    display: none !important;
+  }
+}
+
+.carousel-container{
+  -webkit-transform: translateZ(0);
+transform: translateZ(0);
+
 }

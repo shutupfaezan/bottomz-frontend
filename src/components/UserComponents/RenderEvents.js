@@ -2,6 +2,12 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom';
 
 export default function RenderEvents(props) {
+  const formatDate = (dateStr) => {
+    const [year, month, day] = dateStr.split("-");
+    const date = new Date(year, month - 1, day);
+    const options = { day: 'numeric', month: 'short' };
+    return date.toLocaleDateString('en-US', options);
+  }    
   const navigate = useNavigate()
   return (
     <>
@@ -11,7 +17,7 @@ export default function RenderEvents(props) {
           <div className='overflow-auto col'>
             <div  className='text-truncate overflow-hidden'><b>{props.identity.event_name}</b></div>
             <div className='d-flex mt-1 overflow-auto align-items-center'><div className="overflow-hidden text-truncate" style={{fontSize: "0.7rem", fontWeight: "400"}}>{props.identity.event_venue}</div></div>
-            <div className='d-flex mt-1'><div style={{fontSize: "0.7rem", fontWeight: "400"}}>{props.identity.timings} • {props.identity.date}</div></div>
+            <div className='d-flex mt-1'><div style={{fontSize: "0.7rem", fontWeight: "400"}}>{props.identity.timings} • {formatDate(props.identity.date)}</div></div>
             <div className='d-flex mt-1 align-items-center'><div style={{fontSize: "0.7rem", fontWeight: "400"}}>{props.identity.price_range}</div></div>
           </div>
         </div>

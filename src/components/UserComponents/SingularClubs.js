@@ -14,7 +14,6 @@ export default function SingularClubs() {
   useEffect(() => {
     club()
     .then((response) => {
-      console.log(response)
       setClubVariable(response?.data[0])
     })
     .catch((error) => {
@@ -24,7 +23,6 @@ export default function SingularClubs() {
   }, []);
   
   const navigate = useNavigate()
-  console.log(clubVariable)
   return (
        <>
     <div className='position-relative'>
