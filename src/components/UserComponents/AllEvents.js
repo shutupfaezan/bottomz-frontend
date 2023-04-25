@@ -72,7 +72,7 @@ import CarouselWithInfo from '../../common/CarouselWithInfo'
       {Object.entries(result)?.map(([date, objects]) => (
           <div className="w-100 px-lg-5" key={date}>
             <b className='px-md-5 px-2 ml-2'>{formatDate(date)}</b>
-            <div className='d-md-flex w-100 px-md-5'>
+            <div className='d-md-flex w-100 px-md-5 flex-wrap'>
               {objects.map((obj, index) => (
                   <RenderEvents identity={obj} index={index} key={index}></RenderEvents>
               ))}
