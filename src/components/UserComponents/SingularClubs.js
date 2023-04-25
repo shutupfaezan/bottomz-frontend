@@ -44,7 +44,7 @@ export default function SingularClubs() {
     <div className='px-lg-5 px-md-4 d-flex flex-column flex-md-row pt-4'>
       <div className='changeHeightComponent col-md-6 col p-md-0'>
       <img style={{width: "100%", height:"auto", aspectRatio: "1/1",objectFit: "cover", borderRadius: "20px"}} src={clubVariable?.image_url?.[0]} alt=""></img>
-      <p className="px-3 py-1 rounded-pill" style={{position: "absolute", bottom: "0px", left: "30px", background: "white", fontSize: "14px"}}><i class="fa-regular fa-image mr-2"></i>Show all photos</p>
+      <p className="px-3 py-2 rounded-pill" style={{position: "absolute", bottom: "0px", left: "30px", background: "white", fontSize: "14px"}}><i class="fa-regular fa-image mr-2"></i>Show all photos</p>
       </div>
       <div className='col-md-6 col d-flex flex-wrap px-3 pb-3 pt-2 p-md-0'>
         <img className="col-6 pl-md-2 p-0 pr-0 pb-2" style={{width: "100%", height:"auto", aspectRatio: "1/1", objectFit: "cover", borderRadius: "20px"}} src={clubVariable?.image_url?.[4]} alt=""></img>
@@ -55,8 +55,8 @@ export default function SingularClubs() {
     </div>
     <div className='px-lg-5 px-md-2 d-flex flex-column flex-md-row mb-5'>
       <div className='col-lg-7 col-md-6 p-0 px-3'>
-      <p className='px-2 py-3 mb-0 pt-md-4 py-md-0 px-md-2'>Upcoming Events</p>
-        {clubVariable?.Event_info?.map((fields, index )=>{
+      <p className='px-2 py-3 mb-0 py-md-4 py-md-0 px-md-2'>Upcoming Events</p>
+        { clubVariable?.Event_info === [] ? clubVariable?.Event_info?.map((fields, index )=>{
               return (
                 <div className='col py-md-4 w-100 p-0' key={index} onClick={()=>navigate("/all-events/" + fields.event_name)}>
                 <div className='p-md-3 p-3 w-100 d-flex' style={{borderRadius: "10px", border: "2px solid black", boxShadow: "7px 7px #E8EBEE"}}>
@@ -70,7 +70,10 @@ export default function SingularClubs() {
                 </div>
               </div>
               )
-          })}
+          }) : 
+          <div className='col py-md-4 py-4 w-100 p-0 px-2' style={{background: "#F4F5F6", borderRadius: "10px"}}>
+                No events yet...try back after sometime?🥺
+          </div>}
       </div>
       <div className='col-lg-5 col-md-6'>
       <p className='px-2 py-3 mb-0 py-md-4'>Menu</p>
