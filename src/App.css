@@ -183,7 +183,11 @@ option {
 @media only screen and (max-width: 464px) {
   .imageContainer {
     height: 230px;
-  };
+  }
+  .changeHeightComponent img{
+    aspect-ratio: none ;
+    height: 170px !important;
+  }
 }
 
 @media only screen and (min-width: 465px) {
