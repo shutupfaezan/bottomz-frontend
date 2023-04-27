@@ -43,7 +43,11 @@
         // function paymentsCreate(){
           
         // }
-        const {numSelected, totalPrice} = inputValues.reduce((acc, curr) => {
+
+
+        console.log(inputValues)
+
+        const {numSelected, totalPrice} = inputValues?.reduce((acc, curr) => {
           const quantity = curr?.quantity ? parseInt(curr?.quantity, 10) : 0;
           const total_price = parseInt(curr?.total_price);
           return {
