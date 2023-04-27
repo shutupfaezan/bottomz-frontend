@@ -57,7 +57,7 @@ export default function GlobalHeader() {
             <li><Link onClick={()=>{sessionStorage.clear(); window.location.reload()}} style={{color: "red"}} className="dropdown-item" to="/">Log Out</Link></li>
           </ul>
         </div>
-           : <p className="m-0 mr-md-5 ml-md-3" style={{fontSize: "19px", cursor: "pointer"}}  onClick={modalswitch}><small style={{border: location.pathname === '/' ? (scroll > 0 ? "2px solid black" : "2px solid white") : "2px solid black", padding: "5px 35px", borderRadius: "20px"}}>Log In</small></p>}
+           : <p className="m-0 mr-md-5 ml-md-auto" style={{fontSize: "19px", cursor: "pointer"}}  onClick={modalswitch}><small style={{border: location.pathname === '/' ? (scroll > 0 ? "2px solid black" : "2px solid white") : "2px solid black", padding: "5px 35px", borderRadius: "20px"}}>Log In</small></p>}
           <CommonModal show={show}/>
           </div>
           <div className="ml-auto d-md-none d-flex align-items-center">
