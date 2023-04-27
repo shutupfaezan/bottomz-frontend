@@ -104,7 +104,7 @@ import { useNavigate } from "react-router-dom";
             </div>
           </div>
           )})}
-              </Carousel>
+        </Carousel>
             
             </>
             );
