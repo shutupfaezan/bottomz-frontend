@@ -58,6 +58,7 @@
         
         return (
           <>
+          <div>
           <GlobalHeader/>
           {isloading && <div className='d-flex justify-content-center' style={{marginTop: "75px"}}>
             <div className='d-flex align-items-center'>
@@ -66,29 +67,29 @@
             </div>
             </div>
             </div>}
-        {!isloading && <div>
+          {!isloading && 
+          <div>
           <div className=' px-md-5 px-3 mt-5'>
-          <div className='d-md-flex'>
-            <div className="p-3 ml-md-5 mr-md-4 mx-auto" style={{maxWidth: "100%", border: "2px solid black", minWidth: "fit-content", display: "flex", borderRadius: "10px", width: "fit-content"}}>  
-              <img style={{height:"auto", maxHeight: "250px", maxWidth: "100%", borderRadius: "10px"}} src={singleEvent?.images_url} alt=""/>
+          <div className='d-md-flex px-lg-5'>
+            <div className="p-0 col-md-6 col-12 mx-auto d-flex w-100" style={{width: "100%", border: "2px solid black", borderRadius: "15px", overflow: "hidden"}}>
+            <div style={{background: `url(${singleEvent?.images_url}) no-repeat center/cover`, height: "210px", width: "100%", filter: "blur(3px)"}}></div>
+            <img style={{position: "absolute", top: "50%", left: "50%",transform: "translate(-50%, -50%)", height: "100%", maxWidth: "100%"}} src={singleEvent?.images_url} alt=""/>
             </div>
-            <div className='mt-lg-0 mt-md-0 mt-4 w-100'>
+            <div className='mt-lg-0 mt-md-0 col-md-6 mt-4 pl-md-5 w-100 d-flex-flex-md-column justify-content-center'>
               <b className=''> <i className="bi bi-calendar4 mr-3"></i>{singleEvent?.timings} • {singleEvent?.date}</b>
-              <h1 className='primary-header mt-3'>{singleEvent?.event_name}</h1>
+              <h3 className='primary-header mt-3'>{singleEvent?.event_name}</h3>
               <p className='mt-3'><i className="bi bi-geo-alt mr-1"></i> {singleEvent?.event_venue}</p>
               <p className="mt-2"><i className="bi bi-person-circle mr-2"></i>{singleEvent?.curated_by}</p>
               {genre?.map((identity, index)=>{
-                  return (<p className="d-inline-flex p-2 mr-2" style={{borderRadius: "20px", fontSize: "12px", background: "#e8ebee"}}>{identity}</p>)
+                  return (<p className="d-inline-flex p-2 mr-2" style={{borderRadius: "20px", fontSize: "12px", background: "#e8ebee", width: "fit-content"}}>{identity}</p>)
               })}
             </div>
-            <div>
-            </div>
           </div>
-            {!singleEvent?.description === null && <div className='mx-md-5 mt-md-5 mt-4'>
+            {singleEvent?.description !== "" && <div className='mx-lg-5 mt-md-5 mt-4'>
               <b className=''>- Description</b>
             <p  className='mt-2 ml-2' style={{fontWeight: "400"}}>{singleEvent?.description}</p>
             </div>}
-            <div className='bg-light mx-md-5 mt-md-5 mt-4 px-2 py-4' style={{borderRadius: "10px", background: "#F4F5F6"}}>
+            <div className='bg-light mx-lg-5 mt-md-5 mt-4 px-2 py-4' style={{borderRadius: "10px", background: "#F4F5F6"}}>
               <h1 className='primary-header ml-2'>Ticket Info</h1>
               {ticketConfig?.[0] ? <div>
                 <table className="table">
@@ -106,7 +107,7 @@
                 <div className='text-center mt-4'> {numSelected} Selected - Rs. {totalPrice}</div>
               </div> : <div className='ml-3'><b>Ticketing info doesnt exist</b><p style={{color: "#6a6868"}}>Be the first to report the error and get some perks</p></div>}
             </div>
-            <div className='mx-md-5 mt-md-5 my-4'>
+            <div className='mx-lg-5 mt-md-5 my-4'>
               <b className=''>- Terms & Conditions</b>
             <p className='mt-2 ml-2' style={{fontWeight: "400"}}><ul className='pl-3'>{newTerms?.map((fields, index )=> {
               return <li style={{color: "black", fontWeight: 400}} key={index}>{fields}</li>
@@ -129,6 +130,7 @@
           </div>
             <Footer/>
           </div>}
+          </div>
         </>
       )
     }
