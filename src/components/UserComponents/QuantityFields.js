@@ -19,7 +19,9 @@ export default function QuantityFields(props) {
       };
     } else {
       newInputValues[index]["quantity"] = 0;
+      newInputValues[index]["total_price"] = 0;
     }
+    
     
     setInputValues(newInputValues);
   };
