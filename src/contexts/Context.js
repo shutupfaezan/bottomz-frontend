@@ -10,7 +10,7 @@ const Context = ({children})=>{
     const [inputValues, setInputValues] = useState([]);
     const [eventStepper, setEventStepper] = useState(1)
     const [loginActive, setLoginActive] = useState(true)
-    const [signActive, setSignActive] = useState()
+    const [signActive, setSignActive] = useState(false)
     const [eventInfoValue] = useState({})
 
     return <SingularContext.Provider value={{loginActive, setLoginActive, signActive, setSignActive, show, setShow, inputValues, setInputValues, inputModal, setInputModal, eventInfoValue, eventStepper, setEventStepper, orderId, setOrderId, clubsModal, setClubsModal}}>{children}</SingularContext.Provider>
