@@ -5,6 +5,8 @@
   import { useState } from 'react';
   import { useEffect } from 'react'
   import { useParams } from "react-router-dom";
+  import "react-tooltip/dist/react-tooltip.css";
+  import { Tooltip as ReactTooltip } from "react-tooltip";
   import Footer from "../../common/Footer"  
   // import {SingularContext} from '../../contexts/Context';
   
@@ -94,7 +96,7 @@
             <div className=' mt-lg-0'>
               <div>
                 <div className="form-check d-flex align-items-center py-3 p-md-3 mb-4"  style={{border: "2px solid black", borderRadius: "10px", boxShadow: "7px 7px #E8EBEE"}}>
-                  <input className="form-check-input mr-4 align-self-center my-1" style={{border: "5px solid gray"}} type="radio" name="flexRadioDefault" id="flexRadioDefault1"/>
+                  <input className="form-check-input mr-4 align-self-center my-1" style={{border: "5px solid gray"}} type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked={true}/>
                   <div className='d-flex flex-column'>
                   <label className="form-check-label mb-2" htmlFor="flexRadioDefault1">
                       Pay at Venue
@@ -102,15 +104,20 @@
                   <p  className="mb-1" style={{fontWeight: "100", fontSize: "14px"}}>Usually used for larger amounts and table bookings</p>
                   </div>
                 </div>
-                <div className="form-check d-flex align-items-center py-3 p-md-3"  style={{border: "2px solid black", borderRadius: "10px", boxShadow: "7px 7px #E8EBEE"}}>
-                  <input className="form-check-input mr-4 align-self-center my-1" style={{border: "5px solid gray"}} type="radio" name="flexRadioDefault" id="flexRadioDefault1"/>
+                <div className="form-check d-flex align-items-center py-3 p-md-3" id="payNow" style={{border: "2px solid black", borderRadius: "10px", boxShadow: "7px 7px #E8EBEE"}}>
+                  <input className="form-check-input mr-4 align-self-center my-1" style={{border: "5px solid gray"}} type="radio" name="flexRadioDefault" id="flexRadioDefault1" disabled={true} data-toggle="tooltip" title="Pay at club"/>
                   <div className='d-flex flex-column'>
                   <label className="form-check-label mb-2" htmlFor="flexRadioDefault1">
                       Pay now
                   </label>
-                  <p  className="mb-1" style={{fontWeight: "100", fontSize: "14px"}}>If its a small amount, might as well just pay now and be reserved.</p>
+                  <p  className="mb-1"  style={{fontWeight: "100", fontSize: "14px"}}>If its a small amount, might as well just pay now and be reserved.</p>
                   </div>
                 </div>
+                <ReactTooltip
+                  anchorId="payNow"
+                  place="bottom"
+                  content="Pay Now is not available for this event"
+                />
                 <p className="ml-2 mt-4" style={{fontSize: "15px"}}>*Pay at Venue does not guarantee entry as such events function as a first come first serve basis.</p>
               </div>
             </div>

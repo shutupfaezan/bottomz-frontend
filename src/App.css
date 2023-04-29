@@ -186,6 +186,9 @@ option {
   .imageContainer {
     height: 230px;
   }
+  .ticketImage {
+    height: 230px !important;
+  }
   .changeHeightComponent img{
     aspect-ratio: none ;
     height: 170px !important;
