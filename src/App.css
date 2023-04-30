@@ -262,3 +262,7 @@ transform: translateZ(0);
    }
 }
 
+/* .modal-content{
+  background: transparent !important;
+  border: none !important;
+} */

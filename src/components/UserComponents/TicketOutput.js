@@ -25,11 +25,14 @@ export default function TicketOutput() {
       //eslint-disable-next-line
     }, []);
     
+    function ResendAPi(){
+      axios.post(`https://nightlife-2710.herokuapp.com/resend-confirmation?order_id=${orderDetails?.[0]?.order_id}&event_name=${eventDetails?.event_name}&access_token=${sessionStorage.token}`);
+    }
     const bookingDate = orderDetails?.[0]?.created_at ? format(new Date(orderDetails?.[0]?.created_at), 'dd MMMM yyyy') : '';
     const totalQuantity = orderDetails?.reduce((acc, item) => acc + item?.quantity, 0);
     const totalPrice = orderDetails?.reduce((acc, item) => acc + parseFloat(item.total_price), 0);
-
-  const formatDate = (dateStr) => {
+    
+    const formatDate = (dateStr) => {
     if (!dateStr) return "";
   
     const [year, month, day] = dateStr.split("-");
@@ -44,7 +47,7 @@ export default function TicketOutput() {
     <div>
       <GlobalHeader />
       <div className='mb-5 mb-2 mb-md-3 py-5' style={{ background: "black"}}>
-        <div className='d-flex justify-content-center align-items-center flex-column px-5 mx-lg-4 mx-md-2' style={{height: "100%"}}>
+        <div className='d-flex justify-content-center align-items-center flex-column px-md-5 px-2 mx-lg-4 mx-md-2' style={{height: "100%"}}>
           <div className='primary-header ml-2 text-white text-center' style={{fontSize: "40px"}}>Thank You For Your Order</div>
           <div className='primary-header ml-2 text-white text-center' style={{fontSize: "40px"}}>{eventDetails?.event_name}</div>
         </div>
@@ -62,6 +65,15 @@ export default function TicketOutput() {
               <b style={{display: "block", marginBottom: "5px"}}><i className="fa-regular fa-circle-user mr-2"></i>{eventDetails?.curated_by}</b>
               <b style={{display: "block", marginBottom: "5px"}}>Quantity: {totalQuantity} Person(s)</b>
               <b style={{display: "block", marginBottom: "5px"}}>Amount To Be Paid: {totalPrice} INR</b>
+              <b style={{display: "flex", marginBottom: "5px"}}><b>Categries: </b>
+              <div className="d-flex">
+              {orderDetails && orderDetails?.map((object, index)=>{
+                return(
+                  <p className="mb-0 ml-2">{object?.ticket_category} x <span style={{color: "crimson"}}>Oty : {object?.quantity}</span></p>
+                )
+              })}
+              </div>
+              </b>
             </div>
           </div>
           <div className="col-md-4 py-3 text-white pt-4" style={{background: "black", borderRadius: "10px", boxShadow: "10px 10px #E8EBEE"}}>
@@ -73,8 +85,10 @@ export default function TicketOutput() {
           <p className="px-lg-5 p-3">For queries, reach out us on <a href="/gmail.com" style={{color: "crimson"}}>info@bottmzup.com</a></p>
           <div className="px-lg-5 p-3 mt-4">
             <button className="btn px-3 py-md-2 py-3 mr-lg-3 mr-md-2 rounded-pill col-lg-3 col-md-4 col text-white" style={{background: "black"}}><i className="fa-solid fa-ticket mr-2"></i>View Order Details</button>
-            <button className="btn px-3 py-md-2 py-3 mr-lg-3 rounded-pill mt-md-0 mt-3 mr-md-2 col-lg-3 col-md-4 col" style={{background: "white", border: "2px solid black", color: "black"}}><i className="fa-solid fa-rotate-right mr-2"></i>Resend Confirmation</button>
-            <button className="btn px-3 py-md-2 py-3 mr-lg-3 mt-3 mt-md-0 rounded-pill col-lg-3 col-md-4 col" style={{background: "white", border: "2px solid black", color: "black"}}><i className="fa-solid fa-print mr-2"></i>Print Booking Info</button>
+            <button className="btn px-3 py-md-2 py-3 mr-lg-3 rounded-pill mt-md-0 mt-3 mr-md-2 col-lg-3 col-md-4 col" style={{background: "white", border: "2px solid black", color: "black"}} onClick={ResendAPi}>
+              <i className="fa-solid fa-rotate-right mr-2"></i>Resend Confirmation</button>
+            <button className="btn px-3 py-md-2 py-3 mr-lg-3 mt-3 mt-md-0 rounded-pill col-lg-3 col-md-4 col" style={{background: "white", border: "2px solid black", color: "black"}}><i className="fa-solid fa-print mr-2"></i>Print Booking Info
+            </button>
           </div>
           <p className="px-lg-5 mt-4 mb-5 p-3">Booking Date & Time <span style={{color: "crimson"}}>{bookingDate}</span></p>
       </div>

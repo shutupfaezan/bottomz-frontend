@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react'
+import React, { useCallback, useContext } from 'react'
 import { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom'
 import {useLocation} from "react-router-dom";
@@ -13,6 +13,7 @@ export default function Hamburger() {
     });
   }, []);
   const location = useLocation();
+
 
   const handleNavigate = useCallback((path) => {
     navigate(path)
@@ -32,7 +33,6 @@ export default function Hamburger() {
           <a className="navbar-brand mx-md-5 py-0 mr-auto" style={{fontWeight: "800"}} href="/">
             <h3 className="primary-header m-0"  style={{ color:"black", fontSize: "25px"}}>BottmzUp</h3>
           </a>
-          <small className='mb-0 text-black px-4 py-2 text-white' style={{ borderRadius: "10px",background: "black"}}>Sign Up</small>
           <button type="button" className="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div className="offcanvas-body py-4">
@@ -43,6 +43,15 @@ export default function Hamburger() {
             <li style={{cursor: "pointer", fontSize: "20px", color: "#2b2a35", listStyle: "none", fontWeight: "100"}}>Your Tickets</li>
             {sessionStorage.token && <p onClick={handleLogout} style={{color: "red", cursor: "pointer", fontSize: "19px"}}>Log Out</p>}
           </ul>
+          <div class="container mt-5 pl-4">
+          <h2 className='d-block w-100 primary-header' style={{color: "black"}}>Follow Us</h2>
+          <div class="social d-flex w-100">
+            <a href="#" id="share-fb" class="sharer button"><i class="fa fa-3x fa-facebook-square"></i></a>
+            <a href="#" id="share-li" class="sharer button ml-2"><i class="fa fa-3x fa-linkedin-square"></i></a>
+            <a href="#" id="share-em" class="sharer button ml-2"><i class="fa fa-3x fa-envelope-square"></i></a>
+            <a href="#" id="share-em" class="sharer button ml-2"><i class="fa-brands fa-3x fa-square-instagram"></i></a>
+          </div>
+          </div>
         </div>
       </div>
     </>

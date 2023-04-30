@@ -85,6 +85,9 @@ export default function HostWithUs() {
             <li className="" style={{fontWeight: "100", color: "black"}}>If you forgot your login info send a form for the same or call us (if urgent) and we'll reach out.</li>
           </div>
         </section>
+        <section className='mx-md-5 my-4'>
+          <p className='px-md-5 px-3'>Incase of any issues or urgent requests/queries contect us on <a style={{color: "crimson"}}  href="/">info@bottmzup.com</a></p>
+        </section>
         <Footer/>
       </div>
     </>

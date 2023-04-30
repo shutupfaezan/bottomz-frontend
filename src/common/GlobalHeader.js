@@ -53,8 +53,8 @@ export default function GlobalHeader() {
           </small>
           </p>
           <ul className="dropdown-menu">
-            <li><Link className="dropdown-item" to="/ticket-info">Tickets</Link></li>
-            <li><Link onClick={()=>{sessionStorage.clear(); window.location.reload(); window.location.href('/')}} style={{color: "red"}} className="dropdown-item" to="/">Log Out</Link></li>
+            <li><Link className="dropdown-item" to="/order-history" style={{fontWeight: "700"}}>Tickets</Link></li>
+            <li><Link onClick={()=>{sessionStorage.clear(); window.location.reload(); window.location.href('/')}} style={{color: "red", fontWeight: "700"}} className="dropdown-item" to="/">Log Out</Link></li>
           </ul>
         </div>
            : <p className="m-0 mr-md-5 ml-md-auto" style={{fontSize: "19px", cursor: "pointer"}}  onClick={modalswitch}><small style={{border: location.pathname === '/' ? (scroll > 0 ? "2px solid black" : "2px solid white") : "2px solid black", padding: "5px 35px", borderRadius: "20px"}}>Log In</small></p>}
