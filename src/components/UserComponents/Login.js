@@ -12,25 +12,45 @@ export default function Login() {
   const [isLoading, setisLoading] = useState(false);
   const formik = useFormik({
     initialValues: {
-      email_id: "",
-      password: ""
+      email_id: '',
+      password: '',
     },
-    onSubmit: (values)=> {
-      setisLoading(true);
-      axios.post("https://nightlife-2710.herokuapp.com/login", values)
-      .then((response)=>{
-        sessionStorage.setItem("username", response?.data?.User_name)
-        setisLoading(false);
-        sessionStorage.setItem('token', response.data.access_token)
-        setShow(false)
+    onSubmit: (values, { setSubmitting, setErrors }) => {
+      let errors = {};
+      if (!values.email_id) {
+        errors.email_id = 'Email is required';
+      }else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email_id)) {
+        errors.email_id = 'Invalid email format';
       }
-      )
-      .catch(()=>{
-        setisLoading(false)
+      
+      if (!values.password) {
+        errors.password = 'Password is required';
       }
-      )
-    }
-  })
+      if (Object.keys(errors).length !== 0) {
+        setErrors(errors);
+        setSubmitting(false);
+        return;
+      }
+      setSubmitting(true);
+      axios.post('https://nightlife-2710.herokuapp.com/login', values)
+        .then((response) => {
+          sessionStorage.setItem('username', response?.data?.User_name);
+          sessionStorage.setItem('token', response.data.access_token);
+          setShow(false);
+        })
+        .catch((error) => {
+          console.log(error)
+          setErrors({
+            password: error.response.data.detail
+          });
+        })
+        .finally(() => {
+          setSubmitting(false);
+        });
+    },
+    
+  });
+  
 
   return (
       <div className='d-flex flex-column justify-content-center'>
@@ -46,10 +66,16 @@ export default function Login() {
         <hr className='rounded mx-auto mt-3 hrsp' style={{width: "55%"}}/>
         <div>
           <form>
-            <div className="d-flex justify-content-center"><Input name="email_id" style={{width: "85%"}} type="email" value={formik.values.email_id} id="email_id"  handleChange={formik.handleChange} placeholder="Enter Your Email"/></div>
-            <div className="d-flex justify-content-center"><Input name="password" style={{width: "85%"}} type="password" value={formik.values.password} id="password"  handleChange={formik.handleChange} placeholder="Enter Your Password!" icon2="bi bi-eye-fill position-relative"/></div>
+            <div className="d-flex justify-content-center"><Input name="email_id" style={{width: "85%"}} type="email" value={formik.values.email_id} id="email_id"  handleChange={formik.handleChange} placeholder="Enter Your Email" onBlur={formik.handleBlur}/></div>
+            {formik.touched.email_id && formik.errors.email_id ? (
+        <small className="text-danger mx-5 mb-2">{formik.errors.email_id}</small>
+      ) : null}
+            <div className="d-flex justify-content-center mt-2"><Input name="password" style={{width: "85%"}} type="password" value={formik.values.password} id="password"  handleChange={formik.handleChange} placeholder="Enter Your Password!" icon2="bi bi-eye-fill position-relative" onBlur={formik.handleBlur}/></div>
+            {formik.touched.password && formik.errors.password ? (
+        <small className="text-danger mx-5">{formik.errors.password}</small>
+      ) : null}
             <div className="mt-3 d-flex justify-content-center">
-              <button type="submit" className="btn mb-3" style={{borderRadius: "20px", background: "#7d10bf", color: "white"}} onClick={formik.handleSubmit}>
+              <button type="submit" className="btn mb-3" style={{borderRadius: "20px", background: "#7d10bf", color: "white"}} onClick={formik.handleSubmit}  disabled={formik.isSubmitting}>
               {isLoading && (<span id="login-loader-span" className="spinner-border spinner-border-sm mx-1" role="status" aria-hidden="true"></span>)}
               {isLoading && (<span id="login-loading-text-span">Loading</span>)}
               {!isLoading && <span id="login-text-span">Continue</span>}

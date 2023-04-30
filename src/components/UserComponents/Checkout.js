@@ -157,7 +157,10 @@
                 return  <div className='d-flex align-items-center mb-2 pb-3' key={fields} style={{borderBottom: "1px solid #E8EBEE"}}><div className='d-flex flex-column'><p className='m-0'>{identity.ticket_categories}<small className='ml-1' style={{fontSize: "11px", color: "crimson"}}>{identity.quantity}x{identity.total_price}</small></p>
                 <p className='m-0' style={{fontWeight: "100", fontSize: "12px"}}>{identity.description}</p></div>
                 <div className='ml-auto mr-4' style={{fontSize: "20px", color: "crimson"}}>₹{identity.total_price}</div></div>
-              })} 
+              })}
+              <div className='d-flex align-items-center mb-2 pb-3' style={{borderBottom: "1px solid #E8EBEE"}}><div className='d-flex flex-column'><p className='m-0'>TGST</p>
+                <p className='m-0' style={{fontWeight: "100", fontSize: "12px"}}>CGST + SGST</p></div>
+                <div className='ml-auto mr-4' style={{fontSize: "20px", color: "crimson"}}>₹0</div></div>
             </div>
             <div className='d-flex align-items-center mb-2 p-3' style={{background: "#F6F7F8", borderRadius: "10px"}}>
               <p className='m-0 d-flex flex-column'>Total<small style={{fontSize: "12px", fontWeight: "100"}}>(Tax Exclusive)</small></p>

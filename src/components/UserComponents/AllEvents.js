@@ -9,12 +9,15 @@ import CarouselWithInfo from '../../common/CarouselWithInfo'
   export default function AllEvents() {
   const [searchTerm, setSearchTerm] = useState('')
   const [recentEvents, setRecentEvents] = useState([])
+  const [loading, setloading] = useState(false)
   const [filteredEvents, setFilteredEvents] = useState([])
 
   const fetchData = async () => {
     try {
+      setloading(true)
       const response = await axios.get("https://nightlife-2710.herokuapp.com/events")
-      setRecentEvents(response.data)
+      setRecentEvents(response?.data)
+      setloading(false)
     } catch (error) {
       console.log(error);
     }
@@ -51,7 +54,12 @@ import CarouselWithInfo from '../../common/CarouselWithInfo'
 
     return (
       <>
-      <div className='100vh position-relative'>
+      {loading && <div className='d-flex justify-content-center mt-auto'>
+    <div className='d-flex align-items-center'>
+    <span><img src={process.env.PUBLIC_URL + "/images/output-onlinegiftools.gif"} style={{height: '100px', width: "100px", transform: "translate(-50%, -50%)", position: "absolute", top: "50%", left: "50%"}}/></span>
+    </div>
+    </div>}
+      {!loading && <div className='100vh position-relative'>
       <GlobalHeader/>
       <div className="swipeImprove" style={{background: "black", color: "white"}}>
         <CarouselWithInfo items={recentEvents}></CarouselWithInfo>
@@ -81,7 +89,7 @@ import CarouselWithInfo from '../../common/CarouselWithInfo'
         ))}
         </div>
         <Footer/>
-      </div>
+      </div>}
       </>
     )
   }

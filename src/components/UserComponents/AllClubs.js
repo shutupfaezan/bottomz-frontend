@@ -27,18 +27,15 @@ export default function AllClubs() {
   return (
     <>
     <div>
-    <GlobalHeader/>
     {loading && <div className='d-flex justify-content-center mt-auto'>
     <div className='d-flex align-items-center'>
-    <span style={{fontSize: "35px"}}>Loading </span>
-    <div className="my-auto spinner-border text-black " role="status">
-    </div>
+    <span><img src={process.env.PUBLIC_URL + "/images/output-onlinegiftools.gif"} style={{height: '100px', width: "100px", transform: "translate(-50%, -50%)", position: "absolute", top: "50%", left: "50%"}}/></span>
     </div>
     </div>}
     {!loading && <>
-      <div className='svgbg mb-5 mb-2 mb-md-3' style={{height: "200px"}}></div>
-      <BrowserView>
-<div className='d-md-flex justify-content-between position-absolute align-items-center w-100 px-4' style={{top: '125px'}}>
+      <GlobalHeader/>
+      <div className='mb-5 mb-2 mb-md-3' style={{height: "300px", background: "black"}}>
+<div className='d-flex justify-content-center align-items-center w-100 px-4 flex-column' style={{height: "100%"}}>
         <div className='d-flex justify-content-center px-5 mx-lg-4 mx-md-2'>
           <div className='primary-header ml-2' style={{color: "transparent", WebkitTextStroke: "1px white", fontSize: "40px"}}>All</div>
           <div className='primary-header ml-2 text-white' style={{fontSize: "40px"}}>Clubs</div>
@@ -50,35 +47,7 @@ export default function AllClubs() {
           </form>
         </div>
 </div>
-</BrowserView>
-<TabletView>
-<div className='d-md-flex justify-content-between position-absolute align-items-center w-100 px-4' style={{top: '125px'}}>
-        <div className='d-flex justify-content-center px-5 mx-lg-4 mx-md-2'>
-          <div className='primary-header ml-2' style={{color: "transparent", WebkitTextStroke: "1px white", fontSize: "40px"}}>All</div>
-          <div className='primary-header ml-2 text-white' style={{fontSize: "40px"}}>Clubs</div>
-        </div>
-        <div className='d-flex col-lg-4 col-md-6 p-0'>
-          <form className="d-flex mt-3 mb-3 w-100 mx-md-4" role="search">
-            <input className="form-control py-4" type="search" style={{borderRadius: "20px", fontSize: "20px", border: "0.5px solid black", paddingLeft: "45px"}} onChange={(event)=>setSearhTerm(event.target.value)} placeholder="Search for ..." aria-label="Search"/>
-            <i className="bi bi-search position-relative" style={{float: "left", right: "95%", borderRadius: "20px", top: "10px", width: "0px", fontSize: "20px"}}></i>
-          </form>
-        </div>
-      </div>
-</TabletView>
-<MobileOnlyView>
-<div className='d-md-flex justify-content-between position-absolute align-items-center w-100 px-4' style={{top: '100px'}}>
-        <div className='d-flex justify-content-center px-5 mx-lg-4 mx-md-2'>
-          <div className='primary-header ml-2' style={{color: "transparent", WebkitTextStroke: "1px white", fontSize: "40px"}}>All</div>
-          <div className='primary-header ml-2 text-white' style={{fontSize: "40px"}}>Clubs</div>
-        </div>
-        <div className='d-flex col-lg-4 col-md-6 p-0'>
-          <form className="d-flex mt-3 mb-3 w-100 mx-md-4" role="search">
-            <input className="form-control py-4" type="search" style={{borderRadius: "20px", fontSize: "20px", border: "0.5px solid black", paddingLeft: "45px"}} onChange={(event)=>setSearhTerm(event.target.value)} placeholder="Search for ..." aria-label="Search"/>
-            <i className="bi bi-search position-relative" style={{float: "left", right: "95%", borderRadius: "20px", top: "10px", width: "0px", fontSize: "20px"}}></i>
-          </form>
-        </div>
-      </div>
-</MobileOnlyView>
+</div>
   <div className={`d-flex px-2 flex-wrap m-xl-5 mb-3 mb-md-5`}>
     {/* eslint-disable-next-line */}
     {recentClubs?.data?.reverse().filter((val) => {

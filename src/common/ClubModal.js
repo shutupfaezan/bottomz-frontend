@@ -60,7 +60,7 @@ export default function ClubModal(props) {
               key={index}
               className="carousel-item-container"
             >
-              <img className="carousel-item-image" src={item} alt="club" />
+              <img className="carousel-item-image" style={{objectFit: props.type === "menu" ? "contain" : "cover" }} src={item} alt="club" />
             </div>
           );
         })}
