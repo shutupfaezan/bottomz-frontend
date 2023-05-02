@@ -9,7 +9,7 @@ import {useLocation} from "react-router-dom";
 
 export default function GlobalHeader() {
   
-  const {setShow,show} = useContext(SingularContext);
+  const {setShow,show, setLoginActive, setForgotStep1Show} = useContext(SingularContext);
   const [scroll, setScroll] = useState(0);
   useEffect(() => {
     window.addEventListener("scroll", () => {
@@ -23,6 +23,8 @@ export default function GlobalHeader() {
     }
     else{
       setShow(true)
+      setLoginActive(true)
+      setForgotStep1Show(false)
     }
   }
   return (

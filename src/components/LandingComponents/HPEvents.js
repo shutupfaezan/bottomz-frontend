@@ -14,7 +14,7 @@ export default function   HPEvents(props) {
     <>
       <div className='col-lg-6 col-md-6 p-2 w-100 my-1' key={props.fields} onClick={()=>navigate("/all-events/" + props.identity.event_name)}>
         <div className='p-md-2 p-2 w-100 d-flex' style={{borderRadius: "10px", border: "2px solid black", boxShadow: "10px 10px #E8EBEE"}}>
-          <img className="col-3 w-100 p-0" style={{borderRadius: "7px", aspectRatio: "1/1"}} alt="" src={props.identity.images_url}/> 
+          <img className="col-3 w-100 p-0" style={{borderRadius: "7px", aspectRatio: "1/1", height: "auto"}} alt="" src={props.identity.images_url}/> 
           <div className='overflow-auto col d-flex flex-column pr-0'>
             <div  className='text-truncate overflow-hidden'><b>{props.identity.event_name}</b></div>
             <div className='d-flex overflow-auto align-items-center mt-2 mb-1'><div className="overflow-hidden text-truncate" style={{fontSize: "0.7rem", fontWeight: "400"}}><i class="fa-regular fa-paper-plane mr-2"></i>{props.identity.event_venue}</div></div>

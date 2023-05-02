@@ -266,3 +266,19 @@ transform: translateZ(0);
   background: transparent !important;
   border: none !important;
 } */
+
+.date-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.date-line {
+  flex-grow: 1;
+  height: 1px;
+  background-color: black;
+  margin-left: 10px;
+  margin-right: 10px;
+}

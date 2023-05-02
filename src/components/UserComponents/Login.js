@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom'
 import GoogleLoginFunc from '../../common/GoogleLoginFunc'
 
 export default function Login() {
-  const {setSignActive, setLoginActive, setShow} = useContext(SingularContext);
+  const {setSignActive, setLoginActive, setShow, setForgotStep1Show} = useContext(SingularContext);
   const [isLoading, setisLoading] = useState(false);
   const formik = useFormik({
     initialValues: {
@@ -66,14 +66,18 @@ export default function Login() {
         <hr className='rounded mx-auto mt-3 hrsp' style={{width: "55%"}}/>
         <div>
           <form>
+            <div className=' mb-2'>
             <div className="d-flex justify-content-center"><Input name="email_id" style={{width: "85%"}} type="email" value={formik.values.email_id} id="email_id"  handleChange={formik.handleChange} placeholder="Enter Your Email" onBlur={formik.handleBlur}/></div>
             {formik.touched.email_id && formik.errors.email_id ? (
-        <small className="text-danger mx-5 mb-2">{formik.errors.email_id}</small>
-      ) : null}
-            <div className="d-flex justify-content-center mt-2"><Input name="password" style={{width: "85%"}} type="password" value={formik.values.password} id="password"  handleChange={formik.handleChange} placeholder="Enter Your Password!" icon2="bi bi-eye-fill position-relative" onBlur={formik.handleBlur}/></div>
+            <small className="text-danger mx-5">{formik.errors.email_id}</small>
+          ) : null}
+            </div>
+        <div>
+            <div className="d-flex justify-content-center"><Input name="password" style={{width: "85%"}} type="password" value={formik.values.password} id="password"  handleChange={formik.handleChange} placeholder="Enter Your Password!" icon2="bi bi-eye-fill position-relative" onBlur={formik.handleBlur}/></div>
             {formik.touched.password && formik.errors.password ? (
-        <small className="text-danger mx-5">{formik.errors.password}</small>
-      ) : null}
+              <small className="text-danger mx-5">{formik.errors.password}</small>
+            ) : null}
+            </div>
             <div className="mt-3 d-flex justify-content-center">
               <button type="submit" className="btn mb-3" style={{borderRadius: "20px", background: "#7d10bf", color: "white"}} onClick={formik.handleSubmit}  disabled={formik.isSubmitting}>
               {isLoading && (<span id="login-loader-span" className="spinner-border spinner-border-sm mx-1" role="status" aria-hidden="true"></span>)}
@@ -85,7 +89,7 @@ export default function Login() {
         </div>
         <div className='d-flex my-3'>
           <Link className='ml-4'style={{color: "gray"}} onClick={()=>{setSignActive(true); setLoginActive(false)}}>Newbie? Sign Up</Link>
-          <Link className='mr-4 ml-auto' style={{color: "gray"}}>Forgot Password?</Link>
+          <Link className='mr-4 ml-auto' style={{color: "gray"}} onClick={()=>{setForgotStep1Show(true); setLoginActive(false)}}>Forgot Password?</Link>
         </div>
       </div>
   )
