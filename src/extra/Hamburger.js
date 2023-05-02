@@ -43,13 +43,13 @@ export default function Hamburger() {
             {sessionStorage.token && <li data-bs-dismiss="offcanvas" style={{cursor: "pointer", fontSize: "20px", color: "#2b2a35", listStyle: "none", fontWeight: "100"}}  onClick={() => handleNavigate('/order-history')}>Your Tickets</li>}
             {sessionStorage.token && <p onClick={handleLogout} style={{color: "red", cursor: "pointer", fontSize: "19px"}}>Log Out</p>}
           </ul>
-          <div class="container mt-5 pl-4">
+          <div className="container mt-5 pl-4">
           <h2 className='d-block w-100 primary-header' style={{color: "black"}}>Follow Us</h2>
-          <div class="social d-flex w-100">
-            <a href="#" id="share-fb" class="sharer button"><i class="fa fa-3x fa-facebook-square"></i></a>
-            <a href="#" id="share-li" class="sharer button ml-2"><i class="fa fa-3x fa-linkedin-square"></i></a>
-            <a href="#" id="share-em" class="sharer button ml-2"><i class="fa fa-3x fa-envelope-square"></i></a>
-            <a href="#" id="share-em" class="sharer button ml-2"><i class="fa-brands fa-3x fa-square-instagram"></i></a>
+          <div className="social d-flex w-100">
+            <a href="#" id="share-fb" className="sharer button"><i className="fa fa-3x fa-facebook-square"></i></a>
+            <a href="#" id="share-li" className="sharer button ml-2"><i className="fa fa-3x fa-linkedin-square"></i></a>
+            <a href="#" id="share-em" className="sharer button ml-2"><i className="fa fa-3x fa-envelope-square"></i></a>
+            <a href="#" id="share-em" className="sharer button ml-2"><i className="fa-brands fa-3x fa-square-instagram"></i></a>
           </div>
           </div>
         </div>
