@@ -29,7 +29,6 @@ export default function ClubsRow() {
        event()
          .then((response) => {
            setRecentEvents(response)
-           console.log(response)
          })
          .catch((error) => {
            console.log(error);
@@ -59,7 +58,7 @@ export default function ClubsRow() {
             return <HPEvents className="w-100" key={index} index={index} identity={fields}></HPEvents>
           })}
           </div>
-          <Link to="/events" className='mt-3 d-flex justify-content-center' style={{color: "blueviolet"}}>See All<i class="bi bi-arrow-right ml-2"></i></Link>
+          <Link to="/events" className='mt-3 d-flex justify-content-center' style={{color: "blueviolet"}}>See All<i className="bi bi-arrow-right ml-2"></i></Link>
         </section>
         <section className='px-lg-5 pt-lg-5 pb-lg-4 px-4 py-5 bg-light'>
           <div className=' d-flex align-items-baseline mb-2 container-xl p-0 flex-column px-md-5 ml-md-0 ml-3'><h4 className='mt-2 primary-header' style={{fontSize: "40px", color: "transparent", WebkitTextStroke: "1px black"}}>Browse Events</h4><h4 className="primary-header mb-3" style={{fontSize: "40px", color: "black"}}> By Clubs</h4></div>
@@ -67,7 +66,7 @@ export default function ClubsRow() {
             {reverseClubs?.map((fields, index )=> {
               return <HPClubs key={index} identity={fields}></HPClubs>
             })}
-          <Link to="/clubs" className='mx-auto my-md-auto mt-lg-3 mb-lg-0 mb-0 mt-3 d-flex ' style={{color: "blueviolet"}}>See All <i class="bi bi-arrow-right ml-2"></i></Link>
+          <Link to="/clubs" className='mx-auto my-md-auto mt-lg-3 mb-lg-0 mb-0 mt-3 d-flex ' style={{color: "blueviolet"}}>See All <i className="bi bi-arrow-right ml-2"></i></Link>
           </div>
         </section>
         <section className="d-flex flex-md-row flex-column-reverse p-md-5 py-5 px-4 ticketingSection" style={{background: "black"}}>

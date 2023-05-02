@@ -1,9 +1,11 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import { SingularContext } from '../contexts/Context';
 import { useFormik } from 'formik'
+import moment from 'moment';
 import axios from 'axios';
 
 export default function ForgotPasswordStep1() {
+    const [timeRemaining, setTimeRemaining] = useState(300);
     const [emailError, setEmailError] = useState(null)
     const [otpError, setOtpError] = useState(null)
     const [confirmPasswordError, setConfirmPasswordError] = useState(null)
@@ -89,18 +91,32 @@ export default function ForgotPasswordStep1() {
             setConfirmPasswordError("Password must be at least 8 characters long.");
             return;
         }
-    
         setisLoading(true);
-        axios
-            .put(`https://nightlife-2710.herokuapp.com/update-password`, finalPassObj)
-            .then((response) => [            sessionStorage.setItem("token", response?.data?.access_token),            sessionStorage.setItem("username", response?.data?.User_name),            setShow(false),            setisLoading(false),        ])
+        axios.put(`https://nightlife-2710.herokuapp.com/update-password`, finalPassObj)
+            .then((response) => {
+            sessionStorage.setItem("token", response?.data?.access_token);
+            sessionStorage.setItem("username", response?.data?.User_name);
+            setShow(false);
+            setisLoading(false)
+            })
             .catch((error) => {
                 setisLoading(false);
                 console.log(error);
             });
     }
     
-
+    useEffect(() => {
+        const intervalId = setInterval(() => {
+          setTimeRemaining(prevTimeRemaining => prevTimeRemaining - 1);
+        }, 1000);
+        
+        if (timeRemaining === 0) {
+          clearInterval(intervalId);
+          setShow(false);
+        }
+        
+        return () => clearInterval(intervalId);
+      }, [timeRemaining, setShow]);
 
     return (
         <>
@@ -130,6 +146,7 @@ export default function ForgotPasswordStep1() {
     </>}
    {stage === 2 &&  <><p className='mb-0 d-flex flex-column align-items-center' style={{fontWeight: '400'}}>A 6-digit OTP has been sent to <b>{userEmail && userEmail}</b></p>
     <div className='d-flex mt-4 flex-column'>
+    <div className='text-center' style={{color: "crimson"}}>{moment.duration(timeRemaining, 'seconds').minutes()}:{moment.duration(timeRemaining, 'seconds').seconds().toString().padStart(2, '0')}</div>
     <input className='w-50 py-1 text-center mx-auto' type="text" pattern='\d{0,6}' name="otp" maxLength="6" style={{border: "2px solid black", width: "50%", fontSize: "30px"}} onChange={event=>setOtpVal(parseInt(event.target.value))}></input>
     {otpError && <div style={{ color: "red", fontSize: "14px", marginTop: "5px", textAlign: "center" }}>
   {otpError}
