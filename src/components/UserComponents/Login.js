@@ -28,9 +28,11 @@ export default function Login() {
       }
       if (Object.keys(errors).length !== 0) {
         setErrors(errors);
+        setisLoading(false)
         setSubmitting(false);
         return;
       }
+      setisLoading(true)
       setSubmitting(true);
       axios.post('https://nightlife-2710.herokuapp.com/login', values)
         .then((response) => {
@@ -45,6 +47,7 @@ export default function Login() {
           });
         })
         .finally(() => {
+          setisLoading(false)
           setSubmitting(false);
         });
     },

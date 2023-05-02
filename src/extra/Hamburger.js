@@ -1,4 +1,4 @@
-import React, { useCallback, useContext } from 'react'
+import React, { useCallback } from 'react'
 import { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom'
 import {useLocation} from "react-router-dom";
@@ -46,10 +46,10 @@ export default function Hamburger() {
           <div className="container mt-5 pl-4">
           <h2 className='d-block w-100 primary-header' style={{color: "black"}}>Follow Us</h2>
           <div className="social d-flex w-100">
-            <a href="#" id="share-fb" className="sharer button"><i className="fa fa-3x fa-facebook-square"></i></a>
-            <a href="#" id="share-li" className="sharer button ml-2"><i className="fa fa-3x fa-linkedin-square"></i></a>
-            <a href="#" id="share-em" className="sharer button ml-2"><i className="fa fa-3x fa-envelope-square"></i></a>
-            <a href="#" id="share-em" className="sharer button ml-2"><i className="fa-brands fa-3x fa-square-instagram"></i></a>
+            <a href="/" id="share-fb" className="sharer button"><i className="fa fa-3x fa-facebook-square"></i></a>
+            <a href="/" id="share-li" className="sharer button ml-2"><i className="fa fa-3x fa-linkedin-square"></i></a>
+            <a href="/" id="share-em" className="sharer button ml-2"><i className="fa fa-3x fa-envelope-square"></i></a>
+            <a href="/" id="share-em" className="sharer button ml-2"><i className="fa-brands fa-3x fa-square-instagram"></i></a>
           </div>
           </div>
         </div>

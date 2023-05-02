@@ -4,12 +4,13 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import HPClubs from './HPClubs';
 import "../../css/ClubsRow.css"
 import HPEvents from './HPEvents';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 export default function ClubsRow() {
     const [recentClubs, setRecentClubs] = useState()
     const [loading, setLoading] = useState(true)
     const [recentEvents, setRecentEvents] = useState()
+    const navigate = useNavigate()
     const club = async ()=> { return await axios.get("https://nightlife-2710.herokuapp.com/club")}
     const event = async ()=> { return await axios.get("https://nightlife-2710.herokuapp.com/events")}
     
@@ -74,7 +75,7 @@ export default function ClubsRow() {
               <div style={{height: "100%"}} className='d-flex flex-column'>
               <h1 className="mb-md-3 my-3" style={{fontWeight: "800", fontSize: "40px", color: "white"}}>More Than Ticketing</h1>
               <b style={{color: "white"}}>For the world’s best venues, promoters and festivals, a partnership with Bottmzup is so much more than just ticketing.</b>
-              <p style={{background: "crimson", width: "fit-content"}} className='btn mt-lg-auto mt-xl-5 text-white rounded-pill px-3 py-xxl-3 mb-md-0 mt-5'>Contact Us</p>
+              <p style={{background: "crimson", width: "fit-content"}} className='btn mt-lg-auto mt-xl-5 text-white rounded-pill px-3 py-xxl-3 mb-md-0 mt-5' onClick={()=> navigate("/contact-us")}>Contact Us</p>
               </div>
             </div>
             <div className='col-lg-7 col-md-6 p-lg-5 p-0'>
