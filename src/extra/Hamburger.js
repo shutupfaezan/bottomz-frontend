@@ -40,7 +40,7 @@ export default function Hamburger() {
             <li data-bs-dismiss="offcanvas" onClick={() => handleNavigate('/all-clubs')} style={{cursor: "pointer", fontSize: "20px", color: "#2b2a35", listStyle: "none", fontWeight: "100"}}>Clubs</li>
             <li data-bs-dismiss="offcanvas" onClick={() => handleNavigate('/all-events')} style={{cursor: "pointer", fontSize: "20px", color: "#2b2a35", listStyle: "none", fontWeight: "100"}}>Events</li>
             <li data-bs-dismiss="offcanvas" onClick={() => handleNavigate('/host-with-us')} style={{cursor: "pointer", fontSize: "20px", color: "#2b2a35", listStyle: "none", fontWeight: "100"}}>Host with us</li>
-            <li style={{cursor: "pointer", fontSize: "20px", color: "#2b2a35", listStyle: "none", fontWeight: "100"}}>Your Tickets</li>
+            {sessionStorage.token && <li style={{cursor: "pointer", fontSize: "20px", color: "#2b2a35", listStyle: "none", fontWeight: "100"}}  onClick={() => handleNavigate('/order-history')}>Your Tickets</li>}
             {sessionStorage.token && <p onClick={handleLogout} style={{color: "red", cursor: "pointer", fontSize: "19px"}}>Log Out</p>}
           </ul>
           <div class="container mt-5 pl-4">

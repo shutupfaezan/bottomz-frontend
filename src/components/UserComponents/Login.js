@@ -73,7 +73,7 @@ export default function Login() {
           ) : null}
             </div>
         <div>
-            <div className="d-flex justify-content-center"><Input name="password" style={{width: "85%"}} type="password" value={formik.values.password} id="password"  handleChange={formik.handleChange} placeholder="Enter Your Password!" icon2="bi bi-eye-fill position-relative" onBlur={formik.handleBlur}/></div>
+            <div className="d-flex justify-content-center"><Input name="password" style={{width: "85%"}} type="password" value={formik.values.password} id="password"  handleChange={formik.handleChange} placeholder="Enter Your Password!" icon2="bi bi-eye-fill position-relative" onBlur={formik.handleBlur} useInput={2}/></div>
             {formik.touched.password && formik.errors.password ? (
               <small className="text-danger mx-5">{formik.errors.password}</small>
             ) : null}

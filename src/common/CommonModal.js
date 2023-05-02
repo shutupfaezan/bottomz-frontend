@@ -8,7 +8,7 @@ import ForgotPasswordStep1 from './ForgotPasswordStep1';
 
 export default function CommonModal() {
   
-  const handleClose = () => setShow(false);
+  const handleClose = () => {setShow(false)};
   const {loginActive, signActive, setShow, show, forgotStep1Show} = useContext(SingularContext);
   return (
    <>
