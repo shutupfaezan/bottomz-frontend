@@ -82,7 +82,7 @@ export default function Login() {
             ) : null}
             </div>
             <div className="mt-3 d-flex justify-content-center">
-              <button type="submit" className="btn mb-3" style={{borderRadius: "20px", background: "#7d10bf", color: "white"}} onClick={formik.handleSubmit}  disabled={formik.isSubmitting}>
+              <button type="submit" className="btn mb-3" style={{borderRadius: "20px", background: "#7d10bf", color: "white"}} onClick={formik.handleSubmit} disabled={formik.isSubmitting}>
               {isLoading && (<span id="login-loader-span" className="spinner-border spinner-border-sm mx-1" role="status" aria-hidden="true"></span>)}
               {isLoading && (<span id="login-loading-text-span">Loading</span>)}
               {!isLoading && <span id="login-text-span">Continue</span>}

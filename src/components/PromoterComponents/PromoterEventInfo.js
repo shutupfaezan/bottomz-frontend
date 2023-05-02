@@ -104,7 +104,7 @@ export default function PromoterEventInfo() {
                     {arr.map((item, index) => {
                     return (
                         <>
-                        <div className='d-flex'>
+                        <div className='d-flex mb-2'>
                         <div className='col-10 p-0 pr-2'>
                     <Input
                         key={`item.${index}.value`}
@@ -117,7 +117,7 @@ export default function PromoterEventInfo() {
                         useInput={1}
                     />
                     </div>
-                    <div  onClick={addInput} className='d-flex justify-content-center align-items-center col-2 mb-2' style={{background: "black", borderRadius: "10px"}}>
+                    <div  onClick={addInput} className='d-flex justify-content-center align-items-center col-2' style={{background: "black", borderRadius: "10px"}}>
                     <i onClick={addInput} className="fa-solid fa-plus ml-auto col-md-none mr-2 d-block d-md-none mb-1 align-self-center" style={{fontSize: "18px", color: "white"}} ></i>
                     <p className='text-white m-0 d-md-block d-none'>Add More</p>
                     </div>
