@@ -7,6 +7,7 @@
 import CarouselWithInfo from '../../common/CarouselWithInfo'
 
   export default function AllEvents() {
+    // eslint-disable-next-line
   const [searchTerm, setSearchTerm] = useState('')
   const [recentEvents, setRecentEvents] = useState([])
   const [loading, setloading] = useState(false)
@@ -56,7 +57,7 @@ import CarouselWithInfo from '../../common/CarouselWithInfo'
       <>
       {loading && <div className='d-flex justify-content-center mt-auto'>
     <div className='d-flex align-items-center'>
-    <span><img src={process.env.PUBLIC_URL + "/images/output-onlinegiftools.gif"} style={{height: '100px', width: "100px", transform: "translate(-50%, -50%)", position: "absolute", top: "50%", left: "50%"}}/></span>
+    <span><img src={process.env.PUBLIC_URL + "/images/output-onlinegiftools.gif"} style={{height: '100px', width: "100px", transform: "translate(-50%, -50%)", position: "absolute", top: "50%", left: "50%"}} alt=""/></span>
     </div>
     </div>}
       {!loading && <div className='100vh position-relative'>

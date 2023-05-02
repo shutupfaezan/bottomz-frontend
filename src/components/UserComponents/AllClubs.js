@@ -6,7 +6,6 @@ import "../../css/AllClubs.css"
 import "../../css/ClubsRow.css"
 import GlobalHeader from '../../common/GlobalHeader'
 import Footer from '../../common/Footer';
-import { BrowserView, MobileOnlyView, TabletView } from 'react-device-detect';
 
 export default function AllClubs() {
     const [loading, setLoading] = useState(true)
@@ -29,7 +28,7 @@ export default function AllClubs() {
     <div>
     {loading && <div className='d-flex justify-content-center mt-auto'>
     <div className='d-flex align-items-center'>
-    <span><img src={process.env.PUBLIC_URL + "/images/output-onlinegiftools.gif"} style={{height: '100px', width: "100px", transform: "translate(-50%, -50%)", position: "absolute", top: "50%", left: "50%"}}/></span>
+    <span><img src={process.env.PUBLIC_URL + "/images/output-onlinegiftools.gif"} style={{height: '100px', width: "100px", transform: "translate(-50%, -50%)", position: "absolute", top: "50%", left: "50%"}} alt=""/></span>
     </div>
     </div>}
     {!loading && <>

@@ -11,7 +11,7 @@ const [loading, setloading] = useState(false)
 const order_history = async () => {
   setloading(true)
   return await axios.get(
-      `https://nightlife-2710.herokuapp.com/user-ticket-history-pt2?access_token=${sessionStorage.token}`
+      `https://nightlife-2710.herokuapp.com/user-ticket-history?access_token=${sessionStorage.token}`
       );
     };
 

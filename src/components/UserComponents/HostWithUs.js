@@ -13,38 +13,43 @@ export default function HostWithUs() {
       name: "",
       email: "",
       query_type: "",
-      contact: 0,
+      contact: null,
       description: ""
     },
+    validateOnChange: false,
     validate: (values) => {
-    const errors = {};
+      const errors = {};
 
-    if (!values.name) {
-      errors.name = "Name is required";
-    }
+      if (!values.name) {
+        errors.name = "Name is required";
+      }
 
-    if (!values.email) {
-      errors.email = "Email is required";
-    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
-      errors.email = "Invalid email address";
-    }
+      if (!values.email) {
+        errors.email = "Email is required";
+      } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
+        errors.email = "Please enter a valid email address";
+      }
 
-    if (!values.query_type || values.query_type === "Select") {
-      errors.query_type = "Please select an enquiry type";
-    }
+      if (!values.query_type || values.query_type === "Select") {
+        errors.query_type = "Please select an enquiry type";
+      }
 
-    if (!values.contact) {
-      errors.contact = "Contact number is required";
-    } else if (isNaN(values.contact)) {
-      errors.contact = "Invalid contact number";
-    }
+      if (!values.contact) {
+        errors.contact = "Contact number is required";
+      } else if (isNaN(values.contact)) {
+        errors.contact = "Please enter a valid contact number";
+      }
+      else if (!/^[789]\d{9}$/.test(values.contact)) {
+        errors.contact = 'Invalid contact number';
+      }
 
-    if (!values.description) {
-      errors.description = "Description is required";
-    }
+      if (!values.description) {
+        errors.description = "Description is required";
+      }
 
-    return errors;
-  },
+      return errors;
+    },
+
     onSubmit: (values)=> {
       console.log(values)
       axios.post(`https://nightlife-2710.herokuapp.com/query`, values)
@@ -74,14 +79,14 @@ export default function HostWithUs() {
                   <label className='ml-2 mb-1' style={{fontWeight: "400"}}>Name:</label>
                   <Input name="name" handleChange={formik.handleChange} value={formik.values.name} placeholder="Enter Name" useInput={1}></Input>
                   {formik.errors.name && (
-                    <small className="text-danger">{formik.errors.name}</small>
+                    <small className="text-danger ml-2">{formik.errors.name}</small>
                   )}
               </div>
               <div className='d-flex flex-column col-lg-6 px-0 pr-lg-3'>
                   <label className='ml-2 mb-1' style={{fontWeight: "400"}}>Choose Enquiry Type:</label>
                   <div className='mb-2 d-flex justify-content-center align-items-center'>
                   <select className="form-select w-100" name="query_type" id="query_type" onChange={formik.handleChange} value={formik.values.query_type} style={{border: "2px solid black", borderRadius: "10px", fontSize: "12px", padding: "10px"}} useInput={1}>
-                    <option selected value="Select">Select</option>
+                    <option value="" disabled>Select an enquiry type</option>
                     <option value="Ticket Trouble">Ticket Trouble</option>
                     <option value="Be a Promoter">Be a Promoter</option>
                     <option value="Forgot Promoter Credentails">Forgot Promoter Credentails</option>
@@ -90,28 +95,28 @@ export default function HostWithUs() {
                   </select>
                   </div>
                   {formik.errors.query_type && (
-                    <small className="text-danger">{formik.errors.query_type}</small>
+                    <small className="text-danger ml-2">{formik.errors.query_type}</small>
                   )}
               </div>
-              <div className='d-flex flex-column col-lg-6 px-0 pr-lg-3'>
+              <div className='d-flex flex-column col-lg-6 px-0 pr-lg-3 mb-2'>
                   <label className='ml-2 mb-1' style={{fontWeight: "400"}}>Email:</label>
                   <Input name="email" handleChange={formik.handleChange}  type="email" value={formik.values.email} placeholder="Enter Email" useInput={1}></Input>
                   {formik.errors.email && (
-                    <small className="text-danger">{formik.errors.email}</small>
+                    <small className="text-danger ml-2">{formik.errors.email}</small>
                   )}
               </div>
-              <div className='d-flex flex-column col-lg-6 px-0 pr-lg-3'>
+              <div className='d-flex flex-column col-lg-6 px-0 pr-lg-3 mb-2'>
                   <label className='ml-2 mb-1' style={{fontWeight: "400"}}>Phone:</label>
                   <Input name="contact" type='number' handleChange={formik.handleChange} value={formik.values.contact} placeholder="Enter Contact" useInput={1}></Input>
                   {formik.errors.contact && (
-                    <small className="text-danger">{formik.errors.contact}</small>
+                    <small className="text-danger ml-2">{formik.errors.contact}</small>
                   )}
               </div>
               <div className='col pr-lg-3 p-0'>
                   <label className='ml-2 mb-1' style={{fontWeight: "400"}}>Description:</label>
                   <textarea name="description" onChange={formik.handleChange} value={formik.values.description} placeholder="About The Event" className="form-control" style={{borderRadius: "10px", height: "100px", border: "2px solid black"}}></textarea>
                   {formik.errors.description && (
-                    <small className="text-danger">{formik.errors.description}</small>
+                    <small className="text-danger ml-2">{formik.errors.description}</small>
                   )}
               </div>
               <div className='d-flex justify-content-center w-100'>
