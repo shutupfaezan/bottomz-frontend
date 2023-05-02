@@ -16,6 +16,35 @@ export default function HostWithUs() {
       contact: 0,
       description: ""
     },
+    validate: (values) => {
+    const errors = {};
+
+    if (!values.name) {
+      errors.name = "Name is required";
+    }
+
+    if (!values.email) {
+      errors.email = "Email is required";
+    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
+      errors.email = "Invalid email address";
+    }
+
+    if (!values.query_type || values.query_type === "Select") {
+      errors.query_type = "Please select an enquiry type";
+    }
+
+    if (!values.contact) {
+      errors.contact = "Contact number is required";
+    } else if (isNaN(values.contact)) {
+      errors.contact = "Invalid contact number";
+    }
+
+    if (!values.description) {
+      errors.description = "Description is required";
+    }
+
+    return errors;
+  },
     onSubmit: (values)=> {
       console.log(values)
       axios.post(`https://nightlife-2710.herokuapp.com/query`, values)
@@ -26,7 +55,7 @@ export default function HostWithUs() {
       <div className='100vh position-relative'>
         <GlobalHeader/>
         <section className='position-relative'>
-          <div className='svgbg mb-4 mb-md-3' style={{height: "200px"}}></div>
+          <div className='mb-4 mb-md-3' style={{height: "200px", background: "black"}}></div>
           <div className='d-md-flex justify-content-center position-absolute align-items-center w-100 px-4' style={{top: "50%", left: "50%", transform: "translate(-50%, -50%)"}}>
             <div className='d-flex justify-content-center flex-column text-center flex-md-row px-md-5 mx-lg-4 mx-md-2'>
               <div className='primary-header ml-2' style={{color: "transparent", WebkitTextStroke: "1px white", fontSize: "40px"}}>Get In Touch</div>
@@ -44,6 +73,9 @@ export default function HostWithUs() {
               <div className='d-flex flex-column col-lg-6 px-0 pr-lg-3'>
                   <label className='ml-2 mb-1' style={{fontWeight: "400"}}>Name:</label>
                   <Input name="name" handleChange={formik.handleChange} value={formik.values.name} placeholder="Enter Name" useInput={1}></Input>
+                  {formik.errors.name && (
+                    <small className="text-danger">{formik.errors.name}</small>
+                  )}
               </div>
               <div className='d-flex flex-column col-lg-6 px-0 pr-lg-3'>
                   <label className='ml-2 mb-1' style={{fontWeight: "400"}}>Choose Enquiry Type:</label>
@@ -57,18 +89,30 @@ export default function HostWithUs() {
                     <option value="Others">Others</option>
                   </select>
                   </div>
+                  {formik.errors.query_type && (
+                    <small className="text-danger">{formik.errors.query_type}</small>
+                  )}
               </div>
               <div className='d-flex flex-column col-lg-6 px-0 pr-lg-3'>
                   <label className='ml-2 mb-1' style={{fontWeight: "400"}}>Email:</label>
                   <Input name="email" handleChange={formik.handleChange}  type="email" value={formik.values.email} placeholder="Enter Email" useInput={1}></Input>
+                  {formik.errors.email && (
+                    <small className="text-danger">{formik.errors.email}</small>
+                  )}
               </div>
               <div className='d-flex flex-column col-lg-6 px-0 pr-lg-3'>
                   <label className='ml-2 mb-1' style={{fontWeight: "400"}}>Phone:</label>
                   <Input name="contact" type='number' handleChange={formik.handleChange} value={formik.values.contact} placeholder="Enter Contact" useInput={1}></Input>
+                  {formik.errors.contact && (
+                    <small className="text-danger">{formik.errors.contact}</small>
+                  )}
               </div>
               <div className='col pr-lg-3 p-0'>
                   <label className='ml-2 mb-1' style={{fontWeight: "400"}}>Description:</label>
                   <textarea name="description" onChange={formik.handleChange} value={formik.values.description} placeholder="About The Event" className="form-control" style={{borderRadius: "10px", height: "100px", border: "2px solid black"}}></textarea>
+                  {formik.errors.description && (
+                    <small className="text-danger">{formik.errors.description}</small>
+                  )}
               </div>
               <div className='d-flex justify-content-center w-100'>
                 <button type="submit" className="btn mt-3 col px-3 py-2 text-white" onClick={formik.handleSubmit} style={{background: "black", borderRadius: '10px'}}>Submit Form</button>

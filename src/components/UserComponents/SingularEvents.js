@@ -71,8 +71,8 @@
           <div>
           <div className=' px-md-5 px-3 mt-5'>
           <div className='d-md-flex px-lg-5'>
-            <div className="p-0 col-md-6 col-12 mx-auto d-flex w-100" style={{width: "100%", border: "2px solid black", borderRadius: "15px", overflow: "hidden"}}>
-            <div style={{background: `url(${singleEvent?.images_url}) no-repeat center/cover`, height: "210px", width: "100%", filter: "blur(3px)"}}></div>
+            <div className="p-0 col-md-6 col-12 mx-auto d-flex w-100" style={{width: "100%", border: "2px solid black", borderRadius: "15px", overflow: "hidden", height: "1005"}}>
+            <div style={{background: `url(${singleEvent?.images_url}) no-repeat center/cover`, height: "250px", width: "100%", filter: "blur(3px)"}}></div>
             <img style={{position: "absolute", top: "50%", left: "50%",transform: "translate(-50%, -50%)", height: "100%", maxWidth: "100%"}} src={singleEvent?.images_url} alt=""/>
             </div>
             <div className='mt-lg-0 mt-md-0 col-md-6 mt-4 pl-md-5 w-100 d-flex-flex-md-column justify-content-center'>

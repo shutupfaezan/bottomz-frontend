@@ -74,7 +74,7 @@
       .then((response)=>{
         setisLoading(false)
         sessionStorage.setItem('order_id', response?.data)
-        navigate(`/all-events/${params.event_name}/confirmation`)
+        navigate(`/events/${params.event_name}/confirmation`)
       })
       .catch((error)=>{
         setisLoading(false)

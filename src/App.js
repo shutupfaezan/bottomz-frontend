@@ -32,19 +32,19 @@ function App() {
         </Route>
         <Route exact path="/stranger-login" element={<Login/>}>
         </Route>
-        <Route exact path="/all-clubs" element={<AllClubs/>}>
+        <Route exact path="/clubs" element={<AllClubs/>}>
         </Route>
-        <Route exact path="/all-events" element={<AllEvents/>}>
+        <Route exact path="/events" element={<AllEvents/>}>
         </Route>
-        <Route exact path="all-clubs/:name" element={<SingularClubs/>}>
+        <Route exact path="clubs/:name" element={<SingularClubs/>}>
         </Route>
-        <Route exact path="all-events/:event_name" element={<SingularEvents/>}>
+        <Route exact path="events/:event_name" element={<SingularEvents/>}>
         </Route>
-        <Route exact path="all-events/:event_name/confirmation" element={<TicketOutput/>}>
+        <Route exact path="events/:event_name/confirmation" element={<TicketOutput/>}>
         </Route>
-        <Route exact path="/host-with-us" element={<HostWithUs/>}>
+        <Route exact path="/contact-us" element={<HostWithUs/>}>
         </Route>
-        <Route exact path="/all-events/:event_name/checkout" element={<Checkout/>}>
+        <Route exact path="/events/:event_name/checkout" element={<Checkout/>}>
         </Route>
         <Route exact path="/terms-and-conditions" element={<TermsConditions/>}>
         </Route>
