@@ -5,7 +5,14 @@ import Modal from 'react-bootstrap/Modal';
 export default function OrderTicketModal(props) {
   
   function changeStatus() {
-    axios.put(`https://nightlife-2710.herokuapp.com/update-order-status?order_id=${props?.displayOrders?.Order_ID}`);
+    axios.put(`https://nightlife-2710.herokuapp.com/update-order-status?order_id=${props?.displayOrders?.Order_ID}`)
+      .then(() => {
+        props.handleClose();
+        // window.location.reload();
+      })
+      .catch(error => {
+        console.log(error);
+      });
   }
 
   const isPaid = props?.displayOrders?.status?.[0] === 'Paid';
@@ -39,22 +46,10 @@ export default function OrderTicketModal(props) {
               </div>
             ))}
           </span>
-          <div className='d-flex'>
-            <button
-              className='w-100 col-7 col-md-5 btn mx-auto'
-              onClick={changeStatus}
-              style={{
-                color: isPaid ? 'black' : '#49cc90',
-                background: isPaid ? '#d8d8d8' : '#ecfaf4',
-                border: isPaid ? '2px solid black': '2px solid #49cc90',
-                borderRadius: "10px"
-              }}
-              disabled={isPaid}
-            >
-              <i className="bi bi-check2 mr-1" style={{fontSize: "18px"}}></i>
-              {isPaid ? 'Already Paid' : 'Change to Paid'}
-            </button>
-          </div>
+           {props?.displayOrders?.status?.[0] === "Unpaid" && <div className='d-flex justify-content-end'>
+            <i className="fa-solid fa-check mr-1 bg-success text-white px-2 py-2" onClick={changeStatus} style={{fontSize: "24px", borderRadius: "10px"}}></i>
+            <i className="fa-solid fa-xmark mr-1 bg-danger text-white px-2 py-2" onClick={()=>{props.handleClose();}} style={{fontSize: "24px", borderRadius: "10px"}}></i>
+          </div>}
         </div>
       </div>
     </Modal>

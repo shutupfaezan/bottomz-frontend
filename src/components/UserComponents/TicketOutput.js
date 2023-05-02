@@ -66,10 +66,10 @@ export default function TicketOutput() {
               <b style={{display: "block", marginBottom: "5px"}}>Quantity: {totalQuantity} Person(s)</b>
               <b style={{display: "block", marginBottom: "5px"}}>Amount To Be Paid: {totalPrice} INR</b>
               <b style={{display: "flex", marginBottom: "5px"}}><b>Categries: </b>
-              <div className="d-flex">
+              <div className="d-flex flex-column flex-md-row">
               {orderDetails && orderDetails?.map((object, index)=>{
                 return(
-                  <p className="mb-0 ml-2">{object?.ticket_category} x <span style={{color: "crimson"}}>Oty : {object?.quantity}</span></p>
+                  <small className="mb-0 ml-2">{object?.ticket_category} x <span style={{color: "crimson"}}>Oty : {object?.quantity}</span></small>
                 )
               })}
               </div>
@@ -84,10 +84,10 @@ export default function TicketOutput() {
           <p className="px-lg-5 p-3">*Please check promotions/spams as mails may be wrongly flagged at times</p>
           <p className="px-lg-5 p-3">For queries, reach out us on <a href="/gmail.com" style={{color: "crimson"}}>info@bottmzup.com</a></p>
           <div className="px-lg-5 p-3 mt-4">
-            <button className="btn px-3 py-md-2 py-3 mr-lg-3 mr-md-2 rounded-pill col-lg-3 col-md-4 col text-white" style={{background: "black"}}><i className="fa-solid fa-ticket mr-2"></i>View Order Details</button>
-            <button className="btn px-3 py-md-2 py-3 mr-lg-3 rounded-pill mt-md-0 mt-3 mr-md-2 col-lg-3 col-md-4 col" style={{background: "white", border: "2px solid black", color: "black"}} onClick={ResendAPi}>
+            <button className="btn px-3 py-md-2 py-3 mr-lg-3 mr-md-2 rounded-pill col-lg-3 col-md-4 col text-white mb-3" style={{background: "black"}}><i className="fa-solid fa-ticket mr-2"></i>View Order Details</button>
+            <button className="btn px-2 py-md-2 py-3 mr-lg-3 rounded-pill mt-md-0 mt-3 mr-md-2 col-lg-3 col-md-4 col mb-3" style={{background: "white", border: "2px solid black", color: "black"}} onClick={ResendAPi}>
               <i className="fa-solid fa-rotate-right mr-2"></i>Resend Confirmation</button>
-            <button className="btn px-3 py-md-2 py-3 mr-lg-3 mt-3 mt-md-0 rounded-pill col-lg-3 col-md-4 col" style={{background: "white", border: "2px solid black", color: "black"}}><i className="fa-solid fa-print mr-2"></i>Print Booking Info
+            <button className="btn px-3 py-md-2 py-3 mr-lg-3 mt-3 mt-md-0 rounded-pill col-lg-3 col-md-4 col mb-3" style={{background: "white", border: "2px solid black", color: "black"}}><i className="fa-solid fa-print mr-2"></i>Print Booking Info
             </button>
           </div>
           <p className="px-lg-5 mt-4 mb-5 p-3">Booking Date & Time <span style={{color: "crimson"}}>{bookingDate}</span></p>

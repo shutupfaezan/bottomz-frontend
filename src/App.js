@@ -52,7 +52,7 @@ function App() {
         </Route>
         <Route exact path="/order-history" element={<OrderHistory/>}>
         </Route>
-        <Route exact path="/order-history/:order_id" element={<OrderHistory/>}>
+        <Route exact path="/order-history/:order_id" element={<TicketOutput/>}>
         </Route>
         <Route exact path="/promoter-login" element={<PromoterLogin/>}>
         </Route>

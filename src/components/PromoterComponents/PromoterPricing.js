@@ -37,11 +37,11 @@ export default function PromoterPricing() {
     
   return (
     <div className='mt-0 mt-md-4 pl-md-2 pr-lg-5 pr-md-2'>
-            <div className='col p-0'>
+            <div className='col p-0 mb-2'>
             <label className='ml-2 mb-1'>Ticket Categories:</label>
             <Input name="ticket_category" placeholder="Eg:- Male Stag" id="ticket_category" value={ticket_category} handleChange={event=>setTicket_Category(event.target.value)}></Input>
             </div>
-            <div className='d-md-flex'>
+            <div className='d-md-flex mb-2'>
                 <div className='col-lg-6 px-0 pr-md-3'>
                 <label className='ml-2 mb-1'>Cover Description:</label>
                 <Input name="ticket_category" placeholder="Eg:- No Cover" id="ticket_category" value={cover_description} handleChange={event=>setCover_Description(event.target.value)}></Input>
@@ -51,7 +51,7 @@ export default function PromoterPricing() {
                 <Input name="description" placeholder="Eg:- Entry Only" id="description" value={description} handleChange={event=>setDescription(event.target.value)}></Input>
                 </div>
             </div>
-            <div className='d-md-flex'>
+            <div className='d-md-flex mb-2'>
                 <div className='col-lg-6 px-0 pr-md-3'>
                 <label className='ml-3 mb-1'>Price (per ticket):</label>
                 <Input name="price" type="number" placeholder="Eg:- Rs. 1000" id="price" value={price} handleChange={event=>setPrice(event.target.value)}></Input>

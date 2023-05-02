@@ -13,7 +13,7 @@ const [isLoading, setIsLoading] = useState(true)
 
 const fetchData = async () => {
   try {
-    const response = await axios.get(`https://nightlife-2710.herokuapp.com/fetch-promoter-events-history?promoter_access_token=${sessionStorage?.token}`)
+    const response = await axios.get(`https://nightlife-2710.herokuapp.com/fetch-promoter-events-history?promoter_access_token=${sessionStorage?.promoter_token}`)
     setEventData(response.data)
     setIsLoading(false)
   } catch (error) {

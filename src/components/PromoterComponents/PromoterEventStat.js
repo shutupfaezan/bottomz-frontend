@@ -14,7 +14,7 @@ export default function PromoterEventStat() {
     useEffect(() => {
       const fetchEventData = async () => {
           try {
-              const { data } = await axios.get(`https://nightlife-2710.herokuapp.com/promoter-orders?event_name=${params.event_name}&promoter_access_token=${sessionStorage?.token}`);
+              const { data } = await axios.get(`https://nightlife-2710.herokuapp.com/promoter-orders?event_name=${params.event_name}&promoter_access_token=${sessionStorage?.promoter_token}`);
               const { Event_Information, Order_Details } = data;
               setEventData(Event_Information);
               setOrderData(Order_Details);
