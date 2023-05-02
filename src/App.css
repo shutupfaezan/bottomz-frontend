@@ -162,9 +162,9 @@ input::-webkit-inner-spin-button {
   opacity: 1 !important;
 }
 
-option {
+/* option {
   direction: rtl;
-}
+} */
 
 
 .activeCarousel{
