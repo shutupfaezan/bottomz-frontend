@@ -39,26 +39,26 @@ export default function PromoterPricing() {
     <div className='mt-0 mt-md-4 pl-md-2 pr-lg-5 pr-md-2'>
             <div className='col p-0 mb-2'>
             <label className='ml-2 mb-1'>Ticket Categories:</label>
-            <Input name="ticket_category" placeholder="Eg:- Male Stag" id="ticket_category" value={ticket_category} handleChange={event=>setTicket_Category(event.target.value)}></Input>
+            <Input name="ticket_category" placeholder="Eg:- Male Stag" id="ticket_category" value={ticket_category} handleChange={event=>setTicket_Category(event.target.value)}  useInput={1}></Input>
             </div>
             <div className='d-md-flex mb-2'>
                 <div className='col-lg-6 px-0 pr-md-3'>
                 <label className='ml-2 mb-1'>Cover Description:</label>
-                <Input name="ticket_category" placeholder="Eg:- No Cover" id="ticket_category" value={cover_description} handleChange={event=>setCover_Description(event.target.value)}></Input>
+                <Input name="ticket_category" placeholder="Eg:- No Cover" id="ticket_category" value={cover_description} handleChange={event=>setCover_Description(event.target.value)} useInput={1}></Input>
                 </div>
                 <div  className='col-lg-6 px-0 pl-md-3'>
                 <label className='ml-3 mb-1'>Description:</label>
-                <Input name="description" placeholder="Eg:- Entry Only" id="description" value={description} handleChange={event=>setDescription(event.target.value)}></Input>
+                <Input name="description" placeholder="Eg:- Entry Only" id="description" value={description} handleChange={event=>setDescription(event.target.value)} useInput={1}></Input>
                 </div>
             </div>
             <div className='d-md-flex mb-2'>
                 <div className='col-lg-6 px-0 pr-md-3'>
                 <label className='ml-3 mb-1'>Price (per ticket):</label>
-                <Input name="price" type="number" placeholder="Eg:- Rs. 1000" id="price" value={price} handleChange={event=>setPrice(event.target.value)}></Input>
+                <Input name="price" type="number" placeholder="Eg:- Rs. 1000" id="price" value={price} handleChange={event=>setPrice(event.target.value)} useInput={1}></Input>
                 </div>
                 <div  className='col-lg-6 px-0 pl-md-3'>
                 <label className='ml-3 mb-1'>Total Quantity:</label>
-                <Input name="total_quantity" type="number" placeholder="Eg:- 100" id="total_quantity" value={total_quantity} handleChange={event=>set_Total_Quantity(event.target.value)}></Input>
+                <Input name="total_quantity" type="number" placeholder="Eg:- 100" id="total_quantity" value={total_quantity} handleChange={event=>set_Total_Quantity(event.target.value)} useInput={1}></Input>
                 </div>
             </div>
         <div className='d-md-flex justify-content-between my-3 col p-0'>

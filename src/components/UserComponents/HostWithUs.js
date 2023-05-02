@@ -43,12 +43,12 @@ export default function HostWithUs() {
             <div className="d-flex p-3 flex-wrap" style={{border: "2px solid black", borderRadius: "10px"}}>
               <div className='d-flex flex-column col-lg-6 px-0 pr-lg-3'>
                   <label className='ml-2 mb-1' style={{fontWeight: "400"}}>Name:</label>
-                  <Input name="name" handleChange={formik.handleChange} value={formik.values.name} placeholder="Enter Name"></Input>
+                  <Input name="name" handleChange={formik.handleChange} value={formik.values.name} placeholder="Enter Name" useInput={1}></Input>
               </div>
               <div className='d-flex flex-column col-lg-6 px-0 pr-lg-3'>
                   <label className='ml-2 mb-1' style={{fontWeight: "400"}}>Choose Enquiry Type:</label>
                   <div className='mb-2 d-flex justify-content-center align-items-center'>
-                  <select className="form-select w-100" name="query_type" id="query_type" onChange={formik.handleChange} value={formik.values.query_type} style={{border: "2px solid black", borderRadius: "10px", fontSize: "12px", padding: "10px"}}>
+                  <select className="form-select w-100" name="query_type" id="query_type" onChange={formik.handleChange} value={formik.values.query_type} style={{border: "2px solid black", borderRadius: "10px", fontSize: "12px", padding: "10px"}} useInput={1}>
                     <option selected value="Select">Select</option>
                     <option value="Ticket Trouble">Ticket Trouble</option>
                     <option value="Be a Promoter">Be a Promoter</option>
@@ -60,11 +60,11 @@ export default function HostWithUs() {
               </div>
               <div className='d-flex flex-column col-lg-6 px-0 pr-lg-3'>
                   <label className='ml-2 mb-1' style={{fontWeight: "400"}}>Email:</label>
-                  <Input name="email" handleChange={formik.handleChange}  type="email" value={formik.values.email} placeholder="Enter Email"></Input>
+                  <Input name="email" handleChange={formik.handleChange}  type="email" value={formik.values.email} placeholder="Enter Email" useInput={1}></Input>
               </div>
               <div className='d-flex flex-column col-lg-6 px-0 pr-lg-3'>
                   <label className='ml-2 mb-1' style={{fontWeight: "400"}}>Phone:</label>
-                  <Input name="contact" type='number' handleChange={formik.handleChange} value={formik.values.contact} placeholder="Enter Contact"></Input>
+                  <Input name="contact" type='number' handleChange={formik.handleChange} value={formik.values.contact} placeholder="Enter Contact" useInput={1}></Input>
               </div>
               <div className='col pr-lg-3 p-0'>
                   <label className='ml-2 mb-1' style={{fontWeight: "400"}}>Description:</label>

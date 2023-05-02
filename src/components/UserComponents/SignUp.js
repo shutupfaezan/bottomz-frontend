@@ -42,10 +42,10 @@ export default function SignUp() {
         </h3>
         <div>
           <form>
-            <div className='d-flex justify-content-center'><Input name="user_name" type="text" value={formik.values.user_name} style={{width: "85%"}} id="user_name" icon="fa-regular fa-user" handleChange={formik.handleChange} placeholder="Enter Your Name"/></div>
-            <div className='d-flex justify-content-center'><Input name="email_id" type="email" value={formik.values.email_id} icon="fa-regular fa-at" id="email_id" style={{width: "85%"}}  handleChange={formik.handleChange} placeholder="Enter Your Email"/></div>
-            <div className='d-flex justify-content-center'><Input name="password" type="password" value={formik.values.password} id="password" style={{width: "85%"}} bi bi-lock-fill icon="bi bi-lock-fill" handleChange={formik.handleChange} placeholder="Set a password!" icon2="bi bi-eye-fill position-relative" /></div>
-            <div className='d-flex justify-content-center'><Input name="contact" type="number" value={formik.values.contact} id="contact" style={{width: "85%"}} icon="fa-regular fa-address-book" handleChange={formik.handleChange} placeholder="Enter Your Contact"/></div>
+            <div className='d-flex justify-content-center mb-2'><Input name="user_name" type="text" value={formik.values.user_name} style={{width: "85%"}} id="user_name" icon="fa-regular fa-user" handleChange={formik.handleChange} placeholder="Enter Your Name"/></div>
+            <div className='d-flex justify-content-center mb-2'><Input name="email_id" type="email" value={formik.values.email_id} icon="fa-regular fa-at" id="email_id" style={{width: "85%"}}  handleChange={formik.handleChange} placeholder="Enter Your Email"/></div>
+            <div className='d-flex justify-content-center mb-2'><Input name="password" type="password" value={formik.values.password} id="password" style={{width: "85%"}} bi bi-lock-fill icon="bi bi-lock-fill" handleChange={formik.handleChange} placeholder="Set a password!" icon2="bi bi-eye-fill position-relative" /></div>
+            <div className='d-flex justify-content-center mb-2'><Input name="contact" type="number" value={formik.values.contact} id="contact" style={{width: "85%"}} icon="fa-regular fa-address-book" handleChange={formik.handleChange} placeholder="Enter Your Contact"/></div>
             <div className="mt-3 d-flex justify-content-center">
               <button type="submit" className="btn mb-3" style={{borderRadius: "20px", background: "#7d10bf", color: "white"}} onClick={formik.handleSubmit}>
               {isLoading && (<span id="login-loader-span" className="spinner-border spinner-border-sm mx-1" role="status" aria-hidden="true"></span>)}
