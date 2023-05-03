@@ -13,6 +13,7 @@
     export default function SingularEvents() {
         const {setShow, setInputModal, inputValues} = useContext(SingularContext);
         const [singleEvent, setSingleEvent] = useState()
+        const [error, setError] = useState()
         const [ticketConfig, setTicketConfig] = useState()
         const [clubDetail, setClubDetail] = useState()
         const [isloading, setIsLoading] = useState(true)
@@ -43,7 +44,16 @@
         // function paymentsCreate(){
           
         // }
-
+        function handleFormSubmit(event) {
+          event.preventDefault();
+          if (numSelected > 10) {
+            setError("You cannot select Tickets more than 10")
+            return;
+          }
+          else{
+            sessionStorage.token ? setInputModal(true) : setShow(true)
+          }
+        }
 
         console.log(inputValues)
 
@@ -55,6 +65,14 @@
             totalPrice: acc?.totalPrice + total_price
           };
         }, {numSelected: 0, totalPrice: 0});
+        
+        useEffect(() => {
+          if (numSelected > 10) {
+            setError("You cannot select more than 10 tickets")
+          } else {
+            setError(null)
+          }
+        }, [numSelected]);
         
         return (
           <>
@@ -100,10 +118,11 @@
                     </tbody>
                   </table>
                   <div className='d-flex'>
-                <button style={{background: "black", borderRadius: "10px"}}  className='btn my-2 col-12 col-md-6 col-lg-4 mx-auto text-white' type="submit" onClick={()=>{sessionStorage.token ? setInputModal(true) : setShow(true)}}>
+                <button style={{background: "black", borderRadius: "10px"}}  className='btn my-2 col-12 col-md-6 col-lg-4 mx-auto text-white' type="submit" onClick={handleFormSubmit}>
                   <span>{sessionStorage.token ? "Get Tickets" : "Log In/Sign Up to Continue"}</span>
                 </button>
                 </div>
+                {error && <div className='text-center' style={{color: "crimson"}}>{error}</div>}
                 <div className='text-center mt-4'> {numSelected} Selected - Rs. {totalPrice}</div>
               </div> : <div className='ml-3'><b>Ticketing info doesnt exist</b><p style={{color: "#6a6868"}}>Be the first to report the error and get some perks</p></div>}
             </div>

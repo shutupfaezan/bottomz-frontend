@@ -10,8 +10,8 @@ export default function PromoterPricing() {
     const [ticket_category, setTicket_Category] = useState('')
     const [description, setDescription] = useState('')
     const [cover_description, setCover_Description] = useState('')
-    const [price, setPrice] = useState(null)
-    const [total_quantity, set_Total_Quantity] = useState(null)
+    const [price, setPrice] = useState("")
+    const [total_quantity, set_Total_Quantity] = useState("")
     const { eventInfoValue, setEventStepper, eventStepper} = useContext(SingularContext);
 
     function handlePriceChange(event) {
@@ -45,7 +45,7 @@ export default function PromoterPricing() {
         if (price.toString().includes("-")) { // Fixed
           errors.push("Price must not contain a hyphen.");
         } else if (!price) {
-          errors.push("Price is required");
+          errors.push("Enter a valid Price");
         }
         if (!total_quantity) {
           errors.push("Total quantity is required");
