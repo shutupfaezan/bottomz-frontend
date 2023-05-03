@@ -7,20 +7,24 @@
   export default function PromoterReviewInfo() {
     const { eventInfoValue } = useContext(SingularContext);
     const [toastMessge, setToastMessage] = useState("")
+    const [isLoading, setisLoading] = useState(false);
     const [showToast, setShowToast] = useState(false);
     const uploaded = eventInfoValue?.event_information?.images_url
     const fileBlob = new Blob([uploaded], { type: uploaded?.type })
     function submitEventRequest(){
+      setisLoading(true)
       axios.post(`https://nightlife-2710.herokuapp.com/complete-promoter-hosting?promoter_access_token=${sessionStorage.promoter_token}`, eventInfoValue)
         .then(() => {
           try {
             const formData = new FormData();
             formData.append('file', eventInfoValue?.event_information?.images_url);
             axios.post(`https://nightlife-2710.herokuapp.com/event-poster?event_name=${eventInfoValue?.event_information?.event_name}`, formData);
+            setisLoading(false)
             setToastMessage("Event Created Successfully")
             setShowToast(true)
             setTimeout(() => setShowToast(false), 2000);
           } catch (error) {
+            setisLoading(false)
             setShowToast(true)
             setTimeout(() => setShowToast(false), 2000);
             console.log(error);
@@ -28,6 +32,7 @@
           }
         })
         .catch((error)=>{
+          setisLoading(false)
           setShowToast(true)
           setToastMessage("Some Error Occured")
           setTimeout(() => setShowToast(false), 2000);
@@ -138,7 +143,10 @@
                 <Toast.Body>{toastMessge}</Toast.Body>
                 </Toast>}
           <div className='w-100 d-flex justify-content-center'>   
-        <button type="submit" onClick={submitEventRequest} style={{background: "black"}} className="btn btn-primary mt-3 col-md-4 py-2 w-100">Create Event Request</button>
+        <button type="submit" onClick={submitEventRequest} style={{background: "black"}} className="btn btn-primary mt-3 col-md-4 py-2 w-100">
+        {isLoading && (<span id="login-loader-span" className="spinner-border spinner-border-sm mx-1" role="status" aria-hidden="true"></span>)}
+              {isLoading && (<span id="login-loading-text-span">Loading</span>)}
+              {!isLoading && <span id="login-text-span">Create Event Request</span>}</button>
         </div>
       </div>
     )

@@ -14,15 +14,15 @@ export default function PromoterLogin() {
     },
     onSubmit: (values, { setSubmitting, setErrors })=> {
       let errors = {};
-      // if (!values.email_id) {
-      //   errors.email_id = 'Email is required';
-      // }else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email_id)) {
-      //   errors.email_id = 'Invalid email format';
-      // }
+      if (!values.email_id) {
+        errors.email_id = 'Email is required';
+      }else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email_id)) {
+        errors.email_id = 'Invalid email format';
+      }
       
-      // if (!values.password) {
-      //   errors.password = 'Password is required';
-      // }
+      if (!values.password) {
+        errors.password = 'Password is required';
+      }
       if (Object.keys(errors).length !== 0) {
         setErrors(errors);
         setisLoading(false)

@@ -14,24 +14,71 @@ export default function PromoterPricing() {
     const [total_quantity, set_Total_Quantity] = useState(null)
     const { eventInfoValue, setEventStepper, eventStepper} = useContext(SingularContext);
 
-
-    function handleAddItem(event){
-        setErrors(null)
-        if (!ticket_category || !cover_description || !price || !total_quantity) {
-            setErrors("Fill all required fields before adding the category")
-            return;
+    function handlePriceChange(event) {
+        if (!/-?\d*\.?\d*/.test(event.target.value)) {
+          setErrors("Please enter a valid price.");
+        } else {
+          setPrice(event.target.value);
+          setErrors(null);
         }
-        const newItem = { ticket_category, description, cover_description, price, total_quantity };
+      }
+      
+      function handleQuantityChange(event) {
+        if (!/^\d+$/.test(event.target.value)) {
+          setErrors("Please enter a valid quantity.");
+        } else {
+        set_Total_Quantity(event.target.value);
+          setErrors(null);
+        }
+      }
+
+
+
+      function handleAddItem(event) {
+        const errors = [];
+        if (!ticket_category) {
+          errors.push("Ticket category is required");
+        }
+        if (!cover_description) {
+          errors.push("Cover description is required");
+        }
+        if (price.toString().includes("-")) { // Fixed
+          errors.push("Price must not contain a hyphen.");
+        } else if (!price) {
+          errors.push("Price is required");
+        }
+        if (!total_quantity) {
+          errors.push("Total quantity is required");
+        } else if (total_quantity.toString().includes("-")) {
+          errors.push("Total Quantity must not contain a hyphen.");
+        }
+      
+        if (errors.length > 0) {
+          setErrors(errors.join(", "));
+          return;
+        }
+      
+        setErrors(null);
+      
+        const newItem = {
+          ticket_category,
+          description,
+          cover_description,
+          price,
+          total_quantity
+        };
         setItems([...items, newItem]);
-
-        setTicket_Category('')
-        setDescription('')
-        setCover_Description('')
-        setPrice('')
-        set_Total_Quantity('')
-
-        event.target.value = null
-    }
+      
+        setTicket_Category("");
+        setDescription("");
+        setCover_Description("");
+        setPrice("");
+        set_Total_Quantity("");
+      
+        event.target.value = null;
+      }
+      
+      
 
     function submitPricing() {
         const price_info = items;
@@ -60,11 +107,11 @@ export default function PromoterPricing() {
             <div className='d-md-flex mb-2'>
                 <div className='col-lg-6 px-0 pr-md-3'>
                 <label className='ml-3 mb-1'>Price (per ticket)<span style={{color: "crimson"}}>*</span></label>
-                <Input name="price" type="number" placeholder="Eg:- Rs. 1000" id="price" value={price} handleChange={event=>setPrice(event.target.value)} useInput={1}></Input>
+                <Input name="price" type="number" placeholder="Eg:- Rs. 1000" id="price" value={price} handleChange={handlePriceChange} useInput={1}></Input>
                 </div>
                 <div  className='col-lg-6 px-0 pl-md-3'>
                 <label className='ml-3 mb-1'>Total Quantity<span style={{color: "crimson"}}>*</span></label>
-                <Input name="total_quantity" type="number" placeholder="Eg:- 100" id="total_quantity" value={total_quantity} handleChange={event=>{set_Total_Quantity(event.target.value)}} useInput={1}></Input>
+                <Input name="total_quantity" type="number" placeholder="Eg:- 100" id="total_quantity" value={total_quantity} handleChange={handleQuantityChange} useInput={1}></Input>
                 </div>
             </div>
             <div>
