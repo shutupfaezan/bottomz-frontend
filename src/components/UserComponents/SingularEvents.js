@@ -50,6 +50,10 @@
             setError("You cannot select Tickets more than 10")
             return;
           }
+          if (numSelected === 0) {
+            setError("Select a quantity more than 0")
+            return;
+          }
           else{
             sessionStorage.token ? setInputModal(true) : setShow(true)
           }

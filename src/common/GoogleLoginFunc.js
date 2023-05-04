@@ -6,9 +6,11 @@ import axios from 'axios';
 export default function GoogleLoginFunc() {
   const {setShow} = useContext(SingularContext);
   const [isLoading, setisLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   const onSuccess = async (tokenResponse) => {
     try {
+      setError(null)
       setisLoading(true)
       const data = await axios.get("https://www.googleapis.com/oauth2/v3/userinfo", {
         headers: {
@@ -29,7 +31,8 @@ export default function GoogleLoginFunc() {
           
         })
         .catch((error)=> {
-          console.log(error)
+          setisLoading(false)
+          setError(error.response.data.detail);
         })
     } catch(error) {
       console.log(error)
@@ -42,11 +45,15 @@ export default function GoogleLoginFunc() {
 
   return (
     <>
-      <button onClick={login} type="button" className="btn btn-light mr-2" style={{border: "2px solid darkGray", borderRadius: "10px"}}>
-              {isLoading && (<span id="login-loader-span" className="spinner-border spinner-border-sm mx-1" role="status" aria-hidden="true"></span>)}
-              {!isLoading &&  <><img src={process.env.PUBLIC_URL + "/images/Google_Icons-09-512.webp"} width="25px" alt=""/><b>Sign In</b></>}
-        
+    <div className='d-flex flex-column '>
+      <button onClick={login} type="button" className="btn btn-light px-4 mx-auto" style={{border: "2px solid darkGray", borderRadius: "10px", width: "fit-content"}}>
+          {isLoading && (<span id="login-loader-span" className="spinner-border spinner-border-sm mx-1" role="status" aria-hidden="true"></span>)}
+          {!isLoading &&  <><img src={process.env.PUBLIC_URL + "/images/Google_Icons-09-512.webp"} width="25px" alt=""/><b>Sign In</b></>}
       </button>
+      {
+        <small style={{display: "block", color: "crimson"}}>{error && error}</small>
+      }
+      </div>
     </>
   )
 }

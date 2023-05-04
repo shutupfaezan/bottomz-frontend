@@ -261,11 +261,14 @@ transform: translateZ(0);
     font-size: 0.8rem !important;
    }
    .MainHeader{
-    height: 570px !important;
+    height: 100vh !important;
    }
    .FeaturedEventsCtrl{
     aspect-ratio: unset !important;
     height: 120px !important;
+   }
+   .MainHeaderText{
+    font-size: 40px !important;
    }
 }
 
