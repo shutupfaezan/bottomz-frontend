@@ -48,15 +48,14 @@ function handleCopy() {
   return (
        <>
     <div className='position-relative'>
+    {isLoading && <div className='d-flex justify-content-center mt-auto' style={{height: "100vh"}}>
+          <div className='d-flex align-items-center'>
+          <span><img src={process.env.PUBLIC_URL + "/images/output-onlinegiftools.gif"} style={{height: '100px', width: "100px"}} alt=""/></span>
+          </div>
+          </div>}
+   {!isLoading && <>
     <GlobalHeader/>
-    {isLoading && <div className='d-flex justify-content-center mt-auto vh-100'>
-    <div className='d-flex align-items-center'>
-    <span style={{fontSize: "35px"}}>Loading </span>
-    <div className="my-auto spinner-border text-black " role="status">
-    </div>
-    </div>
-    </div>}
-   {!isLoading && <><div className='p-md-5 p-4 d-flex' style={{height: "100%", background: "black", color: "white"}}>
+   <div className='p-md-5 p-4 d-flex' style={{height: "100%", background: "black", color: "white"}}>
       <div className='m-lg-5 m-md-4 col-lg-6 col-md-8 col-11 p-0'>
         <BrowserView>
           <h1 className='' style={{fontSize: "2.5rem"}}><b>{clubVariable?.Club_info?.club_name}</b></h1>
@@ -131,8 +130,8 @@ function handleCopy() {
           </div>
       </div>
     </div>
-    </>}
     <Footer/>
+    </>}
     </div>
     </> 
   )

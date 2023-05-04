@@ -163,7 +163,7 @@
                 <div className='ml-auto mr-4' style={{fontSize: "20px", color: "crimson"}}>₹0</div></div>
             </div>
             <div className='d-flex align-items-center mb-2 p-3' style={{background: "#F6F7F8", borderRadius: "10px"}}>
-              <p className='m-0 d-flex flex-column'>Total<small style={{fontSize: "12px", fontWeight: "100"}}>(Tax Exclusive)</small></p>
+              <p className='m-0 d-flex flex-column'>Total<small style={{fontSize: "12px", fontWeight: "100"}}>Payable Amount</small></p>
               <div className='ml-auto mr-2' style={{fontSize: "20px"}}>₹{sum}</div>
             </div>
             <button onClick={CreateOrder} className='btn col-lg-12 mt-2 text-white' style={{background: "black", borderRadius: "10px"}}>

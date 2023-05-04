@@ -41,7 +41,7 @@ export default function QuantityFields(props) {
             <label className="input-group-text " htmlFor={"TicketDropdown" + props.index}>Qty</label>
           </div>
           <select
-            className="form-select text-end"
+            className="form-select text-end QuantityFields"
             id={"TicketDropdown" + props.index}
             name={"TicketDropdown" + props.index}
             value={inputValues[props.index] ? inputValues[props.index]["TicketDropdown" + props.index] : ''}

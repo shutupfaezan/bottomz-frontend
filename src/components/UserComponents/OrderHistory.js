@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from "axios";
 import Footer from "../../common/Footer";
 
@@ -63,6 +63,13 @@ const order_history = async () => {
           </div>
         </div>
           <div>
+            {
+              tickets && tickets.length === 0 && <>
+              <div className="mx-auto d-flex justify-content-center text-center flex-column my-auto" style={{height: "50vh"}}>
+                <h4 className=""><b>Oops! Looks liks you forgot to order something</b></h4>
+                <Link className="text-center" style={{color: "crimson"}} to="/events">Order Now &gt;&gt;</Link>
+                </div></>
+            }
             {groupedOrders &&
               Object.entries(groupedOrders).map(([date, orders]) => (
                 <div className="mt-4" key={date}>
@@ -87,7 +94,7 @@ const order_history = async () => {
                     </div>
                   </div>
                   <div className="col-md-4 py-3 text-white pt-4 d-flex flex-column justify-content-center" style={{background: "black", borderRadius: "10px", boxShadow: "10px 10px #E8EBEE"}}>
-                    <p className="pt-0 pt-md-0 text-center" style={{fontSize: "24px"}}>Your Order ID is {order?.order_id}</p>
+                    <p className="pt-0 pt-md-0 text-center px-2" style={{fontSize: "24px"}}>Your Order ID is {order?.order_id}</p>
                   </div>
                 </div>
                   ))}

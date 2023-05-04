@@ -42,13 +42,11 @@ export default function ClubsRow() {
 
   return (
     <>
-      {loading && <div className='d-flex justify-content-center mt-auto'>
-      <div className='d-flex align-items-center'>
-      <span style={{fontSize: "35px"}}>Loading </span>
-      <div className="my-auto spinner-border text-black " role="status">
-      </div>
-      </div>
-      </div>}
+      {loading && <div className='d-flex justify-content-center my-auto' style={{height: "50vh"}}>
+    <div className='d-flex align-items-center'>
+    <span><img src={process.env.PUBLIC_URL + "/images/output-onlinegiftools.gif"} style={{height: '100px', width: "100px"}} alt=""/></span>
+    </div>
+    </div>}
       {!loading && 
       <div className="my-2 px-0">
         <section className='px-md-5 py-3'>
