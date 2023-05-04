@@ -162,9 +162,9 @@ input::-webkit-inner-spin-button {
   opacity: 1 !important;
 }
 
-/* option {
+select.QuantityFields option {
   direction: rtl;
-} */
+}
 
 
 .activeCarousel{
@@ -211,6 +211,9 @@ input::-webkit-inner-spin-button {
   .react-multi-carousel-dot-list{
     display: none !important;
   }
+  .FeaturedEventsCtrl{
+    aspect-ratio: 1/1 !important;
+   }
 }
 
 .carousel-container{
@@ -260,6 +263,10 @@ transform: translateZ(0);
    .MainHeader{
     height: 570px !important;
    }
+   .FeaturedEventsCtrl{
+    aspect-ratio: unset !important;
+    height: 120px !important;
+   }
 }
 
 /* .modal-content{
@@ -282,3 +289,4 @@ transform: translateZ(0);
   margin-left: 10px;
   margin-right: 10px;
 }
+

@@ -73,19 +73,25 @@
             setError(null)
           }
         }, [numSelected]);
+
+        const formatDate = (dateStr) => {
+          const [year, month, day] = dateStr.split("-")
+          const date = new Date(year, month - 1, day)
+          const options = {year: 'numeric', month: 'long', day: 'numeric', weekday: "long" }
+          return date.toLocaleDateString('en-US', options)
+        }
         
         return (
           <>
           <div>
-          <GlobalHeader/>
-          {isloading && <div className='d-flex justify-content-center' style={{marginTop: "75px"}}>
-            <div className='d-flex align-items-center'>
-            <span style={{fontSize: "35px"}}>Loading </span>
-            <div className="my-auto spinner-border text-black " role="status">
-            </div>
-            </div>
-            </div>}
+          {isloading && <div className='d-flex justify-content-center mt-auto'>
+    <div className='d-flex align-items-center'>
+    <span><img src={process.env.PUBLIC_URL + "/images/output-onlinegiftools.gif"} style={{height: '100px', width: "100px", transform: "translate(-50%, -50%)", position: "absolute", top: "50%", left: "50%"}} alt=""/></span>
+    </div>
+    </div>}
           {!isloading && 
+          <div>
+          <GlobalHeader/>
           <div>
           <div className=' px-md-5 px-3 mt-5'>
           <div className='d-md-flex px-lg-5'>
@@ -94,7 +100,7 @@
             <img style={{position: "absolute", top: "50%", left: "50%",transform: "translate(-50%, -50%)", height: "100%", maxWidth: "100%"}} src={singleEvent?.images_url} alt=""/>
             </div>
             <div className='mt-lg-0 mt-md-0 col-md-6 mt-4 pl-md-5 w-100 d-flex-flex-md-column justify-content-center'>
-              <b className=''> <i className="bi bi-calendar4 mr-3"></i>{singleEvent?.timings} • {singleEvent?.date}</b>
+              <b className=''> <i className="bi bi-calendar4 mr-3"></i>{singleEvent?.timings} • {formatDate(singleEvent?.date)}</b>
               <h3 className='primary-header mt-3'>{singleEvent?.event_name}</h3>
               <p className='mt-3'><i className="bi bi-geo-alt mr-1"></i> {singleEvent?.event_venue}</p>
               <p className="mt-2"><i className="bi bi-person-circle mr-2"></i>{singleEvent?.curated_by}</p>
@@ -148,6 +154,7 @@
             <AttendeeModal/>
           </div>
             <Footer/>
+          </div>
           </div>}
           </div>
         </>
