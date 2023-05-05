@@ -1,11 +1,16 @@
 import React, {useEffect, useState} from 'react';
 import PromoterSidebar from '../../common/PromoterSidebar'
 import Footer from '../../common/Footer'
+import axios from "axios"
 import QrScanner from 'react-qr-scanner';
+
 import { BrowserView, MobileOnlyView, TabletView } from 'react-device-detect';
+import OrderTicketModal from '../../common/OrderTicketModal';
 
 
 export default function PromoterQRScanner() {
+  const [show, setShow] = useState(false)
+  const [displayOrders, setDisplayOrders] = useState();
   const [result, setResult] = useState(null);
   const [width, setWidth] = useState(window.innerWidth);
 
@@ -19,6 +24,21 @@ useEffect(() => {
         window.removeEventListener('resize', handleWindowSizeChange);
     }
 }, []);
+
+useEffect(() => {
+  if (result) {
+    axios.get(`https://nightlife-2710.herokuapp.com/promoter-modal-values?order_id=${result}`)
+      .then(response => {
+        setDisplayOrders(response.data)
+        console.log(response.data);
+        setShow(true)
+      })
+      .catch(error => {
+        // Handle API error
+        console.error(error);
+      });
+  }
+}, [result]);
 
 let isDesktop = (width > 768);
 
@@ -36,6 +56,8 @@ let isDesktop = (width > 768);
     setResult(null);
   }
 
+  const handleClose = () => setShow(false);
+
   return (
     <div>
       <nav className="navbar navbar-expand navbar-light align-items-center headerback w-100 py-2 py-md-3 px-3 px-lg-5 px-md-3" style={{backgroundColor: "black"}}>
@@ -45,7 +67,7 @@ let isDesktop = (width > 768);
         <div className='col-lg-3 p-0'>
           <PromoterSidebar/>
         </div>
-        <div className='col-lg-9 p-0 d-flex flex-column align-items-center mt-5 mt-lg-0 justify-content-center align-items-center text-center' style={{height: "100%"}}>
+        <div className='col-lg-9 p-0 d-flex flex-column align-items-center mt-5 mt-lg-0 justify-content-center align-items-center text-center' style={{height: "100%", width: "100%"}}>
           <BrowserView>
 
           </BrowserView>
@@ -60,7 +82,7 @@ let isDesktop = (width > 768);
             <QrScanner
               onError={handleError}
               onScan={handleScan}
-              style={{ width: '300px', height: '300px' }}
+              style={{ width: '300px', height: '100%' }}
               constraints={
                 isDesktop
                 ? undefined
@@ -70,7 +92,7 @@ let isDesktop = (width > 768);
                     }
                   }
             }
-            showViewFinder={false}
+            showViewFinder={true}
             />
           )}
           </TabletView>
@@ -85,7 +107,7 @@ let isDesktop = (width > 768);
             <QrScanner
               onError={handleError}
               onScan={handleScan}
-              style={{ width: '100%', height: '100%' }}
+              style={{ width: '300px', height: '100%' }}
               constraints={
                 isDesktop
                 ? undefined
@@ -95,13 +117,14 @@ let isDesktop = (width > 768);
                     }
                   }
             }
-            showViewFinder={false}
+            showViewFinder={true}
             />
           )}
           </MobileOnlyView>
         </div>
       </div>
         <Footer/>
+              <OrderTicketModal show={show} displayOrders={displayOrders} handleClose={handleClose}/>
       </div>
   )
 }

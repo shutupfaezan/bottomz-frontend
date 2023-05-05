@@ -9,6 +9,7 @@
     import GlobalHeader from '../../common/GlobalHeader';
     import AttendeeModal from '../../common/AttendeeModal';
     import "../../css/SingularEvent.css"
+import GenericTC from '../../common/GenericTC';
 
     export default function SingularEvents() {
         const {setShow, setInputModal, inputValues} = useContext(SingularContext);
@@ -59,8 +60,6 @@
           }
         }
 
-        console.log(inputValues)
-
         const {numSelected, totalPrice} = inputValues?.reduce((acc, curr) => {
           const quantity = curr?.quantity ? parseInt(curr?.quantity, 10) : 0;
           const total_price = parseInt(curr?.total_price);
@@ -89,10 +88,10 @@
           <>
           <div>
           {isloading && <div className='d-flex justify-content-center mt-auto'>
-    <div className='d-flex align-items-center'>
-    <span><img src={process.env.PUBLIC_URL + "/images/output-onlinegiftools.gif"} style={{height: '100px', width: "100px", transform: "translate(-50%, -50%)", position: "absolute", top: "50%", left: "50%"}} alt=""/></span>
-    </div>
-    </div>}
+          <div className='d-flex align-items-center'>
+          <span><img src={process.env.PUBLIC_URL + "/images/output-onlinegiftools.gif"} style={{height: '100px', width: "100px", transform: "translate(-50%, -50%)", position: "absolute", top: "50%", left: "50%"}} alt=""/></span>
+          </div>
+          </div>}
           {!isloading && 
           <div>
           <GlobalHeader/>
@@ -138,9 +137,13 @@
             </div>
             <div className='mx-lg-5 mt-md-5 my-4'>
               <b className=''>- Terms & Conditions</b>
-            <p className='mt-2 ml-2' style={{fontWeight: "400"}}><ul className='pl-3'>{newTerms?.map((fields, index )=> {
-              return <li style={{color: "black", fontWeight: 400}} key={index}>{fields}</li>
-            })}</ul></p>
+              <div className='mt-2 ml-2' style={{fontWeight: "400"}}>
+            {
+              newTerms?.length !== 0 ? <ul className='pl-3'>{newTerms?.map((fields, index )=> {
+                return <li style={{color: "black", fontWeight: 400}} key={index}>{fields}</li>
+              })}</ul> : <GenericTC/> 
+            }
+            </div>
             </div>
           {clubDetail !== undefined && <div  className='mx-md-5 my-md-5 my-4'>
             <b>- Hosted Club</b>
