@@ -21,6 +21,7 @@ import {
   Route,
 } from "react-router-dom";
 import OrderHistory from './components/UserComponents/OrderHistory';
+import PromoterQRScanner from './components/PromoterComponents/PromoterQRScanner';
 
 
 function App() {
@@ -63,6 +64,8 @@ function App() {
         <Route exact path="/host-an-event" element={<AutoHost/>}>
         </Route>
         <Route exact path="promoter-events/:event_name" element={<PromoterEventStat/>}>
+        </Route>
+        <Route exact path="/qr-scanner" element={<PromoterQRScanner/>}>
         </Route>
         </Routes>
       </Router>
