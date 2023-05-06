@@ -68,10 +68,9 @@ let isDesktop = (width > 768);
           <PromoterSidebar/>
         </div>
         <div className='col-lg-9 p-0 d-flex flex-column align-items-center mt-5 mt-lg-0 justify-content-center align-items-center text-center' style={{height: "100%", width: "100%"}}>
-          <BrowserView>
-
+          <BrowserView className='d-flex justify-content-center flex-column vh-100'>
+            You need a mobile or a tablet device to use this utility
           </BrowserView>
-
           <TabletView>
           {result ? (
             <>

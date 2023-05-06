@@ -6,6 +6,7 @@
 
   export default function TicketOutput() {
     const [eventDetails, setEventDetails] = useState();
+    const [qrCode, setQrCode] = useState();
     const [isLoading, setisLoading] = useState(false)
     const [mainLoading, setMainLoading] = useState(false)
     
@@ -21,6 +22,7 @@
         user_tickets()
         .then((response) => {
           setMainLoading(false)
+          setQrCode(response?.data?.QR?.[0])
           setEventDetails(response?.data?.Event_details?.[0]);
           setOrderDetails(response?.data?.order_details)
         })
@@ -93,9 +95,10 @@
                 </b>
               </div>
             </div>
-            <div className="col-md-4 py-3 text-white pt-4" style={{background: "black", borderRadius: "10px", boxShadow: "10px 10px #E8EBEE"}}>
-              <b>Tickets will be sent on your registered email (abc@gmail.com) shortly.</b>
-              <p className="pt-4 text-center" style={{fontSize: "24px"}}>Your Order ID is {orderDetails?.[0]?.order_id}</p>
+            <div className="col-md-4 py-4 text-white d-flex" style={{background: "black", borderRadius: "10px", boxShadow: "10px 10px #E8EBEE", overflow: "hidden"}}>
+              <img src={qrCode} className="mx-auto" style={{width: "200px", borderRadius: "10px", aspectRatio: "1/1"}} alt=""></img>
+              {/* <b>Tickets will be sent on your registered email (abc@gmail.com) shortly.</b> */}
+              {/* <p className="pt-3 text-center" style={{fontSize: "24px", transform: "rotate(270deg)"}}>{orderDetails?.[0]?.order_id}</p> */}
             </div>
           </div>
             <p className="px-lg-5 p-3">*Please check promotions/spams as mails may be wrongly flagged at times</p>
