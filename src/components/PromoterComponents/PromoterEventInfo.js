@@ -25,7 +25,7 @@ export default function PromoterEventInfo() {
             event_name: "",
             event_venue: "",
             curated_by: "",
-            day: "",
+            contact: null,
             date: "",
             timings: "",
             genre: "",
@@ -46,8 +46,10 @@ export default function PromoterEventInfo() {
             if (!values.curated_by) {
               errors.curated_by = 'Curator name is required';
             }
-            if (!values.day) {
-              errors.day = 'Day is required';
+            if (!values.contact) {
+              errors.contact = 'Contact number is required';
+            } else if (!/^[789]\d{9}$/.test(values.contact)) {
+              errors.contact = 'Contact should be a 10 digit number';
             }
             if (!values.date) {
               errors.date = 'Date is required';
@@ -139,10 +141,10 @@ export default function PromoterEventInfo() {
                         )}
                     </div>
                     <div className='d-flex flex-column col-lg-6 p-0 px-0 pl-md-3'>
-                        <label className='ml-2 mb-1' style={{fontWeight: "400"}}>Day:</label>
-                        <Input name="day" handleChange={formik.handleChange} value={formik.values.day} placeholder="Select" useInput={1} error={formik.touched.day && formik.errors.day} handleBlur={formik.handleBlur}></Input>
-                        {formik.touched.day && formik.errors.day && (
-                        <div className="text-danger ml-2">{formik.errors.day}</div>
+                        <label className='ml-2 mb-1' style={{fontWeight: "400"}}>Contact:</label>
+                        <Input name="contact" type="number" handleChange={formik.handleChange} value={formik.values.contact} placeholder="Enter contact for table pricing" useInput={1} error={formik.touched.contact && formik.errors.contact} handleBlur={formik.handleBlur}></Input>
+                        {formik.touched.contact && formik.errors.contact && (
+                        <div className="text-danger ml-2">{formik.errors.contact}</div>
                         )}
                     </div>
                 </div>

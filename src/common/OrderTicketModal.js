@@ -6,8 +6,9 @@ export default function OrderTicketModal(props) {
   
   function changeStatus() {
     axios.put(`https://nightlife-2710.herokuapp.com/update-order-status?order_id=${props?.displayOrders?.Order_ID}`)
-      .then(() => {
+      .then((response) => {
         props.handleClose();
+        console.log(response.data)
         // window.location.reload();
       })
       .catch(error => {
