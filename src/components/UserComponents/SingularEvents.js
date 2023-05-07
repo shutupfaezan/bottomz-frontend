@@ -59,7 +59,7 @@
                 setShow(true)
               }
               else{
-                const filteredValues = inputValues.filter(val => val.quantity !== null && val.total_price !== null);
+                const filteredValues = inputValues?.filter(val => val.quantity !== null && val.total_price !== null);
                 const validateObj = {
                 "event_name": singleEvent?.event_name,
                 "order_details": filteredValues
@@ -74,14 +74,14 @@
           }
         }
 
-        const {numSelected, totalPrice} = inputValues?.reduce((acc, curr) => {
-          const quantity = curr?.quantity ? parseInt(curr?.quantity, 10) : 0;
-          const total_price = parseInt(curr?.total_price);
+        const { numSelected, totalPrice } = inputValues?.reduce((acc, curr) => {
+          const quantity = parseInt(curr?.quantity ?? 0, 10);
+          const total_price = parseInt(curr?.total_price ?? 0);
           return {
             numSelected: acc?.numSelected + quantity,
-            totalPrice: acc?.totalPrice + total_price
+            totalPrice: acc?.totalPrice + total_price,
           };
-        }, {numSelected: 0, totalPrice: 0});
+        }, { numSelected: 0, totalPrice: 0 });
         
         useEffect(() => {
           if (numSelected > 10) {
