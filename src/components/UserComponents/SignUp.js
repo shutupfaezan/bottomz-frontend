@@ -104,7 +104,7 @@ export default function SignUp() {
             </div>
 
             <div className='mb-2'>
-            <div className='d-flex justify-content-center'><Input name="password" type="password" value={formik.values.password} id="password" style={{width: "85%"}} bi bi-lock-fill icon="bi bi-lock-fill" handleChange={formik.handleChange} placeholder="Set a password!" icon2="bi bi-eye-fill position-relative"/></div>
+            <div className='d-flex justify-content-center'><Input name="password" type="password" value={formik.values.password} id="password" style={{width: "85%"}} bi bi-lock-fill icon="bi bi-lock-fill" handleChange={formik.handleChange} placeholder="Set a password!" icon2="bi bi-eye-fill position-relative" icon3="bi bi-eye-slash-fill position-relative"/></div>
             {formik.errors.password  && formik.touched.password &&  (
               <small className="text-danger ml-2 mx-5 px-4">{formik.errors.password}</small>
             )}

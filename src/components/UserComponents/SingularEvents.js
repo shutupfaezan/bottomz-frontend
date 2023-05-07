@@ -14,6 +14,7 @@
     export default function SingularEvents() {
         const {setShow, setInputModal, inputValues} = useContext(SingularContext);
         const [singleEvent, setSingleEvent] = useState()
+        const [getLoader, setGetLoader] = useState(false)
         const [error, setError] = useState()
         const [ticketConfig, setTicketConfig] = useState()
         const [clubDetail, setClubDetail] = useState()
@@ -59,29 +60,32 @@
                 setShow(true)
               }
               else{
-                const filteredValues = inputValues.filter(val => val.quantity !== null && val.total_price !== null);
+                const filteredValues = inputValues?.filter(val => val.quantity !== null && val.total_price !== null);
                 const validateObj = {
                 "event_name": singleEvent?.event_name,
                 "order_details": filteredValues
             }
+            setGetLoader(true)
             axios.post(`https://nightlife-2710.herokuapp.com/validating-orders?access_token=${sessionStorage?.token}`, validateObj)
             .then(()=>{
+              setGetLoader(false)
               setInputModal(true)
             })
             .catch((error)=>{
+              setGetLoader(false)
               setError(error?.response?.data?.detail)
             })
           }
         }
 
-        const {numSelected, totalPrice} = inputValues?.reduce((acc, curr) => {
-          const quantity = curr?.quantity ? parseInt(curr?.quantity, 10) : 0;
-          const total_price = parseInt(curr?.total_price);
+        const { numSelected, totalPrice } = inputValues?.reduce((acc, curr) => {
+          const quantity = parseInt(curr?.quantity ?? 0, 10);
+          const total_price = parseInt(curr?.total_price ?? 0);
           return {
             numSelected: acc?.numSelected + quantity,
-            totalPrice: acc?.totalPrice + total_price
+            totalPrice: acc?.totalPrice + total_price,
           };
-        }, {numSelected: 0, totalPrice: 0});
+        }, { numSelected: 0, totalPrice: 0 });
         
         useEffect(() => {
           if (numSelected > 10) {
@@ -140,9 +144,13 @@
                         })}
                     </tbody>
                   </table>
+                  {singleEvent?.contact !== null && <><div className='d-flex justify-content-center'><p className="text-center" style={{borderBottom: "2px solid black", borderTop: "2px solid black", width: "100%"}}>For table info contact <a target="_blank" style={{color: "crimson"}} href={`tel: +91${singleEvent?.contact}`} rel="noreferrer noopener"> here</a></p></div></>}
                   <div className='d-flex'>
                 <button style={{background: "black", borderRadius: "10px"}}  className='btn my-2 col-12 col-md-6 col-lg-4 mx-auto text-white' type="submit" onClick={handleFormSubmit}>
-                  <span>{sessionStorage.token ? "Get Tickets" : "Log In/Sign Up to Continue"}</span>
+                    {getLoader && (<span id="login-loader-span" className="spinner-border spinner-border-sm mx-1" role="status" aria-hidden="true"></span>)}
+                    {getLoader && (<span id="login-loading-text-span">Loading</span>)}
+                    {!getLoader && <span id="login-text-span">{sessionStorage.token ? "Get Tickets" : "Log In/Sign Up to Continue"}</span>}
+                  <span></span>
                 </button>
                 </div>
                 {error && <div className='text-center' style={{color: "crimson"}}>{error}</div>}

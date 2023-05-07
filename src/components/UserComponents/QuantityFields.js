@@ -37,11 +37,14 @@ export default function QuantityFields(props) {
       <td className="col-4 col-md-2 text-md-start text-end" style={{ fontWeight: "100", verticalAlign: "middle" }}>{props.identity.price != 0 && "₹"}{props.identity.price != 0 ? props.identity.price : "Free"}</td>
       <td className="col col-md-5 p-md-3 py-3" style={{ fontWeight: "100", verticalAlign: "middle", textAlign: "center", width: "100%" }}>
         <div className="input-group ml-md-0 p-0 pr-0 float-md-right col-12 col-md-7 col-lg-4 w-100" style={{ border: "1px solid black", overflow: "hidden", borderRadius: "10px" }}>
-          <div className='col-3 px-0 col-md-6'>
-            <label className="input-group-text " htmlFor={"TicketDropdown" + props.index}>Qty</label>
+          <div className= {props?.identity?.status === "Sold Out" ? "col p-0 text-center":  'col-3 px-0 col-md-6'}>
+            <label className={props?.identity?.status === "Sold Out" ? "input-group-text d-flex justify-content-center":  "input-group-text "}  htmlFor={"TicketDropdown" + props.index}>
+            {props?.identity?.status === "Sold Out" ? "Sold Out":  "Qty"}
+              </label>
           </div>
+          
           <select
-            className="form-select text-end QuantityFields"
+            className= {props?.identity?.status === "Sold Out" ? "form-select text-end QuantityFields d-none" : "form-select text-end QuantityFields"}
             id={"TicketDropdown" + props.index}
             name={"TicketDropdown" + props.index}
             value={inputValues[props.index] ? inputValues[props.index]["TicketDropdown" + props.index] : ''}
