@@ -161,7 +161,7 @@
             </div>
           {clubDetail !== undefined && <div  className='mx-md-5 my-md-5 my-4'>
             <b>- Hosted Club</b>
-            <div className='p-md-3 p-3 w-100 col-md-6 mt-3 d-flex shadow-sm' style={{borderRadius: "10px", background: "white", border: "2px solid black"}} onClick={()=>{navigate(`/all-clubs/` + clubDetail?.club_name)}}>
+            <div className='p-md-3 p-3 w-100 col-md-6 mt-3 d-flex shadow-sm' style={{borderRadius: "10px", background: "white", border: "2px solid black"}} onClick={()=>{navigate(`/clubs/` + clubDetail?.club_name)}}>
               <img className="col-3 w-100 p-0" style={{height: "90px", borderRadius: "7px"}} alt="" src={clubDetail?.images_url}/> 
               <div className='overflow-auto col'>
                 <div className='text-truncate overflow-hidden'><b>{clubDetail?.club_name}</b></div>
