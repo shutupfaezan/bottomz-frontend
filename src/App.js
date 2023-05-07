@@ -20,6 +20,7 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
+import ScrollToTop from './components/UserComponents/ScrollToTop';
 import OrderHistory from './components/UserComponents/OrderHistory';
 import PromoterQRScanner from './components/PromoterComponents/PromoterQRScanner';
 
@@ -28,6 +29,7 @@ function App() {
   return (
     <>
       <Router>
+      <ScrollToTop />
         <Routes>
         <Route exact path="/" element={<HomePage/>}>
         </Route>
