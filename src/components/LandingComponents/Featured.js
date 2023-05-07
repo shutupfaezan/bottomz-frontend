@@ -78,7 +78,7 @@ export default function ClubsRow() {
             </div>
             <div className='col-lg-7 col-md-6 p-lg-5 p-0'>
               <div className='w-100' style={{height: "100%"}}>
-              <img className="w-100" style={{borderRadius: "10px", height:"100%", objectFit: "cover"}} src='https://s3-alpha-sig.figma.com/img/7630/e793/a8c05e7baa9f9ecb89a768240f05b833?Expires=1683504000&Signature=n-vQUyXahSVRYHctAJjjx9P412UHx185SRjLwDM2msIeWNi1eLGcJiL9hlK-mCWkOr8MD~zK4fQjsPGeBWs8Bs~SfGIr1LfZh8rK8IAVHD62QOi68PmBoIYGu5ze80CmP45EF-MtE5RBw8iBWgBD8RT2tzsfo428fTqLn3qRTGvqMHdE9l-MmSAlAZL6ybjlGbx1dM~U3CEM8N-zMwIfd5DGwdWwr4H6L627HMphrLOpmJYNG2j6HCq82qAyVRgoGGOoxUns7YKJt-D~1ZUTKltd6HY2q7D9MBgYs~0LCEu3nB4u23ghas1RIDxVAED8IizEowm2DP5hsWdvsl5nkQ__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4' alt=""></img>
+              <img className="w-100" style={{borderRadius: "10px", height:"100%", objectFit: "cover"}} src='https://images.unsplash.com/photo-1492684223066-81342ee5ff30?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80' alt=""></img>
               </div>
             </div>
         </section>
