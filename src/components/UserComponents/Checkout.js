@@ -154,7 +154,7 @@
             <div>
               <p className='primary-header' style={{fontSize: "18px", fontWeight: "400"}}>Price Info</p>
               {billInfo?.map((identity, fields)=>{
-                return  <div className='d-flex align-items-center mb-2 pb-3' key={fields} style={{borderBottom: "1px solid #E8EBEE"}}><div className='d-flex flex-column'><p className='m-0'>{identity.ticket_categories}<small className='ml-1' style={{fontSize: "11px", color: "crimson"}}>{identity.quantity}x{identity.total_price}</small></p>
+                return  <div className='d-flex align-items-center mb-2 pb-3' key={fields} style={{borderBottom: "1px solid #E8EBEE"}}><div className='d-flex flex-column'><p className='m-0'>{identity.ticket_categories}<small className='ml-1' style={{fontSize: "11px", color: "crimson"}}>{identity.quantity}x{identity.total_price/identity.quantity}</small></p>
                 <p className='m-0' style={{fontWeight: "100", fontSize: "12px"}}>{identity.description}</p></div>
                 <div className='ml-auto mr-4' style={{fontSize: "20px", color: "crimson"}}>₹{identity.total_price}</div></div>
               })}

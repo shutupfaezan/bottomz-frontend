@@ -1,7 +1,10 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
+import { SingularContext } from '../../contexts/Context';
+import {useContext} from 'react'
 
 export default function RenderEvents(props) {
+  const {setInputValues} = useContext(SingularContext);
   const formatDate = (dateStr) => {
     const [year, month, day] = dateStr.split("-");
     const date = new Date(year, month - 1, day);
@@ -11,7 +14,7 @@ export default function RenderEvents(props) {
   const navigate = useNavigate()
   return (
     <>
-    <div className='col-lg-6 col-md-6 p-2 w-100 my-1' key={props.fields} onClick={()=>navigate("/events/" + props.identity.event_name)}>
+    <div className='col-lg-6 col-md-6 p-2 w-100 my-1' key={props.fields} onClick={()=>{navigate("/events/" + props.identity.event_name); setInputValues([])}}>
         <div className='p-md-2 p-2 w-100 d-flex' style={{borderRadius: "10px", border: "2px solid black", boxShadow: "10px 10px #E8EBEE"}}>
           <img className="col-3 w-100 p-0" style={{borderRadius: "7px", aspectRatio: "1/1"}} alt="" src={props.identity.images_url}/> 
           <div className='overflow-auto col d-flex flex-column pr-0'>

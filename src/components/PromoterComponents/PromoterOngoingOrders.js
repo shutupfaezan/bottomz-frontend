@@ -36,7 +36,7 @@ for (const obj of eventData?.length > 0 ? eventData : []) {
   }
 }
 const formatDate = (dateStr) => {
-  const [day, month, year] = dateStr.split("-")
+  const [year, month, day ] = dateStr.split("-")
   const date = new Date(year, month - 1, day)
   const options = {year: 'numeric', month: 'long', day: 'numeric', weekday: "long" }
   return date.toLocaleDateString('en-US', options)
@@ -53,11 +53,9 @@ const formatDate = (dateStr) => {
       </div>
     <div className='col-lg-9 p-0'>
         <h1 className='my-lg-5 mb-5 ml-2 text-center primary-header' style={{color: "#E04949"}}>All Events</h1>
-        {isLoading && <div className='d-flex justify-content-center mt-auto'>
+        {isLoading && <div className='d-flex justify-content-center mt-auto' style={{height: "50vh"}}>
           <div className='d-flex align-items-center'>
-          <span style={{fontSize: "35px"}}>Loading </span>
-          <div className="my-auto spinner-border text-black " role="status">
-          </div>
+          <span><img src={process.env.PUBLIC_URL + "/images/output-onlinegiftools.gif"} style={{height: '100px', width: "100px", transform: "translate(-50%, -50%)", position: "absolute", top: "50%", left: "50%"}} alt=""/></span>
           </div>
           </div>}
         {!isLoading && <div className='d-flex flex-wrap'>

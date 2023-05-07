@@ -9,7 +9,7 @@
     import GlobalHeader from '../../common/GlobalHeader';
     import AttendeeModal from '../../common/AttendeeModal';
     import "../../css/SingularEvent.css"
-import GenericTC from '../../common/GenericTC';
+    import GenericTC from '../../common/GenericTC';
 
     export default function SingularEvents() {
         const {setShow, setInputModal, inputValues} = useContext(SingularContext);
@@ -38,25 +38,39 @@ import GenericTC from '../../common/GenericTC';
         const newTerms  = singleEvent?.terms?.slice(2, singleEvent?.terms?.length - 2).split(`","`)
         const genre = singleEvent?.genre?.split(", ")
         // const paymentsObj ={
-        //   access_token: sessionStorage?.token,
-        //   purpose: ,
-        //   amount: 0
-        // }
-        // function paymentsCreate(){
-          
-        // }
-        function handleFormSubmit(event) {
-          event.preventDefault();
-          if (numSelected > 10) {
-            setError("You cannot select Tickets more than 10")
-            return;
-          }
-          if (numSelected === 0) {
-            setError("Select a quantity more than 0")
-            return;
-          }
-          else{
-            sessionStorage.token ? setInputModal(true) : setShow(true)
+          //   access_token: sessionStorage?.token,
+          //   purpose: ,
+          //   amount: 0
+          // }
+          // function paymentsCreate(){
+            
+            // }
+            function handleFormSubmit(event) {
+              event.preventDefault();
+              if (numSelected > 10) {
+                setError("You cannot select Tickets more than 10")
+                return;
+              }
+              if (numSelected === 0) {
+                setError("Select a quantity more than 0")
+                return;
+              }
+              if (!sessionStorage.token){
+                setShow(true)
+              }
+              else{
+                const filteredValues = inputValues.filter(val => val.quantity !== null && val.total_price !== null);
+                const validateObj = {
+                "event_name": singleEvent?.event_name,
+                "order_details": filteredValues
+            }
+            axios.post(`https://nightlife-2710.herokuapp.com/validating-orders?access_token=${sessionStorage?.token}`, validateObj)
+            .then(()=>{
+              setInputModal(true)
+            })
+            .catch((error)=>{
+              setError(error?.response?.data?.detail)
+            })
           }
         }
 
