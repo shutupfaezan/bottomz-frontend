@@ -140,6 +140,7 @@
                         })}
                     </tbody>
                   </table>
+                  {singleEvent?.contact !== null && <><div className='d-flex justify-content-center'><p className="text-center" style={{borderBottom: "2px solid black", borderTop: "2px solid black", width: "100%"}}>For table info contact <a target="_blank" style={{color: "crimson"}} href={`tel: +91${singleEvent?.contact}`} rel="noreferrer noopener"> here</a></p></div></>}
                   <div className='d-flex'>
                 <button style={{background: "black", borderRadius: "10px"}}  className='btn my-2 col-12 col-md-6 col-lg-4 mx-auto text-white' type="submit" onClick={handleFormSubmit}>
                   <span>{sessionStorage.token ? "Get Tickets" : "Log In/Sign Up to Continue"}</span>

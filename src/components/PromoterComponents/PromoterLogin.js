@@ -4,7 +4,7 @@ import axios from 'axios'
 import {Link, useNavigate } from 'react-router-dom'
 
 export default function PromoterLogin() {
-
+  const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setisLoading] = useState(false);
   const navigate = useNavigate()
   const formik = useFormik({
@@ -49,6 +49,7 @@ export default function PromoterLogin() {
       });
     }
   })
+
   return (
     <>
     <div className='vh-100 d-lg-flex'>
@@ -72,7 +73,10 @@ export default function PromoterLogin() {
               </div>
             <div className='col-lg-10 p-0 py-0 mb-0 py-md-1 d-flex flex-column'> 
               <label className='mb-1' style={{fontSize: "14px"}}>Password:</label>
-              <input className="p-lg-2 p-2" name="password" type="password" style={{border: "2px solid black", borderRadius: "10px"}} value={formik.values.password} id="password"  onChange={formik.handleChange}></input>
+              <div className='d-flex'>
+              <input className="p-lg-2 p-2 w-100" name="password" type={showPassword ? 'text' : 'password'} style={{border: "2px solid black", borderRadius: "10px"}} value={formik.values.password} id="password"  onChange={formik.handleChange}></input>
+              <i style={{float: "right", right: "35px", borderRadius: "20px", top: "12px", width: "0px", zIndex: "1", fontSize: "18px", color: "grey", cursor: "pointer"}} onClick={() => setShowPassword(prev => !prev)} className={!showPassword ?'fa-solid fa-eye position-relative' : "fa-solid fa-eye-slash position-relative"}></i>
+              </div>
               {formik.touched.password && formik.errors.password ? (
               <small className="text-danger mx-2">{formik.errors.password}</small>
             ) : null}
