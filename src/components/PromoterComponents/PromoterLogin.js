@@ -85,7 +85,7 @@ export default function PromoterLogin() {
               </button>
             </div>
             <div className='col-lg-10 mt-3 d-flex justify-content-center '>
-            <Link to="/host-with-us">Not a promoter? Be one now</Link>
+            <Link to="/contact-us">Not a promoter? Be one now</Link>
             </div>
             </div>
           </div>

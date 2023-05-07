@@ -56,8 +56,8 @@
             <input type="text" style={{background: "#F4F5F6", border: "0px", color: "#01040D", fontWeight: "400", fontSize: "14px"}} className="form-control" disabled={true} defaultValue={eventInfoValue?.event_information?.date}/>
         </div>
         <div className="col px-0 mt-2  col-lg-6 mt-md-0 ml-md-2 ml-0 pl-md-3">
-            <label className="form-label mb-0" style={{fontWeight: "400"}}>Day:</label>
-            <input type="text" style={{background: "#F4F5F6", border: "0px", color: "#01040D", fontWeight: "400", fontSize: "14px"}} className="form-control" disabled={true} defaultValue={eventInfoValue?.event_information?.day}/>
+            <label className="form-label mb-0" style={{fontWeight: "400"}}>Contact:</label>
+            <input type="text" style={{background: "#F4F5F6", border: "0px", color: "#01040D", fontWeight: "400", fontSize: "14px"}} className="form-control" disabled={true} defaultValue={eventInfoValue?.event_information?.contact}/>
         </div>
         </div>
         <div className='d-md-flex mt-2'>
