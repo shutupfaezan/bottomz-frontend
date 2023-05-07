@@ -4,7 +4,7 @@ import { SingularContext } from '../../contexts/Context';
 import {useContext} from 'react'
 
 export default function   HPEvents(props) {
-  const {setInputValues} = useContext(SingularContext);
+  const {setInputValues, setInputModal} = useContext(SingularContext);
   const navigate = useNavigate()
   const formatDate = (dateStr) => {
     const [year, month, day] = dateStr.split("-")
@@ -15,7 +15,7 @@ export default function   HPEvents(props) {
   
   return (
     <>
-      <div className='col-lg-6 col-md-6 p-2 w-100 my-1' key={props.fields} onClick={()=>{navigate("/events/" + props.identity.event_name); setInputValues([])}}>
+      <div className='col-lg-6 col-md-6 p-2 w-100 my-1' key={props.fields} onClick={()=>{navigate("/events/" + props.identity.event_name); setInputValues([]); setInputModal(false)}}>
         <div className='p-md-2 p-2 w-100 d-flex' style={{borderRadius: "10px", border: "2px solid black", boxShadow: "10px 10px #E8EBEE"}}>
           <div className='col-3 w-100 p-0 d-flex'>
           <img className="w-100 p-0 FeaturedEventsCtrl" style={{borderRadius: "7px"}} alt="" src={props.identity.images_url}/>

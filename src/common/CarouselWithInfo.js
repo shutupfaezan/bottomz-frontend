@@ -42,7 +42,7 @@ import { useNavigate } from "react-router-dom";
     //   setCurrentSlide(slideIndex);
     // };
     
-    const {setInputValues} = useContext(SingularContext);
+    const {setInputValues, setInputModal} = useContext(SingularContext);
     return (
       <>
       <Carousel
@@ -83,7 +83,7 @@ import { useNavigate } from "react-router-dom";
                 <p className="mb-1 d-md-flex d-none" style={{color: "white"}}><i className="fa-regular fa-paper-plane mr-2"></i>{item?.event_venue}</p>
                 <p className=" d-md-flex d-none" style={{color: "white"}}><i className="fa-regular fa-calendar mr-2"></i>{item?.timings.slice(0,9)} • {formatDate(item?.date)} • {item?.day}</p>
                 <div className="d-flex d-md-block mx-auto mx-md-0 mb-3 mt-1">
-                  <button className="btn btn-primary px-4 rounded-pill my-3 py-2" onClick={()=>{navigate(`${item?.event_name}`); setInputValues([])}} style={{background: "white", color: "black", fontWeight: "700"}}>See Tickets</button></div>
+                  <button className="btn btn-primary px-4 rounded-pill my-3 py-2" onClick={()=>{navigate(`${item?.event_name}`); setInputValues([]); setInputModal(false)}} style={{background: "white", color: "black", fontWeight: "700"}}>See Tickets</button></div>
                 </div>
                 {/* <div className="col w-100"> */}
                 {/* <div className="w-100 d-md-flex d-none justify-content-center align-items-center flex-column" style={{height: "100%"}}>
