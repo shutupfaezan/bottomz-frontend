@@ -29,9 +29,12 @@ export default function GlobalHeader() {
     }
   }
   return (
-    <>
+    <>  
         <nav className="navbar navbar-expand navbar-light align-items-center headerback w-100 py-3   py-md-3 px-3 px-lg-5 px-md-3" style={{position: location.pathname === '/' ? "fixed": "static", top: "0px", zIndex: "3", backgroundColor: location.pathname === '/' ? (scroll > 0 ? "white" : "transparent") : "white", transition: "background-color 0.3s ease-in-out", color: location.pathname === '/' ? (scroll > 0 ? "black" : "white") : "black"}}>
-        <a className="navbar-brand mx-md-5 py-0" style={{fontWeight: "800"}} href="/"><h3 className="primary-header m-0"  style={{ color: location.pathname === '/' ? (scroll > 0 ? "black" : "white") : "black"}}>BottmzUp</h3></a>
+        <a className="navbar-brand mx-md-5 py-0 d-flex" style={{fontWeight: "800"}} href="/">
+        {/* <img className="mr-2" src={process.env.PUBLIC_URL + "/images/upscaledbtmzlogo-removebg-preview (1).png"} style={{display: "inline-block", width: "10%"}}/> */}
+          <h3 className="primary-header m-0"  style={{ color: location.pathname === '/' ? (scroll > 0 ? "black" : "white") : "black"}}>BottmzUp</h3>
+          </a>
         <div className="align-items-center collapse navbar-collapse text-black" id="navbarSupportedContent">
         <ul className="navbar-nav mr-2">
             <li className="nav-item active d-none d-md-flex hover-underline-animation">
@@ -56,8 +59,8 @@ export default function GlobalHeader() {
           </small>
           </p>
           <ul className="dropdown-menu">
-            <li><Link className="dropdown-item" to="/order-history" style={{fontWeight: "700"}}>Tickets</Link></li>
-            <li><Link onClick={()=>{sessionStorage.clear(); window.location.reload(); window.location.href('/')}} style={{color: "red", fontWeight: "700"}} className="dropdown-item" to="/">Log Out</Link></li>
+            <li><Link className="dropdown-item" to="/order-history" style={{fontWeight: "700"}}><i class="fa-solid fa-ticket mr-2"></i>Tickets</Link></li>
+            <li><Link onClick={()=>{sessionStorage.clear(); window.location.reload(); window.location.href('/')}} style={{color: "red", fontWeight: "700"}} className="dropdown-item" to="/"><i class="fa-solid fa-right-from-bracket mr-2"></i>Log Out</Link></li>
           </ul>
         </div>
            : <p className="m-0 mr-md-5 ml-md-auto" style={{fontSize: "19px", cursor: "pointer"}}  onClick={modalswitch}><small style={{border: location.pathname === '/' ? (scroll > 0 ? "2px solid black" : "2px solid white") : "2px solid black", padding: "5px 35px", borderRadius: "20px"}}>Log In</small></p>}

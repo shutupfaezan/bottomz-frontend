@@ -66,7 +66,7 @@ export default function OrderTicketModal(props) {
               </div>
             ))}
           </span>
-            <small className='col' style={{color: "crimson"}}>*Collect the amount before changing the status to entered</small>
+            <small className='col p-0' style={{color: "crimson"}}>*Collect the amount before changing the status to entered</small>
            {props?.displayOrders?.status?.[0] === "Unpaid" && <div className='d-flex justify-content-end mt-2'>
             <button className="btn-success mr-1 bg-success text-white px-2 py-2" onClick={changeStatus} style={{fontSize: "15px", borderRadius: "10px"}}>Entered</button>
             <i className="fa-solid fa-xmark mr-1 bg-danger text-white px-2 py-2" onClick={()=>{props.handleClose();}} style={{fontSize: "24px", borderRadius: "10px"}}></i>

@@ -18,7 +18,7 @@ export default function Footer() {
     		    <ul className="list-unstyled">
     			 <li><Link style={{color: "white", fontSize: "0.875 rem", fontWeight: "400"}} to="/clubs">Clubs</Link></li>
     			 <li><Link style={{color: "white", fontSize: "0.875 rem", fontWeight: "400"}} to="/events">Events</Link></li>
-    			 <li><Link style={{color: "white", fontSize: "0.875 rem", fontWeight: "400"}} to="/about-us">About us</Link></li>
+    			 <li><Link style={{color: "white", fontSize: "0.875 rem", fontWeight: "400"}} to="/contact-us">Host With us</Link></li>
     			</ul>
     		</div>
     	   <div className='col-lg-3 col-md-3'>
@@ -32,7 +32,7 @@ export default function Footer() {
     	   <div className='col-lg-3 col-md-3'>
     		    <div className="mb-md-3 mb-2" style={{fontSize: "1rem"}}>For Businesses</div>
     		    <ul className="list-unstyled">
-    			 <li><Link style={{color: "white", fontSize: "0.875 rem", fontWeight: "400"}} to="/contact-us">Host with us</Link></li>
+    			 <li><Link style={{color: "white", fontSize: "0.875 rem", fontWeight: "400"}} to="/privacy-policy">Privacy Policy</Link></li>
     			 <li><Link style={{color: "white", fontSize: "0.875 rem", fontWeight: "400"}} to="/contact-us">Contact Us</Link></li>
     			 <li><Link style={{color: "white", fontSize: "0.875 rem", fontWeight: "400"}} to="/promoter-login">Promoter Login</Link></li>
     			</ul>
