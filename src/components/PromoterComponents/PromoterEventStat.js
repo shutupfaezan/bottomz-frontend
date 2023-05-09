@@ -10,15 +10,18 @@ import 'react-tabs/style/react-tabs.css';
 export default function PromoterEventStat() {
   const params = useParams()
     const [eventData, setEventData] = useState()
+    const [loading, setLoading] = useState(false)
     const [orderData, setOrderData] = useState()
     useEffect(() => {
       const fetchEventData = async () => {
           try {
-              const { data } = await axios.get(`https://nightlife-2710.herokuapp.com/promoter-orders?event_name=${params.event_name}&promoter_access_token=${sessionStorage?.promoter_token}`);
+            setLoading(true)
+              const { data } = await axios.get(`https://nightlife-2710.herokuapp.com/promoter-orders?event_name=${params.event_name}&promoter_access_token=${sessionStorage?.promoter_token}`)
               const { Event_Information, Order_Details } = data;
               setEventData(Event_Information);
               setOrderData(Order_Details);
-          } catch (error) {
+              setLoading(false)
+            } catch (error) {
               console.log(error);
           }
       };
@@ -29,7 +32,7 @@ export default function PromoterEventStat() {
         const controlled_orders = [...new Set(order_array)]
         const genre = eventData?.genre?.split(", ")
 
-        const paidOrders = orderData?.filter((order) => order.status === "Paid");
+        const paidOrders = orderData?.filter((order) => order.status === "Entered");
         const ticketsBought = paidOrders;
         const unpaidTick = orderData?.filter((order) => order.status === "Unpaid");
 
@@ -50,7 +53,15 @@ export default function PromoterEventStat() {
     const commisionPrice = totalPaidPrice * 0.02
 
   return (
-  <div>
+    <>
+    {
+      loading && <div className='d-flex justify-content-center my-auto' style={{height: "100vh"}}>
+      <div className='d-flex align-items-center'>
+      <span><img src={process.env.PUBLIC_URL + "/images/output-onlinegiftools.gif"} style={{height: '100px', width: "100px"}} alt=""/></span>
+      </div>
+      </div>
+    }
+ { !loading && <div>
     <nav className="navbar navbar-expand navbar-light align-items-center headerback w-100 py-2 py-md-3 px-3 px-lg-5 px-md-3" style={{backgroundColor: "black"}}>
       <a className="navbar-brand ml-lg-4 ml-2 py-3 py-md-1 text-white" style={{fontWeight: "800"}} href="/"> <h3 className="primary-header m-0">BottmzUp</h3></a>
       </nav>
@@ -58,7 +69,7 @@ export default function PromoterEventStat() {
     <SearchBar orders={()=>orderData}/>
       <div className='d-md-flex flex-md-column flex-lg-row my-5 px-md-5 px-0'>
         <div className='d-md-flex col-lg-8 p-0'>
-        <div className="p-3 ml-md-5 mr-md-4 mx-auto" style={{maxWidth: "100%", border: "2px solid black", minWidth: "fit-content", display: "flex", borderRadius: "10px", width: "fit-content", height: "fit-content"}}>  
+        <div className="p-3 ml-md-5 mr-md-4 mx-2" style={{maxWidth: "100%", border: "2px solid black", minWidth: "fit-content", display: "flex", borderRadius: "10px", width: "fit-content", height: "fit-content"}}>  
           <img style={{height:"auto", maxHeight: "200px", maxWidth: "100%", borderRadius: "10px"}} src={eventData?.images_url} alt=""/>
         </div>
         <div className=' pl-4 mt-md-0 mt-4 w-100'>
@@ -74,7 +85,7 @@ export default function PromoterEventStat() {
      <div className='w-100 d-flex flex-lg-column flex-md-row flex-column mt-md-5 mt-lg-0 p-3'>
       <div className='w-100 d-flex  mr-3' style={{height: "100%"}}>
         <div className='col col-lg d-flex flex-column mb-3 mr-3 p-4' style={{color: "white", background: "black", borderRadius: "10px"}}><h3 className='mt-auto'>{totalPaidPrice}</h3><p className='mb-0' style={{fontSize: "14px", fontWeight: "400"}}>Total Revenue</p></div>
-        <div className='col col-lg d-flex flex-column mb-3 mr-lg-3 p-4' style={{color: "white", background: "black", borderRadius: "10px"}}><h3 className='mt-auto'>{totalTicks}</h3><p className='mb-0' style={{fontSize: "14px", fontWeight: "400"}}>Paid Tickets</p></div>
+        <div className='col col-lg d-flex flex-column mb-3 mr-lg-3 p-4' style={{color: "white", background: "black", borderRadius: "10px"}}><h3 className='mt-auto'>{totalTicks}</h3><p className='mb-0' style={{fontSize: "14px", fontWeight: "400"}}>Entered</p></div>
       </div>
       <div className='w-100 d-flex' style={{height: "100%"}}>
         <div className='col col-lg d-flex flex-column mb-3 mr-3 p-4' style={{color: "white", background: "black", borderRadius: "10px"}}><h3 className='mt-auto'>{commisionPrice}</h3><p className='mb-0' style={{fontSize: "14px", fontWeight: "400"}}>Commission</p></div>
@@ -116,7 +127,7 @@ export default function PromoterEventStat() {
                         <td
                           style={{
                             color:
-                              order?.status === "Unpaid" ? "#b10808" : "green",
+                              order?.status === "Unpaid" ? "#b10808" : order?.status === "Paid" ? "#444439"  : "green",
                           }}
                         >
                           {order.status}
@@ -131,6 +142,7 @@ export default function PromoterEventStat() {
         </Tabs>
       </div>
     </div>
-    </div>
+    </div>}
+    </>
   )
 }

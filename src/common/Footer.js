@@ -48,7 +48,7 @@ export default function Footer() {
 			</div>
        </div>
 	   <hr className="mx-auto" style={{width: "90%"}}></hr>
-	   <p className='mb-1 d-flex justify-content-end mr-4 mr-md-5 pr-lg-3'>info@bottomzup.com</p>
+	   <p className='mb-1 d-flex justify-content-end mr-4 mr-md-5 pr-lg-3'>info@bottmzup.com</p>
 	</section>
   )
 }

@@ -128,7 +128,7 @@ let isDesktop = (width > 768);
                 ? undefined
                 : {
                     video: {
-                        facingMode: { exact: `user` }
+                        facingMode: { exact: `environment` }
                     }
                   }
             }
