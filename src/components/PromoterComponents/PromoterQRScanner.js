@@ -10,6 +10,7 @@ import OrderTicketModal from '../../common/OrderTicketModal';
 
 export default function PromoterQRScanner() {
   const [show, setShow] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
   const [displayOrders, setDisplayOrders] = useState();
   const [result, setResult] = useState(null);
   const [width, setWidth] = useState(window.innerWidth);
@@ -27,13 +28,16 @@ useEffect(() => {
 
 useEffect(() => {
   if (result) {
+    setIsLoading(true)
     axios.get(`https://nightlife-2710.herokuapp.com/promoter-modal-values?order_id=${result}`)
-      .then(response => {
+    .then(response => {
+        setIsLoading(false)
         setDisplayOrders(response.data)
         console.log(response.data);
         setShow(true)
       })
       .catch(error => {
+        setIsLoading(false)
         // Handle API error
         console.error(error);
       });
@@ -74,8 +78,14 @@ let isDesktop = (width > 768);
           <TabletView>
           {result ? (
             <>
-              <p>Result: {result}</p>
-              <button className="btn btn-secondary" style={{backgroundColor: "black", borderRadius: "10px"}} onClick={handleCancel}>Scan again</button>
+            {
+            isLoading && <div className='d-flex justify-content-center mt-auto' style={{height: "50vh"}}>
+              <div className='d-flex align-items-center'>
+              <span><img src={process.env.PUBLIC_URL + "/images/output-onlinegiftools.gif"} style={{height: '100px', width: "100px", transform: "translate(-50%, -50%)", position: "absolute", top: "50%", left: "50%"}} alt=""/></span>
+              </div>
+              </div>
+              }
+              {!isLoading && <button className="btn btn-secondary px-4" style={{backgroundColor: "black", borderRadius: "10px"}} onClick={handleCancel}>Scan again</button>}
             </>
           ) : (
             <QrScanner
@@ -99,8 +109,14 @@ let isDesktop = (width > 768);
           <MobileOnlyView>
           {result ? (
             <>
-              <p>Result: {result}</p>
-              <button onClick={handleCancel}>Scan again</button>
+              {
+                isLoading && <div className='d-flex justify-content-center mt-auto' style={{height: "50vh"}}>
+                <div className='d-flex align-items-center'>
+                <span><img src={process.env.PUBLIC_URL + "/images/output-onlinegiftools.gif"} style={{height: '100px', width: "100px", transform: "translate(-50%, -50%)", position: "absolute", top: "50%", left: "50%"}} alt=""/></span>
+                </div>
+                </div>
+              }
+              {!isLoading && <button className="btn btn-secondary rounded-pill" style={{backgroundColor: "black", borderRadius: "10px"}}  onClick={handleCancel}>Scan again</button>}
             </>
           ) : (
             <QrScanner

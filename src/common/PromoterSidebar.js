@@ -26,7 +26,7 @@ export default function PromoterSidebar() {
           </div>
           </div>
         </div>
-      <div className="nav nav-pills flex-column col-11 col-md-6 col-lg p-0 mt-auto">
+      <div className="nav nav-pills flex-column col-11 col-md-6 col-lg p-0 mt-1">
         <div className='p-2 p-md-3 p-lg-0'>
         <small className='nav-linkmt-0 pl-1 pb-0 mt-lg-3' style={{color: "black", fontSize: "14px"}}>Account</small>
         <div className='d-flex d-lg-block w-100'>
@@ -39,7 +39,7 @@ export default function PromoterSidebar() {
           </div>
       </div>
       </div>
-      <div className="nav nav-pills flex-column col-11 col-md-6 col-lg p-0 mt-2">
+      <div className="nav nav-pills flex-column col-11 col-md-6 col-lg p-0 mt-1">
         <div className='p-2 p-md-3 p-lg-0'>
         <small className='nav-linkmt-0 pl-1 pb-0 mt-lg-3' style={{color: "black", fontSize: "14px"}}>Utility</small>
         <div className='d-flex d-lg-block w-100'>

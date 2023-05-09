@@ -10,7 +10,10 @@ export default function AttendeeModal() {
     const {inputValues, inputModal, setInputModal} = useContext(SingularContext);
     const [attendeeValue, setAttendeeValue] = useState([])
     const [isLoading, setisLoading] = useState(false);
-    const order_details = inputValues.filter(obj => obj != null)
+    const order_details = inputValues
+  .filter(obj => obj != null)
+  .filter(obj => obj.quantity !== 0);
+
     const plus = {attendeeValue, order_details}
       
   

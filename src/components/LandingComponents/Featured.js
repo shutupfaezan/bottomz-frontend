@@ -71,7 +71,7 @@ export default function ClubsRow() {
         <section className="d-flex flex-md-row flex-column-reverse p-md-5 py-5 px-4 ticketingSection" style={{background: "black"}}>
             <div className='col-lg-5 col-md-6 p-lg-5 d-flex flex-column p-0 px-md-3'>
               <div style={{height: "100%"}} className='d-flex flex-column'>
-              <h1 className="mb-md-3 my-3" style={{fontWeight: "800", fontSize: "40px", color: "white"}}>More Than Ticketing</h1>
+              <h1 className="mb-md-3 my-3 primary-header" style={{fontWeight: "800", fontSize: "40px", color: "white"}}>More Than Ticketing</h1>
               <b style={{color: "white"}}>For the world’s best venues, promoters and festivals, a partnership with Bottmzup is so much more than just ticketing.</b>
               <p style={{background: "crimson", width: "fit-content"}} className='btn mt-lg-auto mt-xl-5 text-white rounded-pill px-3 py-xxl-3 mb-md-0 mt-5' onClick={()=> navigate("/contact-us")}>Contact Us</p>
               </div>

@@ -190,7 +190,7 @@ export default function PromoterEventInfo() {
                     </div>  
                 </div>
                 <div className="d-flex flex-column col p-0 mb-2">
-                    <label htmlFor="formFile" className=" ml-2 mb-1" style={{fontWeight: "400"}}>Event Poster <small>(only one jpeg/jpg/png)</small></label>
+                    <label htmlFor="formFile" className=" ml-2 mb-1" style={{fontWeight: "400"}}>Event Poster</label>
                     <input className="p-2" style={{border: "2px solid black", borderRadius: "10px", fontSize: "14px", fontWeight: "400"}} onChange={handleFileChange} type="file" id="formFile" useInput={1}/>
                     {error && <div className="text-danger">{error}</div>}
                 </div>

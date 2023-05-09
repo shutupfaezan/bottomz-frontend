@@ -7,7 +7,8 @@
   import { useParams } from "react-router-dom";
   import "react-tooltip/dist/react-tooltip.css";
   import { Tooltip as ReactTooltip } from "react-tooltip";
-  import Footer from "../../common/Footer"  
+  import Footer from "../../common/Footer"
+  import Modal from 'react-bootstrap/Modal';
   // import {SingularContext} from '../../contexts/Context';
   
   
@@ -15,7 +16,7 @@
     // const {setOrderId} = useContext(SingularContext);
     const [updatedCheckoutInfo, setUpdatedCheckoutInfo] = useState()
     const savedCheckoutInfo = JSON.parse(sessionStorage.getItem('checkoutData'));
-    const [billInfo] = useState(savedCheckoutInfo?.order_details);
+    const [billInfo] = useState(savedCheckoutInfo?.order_details?.filter(item => item?.quantity > 0));
     const [attendeeInfo] = useState(savedCheckoutInfo?.attendeeValue);
     const [eventInfo, setEventInfo] = useState()
     const [isLoading, setisLoading] = useState(false);
@@ -52,7 +53,7 @@
       for (var i = 0; i < billInfo?.length; i++) {
         sum += parseInt(billInfo?.[i]?.total_price);
       }
-
+console.log(billInfo)
       // const paymentObj ={
       //   access_token: sessionStorage?.token,
       //   purpose: eventInfo?.event_name,
@@ -69,6 +70,7 @@
 
 
     function CreateOrder(){
+      
       setisLoading(true)
       axios.post(`https://nightlife-2710.herokuapp.com/orders?event_name=${params?.event_name}&access_token=${sessionStorage.token}`, updatedCheckoutInfo)
       .then((response)=>{
@@ -82,6 +84,14 @@
       })
     }
     return (
+      <>
+      { isLoading && (
+        <Modal className='d-flex align-items-center justify-content-center' centered show={true}>
+          <div className='d-flex align-items-center justify-content-center' style={{}}>
+          <img src={process.env.PUBLIC_URL + "/images/output-onlinegiftools.gif"} style={{height: '100px', width: "100px"}} alt=""/>
+          </div>
+        </Modal>
+      )} 
       <div>
         <GlobalHeader/>
         <div className='mb-5 mb-2 mb-md-3' style={{height: "200px", background: "black"}}>
@@ -167,14 +177,13 @@
               <div className='ml-auto mr-2' style={{fontSize: "20px"}}>₹{sum}</div>
             </div>
             <button onClick={CreateOrder} className='btn col-lg-12 mt-2 text-white' style={{background: "black", borderRadius: "10px"}}>
-              {!isLoading && <span>Pay Now</span>}
-              {isLoading && (<span id="login-loader-span" className="spinner-border spinner-border-sm mx-1" role="status" aria-hidden="true"></span>)}
-              {isLoading && (<span id="login-loading-text-span">Loading</span>)}
+              <span>Pay Now</span>
             </button>
             </div>
           </div>
         </div>
         <Footer/>
       </div>
+      </>
     )
   }
