@@ -18,7 +18,7 @@ export default function PrivacyPolicy() {
             <ul className='pl-3'>
                 <li className="mb-4" style={{color: "black"}}>
                 <h5 style={{fontWeight: "800"}} >Personal Information:</h5>
-                <p>We Collect We collect personal information about you that you voluntarily provide to us, such as your name, email address, phone number, and billing information when you create an account, make a booking, or contact us. </p>
+                <p>We collect personal information about you that you voluntarily provide to us, such as your name, email address, phone number, and billing information when you create an account, make a booking, or contact us. </p>
                 </li>
                 <li className="mb-4" style={{color: "black"}}><h5 style={{fontWeight: "800"}} >How We Use Your Personal Information:</h5>
                     <p>We use your personal information to provide our services to you, including processing your bookings, responding to your inquiries, and sending you marketing communications if you have opted-in to receive them. We may also use your information to improve our Website, to prevent and detect fraud and unauthorized access, and to comply with legal and regulatory requirements.</p>
