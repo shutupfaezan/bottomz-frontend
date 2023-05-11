@@ -53,7 +53,6 @@
       for (var i = 0; i < billInfo?.length; i++) {
         sum += parseInt(billInfo?.[i]?.total_price);
       }
-console.log(billInfo)
       // const paymentObj ={
       //   access_token: sessionStorage?.token,
       //   purpose: eventInfo?.event_name,
