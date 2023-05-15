@@ -84,10 +84,10 @@ export default function PromoterLogin() {
             <div className='col-lg-10 p-0 py-3 mb-0 mt-1 mt-lg-3 py-md-1 d-flex flex-column'>
               <button onClick={formik.handleSubmit} className='btn p-lg-2 p-3 text-white' type="submit" style={{background: "black", borderRadius: "10px"}} disabled={formik.isSubmitting}>
                 {isLoading && (<span id="login-loader-span" className="spinner-border spinner-border-sm mx-1" role="status" aria-hidden="true"></span>)}
-                {isLoading && (<span id="login-loading-text-span">LOADING</span>)}
-                {!isLoading && <span id="login-text-span">LOG IN</span>}
+                {isLoading && (<span id="login-loading-text-span">Loading</span>)}
+                {!isLoading && <span id="login-text-span">Log In</span>}
               </button>
-            </div>
+            </div>  
             <div className='col-lg-10 mt-3 d-flex justify-content-center '>
             <Link to="/contact-us">Not a promoter? Be one now</Link>
             </div>

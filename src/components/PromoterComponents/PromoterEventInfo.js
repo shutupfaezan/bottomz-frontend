@@ -26,7 +26,7 @@ export default function PromoterEventInfo() {
             event_venue: "",
             curated_by: "",
             contact: null,
-            date: "",
+            date: null,
             timings: "",
             genre: "",
             price_range: "",   
