@@ -13,9 +13,9 @@ export default function PromoterSidebar() {
           <span className="primary-header" style={{fontSize: "40px"}}>Portal</span>
         </Link>
       <div className='d-flex d-lg-block w-100 overflow-scroll'>
-        <div className="nav nav-pills flex-column col-11 col-md-6 col-lg p-0">
+        <div className="nav nav-pills flex-column col-12 col-md-6 col-lg p-0">
           <div className='p-2 p-md-3 p-lg-0'>
-          <small className='nav-link mt-0 pl-1 pb-0 ' style={{color: "black", fontSize: "14px"}}>Events</small>
+          <small className='nav-linkmt-0 pl-1 pb-0 mt-lg-3' style={{color: "black", fontSize: "14px"}}>Events</small>
           <div className='d-flex d-lg-block w-100'>
           <Link to="/host-an-event" className="nav-link my-2 mb-md-3 mr-2 p-3 d-flex flex-column d-lg-block col col-lg-11 mr-md-3" style={{color: window.location.hash === "#/host-an-event" ? "white": "black", border: "2px solid black", borderRadius: "10px", background : window.location.hash === "#/host-an-event" ? "black" : "white", boxShadow:  window.location.hash === "#/host-an-event" ? "5px 5px #E04949": null}} aria-current="page">
           <i className="bi bi-collection-play mr-2"></i>Host With Us
@@ -26,7 +26,7 @@ export default function PromoterSidebar() {
           </div>
           </div>
         </div>
-      <div className="nav nav-pills flex-column col-11 col-md-6 col-lg p-0 mt-1">
+      <div className="nav nav-pills flex-column col-12 col-md-6 col-lg-12 p-0">
         <div className='p-2 p-md-3 p-lg-0'>
         <small className='nav-linkmt-0 pl-1 pb-0 mt-lg-3' style={{color: "black", fontSize: "14px"}}>Account</small>
         <div className='d-flex d-lg-block w-100'>
@@ -39,7 +39,7 @@ export default function PromoterSidebar() {
           </div>
       </div>
       </div>
-      <div className="nav nav-pills flex-column col-11 col-md-6 col-lg p-0 mt-1">
+      <div className="nav nav-pills flex-column col-12 col-md-6 col-lg-12 p-0">
         <div className='p-2 p-md-3 p-lg-0'>
         <small className='nav-linkmt-0 pl-1 pb-0 mt-lg-3' style={{color: "black", fontSize: "14px"}}>Utility</small>
         <div className='d-flex d-lg-block w-100'>
