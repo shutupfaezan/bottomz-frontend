@@ -125,8 +125,8 @@ export default function ForgotPasswordStep1() {
    {stage === 1 &&  <><p className='mb-0'><b>Enter Your registered Email Id</b></p>
     <small>*We'll send an otp to this email</small>
     <div className='position-relative mt-4'>
-    <i class="fa-regular fa-envelope position-absolute" style={{fontSize: "25px", top: "5px", left: "10px"}}></i>
-    <input className='w-100 py-1 pl-5' name="email_id" style={{width: "85%", border: "2px solid black"}} type="email" value={formik.values.email_id} id="email_id" onChange={formik.handleChange}></input>
+    <i className="fa-regular fa-envelope position-absolute" style={{fontSize: "25px", top: "10px", left: "10px"}}></i>
+    <input className='w-100 py-2 pl-5' name="email_id" style={{width: "85%", border: "2px solid black", borderRadius: "10px"}} type="email" value={formik.values.email_id} id="email_id" onChange={formik.handleChange}></input>
     {formik.errors.email_id ? (
     <div style={{ color: "red", fontSize: "14px", marginTop: "5px" }}>
       {formik.errors.email_id}
@@ -164,12 +164,12 @@ export default function ForgotPasswordStep1() {
     <p className='mb-0'><b>Set up new password</b></p>
     <small>Enter the password of your choice and confirm it to save the changes to your existing password</small>
     <div className='position-relative mt-4'>
-    <i class="fa-solid fa-unlock position-absolute" style={{fontSize: "25px", top: "5px", left: "10px"}}></i>
-    <input className='w-100 py-1 pl-5' name="new_password" placeholder="Enter the new password" style={{width: "85%"}} onChange={event=>setUpdatedPassword(event.target.value)}></input>
+    <i className="fa-solid fa-unlock position-absolute" style={{fontSize: "25px", top: "10px", left: "10px"}}></i>
+    <input className='w-100 py-2 pl-5' name="new_password" placeholder="Enter the new password" style={{width: "85%", border: "2px solid black", borderRadius: "10px"}} onChange={event=>setUpdatedPassword(event.target.value)}></input>
     </div>
     <div className='position-relative mt-4'>
-    <i class="fa-solid fa-lock position-absolute" style={{fontSize: "25px", top: "5px", left: "10px"}}></i>
-    <input className='w-100 py-1 pl-5'name="confirm_password"  placeholder="Re-enter the password to confirm" style={{width: "85%"}} onChange={event=>setConfirmPassword(event.target.value)}></input>
+    <i className="fa-solid fa-lock position-absolute" style={{fontSize: "25px", top: "10px", left: "10px"}}></i>
+    <input className='w-100 py-2 pl-5'name="confirm_password"  placeholder="Re-enter the password to confirm" style={{width: "85%", border: "2px solid black", borderRadius: "10px"}} onChange={event=>setConfirmPassword(event.target.value)}></input>
     {confirmPasswordError && <div style={{ color: "red", fontSize: "14px", marginTop: "5px" }}>
     {confirmPasswordError}
     </div>}

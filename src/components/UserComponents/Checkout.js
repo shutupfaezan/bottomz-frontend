@@ -179,6 +179,7 @@
               <span>Pay Now</span>
             </button>
             </div>
+            <p className='px-3 mt-2' style={{fontSize: '13px'}}>*By clicking "Pay Now" you agree with the terms and condition set by us. <a href="https://bottmzup.com/#/terms-and-conditions">View</a></p>
           </div>
         </div>
         <Footer/>

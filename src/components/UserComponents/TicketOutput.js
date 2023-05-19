@@ -102,7 +102,7 @@
             </div>
           </div>
             <p className="px-lg-5 p-3">*Please check promotions/spams as mails may be wrongly flagged at times</p>
-            <p className="px-lg-5 p-3">For queries, reach out us on <a href="/gmail.com" style={{color: "crimson"}}>info@bottmzup.com</a></p>
+            <p className="px-lg-5 p-3">For queries, reach out us on <a href="mailto:info@bottmzup.com"  target="_blank" rel="noreferrer" style={{color: "crimson"}}>info@bottmzup.com</a></p>
             <div className="px-lg-5 p-3 mt-4">
               <button className="btn px-3 py-md-2 py-3 mr-lg-3 mr-md-2 rounded-pill col-lg-3 col-md-4 col text-white mb-3" style={{background: "black"}}><i className="fa-solid fa-ticket mr-2"></i>View Order Details</button>
               <button className="btn px-2 py-md-2 py-3 mr-lg-3 rounded-pill mt-md-0 mt-3 mr-md-2 col-lg-3 col-md-4 col mb-3" style={{background: "white", border: "2px solid black", color: "black"}} onClick={ResendAPi}>

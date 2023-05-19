@@ -46,10 +46,10 @@ export default function Hamburger() {
           <div className="container mt-5 pl-4">
           <h2 className='d-block w-100 primary-header' style={{color: "black"}}>Follow Us</h2>
           <div className="social d-flex w-100">
-            <a href="/" id="share-fb" className="sharer button"><i className="fa fa-3x fa-facebook-square"></i></a>
-            <a href="/" id="share-li" className="sharer button ml-2"><i className="fa fa-3x fa-linkedin-square"></i></a>
-            <a href="/" id="share-em" className="sharer button ml-2"><i className="fa fa-3x fa-envelope-square"></i></a>
-            <a href="/" id="share-em" className="sharer button ml-2"><i className="fa-brands fa-3x fa-square-instagram"></i></a>
+            {/* <a href="/" id="share-fb" className="sharer button"><i className="fa fa-3x fa-facebook-square"></i></a> */}
+            <a href="https://www.linkedin.com/company/bottmzup/"  target="_blank" rel="noreferrer" id="share-li" className="sharer button mr-2"><i className="fa fa-2x fa-linkedin"></i></a>
+            <a href="mailto:info@bottmzup.com"  target="_blank" rel="noreferrer" id="share-em" className="sharer button mr-2"><i className="fa fa-2x fa-envelope"></i></a>
+            <a href="https://www.instagram.com/bottmzup/"  target="_blank" rel="noreferrer" id="share-em" className="sharer button mr-2"><i className="fa-brands fa-2x fa-instagram"></i></a>
           </div>
           </div>
         </div>

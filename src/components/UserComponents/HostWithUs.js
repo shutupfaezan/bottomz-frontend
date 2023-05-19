@@ -135,7 +135,7 @@ export default function HostWithUs() {
           </div>
         </section>
         <section className='mx-md-5 my-4'>
-          <p className='px-md-5 px-3'>Incase of any issues or urgent requests/queries contect us on <a style={{color: "crimson"}}  href="/">info@bottmzup.com</a></p>
+          <p className='px-md-5 px-3'>Incase of any issues or urgent requests/queries contect us on <a style={{color: "crimson"}}  href="mailto:info@bottmzup.com"  target="_blank" rel="noreferrer">info@bottmzup.com</a></p>
         </section>
         <Footer/>
       </div>
