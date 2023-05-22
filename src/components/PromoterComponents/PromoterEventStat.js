@@ -8,7 +8,7 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 
 export default function PromoterEventStat() {
-  const params = useParams()
+    const params = useParams()
     const [eventData, setEventData] = useState()
     const [loading, setLoading] = useState(false)
     const [orderData, setOrderData] = useState()
@@ -16,7 +16,8 @@ export default function PromoterEventStat() {
       const fetchEventData = async () => {
           try {
             setLoading(true)
-              const { data } = await axios.get(`https://nightlife-2710.herokuapp.com/promoter-orders?event_name=${params.event_name}&promoter_access_token=${sessionStorage?.promoter_token}`)
+            const encodedEventName = encodeURIComponent(params?.event_name);
+              const { data } = await axios.get(`https://nightlife-2710.herokuapp.com/promoter-orders?event_name=${encodedEventName}&promoter_access_token=${sessionStorage?.promoter_token}`)
               const { Event_Information, Order_Details } = data;
               setEventData(Event_Information);
               setOrderData(Order_Details);
@@ -94,6 +95,7 @@ export default function PromoterEventStat() {
     </div>
 
       </div>
+      {controlled_orders?.length === 0 ? <><div className='mx-md-5 text-center p-4 mx-3 my-5' style={{background: "#e8ebee", borderRadius: "10px"}}>No orders yet! Inform People about your event and share them the link to make it easy for them to order. Good Luck</div></> :
       <div className='overflow-scroll mx-md-5 d-flex d-md-block'>
         <Tabs>
           <TabList style={{padding: "5px", marginBottom: "3rem"}}>
@@ -140,7 +142,7 @@ export default function PromoterEventStat() {
             );
           })}
         </Tabs>
-      </div>
+      </div>}
     </div>
     </div>}
     </>

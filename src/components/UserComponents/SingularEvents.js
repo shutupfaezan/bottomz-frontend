@@ -21,6 +21,7 @@
         const [isloading, setIsLoading] = useState(true)
         const navigate = useNavigate()
         const params = useParams()
+        
         const event = async ()=> { return await axios.get(`https://nightlife-2710.herokuapp.com/events/${params.event_name}`)}
         useEffect(() => {
           event()
@@ -101,7 +102,14 @@
           const options = {year: 'numeric', month: 'long', day: 'numeric', weekday: "long" }
           return date.toLocaleDateString('en-US', options)
         }
-        
+        const formatDescription = (description) => {
+          if (description) {
+            const lines = description.split('\n\n\n\n');
+            return lines.map((line, index) => <p key={index}>{line}</p>);
+          }
+          return null;
+        };
+
         return (
           <>
           <div>
@@ -132,7 +140,7 @@
           </div>
             {singleEvent?.description !== "" && <div className='mx-lg-5 mt-md-5 mt-4'>
               <b className=''>- Description</b>
-            <p  className='mt-2 ml-2' style={{fontWeight: "400"}}>{singleEvent?.description}</p>
+            <p  className='mt-2 ml-2' style={{fontWeight: "400"}}>{formatDescription(singleEvent?.description)}</p>
             </div>}
             <div className='bg-light mx-lg-5 mt-md-5 mt-4 px-2 py-4' style={{borderRadius: "10px", background: "#F4F5F6"}}>
               <h1 className='primary-header ml-2'>Ticket Info</h1>
@@ -161,7 +169,7 @@
               <b className=''>- Terms & Conditions</b>
               <div className='mt-2 ml-2' style={{fontWeight: "400"}}>
             {
-              newTerms?.length !== 0 ? <ul className='pl-3'>{newTerms?.map((fields, index )=> {
+              newTerms?.[0] !== "" ?  <ul className='pl-3'>{newTerms?.map((fields, index )=> {
                 return <li style={{color: "black", fontWeight: 400}} key={index}>{fields}</li>
               })}</ul> : <GenericTC/> 
             }
