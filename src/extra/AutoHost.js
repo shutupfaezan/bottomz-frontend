@@ -6,6 +6,7 @@ import { SingularContext } from '../contexts/Context';
 import PromoterEventInfo from '../components/PromoterComponents/PromoterEventInfo';
 import PromoterPricing from '../components/PromoterComponents/PromoterPricing';
 import PromoterReviewInfo from '../components/PromoterComponents/PromoterReviewInfo';
+import PromoterTableInfo from '../components/PromoterComponents/PromoterTableInfo'
 import PromoterSidebar from '../common/PromoterSidebar';
 import Stepper from '../common/Stepper';
 import { BrowserView, MobileOnlyView, TabletView } from 'react-device-detect';
@@ -36,7 +37,8 @@ export default function AutoHost() {
       <Stepper></Stepper>
         {eventStepper === 1 && <PromoterEventInfo/>}
         {eventStepper === 2 && <PromoterPricing/>}
-        {eventStepper === 3 && <PromoterReviewInfo/>}
+        {eventStepper === 3 && <PromoterTableInfo/>}
+        {eventStepper === 4 && <PromoterReviewInfo/>}
     </div>
     </div>
     <Footer/>

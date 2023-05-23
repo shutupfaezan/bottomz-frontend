@@ -17,14 +17,21 @@ export default function Stepper() {
         <div className='w-100' style={{height: "3px", background: eventStepper > 2 ? "black" : eventStepper === 2 ? "crimson": "#C1C9D2", borderRadius: "10px"}}>
         </div>
         <div className='d-flex align-items-center mt-1'>
-        <small style={{color: eventStepper > 2 ? "black" : eventStepper === 2 ? "crimson": "#C1C9D2"}}>Price Info</small>
+        <small style={{color: eventStepper > 2 ? "black" : eventStepper === 2 ? "crimson": "#C1C9D2"}}>Ticket Info</small>
         </div>
         </div>
         <div  className='col px-1' >
         <div className='w-100' style={{height: "3px", background: eventStepper > 3 ? "black" : eventStepper === 3 ? "crimson": "#C1C9D2", borderRadius: "10px"}}>
         </div>
         <div className='d-flex align-items-center mt-1'>
-        <small style={{color: eventStepper > 3 ? "black" : eventStepper === 3 ? "crimson": "#C1C9D2"}}>Review Info</small>
+        <small style={{color: eventStepper > 3 ? "black" : eventStepper === 3 ? "crimson": "#C1C9D2"}}>Table Info</small>
+        </div>
+        </div>
+        <div  className='col px-1' >
+        <div className='w-100' style={{height: "3px", background: eventStepper > 4 ? "black" : eventStepper === 4 ? "crimson": "#C1C9D2", borderRadius: "10px"}}>
+        </div>
+        <div className='d-flex align-items-center mt-1'>
+        <small style={{color: eventStepper > 4 ? "black" : eventStepper === 4 ? "crimson": "#C1C9D2"}}>Review Info</small>
         </div>
         </div>
       </div>

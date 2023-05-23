@@ -107,7 +107,6 @@ export default function PromoterEventInfo() {
     
     function SubmitEventInfo(event) {
         // event.preventDefault();
-        
         const eventInfo = { ...formik.values, terms: [...arr], images_url: selectedFile };
         eventInfoValue.event_information = eventInfo;
         console.log(eventInfoValue)

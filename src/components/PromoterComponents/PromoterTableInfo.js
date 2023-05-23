@@ -7,9 +7,9 @@ import { SingularContext } from '../../contexts/Context';
 export default function PromoterPricing() {
     const [items, setItems] = useState([]);
     const [errors, setErrors] = useState(null);
-    const [ticket_category, setTicket_Category] = useState('')
+    const [table_category, setTable_Category] = useState('')
     const [description, setDescription] = useState('')
-    const [cover_description, setCover_Description] = useState('')
+    const [table_benefits, setTable_Benefits] = useState('')
     const [price, setPrice] = useState("")
     const [total_quantity, set_Total_Quantity] = useState("")
     const { eventInfoValue, setEventStepper, eventStepper} = useContext(SingularContext);
@@ -36,11 +36,14 @@ export default function PromoterPricing() {
 
       function handleAddItem(event) {
         const errors = [];
-        if (!ticket_category) {
-          errors.push("Ticket category is required");
+        if (!table_category) {
+          errors.push("Table category is required");
         }
-        if (!cover_description) {
-          errors.push("Cover description is required");
+        if (!table_benefits) {
+          errors.push("Table Benefits is required");
+        }
+        if (!description) {
+          errors.push("Table description is required");
         }
         if (price.toString().includes("-")) { // Fixed
           errors.push("Price must not contain a hyphen.");
@@ -60,18 +63,25 @@ export default function PromoterPricing() {
       
         setErrors(null);
       
+        // if (errors.length > 0) {
+        //   setErrors(errors.join(", "));
+        //   return;
+        // }
+      
+        setErrors(null);
+      
         const newItem = {
-          ticket_category,
+          table_category,
           description,
-          cover_description,
+          table_benefits,
           price,
           total_quantity
         };
         setItems([...items, newItem]);
       
-        setTicket_Category("");
+        setTable_Category("");
         setDescription("");
-        setCover_Description("");
+        setTable_Benefits("");
         setPrice("");
         set_Total_Quantity("");
       
@@ -81,8 +91,8 @@ export default function PromoterPricing() {
       
 
     function submitPricing() {
-        const price_info = items;
-        eventInfoValue.ticket_information = price_info;
+        const table_info = items;
+        eventInfoValue.table_information = table_info;
         console.log(eventInfoValue)
         setEventStepper(eventStepper + 1);
       }
@@ -91,27 +101,27 @@ export default function PromoterPricing() {
   return (
     <div className='mt-0 mt-md-4 pl-md-2 pr-lg-5 pr-md-2'>
             <div className='col p-0 mb-2'>
-            <label className='ml-2 mb-1'>Ticket Categories<span style={{color: "crimson"}}>*</span></label>
-            <Input name="ticket_category" placeholder="Eg:- Male Stag" id="ticket_category" value={ticket_category} handleChange={event=>setTicket_Category(event.target.value)}  useInput={1}></Input>
+            <label className='ml-2 mb-1'>Table Categories<span style={{color: "crimson"}}>*</span></label>
+            <Input name="table_category" placeholder="Enter a table category" id="table_category" value={table_category} handleChange={event=>setTable_Category(event.target.value)}  useInput={1}></Input>
             </div>
             <div className='d-md-flex mb-2'>
                 <div className='col-lg-6 px-0 pr-md-3'>
-                <label className='ml-2 mb-1'>Cover Description<span style={{color: "crimson"}}>*</span></label>
-                <Input name="ticket_category" placeholder="Eg:- No Cover" id="ticket_category" value={cover_description} handleChange={event=>setCover_Description(event.target.value)} useInput={1}></Input>
+                <label className='ml-2 mb-1'>Table Benefits<span style={{color: "crimson"}}>*</span></label>
+                <Input name="table_category" placeholder="Eg:- No Cover" id="table_category" value={table_benefits} handleChange={event=>setTable_Benefits(event.target.value)} useInput={1}></Input>
                 </div>
                 <div  className='col-lg-6 px-0 pl-md-3'>
                 <label className='ml-3 mb-1'>Description:</label>
-                <Input name="description" placeholder="Eg:- Entry Only" id="description" value={description} handleChange={event=>setDescription(event.target.value)} useInput={1}></Input>
+                <Input name="description" placeholder="No. of people allowed on a table" id="description" value={description} handleChange={event=>setDescription(event.target.value)} useInput={1}></Input>
                 </div>
             </div>
             <div className='d-md-flex mb-2'>
                 <div className='col-lg-6 px-0 pr-md-3'>
-                <label className='ml-3 mb-1'>Price (per ticket)<span style={{color: "crimson"}}>*</span></label>
-                <Input name="price" type="number" placeholder="Eg:- Rs. 1000" id="price" value={price} handleChange={handlePriceChange} useInput={1}></Input>
+                <label className='ml-3 mb-1'>Price (per table)<span style={{color: "crimson"}}>*</span></label>
+                <Input name="price" type="number" placeholder="Eg:- Rs. 100000" id="price" value={price} handleChange={handlePriceChange} useInput={1}></Input>
                 </div>
                 <div  className='col-lg-6 px-0 pl-md-3'>
                 <label className='ml-3 mb-1'>Total Quantity<span style={{color: "crimson"}}>*</span></label>
-                <Input name="total_quantity" type="number" placeholder="Eg:- 100" id="total_quantity" value={total_quantity} handleChange={handleQuantityChange} useInput={1}></Input>
+                <Input name="total_quantity" type="number" placeholder="Number of tables available for this category" id="total_quantity" value={total_quantity} handleChange={handleQuantityChange} useInput={1}></Input>
                 </div>
             </div>
             <div>
@@ -119,7 +129,7 @@ export default function PromoterPricing() {
             </div>
         <div className='d-md-flex justify-content-between my-3 col p-0'>
         <button type="submit" style={{background: "crimson", borderRadius: "10px"}} onClick={handleAddItem} className="m-md-2 my-2 btn col-md-5 text-white p-0 py-2 ml-md-5">Add Pricing Category</button>
-        <button type="submit" style={{background: "black", borderRadius: "10px"}} onClick={submitPricing} className="m-md-2 my-2 btn col-md-5 text-white p-0 py-2 mr-md-5">Continue to Table Info</button>
+        <button type="submit" style={{background: "black", borderRadius: "10px"}} onClick={submitPricing} className="m-md-2 my-2 btn col-md-5 text-white p-0 py-2 mr-md-5">Skip and/or Review</button>
         </div>
         <div>
         <b className='my-3 ml-3'>Your added categories apper here:</b> 
@@ -136,8 +146,8 @@ export default function PromoterPricing() {
                   {items?.map((identity, fields)=>{
                       return <tr key={fields}>
                         <td style={{alignItems: "center", width: "33%", fontWeight: "400"}}>
-                        <b style={{display: "block"}}>{identity.ticket_category}</b>
-                        <span style={{display: "block"}}>{identity.cover_description}</span>
+                        <b style={{display: "block"}}>{identity.table_category}</b>
+                        <span style={{display: "block"}}>{identity.table_benefits}</span>
                         <span style={{display: "block"}}>{identity.description}</span>
                         </td>
                         <td>
