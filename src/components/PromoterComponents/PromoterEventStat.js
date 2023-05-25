@@ -8,7 +8,7 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 
 export default function PromoterEventStat() {
-  const params = useParams()
+    const params = useParams()
     const [eventData, setEventData] = useState()
     const [loading, setLoading] = useState(false)
     const [orderData, setOrderData] = useState()
@@ -16,7 +16,8 @@ export default function PromoterEventStat() {
       const fetchEventData = async () => {
           try {
             setLoading(true)
-              const { data } = await axios.get(`https://nightlife-2710.herokuapp.com/promoter-orders?event_name=${params.event_name}&promoter_access_token=${sessionStorage?.promoter_token}`)
+            const encodedEventName = encodeURIComponent(params?.event_name);
+              const { data } = await axios.get(`https://nightlife-2710.herokuapp.com/promoter-orders?event_name=${encodedEventName}&promoter_access_token=${sessionStorage?.promoter_token}`)
               const { Event_Information, Order_Details } = data;
               setEventData(Event_Information);
               setOrderData(Order_Details);
@@ -69,7 +70,7 @@ export default function PromoterEventStat() {
     <SearchBar orders={()=>orderData}/>
       <div className='d-md-flex flex-md-column flex-lg-row my-5 px-md-5 px-0'>
         <div className='d-md-flex col-lg-8 p-0'>
-        <div className="p-3 ml-md-5 mr-md-4 mx-2" style={{maxWidth: "100%", border: "2px solid black", minWidth: "fit-content", display: "flex", borderRadius: "10px", width: "fit-content", height: "fit-content"}}>  
+        <div className="p-3 ml-md-5 mr-md-4 mx-auto" style={{maxWidth: "100%", border: "2px solid black", minWidth: "fit-content", display: "flex", borderRadius: "10px", width: "fit-content", height: "fit-content"}}>  
           <img style={{height:"auto", maxHeight: "200px", maxWidth: "100%", borderRadius: "10px"}} src={eventData?.images_url} alt=""/>
         </div>
         <div className=' pl-4 mt-md-0 mt-4 w-100'>
@@ -83,17 +84,18 @@ export default function PromoterEventStat() {
         </div>
       </div>
      <div className='w-100 d-flex flex-lg-column flex-md-row flex-column mt-md-5 mt-lg-0 p-3'>
-      <div className='w-100 d-flex  mr-3' style={{height: "100%"}}>
+      <div className='w-100 d-flex  mr-3'>
         <div className='col col-lg d-flex flex-column mb-3 mr-3 p-4' style={{color: "white", background: "black", borderRadius: "10px"}}><h3 className='mt-auto'>{totalPaidPrice}</h3><p className='mb-0' style={{fontSize: "14px", fontWeight: "400"}}>Total Revenue</p></div>
         <div className='col col-lg d-flex flex-column mb-3 mr-lg-3 p-4' style={{color: "white", background: "black", borderRadius: "10px"}}><h3 className='mt-auto'>{totalTicks}</h3><p className='mb-0' style={{fontSize: "14px", fontWeight: "400"}}>Entered</p></div>
       </div>
-      <div className='w-100 d-flex' style={{height: "100%"}}>
+      <div className='w-100 d-flex'>
         <div className='col col-lg d-flex flex-column mb-3 mr-3 p-4' style={{color: "white", background: "black", borderRadius: "10px"}}><h3 className='mt-auto'>{commisionPrice}</h3><p className='mb-0' style={{fontSize: "14px", fontWeight: "400"}}>Commission</p></div>
         <div className='col col-lg d-flex flex-column mb-3 mr-lg-3 p-4' style={{color: "white", background: "black", borderRadius: "10px"}}><h3 className='mt-auto'>{upaidQty}</h3><p className='mb-0' style={{fontSize: "14px", fontWeight: "400"}}>Unpaid Tickets</p></div>
       </div>
     </div>
 
       </div>
+      {controlled_orders?.length === 0 ? <><div className='mx-md-5 text-center p-4 mx-3 my-5' style={{background: "#e8ebee", borderRadius: "10px"}}>No orders yet! Inform People about your event and share them the link to make it easy for them to order. Good Luck</div></> :
       <div className='overflow-scroll mx-md-5 d-flex d-md-block'>
         <Tabs>
           <TabList style={{padding: "5px", marginBottom: "3rem"}}>
@@ -140,7 +142,7 @@ export default function PromoterEventStat() {
             );
           })}
         </Tabs>
-      </div>
+      </div>}
     </div>
     </div>}
     </>

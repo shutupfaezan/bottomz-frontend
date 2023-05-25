@@ -17,10 +17,12 @@
         const [getLoader, setGetLoader] = useState(false)
         const [error, setError] = useState()
         const [ticketConfig, setTicketConfig] = useState()
+        const [tableConfig, setTableConfig] = useState()
         const [clubDetail, setClubDetail] = useState()
         const [isloading, setIsLoading] = useState(true)
         const navigate = useNavigate()
         const params = useParams()
+        
         const event = async ()=> { return await axios.get(`https://nightlife-2710.herokuapp.com/events/${params.event_name}`)}
         useEffect(() => {
           event()
@@ -28,6 +30,7 @@
             setIsLoading(false)
             setSingleEvent(response?.data?.event_data)
             setTicketConfig(response?.data?.ticket_categories)
+            setTableConfig(response?.data?.table_categories)
             setClubDetail(response?.data?.venue_information?.[0])
           })
           .catch((error) => {
@@ -101,7 +104,14 @@
           const options = {year: 'numeric', month: 'long', day: 'numeric', weekday: "long" }
           return date.toLocaleDateString('en-US', options)
         }
-        
+        const formatDescription = (description) => {
+          if (description) {
+            const lines = description.split('\n\n\n\n');
+            return lines.map((line, index) => <p key={index}>{line}</p>);
+          }
+          return null;
+        };
+
         return (
           <>
           <div>
@@ -132,7 +142,7 @@
           </div>
             {singleEvent?.description !== "" && <div className='mx-lg-5 mt-md-5 mt-4'>
               <b className=''>- Description</b>
-            <p  className='mt-2 ml-2' style={{fontWeight: "400"}}>{singleEvent?.description}</p>
+            <p  className='mt-2 ml-2' style={{fontWeight: "400"}}>{formatDescription(singleEvent?.description)}</p>
             </div>}
             <div className='bg-light mx-lg-5 mt-md-5 mt-4 px-2 py-4' style={{borderRadius: "10px", background: "#F4F5F6"}}>
               <h1 className='primary-header ml-2'>Ticket Info</h1>
@@ -144,24 +154,41 @@
                         })}
                     </tbody>
                   </table>
+              </div> : <div className='ml-3'><b>Ticketing info doesnt exist</b><p style={{color: "#6a6868"}}>Be the first to report the error and get some perks</p></div>}
+            </div>
+              {tableConfig?.[0] &&
+              <>
+            <div className='bg-light mx-lg-5 mt-4 px-2 py-4' style={{borderRadius: "10px", background: "#F4F5F6"}}>
+              <h1 className='primary-header ml-2'>Table Info</h1>
+              <div>
+                <table className="table">
+                    <tbody id="tickselect">
+                      {tableConfig?.map((identity, fields)=>{
+                          return <QuantityFields identity={identity} key={fields} index={fields}></QuantityFields>
+                        })}
+                    </tbody>
+                  </table>
                   {singleEvent?.contact !== null && <><div className='d-flex justify-content-center'><p className="text-center" style={{borderBottom: "2px solid black", borderTop: "2px solid black", width: "100%"}}>For table info contact <a target="_blank" style={{color: "crimson"}} href={`tel: +91${singleEvent?.contact}`} rel="noreferrer noopener"> here</a></p></div></>}
-                  <div className='d-flex'>
+              </div>
+            </div>
+              </>}
+            
+            <div className='d-flex mt-4 flex-column bg-light mx-lg-5 p-4' style={{borderRadius: "10px"}}>
                 <button style={{background: "black", borderRadius: "10px"}}  className='btn my-2 col-12 col-md-6 col-lg-4 mx-auto text-white' type="submit" onClick={handleFormSubmit}>
                     {getLoader && (<span id="login-loader-span" className="spinner-border spinner-border-sm mx-1" role="status" aria-hidden="true"></span>)}
                     {getLoader && (<span id="login-loading-text-span">Loading</span>)}
                     {!getLoader && <span id="login-text-span">{sessionStorage.token ? "Get Tickets" : "Log In/Sign Up to Continue"}</span>}
                   <span></span>
                 </button>
+            {error && <div className='text-center' style={{color: "crimson"}}>{error}</div>}
+                <div className='text-center mt-2'> {numSelected} Selected - Rs. {totalPrice}</div>
                 </div>
-                {error && <div className='text-center' style={{color: "crimson"}}>{error}</div>}
-                <div className='text-center mt-4'> {numSelected} Selected - Rs. {totalPrice}</div>
-              </div> : <div className='ml-3'><b>Ticketing info doesnt exist</b><p style={{color: "#6a6868"}}>Be the first to report the error and get some perks</p></div>}
-            </div>
+
             <div className='mx-lg-5 mt-md-5 my-4'>
               <b className=''>- Terms & Conditions</b>
               <div className='mt-2 ml-2' style={{fontWeight: "400"}}>
             {
-              newTerms?.length !== 0 ? <ul className='pl-3'>{newTerms?.map((fields, index )=> {
+              newTerms?.[0] !== "" ?  <ul className='pl-3'>{newTerms?.map((fields, index )=> {
                 return <li style={{color: "black", fontWeight: 400}} key={index}>{fields}</li>
               })}</ul> : <GenericTC/> 
             }

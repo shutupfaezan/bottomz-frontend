@@ -23,6 +23,8 @@ import {
 import ScrollToTop from './components/UserComponents/ScrollToTop';
 import OrderHistory from './components/UserComponents/OrderHistory';
 import PromoterQRScanner from './components/PromoterComponents/PromoterQRScanner';
+// import WithTitle from './components/UserComponents/WithTitle';
+
 
 
 function App() {

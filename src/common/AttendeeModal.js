@@ -1,12 +1,18 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { SingularContext } from '../contexts/Context';
+import { useLocation } from 'react-router-dom';
 import {useContext} from 'react'
 import Modal from 'react-bootstrap/Modal';
 
 
 export default function AttendeeModal() {
     const navigate = useNavigate()
+
+    const location = useLocation(); //sub-promoter functionailty
+    const searchParams = new URLSearchParams(location.search);
+    const subPromoter = searchParams.get('sub-promoter');
+
     const {inputValues, inputModal, setInputModal} = useContext(SingularContext);
     const [attendeeValue, setAttendeeValue] = useState([])
     const [fieldError, setFieldError] = useState(null)
@@ -47,12 +53,10 @@ export default function AttendeeModal() {
         setFieldError('Please fill in all attendee fields before continuing.');
         return;
       }
-      
-      // all fields have been filled in, proceed with submission
       setisLoading(true);
       sessionStorage.setItem('checkoutData', JSON.stringify(plus));
       setisLoading(false);
-      navigate('checkout');
+      navigate(`checkout?sub_promoter=${subPromoter}`);
     }
     
   return (

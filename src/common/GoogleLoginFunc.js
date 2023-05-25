@@ -46,7 +46,7 @@ export default function GoogleLoginFunc() {
   return (
     <>
     <div className='d-flex flex-column '>
-      <button onClick={login} type="button" className="btn btn-light px-4 mx-auto" style={{border: "2px solid darkGray", borderRadius: "10px", width: "fit-content"}}>
+      <button onClick={login} type="button" className="btn btn-light px-3 mx-auto bg-light" style={{border: "2px solid transparent", borderRadius: "10px", width: "fit-content"}}>
           {isLoading && (<span id="login-loader-span" className="spinner-border spinner-border-sm mx-1" role="status" aria-hidden="true"></span>)}
           {!isLoading &&  <><img src={process.env.PUBLIC_URL + "/images/Google_Icons-09-512.webp"} width="25px" alt=""/><b>Sign In</b></>}
       </button>

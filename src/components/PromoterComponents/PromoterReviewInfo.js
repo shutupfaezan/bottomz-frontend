@@ -134,7 +134,36 @@
                       })}
                   </tbody>
                 </table>
-                </div>
+        </div>
+      <div className='my-4'>
+          <b className='mt-4 ml-2' style={{fontSize: "16px"}}>Table Categories:</b>
+              <table className="table table-hover mt-3">
+              <thead style={{color: "white", background: "black"}}>
+                  <tr>
+                      <th scope="col"></th>
+                      <th scope="col">Price</th>
+                      <th scope="col">Quantity</th>
+                  </tr>
+              </thead>
+                  <tbody>
+                    {eventInfoValue?.table_information?.map((identity, fields)=>{
+                        return <tr key={fields}>
+                          <th style={{alignItems: "center", width: "33%", fontWeight: "lighter"}} scope="row">
+                          <div>{identity.table_category}</div>
+                          <div style={{fontWeight: "400"}}>{identity.table_benefits}</div>
+                          <div style={{fontWeight: "400"}}>{identity.description}</div>
+                          </th>
+                          <td>
+                            {identity.price}
+                          </td>
+                          <td>
+                            {identity.total_quantity}
+                          </td>
+                          </tr>
+                      })}
+                  </tbody>
+                </table>
+        </div>
 
               {toastMessge === "Event Created Successfully" && <Toast onClose={() => setShowToast(false)} className="bg-success text-center text-white" show={showToast} delay={3000} autohide style={{position: "absolute", left: "50%", transform: "translate(-50%)", top: "50px"}}>
                 <Toast.Body>{toastMessge}</Toast.Body>

@@ -40,15 +40,15 @@ export default function Footer() {
     	   <div className='col-lg-3 col-md-3'>
     		    <div className="mb-md-3 mb-2" style={{fontSize: "1rem"}}>Socials</div>
     		    <ul className="list-unstyled">
-    			 <li><Link style={{color: "white", fontSize: "0.875 rem", fontWeight: "400"}} to="maintenance.html">Instagram</Link></li>
-    			 <li><Link style={{color: "white", fontSize: "0.875 rem", fontWeight: "400"}} to="about.html">Twitter</Link></li>
-    			 <li><Link style={{color: "white", fontSize: "0.875 rem", fontWeight: "400"}} to="about.html">Email</Link></li>
+    			 <li><a style={{color: "white", fontSize: "0.875 rem", fontWeight: "400"}} target="_blank" rel="noreferrer" href="https://www.instagram.com/bottmzup/">Instagram</a></li>
+    			 <li><a style={{color: "white", fontSize: "0.875 rem", fontWeight: "400"}} target="_blank" rel="noreferrer" href="https://www.linkedin.com/company/bottmzup/">LinkedIn</a></li>
+    			 <li><a style={{color: "white", fontSize: "0.875 rem", fontWeight: "400"}} target="_blank" rel="noreferrer" href="mailto:info@bottmzup.com">Email</a></li>
     			</ul>
     		</div>
 			</div>
        </div>
 	   <hr className="mx-auto" style={{width: "90%"}}></hr>
-	   <p className='mb-1 d-flex justify-content-end mr-4 mr-md-5 pr-lg-3'>info@bottmzup.com</p>
+	   <a className='mb-1 d-flex justify-content-end mr-4 mr-md-5 pr-lg-3' href="mailto:info@bottmzup.com" style={{color: "white"}}>info@bottmzup.com</a>
 	</section>
   )
 }

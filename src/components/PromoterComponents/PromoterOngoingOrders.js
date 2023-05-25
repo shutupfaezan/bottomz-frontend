@@ -62,7 +62,7 @@ const formatDate = (dateStr) => {
         {Object.entries(result)?.map(([date, objects]) => (
           <div className="w-100 px-lg-2 mt-2" key={date}>
             <b className='px-md-2 px-2 ml-2'>{formatDate(date)}</b>
-            <div className='d-md-flex w-100 px-md-2'>
+            <div className='d-md-flex w-100 px-md-2 flex-wrap'>
               {objects.map((identity, index) => {
                const formatDate = (dateStr) => {
                 const [day, month, year] = dateStr.split("-");

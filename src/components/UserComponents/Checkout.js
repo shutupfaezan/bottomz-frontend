@@ -3,6 +3,7 @@
   import { useNavigate } from 'react-router-dom';
   import GlobalHeader from '../../common/GlobalHeader'
   import { useState } from 'react';
+  import {useLocation} from "react-router-dom"
   import { useEffect } from 'react'
   import { useParams } from "react-router-dom";
   import "react-tooltip/dist/react-tooltip.css";
@@ -19,8 +20,14 @@
     const [billInfo] = useState(savedCheckoutInfo?.order_details?.filter(item => item?.quantity > 0));
     const [attendeeInfo] = useState(savedCheckoutInfo?.attendeeValue);
     const [eventInfo, setEventInfo] = useState()
+    const [error, setError] = useState()
     const [isLoading, setisLoading] = useState(false);
-      const params = useParams()
+    const params = useParams()
+    const location = useLocation();
+    const searchParams = new URLSearchParams(location.search);
+    const subPromoter = searchParams.get('sub_promoter');
+
+    console.log(subPromoter)
       const bill = async ()=> { return await axios.get(`https://nightlife-2710.herokuapp.com/events/${params?.event_name}`)}
       useEffect(() => {
         bill().then((response) => {
@@ -69,9 +76,9 @@
 
 
     function CreateOrder(){
-      
+      setError(false)
       setisLoading(true)
-      axios.post(`https://nightlife-2710.herokuapp.com/orders?event_name=${params?.event_name}&access_token=${sessionStorage.token}`, updatedCheckoutInfo)
+      axios.post(`https://nightlife-2710.herokuapp.com/orders?sub_promoter=${subPromoter}&access_token=${sessionStorage.token}`, updatedCheckoutInfo)
       .then((response)=>{
         setisLoading(false)
         sessionStorage.setItem('order_id', response?.data)
@@ -80,13 +87,14 @@
       .catch((error)=>{
         setisLoading(false)
         console.log(error)
+        setError(error?.response?.data?.detail)
       })
     }
     return (
       <>
       { isLoading && (
         <Modal className='d-flex align-items-center justify-content-center' centered show={true}>
-          <div className='d-flex align-items-center justify-content-center' style={{}}>
+          <div className='d-flex align-items-center justify-content-center'>
           <img src={process.env.PUBLIC_URL + "/images/output-onlinegiftools.gif"} style={{height: '100px', width: "100px"}} alt=""/>
           </div>
         </Modal>
@@ -99,7 +107,7 @@
           <div className='primary-header ml-2 text-white' style={{fontSize: "40px"}}>Out</div>
         </div>
         </div>
-              <h1 className='primary-header px-lg-5 mx-3 my-md-4 my-5 mpt-lg-5'>Choose your mode of payment</h1>
+        <h1 className='primary-header px-lg-5 mx-3 my-md-4 my-5 mpt-lg-5'>Choose your mode of payment</h1>
         <div className="px-lg-5 py-lg-3 mx-md-3 mx-lg-0 d-flex flex-column flex-lg-row">
           <div className='col-lg-7 mb-5 mb-lg-0 order-2 order-lg-0 mr-auto'>
             <div className=' mt-lg-0'>
@@ -143,7 +151,7 @@
               {attendeeInfo?.map((identity, fields)=>{
             return <><tr >
             <th style={{border: "none"}} scope="row">{fields + 1}</th>
-            <td className='ml-3'>{identity?.attendee_name}</td>
+            <td>{identity?.attendee_name}</td>
           </tr></>
             })}
               </tbody>
@@ -153,11 +161,13 @@
           <div className='col-lg-4 mb-4 mb-lg-0 px-4 px-mb-2' style={{order: "3"}}>
             <div className="card p-3" style={{ border: "2px  solid black", borderRadius: "10px"}}>
             <div className="d-flex w-100 pb-3 mb-3" style={{width: "24rem", borderBottom: "1px solid #E8EBEE"}}>
+            <div className='col-3 p-0'>
             <img className="align-self-center" style={{width: "70px", height: "70px", borderRadius: "10px"}} src={eventInfo?.images_url} alt="Club"/>
-            <div className="d-flex flex-column ml-3">
-              <p className="m-0 mb-2 primary-header" style={{fontSize: "20px", fontWeight: '400'}}>{eventInfo?.event_name}</p>
+            </div>
+            <div className="d-flex flex-column ml-2">
+              <p className="m-0 mb-2 primary-header" style={{fontSize: "15px", fontWeight: '400'}}>{eventInfo?.event_name}</p>
               <div className='d-flex align-items-start' style={{fontSize: "14px", fontWeight: "100"}}><i className="bi bi-geo-alt-fill mr-1"></i><p className='m-0' style={{fontSize: "11px", fontWeight: "400"}}>{eventInfo?.event_venue}</p></div>
-              <div className='d-flex align-items-start' style={{fontSize: "14px", fontWeight: "100"}}><i className="bi bi-calendar mr-1"></i><p className='m-0' style={{fontSize: "11px", fontWeight: "400"}}>{eventInfo?.timings?.slice(0,9)}. {formattedDate.slice(0,9)}</p></div>
+              <div className='d-flex align-items-start' style={{fontSize: "14px", fontWeight: "100"}}><i className="bi bi-calendar mr-1"></i><p className='m-0' style={{fontSize: "11px", fontWeight: "400"}}>{eventInfo?.timings?.slice(0,9)}. {formattedDate}</p></div>
             </div>
             </div>
             <div>
@@ -179,6 +189,8 @@
               <span>Pay Now</span>
             </button>
             </div>
+            <p className='px-3 mt-2' style={{fontSize: '13px'}}>*By clicking "Pay Now" you agree with the terms and condition set by us. <a href="https://bottmzup.com/#/terms-and-conditions">View</a></p>
+            {error && <small className='px-3 text-danger'>{error}</small>}
           </div>
         </div>
         <Footer/>
