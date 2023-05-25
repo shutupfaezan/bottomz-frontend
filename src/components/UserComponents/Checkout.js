@@ -20,6 +20,7 @@
     const [billInfo] = useState(savedCheckoutInfo?.order_details?.filter(item => item?.quantity > 0));
     const [attendeeInfo] = useState(savedCheckoutInfo?.attendeeValue);
     const [eventInfo, setEventInfo] = useState()
+    const [error, setError] = useState()
     const [isLoading, setisLoading] = useState(false);
     const params = useParams()
     const location = useLocation();
@@ -75,7 +76,7 @@
 
 
     function CreateOrder(){
-      
+      setError(false)
       setisLoading(true)
       axios.post(`https://nightlife-2710.herokuapp.com/orders?sub_promoter=${subPromoter}&access_token=${sessionStorage.token}`, updatedCheckoutInfo)
       .then((response)=>{
@@ -86,6 +87,7 @@
       .catch((error)=>{
         setisLoading(false)
         console.log(error)
+        setError(error?.response?.data?.detail)
       })
     }
     return (
@@ -149,7 +151,7 @@
               {attendeeInfo?.map((identity, fields)=>{
             return <><tr >
             <th style={{border: "none"}} scope="row">{fields + 1}</th>
-            <td className='ml-3'>{identity?.attendee_name}</td>
+            <td>{identity?.attendee_name}</td>
           </tr></>
             })}
               </tbody>
@@ -188,6 +190,7 @@
             </button>
             </div>
             <p className='px-3 mt-2' style={{fontSize: '13px'}}>*By clicking "Pay Now" you agree with the terms and condition set by us. <a href="https://bottmzup.com/#/terms-and-conditions">View</a></p>
+            {error && <small className='px-3 text-danger'>{error}</small>}
           </div>
         </div>
         <Footer/>
