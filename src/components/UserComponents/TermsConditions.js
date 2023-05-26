@@ -45,7 +45,7 @@ export default function TermsConditions() {
                     </li>
                     <li className="mb-4" style={{color: "black"}}><h5 style={{fontWeight: "800"}} >Privacy Policy:</h5>
                         <p className='m-2'>- We will collect and use your personal information in accordance with our Privacy Policy, which is available on our platform.</p>
-                        <p className='m-2'>- Read more on <a style={{color: "crimson"}} href="#/privacy-policy">Privacy Policy</a></p>
+                        <p className='m-2'>- Read more on <a style={{color: "crimson"}} href="/privacy-policy">Privacy Policy</a></p>
                     </li>
                     <li className="mb-4" style={{color: "black"}}><h5 style={{fontWeight: "800"}} >Governing Law and Jurisdiction:</h5>
                         <p className='m-2'>- These terms and conditions are governed by and construed in accordance with the laws of the jurisdiction in which we operate.</p>

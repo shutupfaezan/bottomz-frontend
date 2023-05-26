@@ -16,7 +16,7 @@ import TermsConditions from './components/UserComponents/TermsConditions';
 import PrivacyPolicy from './components/UserComponents/PrivacyPolicy';
 import TicketOutput from './components/UserComponents/TicketOutput';
 import {
-  HashRouter as Router,
+  BrowserRouter as Router,
   Routes,
   Route,
 } from "react-router-dom";
@@ -30,9 +30,9 @@ import PromoterQRScanner from './components/PromoterComponents/PromoterQRScanner
 function App() {
   return (
     <>
-      <Router>
-      <ScrollToTop />
-        <Routes>
+      <Router >
+      <ScrollToTop/>
+        <Routes  basename="/">
         <Route exact path="/" element={<HomePage/>}>
         </Route>
         <Route exact path="/stranger-login" element={<Login/>}>
