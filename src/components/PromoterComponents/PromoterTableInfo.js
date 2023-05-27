@@ -4,7 +4,7 @@ import { useContext } from 'react';
 import { SingularContext } from '../../contexts/Context';
 
 
-export default function PromoterPricing() {
+export default function PromoterTableInfo() {
     const [items, setItems] = useState([]);
     const [errors, setErrors] = useState(null);
     const [ticket_category, setTicket_Category] = useState('')
