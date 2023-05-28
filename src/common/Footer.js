@@ -34,7 +34,7 @@ export default function Footer() {
     		    <ul className="list-unstyled">
     			 <li><Link style={{color: "white", fontSize: "0.875 rem", fontWeight: "400"}} to="/privacy-policy">Privacy Policy</Link></li>
     			 <li><Link style={{color: "white", fontSize: "0.875 rem", fontWeight: "400"}} to="/contact-us">Contact Us</Link></li>
-    			 <li><Link style={{color: "white", fontSize: "0.875 rem", fontWeight: "400"}} to="/promoter-login">Promoter Login</Link></li>
+    			 <li><a style={{color: "white", fontSize: "0.875 rem", fontWeight: "400"}} href="https://business.bottmzup.com" rel="noopener noreferrer">Promoter Login</a></li>
     			</ul>
     		</div>
     	   <div className='col-lg-3 col-md-3'>
