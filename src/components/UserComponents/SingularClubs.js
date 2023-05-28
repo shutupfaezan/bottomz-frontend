@@ -2,7 +2,6 @@ import React, { useEffect } from 'react'
 import { useNavigate, useParams } from "react-router-dom";
 import axios from 'axios'
 import GlobalHeader from '../../common/GlobalHeader';
-import Toast from 'react-bootstrap/Toast';
 import { useState } from 'react';
 import { BrowserView,  MobileView, TabletView } from 'react-device-detect';
 import Footer from "../../common/Footer"
@@ -36,16 +35,7 @@ function modalOpener(type){
   setClubsModal(true)
 }
 
-const [showToast, setShowToast] = useState(false);
 
-// function handleCopy() {
-//   navigator.clipboard.writeText(window.location.href)
-//     .then(() => setShowToast(true))
-//     .catch((err) => console.error('Could not copy text: ', err));
-  
-//   // Set a timer to hide the toast after 3 seconds
-//   setTimeout(() => setShowToast(false), 2000);
-// }
   return (
        <>
     <div className='position-relative'>
@@ -71,7 +61,7 @@ const [showToast, setShowToast] = useState(false);
         <h6 className='club-info'><i className="fa-regular fa-calendar mr-2"></i>Opens at {clubVariable?.Club_info?.opening_time}<b></b></h6>
       </div>
       <div className="ml-auto mt-md-3 mt-md-5 mt-2 pr-md-5">
-        <a href={clubVariable?.Club_info?.direction} target='_blank' className='info-link mt-4' 
+        <a href={clubVariable?.Club_info?.direction} target='_blank' rel="noreferrer" className='info-link mt-4' 
         >
           <i class="fa-regular fa-paper-plane" 
             style={{fontSize: "20px", transform: 'translateX(-10%)'}}
@@ -79,11 +69,6 @@ const [showToast, setShowToast] = useState(false);
           <div className='direction-label' style={{fontWeight: '500'}}>Directions</div>
         </a>
       </div>
-       <Toast show={showToast} style={{position: "absolute", left: "50%", transform: "translate(-50%)", top: "100px"}}>
-        <Toast.Body className='bg-success'>
-          The link has been copied.
-        </Toast.Body>
-      </Toast>
     </div>
     <div className='px-lg-5 px-md-4 d-flex flex-column flex-md-row pt-4'>
       <div className='changeHeightComponent col-md-6 col-lg-4 col p-md-0'>
