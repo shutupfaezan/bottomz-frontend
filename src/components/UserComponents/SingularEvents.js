@@ -69,6 +69,7 @@
                 "order_details": filteredValues
             }
             setGetLoader(true)
+            setError(null)
             axios.post(`https://nightlife-2710.herokuapp.com/validating-orders?access_token=${sessionStorage?.token}`, validateObj)
             .then(()=>{
               setGetLoader(false)

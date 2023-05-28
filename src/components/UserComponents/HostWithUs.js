@@ -75,7 +75,7 @@ export default function HostWithUs() {
           </div>
           <div className='px-md-5 mt-4 pl-md-3 pl-2 pr-2'>
             <div className="d-flex p-3 flex-wrap" style={{border: "2px solid black", borderRadius: "10px"}}>
-              <div className='d-flex flex-column col-lg-6 px-0 pr-lg-3'>
+              <div className='d-flex flex-column col-lg-6 px-0 pr-lg-3 mb-2'>
                   <label className='ml-2 mb-1' style={{fontWeight: "400"}}>Name:</label>
                   <Input name="name" handleChange={formik.handleChange} value={formik.values.name} placeholder="Enter Name" useInput={1}></Input>
                   {formik.errors.name && (

@@ -7,11 +7,6 @@ import SingularClubs from './components/UserComponents/SingularClubs';
 import SingularEvents from './components/UserComponents/SingularEvents';
 import HostWithUs from './components/UserComponents/HostWithUs';
 import Checkout from './components/UserComponents/Checkout';
-import PromoterLogin from './components/PromoterComponents/PromoterLogin';
-import PromoterDasboard from './components/PromoterComponents/PromoterDasboard';
-import AutoHost from './extra/AutoHost';
-import PromoterOngoingOrders from './components/PromoterComponents/PromoterOngoingOrders';
-import PromoterEventStat from './components/PromoterComponents/PromoterEventStat';
 import TermsConditions from './components/UserComponents/TermsConditions';
 import PrivacyPolicy from './components/UserComponents/PrivacyPolicy';
 import TicketOutput from './components/UserComponents/TicketOutput';
@@ -22,7 +17,12 @@ import {
 } from "react-router-dom";
 import ScrollToTop from './components/UserComponents/ScrollToTop';
 import OrderHistory from './components/UserComponents/OrderHistory';
-import PromoterQRScanner from './components/PromoterComponents/PromoterQRScanner';
+// import PromoterLogin from './components/PromoterComponents/PromoterLogin';
+// import PromoterDasboard from './components/PromoterComponents/PromoterDasboard';
+// import AutoHost from './extra/AutoHost';
+// import PromoterOngoingOrders from './components/PromoterComponents/PromoterOngoingOrders';
+// import PromoterEventStat from './components/PromoterComponents/PromoterEventStat';
+// import PromoterQRScanner from './components/PromoterComponents/PromoterQRScanner';
 // import WithTitle from './components/UserComponents/WithTitle';
 
 
@@ -59,18 +59,18 @@ function App() {
         </Route>
         <Route exact path="/order-history/:order_id" element={<TicketOutput/>}>
         </Route>
-        <Route exact path="/promoter-login" element={<PromoterLogin/>}>
-        </Route>
-        <Route exact path="/promoter-dashboard" element={<PromoterDasboard/>}>
-        </Route>
-        <Route exact path="/promoter-events" element={<PromoterOngoingOrders/>}>
-        </Route>
-        <Route exact path="/host-an-event" element={<AutoHost/>}>
-        </Route>
-        <Route exact path="promoter-events/:event_name" element={<PromoterEventStat/>}>
-        </Route>
-        <Route exact path="/qr-scanner" element={<PromoterQRScanner/>}>
-        </Route>
+        {/* <Route exact path="/promoter-login" element={<PromoterLogin/>}>
+        </Route> */}
+        {/* <Route exact path="/promoter-dashboard" element={<PromoterDasboard/>}>
+        </Route> */}
+        {/* <Route exact path="/promoter-events" element={<PromoterOngoingOrders/>}>
+        </Route> */}
+        {/* <Route exact path="/host-an-event" element={<AutoHost/>}>
+        </Route> */}
+        {/* <Route exact path="promoter-events/:event_name" element={<PromoterEventStat/>}>
+        </Route> */}
+        {/* <Route exact path="/qr-scanner" element={<PromoterQRScanner/>}>
+        </Route> */}
         </Routes>
       </Router>
     </>
