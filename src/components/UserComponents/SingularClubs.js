@@ -9,6 +9,7 @@ import Footer from "../../common/Footer"
 import ClubModal from '../../common/ClubModal';
 import { useContext } from 'react';
 import { SingularContext } from '../../contexts/Context';
+import "../../css/SingularClubs.css"
 
 export default function SingularClubs() {
   const {setClubsModal} = useContext(SingularContext);
@@ -37,14 +38,14 @@ function modalOpener(type){
 
 const [showToast, setShowToast] = useState(false);
 
-function handleCopy() {
-  navigator.clipboard.writeText(window.location.href)
-    .then(() => setShowToast(true))
-    .catch((err) => console.error('Could not copy text: ', err));
+// function handleCopy() {
+//   navigator.clipboard.writeText(window.location.href)
+//     .then(() => setShowToast(true))
+//     .catch((err) => console.error('Could not copy text: ', err));
   
-  // Set a timer to hide the toast after 3 seconds
-  setTimeout(() => setShowToast(false), 2000);
-}
+//   // Set a timer to hide the toast after 3 seconds
+//   setTimeout(() => setShowToast(false), 2000);
+// }
   return (
        <>
     <div className='position-relative'>
@@ -55,8 +56,8 @@ function handleCopy() {
           </div>}
    {!isLoading && <>
     <GlobalHeader/>
-   <div className='p-md-5 p-4 d-flex' style={{height: "100%", background: "black", color: "white"}}>
-      <div className='m-lg-5 m-md-4 col-lg-6 col-md-8 col-11 p-0'>
+   <div className='p-md-5 p-4 d-flex club-header' style={{height: "100%", background: "black", color: "white"}}>
+      <div className='m-lg-5 m-md-4 col-lg-6 col-md-8 p-0'>
         <BrowserView>
           <h1 className='' style={{fontSize: "2.5rem"}}><b>{clubVariable?.Club_info?.club_name}</b></h1>
         </BrowserView>
@@ -66,13 +67,18 @@ function handleCopy() {
         <MobileView>
           <h1 className='mb-3' style={{fontSize: "2.0rem"}}><b>{clubVariable?.Club_info?.club_name}</b></h1>
         </MobileView>
-        <h6 className='d-flex' style={{fontWeight: "500"}}><i className="fa-solid fa-location-arrow mr-2"></i><div style={{fontWeight: "500"}}>{clubVariable?.Club_info?.full_address}</div></h6>
-        <h6 className=''><i className="fa-regular fa-calendar mr-2"></i>Opens at {clubVariable?.Club_info?.opening_time}<b></b></h6>
+        <h6 className='d-flex club-info' style={{fontWeight: "500"}}><i className="fa-solid fa-location-arrow mr-2"></i><div style={{fontWeight: "500"}}>{clubVariable?.Club_info?.full_address}</div></h6>
+        <h6 className='club-info'><i className="fa-regular fa-calendar mr-2"></i>Opens at {clubVariable?.Club_info?.opening_time}<b></b></h6>
       </div>
-      <i class="fa-regular fa-paper-plane ml-auto mt-md-3 mt-md-5 mt-2 pr-md-5 " 
-        style={{fontSize: "20px", cursor: "pointer"}}
-        onClick={handleCopy}
-      ></i>
+      <div className="ml-auto mt-md-3 mt-md-5 mt-2 pr-md-5">
+        <a href={clubVariable?.Club_info?.direction} target='_blank' className='info-link mt-4' 
+        >
+          <i class="fa-regular fa-paper-plane" 
+            style={{fontSize: "20px", transform: 'translateX(-10%)'}}
+          ></i>
+          <div className='direction-label' style={{fontWeight: '500'}}>Directions</div>
+        </a>
+      </div>
        <Toast show={showToast} style={{position: "absolute", left: "50%", transform: "translate(-50%)", top: "100px"}}>
         <Toast.Body className='bg-success'>
           The link has been copied.
