@@ -47,7 +47,7 @@ function modalOpener(type){
    {!isLoading && <>
     <GlobalHeader/>
    <div className='p-md-5 p-4 d-flex club-header' style={{height: "100%", background: "black", color: "white"}}>
-      <div className='m-lg-5 m-md-4 col-lg-6 col-md-8 p-0'>
+      <div className='m-lg-5 m-md-4 col-lg-6 col-md-8 col-9 p-0'>
         <BrowserView>
           <h1 className='' style={{fontSize: "2.5rem"}}><b>{clubVariable?.Club_info?.club_name}</b></h1>
         </BrowserView>
@@ -55,7 +55,7 @@ function modalOpener(type){
           <h1 className='' style={{fontSize: "2.5rem"}}><b>{clubVariable?.Club_info?.club_name}</b></h1>
         </TabletView>
         <MobileView>
-          <h1 className='mb-3' style={{fontSize: "2.0rem"}}><b>{clubVariable?.Club_info?.club_name}</b></h1>
+          <h1 className='mb-3' style={{fontSize: "1.5rem"}}><b>{clubVariable?.Club_info?.club_name}</b></h1>
         </MobileView>
         <h6 className='d-flex club-info' style={{fontWeight: "500"}}><i className="fa-solid fa-location-arrow mr-2"></i><div style={{fontWeight: "500"}}>{clubVariable?.Club_info?.full_address}</div></h6>
         <h6 className='club-info'><i className="fa-regular fa-calendar mr-2"></i>Opens at {clubVariable?.Club_info?.opening_time}<b></b></h6>
