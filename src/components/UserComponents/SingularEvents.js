@@ -155,23 +155,24 @@
                         })}
                     </tbody>
                   </table>
+                  {!tableConfig?.[0] && singleEvent?.contact !== null && <><div className='d-flex justify-content-center'><p className="text-center" style={{borderBottom: "2px solid black", borderTop: "2px solid black", width: "100%"}}>For table info contact <a target="_blank" style={{color: "crimson"}} href={`tel: +91${singleEvent?.contact}`} rel="noreferrer noopener"> here</a></p></div></>}
               </div> : <div className='ml-3'><b>Ticketing info doesnt exist</b><p style={{color: "#6a6868"}}>Be the first to report the error and get some perks</p></div>}
             </div>
               {tableConfig?.[0] &&
               <>
-            <div className='bg-light mx-lg-5 mt-4 px-2 py-4' style={{borderRadius: "10px", background: "#F4F5F6"}}>
-              <h1 className='primary-header ml-2'>Table Info</h1>
-              <div>
-                <table className="table">
-                    <tbody id="tickselect">
-                      {tableConfig?.map((identity, fields)=>{
-                          return <QuantityFields identity={identity} key={fields} index={fields}></QuantityFields>
-                        })}
-                    </tbody>
-                  </table>
-                  {singleEvent?.contact !== null && <><div className='d-flex justify-content-center'><p className="text-center" style={{borderBottom: "2px solid black", borderTop: "2px solid black", width: "100%"}}>For table info contact <a target="_blank" style={{color: "crimson"}} href={`tel: +91${singleEvent?.contact}`} rel="noreferrer noopener"> here</a></p></div></>}
-              </div>
-            </div>
+                <div className='bg-light mx-lg-5 mt-4 px-2 py-4' style={{borderRadius: "10px", background: "#F4F5F6"}}>
+                  <h1 className='primary-header ml-2'>Table Info</h1>
+                  <div>
+                    <table className="table">
+                        <tbody id="tickselect">
+                          {tableConfig?.map((identity, fields)=>{
+                              return <QuantityFields identity={identity} key={fields} index={fields}></QuantityFields>
+                            })}
+                        </tbody>
+                      </table>
+                      {singleEvent?.contact !== null && <><div className='d-flex justify-content-center'><p className="text-center" style={{borderBottom: "2px solid black", borderTop: "2px solid black", width: "100%"}}>For table info contact <a target="_blank" style={{color: "crimson"}} href={`tel: +91${singleEvent?.contact}`} rel="noreferrer noopener"> here</a></p></div></>}
+                  </div>
+                </div>
               </>}
             
             <div className='d-flex mt-4 flex-column bg-light mx-lg-5 p-4' style={{borderRadius: "10px"}}>
