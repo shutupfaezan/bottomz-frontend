@@ -10,15 +10,15 @@ export default function HPClubs(props) {
   return (
   <>
  <div className='p-1 m-md-0 col-lg-3 col-xxl-2 col-md-6 m-lg-0' onClick={()=>{navigate("/clubs/" + props.identity.club_name)}}>
-    <div className="card p-1 w-100 shadow" style={{ borderRadius: "10px"}}>
+    <div className="card p-1 w-100 shadow cursor-pointer" style={{ borderRadius: "10px"}}>
       <BrowserView>
-      <img src={props.identity.images_url}  className="card-img-top p-2" style={{borderRadius: "22px", height: "150px"}} alt="..."/>
+      <img src={props.identity.images_url}  className="card-img-top p-2" style={{borderRadius: "15px", height: "150px"}} alt="..."/>
       </BrowserView>
       <TabletView>
-      <img src={props.identity.images_url}  className="card-img-top p-2" style={{borderRadius: "22px", height: "200px"}} alt="..."/>
+      <img src={props.identity.images_url}  className="card-img-top p-2" style={{borderRadius: "15px", height: "200px"}} alt="..."/>
       </TabletView>
       <MobileOnlyView>
-      <img src={props.identity.images_url}  className="card-img-top p-2" style={{borderRadius: "22px", height: "200px"}} alt="..."/>
+      <img src={props.identity.images_url}  className="card-img-top p-2" style={{borderRadius: "15px", height: "200px"}} alt="..."/>
       </MobileOnlyView>
       <div className="px-2 mb-3">
         <div className='d-flex justify-content-between'>

@@ -30,7 +30,7 @@ export default function GlobalHeader() {
   }
   return (
     <>  
-        <nav className="navbar navbar-expand navbar-light align-items-center headerback w-100 py-3   py-md-3 px-3 px-lg-5 px-md-3" style={{position: location.pathname === '/' ? "fixed": "static", top: "0px", zIndex: "3", backgroundColor: location.pathname === '/' ? (scroll > 0 ? "white" : "transparent") : "white", transition: "background-color 0.3s ease-in-out", color: location.pathname === '/' ? (scroll > 0 ? "black" : "white") : "black"}}>
+        <nav className={location.pathname === '/' ? (scroll > 0 ? "navbar navbar-expand navbar-light align-items-center headerback w-100 py-3 py-md-3 px-3 px-lg-5 px-md-3 scrolled" : "navbar navbar-expand navbar-light align-items-center headerback w-100 py-3 py-md-3 px-3 px-lg-5 px-md-3") : "navbar navbar-expand navbar-light align-items-center headerback w-100 py-3 py-md-3 px-3 px-lg-5 px-md-3 scrolled"} style={{position: location.pathname === '/' ? "fixed": "static", top: "0px", zIndex: "3", backgroundColor: location.pathname === '/' ? (scroll > 0 ? "white" : "transparent") : "white", transition: "background-color 0.3s ease-in-out", color: location.pathname === '/' ? (scroll > 0 ? "black" : "white") : "black"}}>
         <a className="navbar-brand mx-md-3 py-0 d-flex" style={{fontWeight: "800"}} href="/">
         <img className="mr-2" src={location.pathname === '/' ? (scroll > 0 ? "https://i.ibb.co/0Khndm7/Mediamodifier-Design-Template-19-3.png" : "https://i.ibb.co/nMfQLmf/Mediamodifier-Design-Template-18-2.png") : "https://i.ibb.co/0Khndm7/Mediamodifier-Design-Template-19-3.png"} style={{width: "160px", height: '35px'}} alt=""/>
           {/* <h3 className="primary-header m-0"  style={{ color: location.pathname === '/' ? (scroll > 0 ? "black" : "white") : "black"}}>BottmzUp</h3> */}
@@ -38,17 +38,17 @@ export default function GlobalHeader() {
         <div className="align-items-center collapse navbar-collapse text-black" id="navbarSupportedContent">
         <ul className="navbar-nav mr-2">
             <li className="nav-item active d-none d-md-flex hover-underline-animation">
-              <Link className="nav-link py-0 ml-2 mr-4" style={{fontSize: "19px"}} to="/clubs"><small style={{ color: location.pathname === '/' ? (scroll > 0 ? "black" : "white") : "black"}}>Clubs</small></Link>
+              <Link className="nav-link p-2 mx-2" style={{fontSize: "19px"}} to="/clubs"><small style={{ color: location.pathname === '/' ? (scroll > 0 ? "black" : "white") : "black"}}>Clubs</small></Link>
             </li>
             <li className="nav-item active d-none d-md-flex hover-underline-animation">
-              <Link className="nav-link py-0 mr-4" style={{fontSize: "19px"}} to="/events"><small style={{ color: location.pathname === '/' ? (scroll > 0 ? "black" : "white") : "black"}}>Events</small></Link>
+              <Link className="nav-link p-2 mx-2" style={{fontSize: "19px"}} to="/events"><small style={{ color: location.pathname === '/' ? (scroll > 0 ? "black" : "white") : "black"}}>Events</small></Link>
             </li>
             <li className="nav-item active d-none d-md-block hover-underline-animation">
-              <Link className="nav-link py-0 mr-4" style={{fontSize: "19px"}} to="/contact-us"><small style={{ color: location.pathname === '/' ? (scroll > 0 ? "black" : "white") : "black"}}>Help</small></Link>
+              <Link className="nav-link p-2 mx-2" style={{fontSize: "19px"}} to="/contact-us"><small style={{ color: location.pathname === '/' ? (scroll > 0 ? "black" : "white") : "black"}}>Help</small></Link>
             </li>
           </ul>
-            <div className="nav-item active d-none d-md-block hover-underline-animation ml-auto">
-              <Link className="nav-link py-0" style={{fontSize: "19px", color: "black"}} to="/contact-us"><small style={{ color: location.pathname === '/' ? (scroll > 0 ? "black" : "white") : "black"}}>Sell</small></Link>
+            <div className="nav-item active d-none d-md-block hover-underline-animation ml-auto mr-2">
+              <Link className="nav-link p-2 mx-2" style={{fontSize: "19px", color: "black"}} to="/contact-us"><small style={{ color: location.pathname === '/' ? (scroll > 0 ? "black" : "white") : "black"}}>Sell</small></Link>
             </div>
             <div className="dropleft d-md-block d-none">
           {sessionStorage?.username ?  
