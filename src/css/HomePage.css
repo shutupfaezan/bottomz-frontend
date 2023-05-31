@@ -21,4 +21,15 @@
     transform: scaleX(1);
     transform-origin: bottom left;
   }
+
+  .scrolled .hover-underline-animation:after {
+    background-color: black;
+  }
   
+  .cursor-pointer {
+    cursor: pointer;
+  }
+
+  .btn-hp-events:hover {
+    opacity: 0.8;
+  }
