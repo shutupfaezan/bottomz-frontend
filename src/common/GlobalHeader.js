@@ -54,7 +54,7 @@ export default function GlobalHeader() {
           {sessionStorage?.username ?  
           <div className="dropdown">
           <p style={{fontSize: "19px", color: "black", margin: "0px"}}  data-bs-toggle="dropdown" aria-expanded="false">
-          <small className="mb-0 text-black" style={{ color: location.pathname === '/' ? (scroll > 0 ? "black" : "white") : "black"}}>
+          <small className="mb-0 text-black hover-underline-animation cursor-pointer" style={{ color: location.pathname === '/' ? (scroll > 0 ? "black" : "white") : "black"}}>
             {sessionStorage?.username}
           </small>
           </p>
@@ -63,7 +63,7 @@ export default function GlobalHeader() {
             <li><Link onClick={()=>{sessionStorage.clear(); window.location.reload(); window.location.href('/')}} style={{color: "red", fontWeight: "700"}} className="dropdown-item" to="/"><i className="fa-solid fa-right-from-bracket mr-2"></i>Log Out</Link></li>
           </ul>
         </div>
-           : <p className="m-0 mr-md-4 ml-md-auto" style={{fontSize: "19px", cursor: "pointer"}}  onClick={modalswitch}><small style={{border: location.pathname === '/' ? (scroll > 0 ? "2px solid black" : "2px solid white") : "2px solid black", padding: "5px 35px", borderRadius: "20px"}}>Log In</small></p>}
+           : <p className="m-0 mr-md-4 ml-md-auto" style={{fontSize: "19px", cursor: "pointer"}}  onClick={modalswitch}><small className="profile-login-btn" style={{border: location.pathname === '/' ? (scroll > 0 ? "2px solid black" : "2px solid white") : "2px solid black", padding: "5px 35px", borderRadius: "20px"}}>Log In</small></p>}
           <CommonModal show={show}/>
           </div>
           <div className="ml-auto d-md-none d-flex align-items-center">

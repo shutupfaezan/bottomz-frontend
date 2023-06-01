@@ -7,7 +7,7 @@ export default function RenderClubs(props) {
   return (
   <>
      <div className='p-2 m-md-0 col-lg-3 col-xxl-2 col-md-6 m-lg-0' onClick={()=>{navigate(props.identity.club_name)}}>
-    <div className="card p-2 w-100 shadow" style={{ borderRadius: "10px", border: "0px solid black"}}>
+    <div className="card p-2 w-100 shadow cursor-pointer" style={{ borderRadius: "10px", border: "0px solid black"}}>
       <BrowserView>
       <img src={props.identity.images_url}  className="card-img-top p-2" style={{borderRadius: "15px", height: "200px"}} alt="..."/>
       </BrowserView>

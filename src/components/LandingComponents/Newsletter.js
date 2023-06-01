@@ -28,7 +28,7 @@ export default function Newsletter() {
           <small className='m-0' style={{color: "#57577a", fontSize: "16px"}}>Nightlife Explore</small>
           <small className='my-md-2 my-3 ml-2' style={{color: "#57577a"}}>Get notifications of events in your area and exclusive discount codes</small>
           <div className='d-flex col-10 col-md-9 my-2 mx-auto flex-column flex-md-row justify-content-center'><Input style={{width: "100%"}} name="email_id" id="email_id" value={formik.values.email_id} handleChange={formik.handleChange} placeholder="Enter Email to Subscribe"></Input>
-          <button className='col-md-3 col-6 mx-auto mx-md-2 btn btn-primary ml-2 mt-2 mt-md-0' style={{height: "40px", borderRadius: "40px",background: "black"}}  type="submit" onClick={formik.handleSubmit}>
+          <button className='col-md-3 col-6 mx-auto mx-md-2 btn btn-primary ml-2 mt-2 mt-md-0 btn-events' style={{height: "40px", borderRadius: "40px",background: "black"}}  type="submit" onClick={formik.handleSubmit}>
             {!isLoading && <span>Subscribe</span>}
             {isLoading && (<span id="login-loader-span" className="spinner-border spinner-border-sm mx-1" role="status" aria-hidden="true"></span>)}
             {isLoading && (<span id="login-loading-text-span">Loading</span>)}
