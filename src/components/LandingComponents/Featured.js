@@ -57,7 +57,7 @@ export default function ClubsRow() {
             return <HPEvents className="w-100" key={index} index={index} identity={fields}></HPEvents>
           })}
           </div>
-          <Link to="/events" className='mt-3 d-flex justify-content-center' style={{color: "blueviolet"}}>See All<i className="bi bi-arrow-right ml-2"></i></Link>
+          <Link to="/events" className='mt-3 d-flex justify-content-center see-all' style={{color: "blueviolet"}}>See All<i className="bi bi-arrow-right ml-2"></i></Link>
         </section>
         <section className='px-lg-5 pt-lg-5 pb-lg-4 px-4 py-5 bg-light'>
           <div className=' d-flex align-items-baseline mb-2 container-xl p-0 flex-column px-md-5 ml-md-0 ml-3'><h4 className='mt-2 primary-header' style={{fontSize: "40px", color: "transparent", WebkitTextStroke: "1px black"}}>Browse Events</h4><h4 className="primary-header mb-3" style={{fontSize: "40px", color: "black"}}> By Clubs</h4></div>
@@ -65,7 +65,7 @@ export default function ClubsRow() {
             {reverseClubs?.map((fields, index )=> {
               return <HPClubs key={index} identity={fields}></HPClubs>
             })}
-          <Link to="/clubs" className='mx-auto my-md-auto mt-lg-3 mb-lg-0 mb-0 mt-3 d-flex ' style={{color: "blueviolet"}}>See All <i className="bi bi-arrow-right ml-2"></i></Link>
+          <Link to="/clubs" className='mx-auto my-md-auto mt-lg-3 mb-lg-0 mb-0 mt-3 d-flex see-all' style={{color: "blueviolet"}}>See All <i className="bi bi-arrow-right ml-2"></i></Link>
           </div>
         </section>
         <section className="d-flex flex-md-row flex-column-reverse p-md-5 py-5 px-4 ticketingSection" style={{background: "black"}}>
@@ -73,7 +73,7 @@ export default function ClubsRow() {
               <div style={{height: "100%"}} className='d-flex flex-column'>
               <h1 className="mb-md-3 my-3 primary-header" style={{fontWeight: "800", fontSize: "40px", color: "white"}}>More Than Ticketing</h1>
               <b style={{color: "white"}}>For the world’s best venues, promoters and festivals, a partnership with Bottmzup is so much more than just ticketing.</b>
-              <p style={{background: "crimson", width: "fit-content"}} className='btn mt-lg-auto mt-xl-5 text-white rounded-pill px-3 py-xxl-3 mb-md-0 mt-5' onClick={()=> navigate("/contact-us")}>Contact Us</p>
+              <p style={{background: "crimson", width: "fit-content"}} className='btn mt-lg-auto mt-xl-5 text-white rounded-pill px-3 py-xxl-3 mb-md-0 mt-5 btn-contact-home' onClick={()=> navigate("/contact-us")}>Contact Us</p>
               </div>
             </div>
             <div className='col-lg-7 col-md-6 p-lg-5 p-0'>

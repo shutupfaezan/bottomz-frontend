@@ -25,11 +25,41 @@
   .scrolled .hover-underline-animation:after {
     background-color: black;
   }
+
+  .profile-login-btn {
+    transition: all 200ms ease-out;
+  }
+
+  .profile-login-btn:hover {
+    background-color: rgb(255, 255, 255, .15);
+  }
+
+  .scrolled .profile-login-btn:hover {
+    background-color: rgb(0, 0, 0, .15);
+  }
   
   .cursor-pointer {
     cursor: pointer;
   }
 
-  .btn-hp-events:hover {
-    opacity: 0.8;
+  .btn-events {
+    transition: all 200ms ease-out
+  }
+  .btn-events:hover {
+    opacity: 0.82;
+  }
+  
+  .see-all i {
+    transition: all 200ms ease-out;
+  }
+  
+  .see-all:hover i {
+    transform: translateX(4px);
+  }
+  
+  .btn-contact-home {
+    transition: all 200ms ease-out
+  }
+  .btn-contact-home:hover {
+    background-color: #b61938!important;
   }
