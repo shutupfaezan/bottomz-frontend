@@ -9,7 +9,7 @@
 }
 
 .primary-header{
-  font-family: 'Righteous', cursive;
+  font-family: 'Righteous', cursive !important;
 }
 small{
   font-weight: 700 !important;
