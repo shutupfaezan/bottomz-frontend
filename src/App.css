@@ -9,11 +9,15 @@
 }
 
 .primary-header{
-  font-family: 'Righteous', cursive !important;
+  font-family: 'Righteous', cursive;
 }
 small{
   font-weight: 700 !important;
   font-size: 16px;
+}
+
+.MainHeaderText {
+  font-family: 'Dm Sans', 'Poppins';
 }
 
 input::-ms-reveal,
