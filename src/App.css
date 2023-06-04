@@ -3,17 +3,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
 
 *{
-  font-family: 'Poppins', sans-serif;
-  /* font-family: 'DM Sans', sans-serif; */
+  /* font-family: 'Poppins', sans-serif; */
+  font-family: 'DM Sans', sans-serif;
   font-weight: 700;
 }
 
 .primary-header{
-  font-family: 'Righteous', cursive !important;
+  font-family: 'Righteous', cursive;
 }
 small{
   font-weight: 700 !important;
   font-size: 16px;
+}
+
+.MainHeaderText {
+  font-family: 'Dm Sans', 'Poppins';
 }
 
 input::-ms-reveal,
