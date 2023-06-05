@@ -45,14 +45,13 @@ import CarouselWithInfo from '../../common/CarouselWithInfo'
       result[key].push(obj)
     }
   }
-
   const formatDate = (dateStr) => {
     const [year, month, day] = dateStr.split("-")
     const date = new Date(year, month - 1, day)
     const options = {year: 'numeric', month: 'long', day: 'numeric', weekday: "long" }
     return date.toLocaleDateString('en-US', options)
   }
-
+  
     return (
       <>
       {loading && <div className='d-flex justify-content-center mt-auto'>
@@ -77,18 +76,24 @@ import CarouselWithInfo from '../../common/CarouselWithInfo'
           </form>
         </div> */}
       </div>
-      <div className="d-flex flex-wrap my-3">
-      {Object.entries(result)?.map(([date, objects]) => (
+      {!result.length === undefined ? <div className="d-flex flex-wrap my-3">
+      {Object?.entries(result)?.map(([date, objects]) => (
           <div className="w-100 px-lg-5" key={date}>
             <b className='px-md-5 px-2 ml-2'>{formatDate(date)}</b>
             <div className='d-md-flex w-100 px-md-5 flex-wrap mb-2'>
-              {objects.map((obj, index) => (
+              {objects?.map((obj, index) => (
                   <RenderEvents identity={obj} index={index} key={index}></RenderEvents>
               ))}
             </div>
           </div>
         ))}
+        </div> :
+          <div className='d-flex flex-wrap align-items-center mx-lg-5 p-2'>
+          <div className='mx-md-5 mx-3 w-100 bg-light d-flex flex-column justify-content-center align-items-center text-center mb-4' style={{borderRadius: "10px", height: "200px"}}>
+            No Live Events Yet! Check back again in some time
+          </div>
         </div>
+        }
         <Footer/>
       </div>}
       </>

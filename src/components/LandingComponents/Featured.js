@@ -39,7 +39,7 @@ export default function ClubsRow() {
 
      const reverseClubs = recentClubs?.data?.reverse()?.slice(0,4)
      const reverseEvents = recentEvents?.data?.slice(0,4  )
-
+     
   return (
     <>
       {loading && <div className='d-flex justify-content-center my-auto' style={{height: "50vh"}}>
@@ -53,10 +53,15 @@ export default function ClubsRow() {
           <div className='mt-md-4 d-flex align-items-baseline mb-2 flex-column px-lg-5 px-2'>
             <h4 className='mt-2 mx-3 primary-header mb-0' style={{fontSize: "40px", color: "transparent", WebkitTextStroke: "1px black"}}>Browse By</h4>
             <h4 className="primary-header mb-3 mt-2 mx-3" style={{fontSize: "40px"}}>Upcoming Events</h4></div>
-          <div className='d-flex flex-wrap align-items-center px-lg-5 p-2'>{reverseEvents?.map((fields, index )=> {
+          {reverseEvents?.length !== 0 ?<div className='d-flex flex-wrap align-items-center px-lg-5 p-2'>{reverseEvents?.map((fields, index )=> {
             return <HPEvents className="w-100" key={index} index={index} identity={fields}></HPEvents>
           })}
-          </div>
+          </div> :
+          <div className='d-flex flex-wrap align-items-center mx-lg-5 p-2'>
+            <div className='mx-2 w-100 bg-light d-flex flex-column justify-content-center align-items-center text-center' style={{borderRadius: "10px", height: "200px"}}>
+              No Live Events Yet! Check back again in some time
+            </div>
+          </div>}
           <Link to="/events" className='mt-3 d-flex justify-content-center see-all' style={{color: "blueviolet"}}>See All<i className="bi bi-arrow-right ml-2"></i></Link>
         </section>
         <section className='px-lg-5 pt-lg-5 pb-lg-4 px-4 py-5 bg-light'>
