@@ -202,10 +202,10 @@
               <img className="col-3 w-100 p-0" style={{height: "90px", borderRadius: "7px"}} alt="" src={clubDetail?.images_url}/> 
               <div className='overflow-auto col'>
                 <div className='text-truncate overflow-hidden'><b>{clubDetail?.club_name}</b></div>
-                <div className='d-flex overflow-auto align-items-center'><div className="overflow-hidden text-truncate" style={{fontSize: "0.7rem", fontWeight: "400"}}>{clubDetail?.full_address}</div></div>
-                <div className='d-flex'><div style={{fontSize: "0.7rem", fontWeight: "400"}}>{clubDetail?.opening_time}</div></div>
-                <div className='d-flex align-items-center'><div style={{fontSize: "0.7rem", fontWeight: "400"}}>{clubDetail?.cost}</div></div>
-                <div className='d-flex align-items-center'><div style={{fontSize: "0.7rem", fontWeight: "400"}}>{clubDetail?.contact}</div></div>
+                <div className='d-flex overflow-auto align-items-center'><div className="overflow-hidden text-truncate" style={{fontSize: "0.7rem", fontWeight: "400"}}><i class="fa-regular fa-paper-plane mr-1"></i>{clubDetail?.full_address}</div></div>
+                <div className='d-flex'><div style={{fontSize: "0.7rem", fontWeight: "400"}}><i class="fa-regular fa-clock mr-1"></i>{clubDetail?.opening_time}</div></div>
+                <div className='d-flex align-items-center'><div style={{fontSize: "0.7rem", fontWeight: "400"}}><i class="fa-solid fa-indian-rupee-sign mr-1"></i>{clubDetail?.cost}</div></div>
+                <div className='d-flex align-items-center'><div style={{fontSize: "0.7rem", fontWeight: "400"}}>{"+" + clubDetail?.contact.slice(0,2)} {clubDetail?.contact.slice(2)}</div></div>
               </div>
             </div>
             </div>}
