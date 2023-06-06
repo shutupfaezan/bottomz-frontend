@@ -76,7 +76,7 @@ import CarouselWithInfo from '../../common/CarouselWithInfo'
           </form>
         </div> */}
       </div>
-      {!result.length === undefined ? <div className="d-flex flex-wrap my-3">
+      {Object?.entries?.(result).length !== 0 ? <div className="d-flex flex-wrap my-3">
       {Object?.entries(result)?.map(([date, objects]) => (
           <div className="w-100 px-lg-5" key={date}>
             <b className='px-md-5 px-2 ml-2'>{formatDate(date)}</b>
