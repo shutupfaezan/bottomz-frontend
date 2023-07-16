@@ -8,7 +8,6 @@ import {
   useLocation
 } from 'react-router-dom';
 import ScrollToTop from './components/UserComponents/ScrollToTop';
-
 import AllClubs from './components/UserComponents/AllClubs';
 import AllEvents from './components/UserComponents/AllEvents';
 import HomePage from './components/LandingComponents/HomePage';
@@ -22,6 +21,7 @@ import TicketOutput from './components/UserComponents/TicketOutput';
 import OrderHistory from './components/UserComponents/OrderHistory';
 import Login from './components/UserComponents/Login';
 import SignUp from './components/UserComponents/SignUp';
+import ForgotPassword from './common/ForgotPassword';
 
 
 // Function To change title dynamically DO NOT TOUCH
@@ -69,6 +69,7 @@ function App() {
           <Route exact path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/sign-up" element={<SignUp />} />
+          <Route exact path="/forgot-password" element={<ForgotPassword />} />
           <Route exact path="/order-history" element={<OrderHistory />} />
           <Route exact path="/order-history/:order_id" element={<TicketOutput />} />
         </Routes>

@@ -12,7 +12,7 @@
     import GenericTC from '../../common/GenericTC';
 
     export default function SingularEvents() {
-        const {setShow, setInputModal, inputValues} = useContext(SingularContext);
+        const {setInputModal, inputValues} = useContext(SingularContext);
         const [singleEvent, setSingleEvent] = useState()
         const [getLoader, setGetLoader] = useState(false)
         const [error, setError] = useState()
@@ -60,7 +60,7 @@
                 return;
               }
               if (!sessionStorage.token){
-                setShow(true)
+                navigate('/login')
               }
               else{
                 const filteredValues = inputValues?.filter(val => val.quantity !== null && val.total_price !== null);
@@ -180,12 +180,10 @@
                     {getLoader && (<span id="login-loader-span" className="spinner-border spinner-border-sm mx-1" role="status" aria-hidden="true"></span>)}
                     {getLoader && (<span id="login-loading-text-span">Loading</span>)}
                     {!getLoader && <span id="login-text-span">{sessionStorage.token ? "Get Tickets" : "Log In/Sign Up to Continue"}</span>}
-                  <span></span>
                 </button>
             {error && <div className='text-center' style={{color: "crimson"}}>{error}</div>}
                 <div className='text-center mt-2'> {numSelected} Selected - Rs. {totalPrice}</div>
                 </div>
-
             <div className='mx-lg-5 mt-md-5 my-4'>
               <b className=''>- Terms & Conditions</b>
               <div className='mt-2 ml-2' style={{fontWeight: "400"}}>

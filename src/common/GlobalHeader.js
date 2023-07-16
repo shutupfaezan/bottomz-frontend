@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom"
+import { Link, useNavigate, useNavigate } from "react-router-dom"
 import "../css/Header.css"
 import Hamburger from '../extra/Hamburger';
 import {useLocation} from "react-router-dom";
 
 export default function GlobalHeader() {
-
+  const navigate = useNavigate()
+  const {setShow } = useContext(SingularContext);
   const [scroll, setScroll] = useState(0);
   useEffect(() => {
     window.addEventListener("scroll", () => {
@@ -13,8 +14,14 @@ export default function GlobalHeader() {
     });
   }, []);
   const location = useLocation();
-  const navigate = useNavigate()
-
+  function modalswitch(){
+    if(sessionStorage.token){
+      setShow(false)
+    }
+    else{
+      navigate("/login")
+    }
+  }
   return (
     <>  
         <nav className={location.pathname === '/' ? (scroll > 0 ? "navbar navbar-expand navbar-light align-items-center headerback w-100 py-3 py-md-3 px-3 px-lg-5 px-md-3 scrolled" : "navbar navbar-expand navbar-light align-items-center headerback w-100 py-3 py-md-3 px-3 px-lg-5 px-md-3") : "navbar navbar-expand navbar-light align-items-center headerback w-100 py-3 py-md-3 px-3 px-lg-5 px-md-3 scrolled"} style={{position: location.pathname === '/' ? "fixed": "static", top: "0px", zIndex: "3", backgroundColor: location.pathname === '/' ? (scroll > 0 ? "white" : "transparent") : "white", transition: "background-color 0.3s ease-in-out", color: location.pathname === '/' ? (scroll > 0 ? "black" : "white") : "black"}}>
@@ -49,7 +56,7 @@ export default function GlobalHeader() {
             <li><Link onClick={()=>{sessionStorage.clear(); window.location.reload(); window.location.href('/')}} style={{color: "red", fontWeight: "700"}} className="dropdown-item" to="/"><i className="fa-solid fa-right-from-bracket mr-2"></i>Log Out</Link></li>
           </ul>
         </div>
-           : <p className="m-0 mr-md-4 ml-md-auto" style={{fontSize: "19px", cursor: "pointer"}}  onClick={()=>{navigate("/login")}}><small className="profile-login-btn" style={{border: location.pathname === '/' ? (scroll > 0 ? "2px solid black" : "2px solid white") : "2px solid black", padding: "5px 35px", borderRadius: "20px"}}>Log In</small></p>}
+           : <p className="m-0 mr-md-4 ml-md-auto" style={{fontSize: "19px", cursor: "pointer"}}  onClick={modalswitch}><small className="profile-login-btn" style={{border: location.pathname === '/' ? (scroll > 0 ? "2px solid black" : "2px solid white") : "2px solid black", padding: "5px 35px", borderRadius: "20px"}}>Log In</small></p>}
           </div>
           <div className="ml-auto d-md-none d-flex align-items-center">
           {!sessionStorage?.username ? <i style={{fontSize: "30px"}} className="fa-regular fa-circle-user mr-2"></i> : <p className="m-0 rounded-circle d-flex justify-content-center align-items-center mr-2 mt-0" style={{width: "30px", height: "30px", border: location.pathname === '/' ? (scroll > 0 ? "2px solid black" : "2px solid white") : "2px solid black"}}>{sessionStorage?.username.slice(0,1)}</p>}
