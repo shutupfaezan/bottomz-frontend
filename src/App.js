@@ -20,6 +20,8 @@ import TermsConditions from './components/UserComponents/TermsConditions';
 import PrivacyPolicy from './components/UserComponents/PrivacyPolicy';
 import TicketOutput from './components/UserComponents/TicketOutput';
 import OrderHistory from './components/UserComponents/OrderHistory';
+import Login from './components/UserComponents/Login';
+import SignUp from './components/UserComponents/SignUp';
 
 
 // Function To change title dynamically DO NOT TOUCH
@@ -65,6 +67,8 @@ function App() {
           <Route exact path="/events/:event_name/checkout" element={<Checkout />} />
           <Route exact path="/terms-and-conditions" element={<TermsConditions />} />
           <Route exact path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route exact path="/login" element={<Login />} />
+          <Route exact path="/sign-up" element={<SignUp />} />
           <Route exact path="/order-history" element={<OrderHistory />} />
           <Route exact path="/order-history/:order_id" element={<TicketOutput />} />
         </Routes>
