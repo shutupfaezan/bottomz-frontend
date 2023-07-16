@@ -1,10 +1,8 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import "../css/Footer.css"
 import { Link } from 'react-router-dom'
-import {SingularContext} from "../contexts/Context";
 
 export default function Footer() {
-    const {setShow, setSignActive, setLoginActive} = useContext(SingularContext);
 
   return (
     <section className="pt-5 pb-4 d-flex flex-column position-relative w-100 justify-content-md-end text-white" style={{fontSize: "14px", background: "#01040D", bottom: "0"}}>

@@ -4,10 +4,11 @@ import { useFormik } from 'formik'
 import { useContext, useState } from 'react';
 import { SingularContext } from '../../contexts/Context';
 import axios from 'axios'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 export default function SignUp() {
-  const {setSignActive, setLoginActive, setShow} = useContext(SingularContext);
+  const navigate = useNavigate()
+  const {setShow} = useContext(SingularContext);
   const [isLoading, setisLoading] = useState(false);
   const [emailError, setEmailError] = useState()
   const [contactError, setContactError] = useState()
@@ -78,13 +79,14 @@ export default function SignUp() {
   })
 
   return ( 
-      <div className='d-flex flex-column justify-content-center'>
+      <div className='d-flex flex-column justify-content-center align-items-center'>
+        <div className='col-md-6 m-md-5' style={{borderRadius: "10x", border: "1px solid black"}}>
         <h3 className="d-flex justify-content-center mt-5 mb-4">
           <strong>
             New User
           </strong>
         </h3>
-        <div>
+        <div> 
           <form>
             <div className='mb-2'>
               <div className='d-flex justify-content-center'><Input name="user_name" type="text" value={formik.values.user_name} style={{width: "85%"}} id="user_name" icon="fa-regular fa-user" handleChange={formik.handleChange} placeholder="Enter Your Name"/></div>
@@ -128,7 +130,8 @@ export default function SignUp() {
           </form>
         </div>
         <div className='d-flex my-3'>
-          <Link className='ml-4' style={{color: "gray"}} onClick={()=>{setSignActive(false); setLoginActive(true)}}>Already a User? Log In</Link>
+          <Link className='ml-4' style={{color: "gray"}} onClick={navigate("/login")}>Already a User? Log In</Link>
+        </div>
         </div>
       </div>
   )

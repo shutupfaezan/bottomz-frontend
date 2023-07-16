@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { SingularContext } from '../contexts/Context';
 import {useContext} from 'react'
 import "../css/Header.css"
-import CommonModal from './CommonModal'
 import Hamburger from '../extra/Hamburger';
 import {useLocation} from "react-router-dom";
 
 export default function GlobalHeader() {
-  
-  const {setShow,show, setLoginActive, setForgotStep1Show,setSignActive} = useContext(SingularContext);
+  const navigate = useNavigate()
+  const {setShow } = useContext(SingularContext);
   const [scroll, setScroll] = useState(0);
   useEffect(() => {
     window.addEventListener("scroll", () => {
@@ -22,10 +21,7 @@ export default function GlobalHeader() {
       setShow(false)
     }
     else{
-      setShow(true)
-      setLoginActive(true)
-      setSignActive(false)
-      setForgotStep1Show(false)
+      navigate("/login")
     }
   }
   return (
@@ -64,7 +60,6 @@ export default function GlobalHeader() {
           </ul>
         </div>
            : <p className="m-0 mr-md-4 ml-md-auto" style={{fontSize: "19px", cursor: "pointer"}}  onClick={modalswitch}><small className="profile-login-btn" style={{border: location.pathname === '/' ? (scroll > 0 ? "2px solid black" : "2px solid white") : "2px solid black", padding: "5px 35px", borderRadius: "20px"}}>Log In</small></p>}
-          <CommonModal show={show}/>
           </div>
           <div className="ml-auto d-md-none d-flex align-items-center">
           {!sessionStorage?.username ? <i style={{fontSize: "30px"}} onClick={()=>{setShow(true)}} className="fa-regular fa-circle-user mr-2"></i> : <p className="m-0 rounded-circle d-flex justify-content-center align-items-center mr-2 mt-0" style={{width: "30px", height: "30px", border: location.pathname === '/' ? (scroll > 0 ? "2px solid black" : "2px solid white") : "2px solid black"}}>{sessionStorage?.username.slice(0,1)}</p>}
