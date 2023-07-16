@@ -1,13 +1,11 @@
 import React from 'react'
 import Input from '../../common/Input'
 import { useFormik } from 'formik'
-import { useContext, useState } from 'react';
-import { SingularContext } from '../../contexts/Context';
+import { useState } from 'react';
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 
 export default function SignUp() {
-  const {setSignActive, setLoginActive, setShow} = useContext(SingularContext);
   const [isLoading, setisLoading] = useState(false);
   const [emailError, setEmailError] = useState()
   const [contactError, setContactError] = useState()
@@ -53,7 +51,6 @@ export default function SignUp() {
         sessionStorage.setItem('token', response.data.access_token)
         sessionStorage.setItem("username", response?.data?.User_name)
         setisLoading(false);
-        setShow(false)  
         
       }
       )
@@ -77,8 +74,9 @@ export default function SignUp() {
     }
   })
 
-  return ( 
-      <div className='d-flex flex-column justify-content-center'>
+  return (
+    <div className='p-lg-5 m-lg-5 d-flex justify-content-center'>
+      <div className='d-flex flex-column justify-content-center col-lg-6' style={{border: "1px solid black", borderRadius: "10px"}}>
         <h3 className="d-flex justify-content-center mt-5 mb-4">
           <strong>
             New User
@@ -128,8 +126,9 @@ export default function SignUp() {
           </form>
         </div>
         <div className='d-flex my-3'>
-          <Link className='ml-4' style={{color: "gray"}} onClick={()=>{setSignActive(false); setLoginActive(true)}}>Already a User? Log In</Link>
+          <Link className='ml-4' style={{color: "gray"}} to="/login">Already a User? Log In</Link>
         </div>
       </div>
+    </div>
   )
 }

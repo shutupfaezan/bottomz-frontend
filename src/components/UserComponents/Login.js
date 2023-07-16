@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom'
 import GoogleLoginFunc from '../../common/GoogleLoginFunc'
 
 export default function Login() {
-  const {setSignActive, setLoginActive, setShow, setForgotStep1Show} = useContext(SingularContext);
+  const {setForgotStep1Show} = useContext(SingularContext);
   const [isLoading, setisLoading] = useState(false);
   const formik = useFormik({
     initialValues: {
@@ -38,7 +38,6 @@ export default function Login() {
         .then((response) => {
           sessionStorage.setItem('username', response?.data?.User_name);
           sessionStorage.setItem('token', response.data.access_token);
-          setShow(false);
         })
         .catch((error) => {
           console.log(error)
@@ -56,7 +55,8 @@ export default function Login() {
   
 
   return (
-      <div className='d-flex flex-column justify-content-center'>
+    <div className='p-lg-5 m-lg-5 d-flex justify-content-center'>
+      <div className='d-flex flex-column justify-content-center col-lg-6' style={{border: "1px solid black", borderRadius: "10px"}}>
         <h3 className="d-flex justify-content-center mt-5 mb-3">
           <strong>
           Log In
@@ -91,9 +91,10 @@ export default function Login() {
           </form>
         </div>
         <div className='d-flex my-3'>
-          <Link className='ml-4'style={{color: "gray"}} onClick={()=>{setSignActive(true); setLoginActive(false)}}>Newbie? Sign Up</Link>
-          <Link className='mr-4 ml-auto' style={{color: "gray"}} onClick={()=>{setForgotStep1Show(true); setLoginActive(false)}}>Forgot Password?</Link>
+          <Link className='ml-4'style={{color: "gray"}} to="/sign-up">Newbie? Sign Up</Link>
+          <Link className='mr-4 ml-auto' style={{color: "gray"}} to="forgot-password">Forgot Password?</Link>
         </div>
       </div>
+    </div>   
   )
 }

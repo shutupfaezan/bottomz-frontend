@@ -11,7 +11,6 @@ import ScrollToTop from './components/UserComponents/ScrollToTop';
 
 import AllClubs from './components/UserComponents/AllClubs';
 import AllEvents from './components/UserComponents/AllEvents';
-import Login from './components/UserComponents/Login';
 import HomePage from './components/LandingComponents/HomePage';
 import SingularClubs from './components/UserComponents/SingularClubs';
 import SingularEvents from './components/UserComponents/SingularEvents';
@@ -21,6 +20,8 @@ import TermsConditions from './components/UserComponents/TermsConditions';
 import PrivacyPolicy from './components/UserComponents/PrivacyPolicy';
 import TicketOutput from './components/UserComponents/TicketOutput';
 import OrderHistory from './components/UserComponents/OrderHistory';
+import Login from './components/UserComponents/Login';
+import SignUp from './components/UserComponents/SignUp';
 
 
 // Function To change title dynamically DO NOT TOUCH
@@ -57,7 +58,6 @@ function App() {
         <DynamicTitle />
         <Routes basename="/">
           <Route exact path="/" element={<HomePage />} />
-          <Route exact path="/stranger-login" element={<Login />} />
           <Route exact path="/clubs" element={<AllClubs />} />
           <Route exact path="/events" element={<AllEvents />} />
           <Route exact path="/clubs/:name" element={<SingularClubs />} />
@@ -67,6 +67,8 @@ function App() {
           <Route exact path="/events/:event_name/checkout" element={<Checkout />} />
           <Route exact path="/terms-and-conditions" element={<TermsConditions />} />
           <Route exact path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route exact path="/login" element={<Login />} />
+          <Route exact path="/sign-up" element={<SignUp />} />
           <Route exact path="/order-history" element={<OrderHistory />} />
           <Route exact path="/order-history/:order_id" element={<TicketOutput />} />
         </Routes>
