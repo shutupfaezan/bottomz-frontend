@@ -11,7 +11,6 @@ import ScrollToTop from './components/UserComponents/ScrollToTop';
 
 import AllClubs from './components/UserComponents/AllClubs';
 import AllEvents from './components/UserComponents/AllEvents';
-import Login from './components/UserComponents/Login';
 import HomePage from './components/LandingComponents/HomePage';
 import SingularClubs from './components/UserComponents/SingularClubs';
 import SingularEvents from './components/UserComponents/SingularEvents';
@@ -57,7 +56,6 @@ function App() {
         <DynamicTitle />
         <Routes basename="/">
           <Route exact path="/" element={<HomePage />} />
-          <Route exact path="/stranger-login" element={<Login />} />
           <Route exact path="/clubs" element={<AllClubs />} />
           <Route exact path="/events" element={<AllEvents />} />
           <Route exact path="/clubs/:name" element={<SingularClubs />} />
