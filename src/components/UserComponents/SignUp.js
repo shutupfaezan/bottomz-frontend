@@ -1,8 +1,7 @@
 import React from 'react'
 import Input from '../../common/Input'
 import { useFormik } from 'formik'
-import { useContext, useState } from 'react';
-import { SingularContext } from '../../contexts/Context';
+import { useState } from 'react';
 import axios from 'axios'
 import { Link, useNavigate } from 'react-router-dom'
 
@@ -54,7 +53,6 @@ export default function SignUp() {
         sessionStorage.setItem('token', response.data.access_token)
         sessionStorage.setItem("username", response?.data?.User_name)
         setisLoading(false);
-        setShow(false)  
         
       }
       )

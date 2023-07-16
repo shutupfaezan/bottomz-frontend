@@ -58,7 +58,6 @@ function App() {
         <DynamicTitle />
         <Routes basename="/">
           <Route exact path="/" element={<HomePage />} />
-          <Route exact path="/stranger-login" element={<Login />} />
           <Route exact path="/clubs" element={<AllClubs />} />
           <Route exact path="/events" element={<AllEvents />} />
           <Route exact path="/clubs/:name" element={<SingularClubs />} />

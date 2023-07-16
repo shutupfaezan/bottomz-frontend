@@ -23,8 +23,8 @@ export default function Footer() {
     		    <div className="mbmd-3 mb-2" style={{fontSize: "1rem"}}>Information</div>
     		    <ul className="list-unstyled">
     			 <li><Link style={{color: "white", fontSize: "0.875 rem", fontWeight: "400"}} to="/terms-and-conditions">Terms and Conditions</Link></li>
-    			 <li><Link style={{color: "white", fontSize: "0.875 rem", fontWeight: "400"}} to="" onClick={()=>{setShow(true); setSignActive(false); setLoginActive(true)}}>Log In</Link></li>
-    			 <li><Link style={{color: "white", fontSize: "0.875 rem", fontWeight: "400"}} to="" onClick={()=>{setShow(true); setSignActive(true); setLoginActive(false)}}>Sign Up</Link></li>
+    			 <li><Link style={{color: "white", fontSize: "0.875 rem", fontWeight: "400"}} to="/login">Log In</Link></li>
+    			 <li><Link style={{color: "white", fontSize: "0.875 rem", fontWeight: "400"}} to="/sign-up">Sign Up</Link></li>
     			</ul>
     		</div>
     	   <div className='col-lg-3 col-md-3'>
