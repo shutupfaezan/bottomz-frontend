@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { Link, useNavigate, useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
+import { useContext } from "react";
 import "../css/Header.css"
 import Hamburger from '../extra/Hamburger';
+import { SingularContext } from '../contexts/Context';
 import {useLocation} from "react-router-dom";
 
 export default function GlobalHeader() {

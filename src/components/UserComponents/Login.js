@@ -1,14 +1,12 @@
 import React from 'react'
 import Input from '../../common/Input'
 import { useFormik } from 'formik'
-import { useState, useContext } from 'react';
+import { useState } from 'react';
 import axios from 'axios'
-import { SingularContext } from "../../contexts/Context";
 import { Link } from 'react-router-dom'
 import GoogleLoginFunc from '../../common/GoogleLoginFunc'
 
 export default function Login() {
-  const { setShow} = useContext(SingularContext);
   const [isLoading, setisLoading] = useState(false);
   const formik = useFormik({
     initialValues: {

@@ -2,13 +2,11 @@ import React from 'react'
 import Input from '../../common/Input'
 import { useFormik } from 'formik'
 import { useState } from 'react';
-import { useState } from 'react';
 import axios from 'axios'
 import { Link, useNavigate } from 'react-router-dom'
 
 export default function SignUp() {
   const navigate = useNavigate()
-  const {setShow} = useContext(SingularContext);
   const [isLoading, setisLoading] = useState(false);
   const [emailError, setEmailError] = useState()
   const [contactError, setContactError] = useState()
