@@ -1,23 +1,25 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Righteous&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Sora:wght@400;600;700&display=swap");
 
-*{
-  font-family: 'Poppins', sans-serif;
+* {
+  /* font-family: 'Poppins', sans-serif; */
   /* font-family: 'DM Sans', sans-serif; */
-  font-weight: 700;
+  font-family: "Sora", sans-serif;
+  /* font-weight: 700; */
 }
 
-.primary-header{
-  font-family: 'Righteous', cursive !important;
+.primary-header {
+  font-family: "Righteous", cursive !important;
 }
-small{
+small {
   font-weight: 700 !important;
   font-size: 16px;
 }
 
 .MainHeaderText {
-  font-family: 'Dm Sans', 'Poppins';
+  font-family: "Dm Sans", "Poppins";
 }
 
 input::-ms-reveal,
@@ -25,47 +27,47 @@ input::-ms-clear {
   display: none;
 }
 
-.carousel-item{
-  float:none; 
+.carousel-item {
+  float: none;
   transition: 0s !important;
 }
 
-.css-eoZyEX{
+.css-eoZyEX {
   display: none;
 }
-.css-fgANvS{
+.css-fgANvS {
   padding-top: 0px !important;
   padding-bottom: 5px !important;
 }
-.css-fgANvS{
+.css-fgANvS {
   margin-bottom: 10px !important;
 }
 
-.carousel{
+.carousel {
   height: 250px;
 }
 
-.hrsp{
+.hrsp {
   padding: 0;
   border: none;
-  border-top:  1px  #CCC;
+  border-top: 1px #ccc;
   color: #333;
-  text-align: center;    
-  font-size:12px;
+  text-align: center;
+  font-size: 12px;
 }
-.hrsp::after{
-  content:"or try this";
+.hrsp::after {
+  content: "or try this";
   display: inline-block;
-  position: relative; 
-  top: -0.7em;  
+  position: relative;
+  top: -0.7em;
   font-size: 1.5em;
   padding: 0 0.25em;
   background: white;
 }
-.svgbg{
+.svgbg {
   /* background: blueviolet; */
   filter: brightness(0.5);
-    background-image: url('../public/images/aleksandr-popov-hTv8aaPziOQ-unsplash.jpg');
+  background-image: url("../public/images/aleksandr-popov-hTv8aaPziOQ-unsplash.jpg");
   /* filter: blur(1px) brightness(0.3);  */
   background-position: center;
   background-size: cover;
@@ -81,15 +83,14 @@ input::-ms-clear {
 }
 .down-arrow {
   margin-left: 1px;
-  width: 0; 
-  height: 0; 
+  width: 0;
+  height: 0;
   border-left: 5px solid transparent;
   border-right: 5px solid transparent;
   border-top: 5px solid black;
+}
 
-  }
-
-.dropdown-menu{
+.dropdown-menu {
   /* position: absolute; */
   right: 0% !important;
   inset: 0px auto auto 0px;
@@ -97,29 +98,31 @@ input::-ms-clear {
   transform: translate3d(0px, 39.3333px, 0px);
 }
 
-.bi::before, [class^="bi-"]::before, [class*=" bi-"]::before {
+.bi::before,
+[class^="bi-"]::before,
+[class*=" bi-"]::before {
   font-weight: 800 !important;
 }
-.promoter-pic{
-    background-image: url('../public/images/lottapeeps.jpeg');
+.promoter-pic {
+  background-image: url("../public/images/lottapeeps.jpeg");
   /* filter: blur(1px) brightness(0.7);  */
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
   /* filter: brightness(0.3) */
 }
-input[type=number]{
+input[type="number"] {
   -moz-appearance: textfield;
 }
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
+  -webkit-appearance: none;
+  margin: 0;
 }
-.form-check-input{
+.form-check-input {
   position: static !important;
   margin-top: 0rem !important;
-  margin-left: 0rem !important
+  margin-left: 0rem !important;
 }
 .form-check-input:checked {
   background-color: crimson !important;
@@ -131,13 +134,13 @@ input::-webkit-inner-spin-button {
   border-radius: 10px;
 
   /* border-bottom: 0px !important; */
-  border: 2px solid black !important
+  border: 2px solid black !important;
   /* /* margin: 0 0 10px; */
   /* padding: 0; */
 }
 
 .react-tabs__tab--selected {
-  background:black !important;
+  background: black !important;
   color: white !important;
   border-bottom: none !important;
   border-radius: 5px !important;
@@ -170,20 +173,19 @@ select.QuantityFields option {
   direction: rtl;
 }
 
-
-.activeCarousel{
+.activeCarousel {
   border: 5px solid white;
 }
 
-.react-multi-carousel-dot button{
+.react-multi-carousel-dot button {
   background: black !important;
 }
 
-.react-multi-carousel-dot--active button{
-    width: 24px !important;
-    height: 11px !important;
-    background: white !important;
-    border-radius: 25% !important;
+.react-multi-carousel-dot--active button {
+  width: 24px !important;
+  height: 11px !important;
+  background: white !important;
+  border-radius: 25% !important;
 }
 
 @media only screen and (max-width: 464px) {
@@ -193,8 +195,8 @@ select.QuantityFields option {
   .ticketImage {
     height: 230px !important;
   }
-  .changeHeightComponent img{
-    aspect-ratio: none ;
+  .changeHeightComponent img {
+    aspect-ratio: none;
     height: 170px !important;
   }
 }
@@ -206,24 +208,23 @@ select.QuantityFields option {
 }
 
 @media only screen and (max-width: 464px) {
-  .react-multiple-carousel__arrow{
+  .react-multiple-carousel__arrow {
     display: none;
   }
 }
 
 @media only screen and (min-width: 465px) {
-  .react-multi-carousel-dot-list{
+  .react-multi-carousel-dot-list {
     display: none !important;
   }
-  .FeaturedEventsCtrl{
+  .FeaturedEventsCtrl {
     aspect-ratio: 1/1 !important;
-   }
+  }
 }
 
-.carousel-container{
+.carousel-container {
   -webkit-transform: translateZ(0);
-transform: translateZ(0);
-
+  transform: translateZ(0);
 }
 
 .carousel-item-container {
@@ -243,37 +244,34 @@ transform: translateZ(0);
   object-fit: cover;
 }
 
-
 /* Media Screens for Mianpage ticketing component  */
 
 @media (min-width: 768px) and (max-width: 1023px) {
-  
-  section.ticketingSection div div h1{
-   font-size: 35px !important;
+  section.ticketingSection div div h1 {
+    font-size: 35px !important;
   }
-  section.ticketingSection div div b{
-   font-size: 0.8rem !important;
+  section.ticketingSection div div b {
+    font-size: 0.8rem !important;
   }
-
 }
 
 @media only screen and (max-width: 464px) {
-  section.ticketingSection div div h1{
+  section.ticketingSection div div h1 {
     font-size: 40px !important;
-   }
-   section.ticketingSection div div b{
+  }
+  section.ticketingSection div div b {
     font-size: 0.8rem !important;
-   }
-   .MainHeader{
+  }
+  .MainHeader {
     height: 100vh !important;
-   }
-   .FeaturedEventsCtrl{
+  }
+  .FeaturedEventsCtrl {
     aspect-ratio: unset !important;
     height: 120px !important;
-   }
-   .MainHeaderText{
+  }
+  .MainHeaderText {
     font-size: 40px !important;
-   }
+  }
 }
 
 /* .modal-content{
@@ -296,4 +294,3 @@ transform: translateZ(0);
   margin-left: 10px;
   margin-right: 10px;
 }
-
