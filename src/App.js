@@ -20,7 +20,7 @@ import PrivacyPolicy from './components/UserComponents/PrivacyPolicy';
 import TicketOutput from './components/UserComponents/TicketOutput';
 import OrderHistory from './components/UserComponents/OrderHistory';
 import Login from './components/UserComponents/Login';
-import SignUp from './components/UserComponents/SignUp';
+import SignUp from './components/UserComponents/signUp/SignUp';
 import ForgotPassword from './common/ForgotPassword';
 
 
