@@ -27,9 +27,8 @@
   border-radius: 15px;
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(17px);
-  width: 90%;
   margin: 0 auto 25px;
-  padding: 35px;
+  padding: 28px;
   color: white;
   border: solid 1px rgba(255, 255, 255, 0.15);
   position: sticky;
@@ -37,11 +36,10 @@
   /* transform: translateY(-24px); */
 }
 
-.welcome h2 {
+.welcome h3 {
   margin-bottom: 10px;
   color: #fff;
   font-family: "Sora", sans-serif;
-  font-size: 45px;
   font-style: normal;
   font-weight: 800;
   line-height: normal;
@@ -50,7 +48,6 @@
 
 .welcome p {
   color: rgba(255, 255, 255, 0.6);
-  font-size: 18px;
   font-style: normal;
   font-weight: 400;
   line-height: 30px; /* 166.667% */
@@ -76,9 +73,14 @@
   margin-bottom: 15px;
 }
 
-.sign-up-header h1 {
-  font-size: 40px;
+.sign-up-header h2 {
   color: #fff;
   text-transform: uppercase;
   font-weight: 800;
 }
+.form-control:focus{
+  box-shadow: none !important;
+ }
+ input{
+   color: white !important;
+ }
