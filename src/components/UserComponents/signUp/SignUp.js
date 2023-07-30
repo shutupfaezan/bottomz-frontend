@@ -142,7 +142,7 @@ export default function SignUp() {
                   id="email_id"
                   style={inputStyle}
                   handleChange={formik.handleChange}
-                  placeholder="Enter Your Email"
+                  placeholder="Email address"
                 />
               </div>
               {formik.errors.email_id && formik.touched.email_id && (
@@ -190,7 +190,7 @@ export default function SignUp() {
                   style={{ ...inputStyle, marginBottom: "10px" }}
                   icon="fa-solid fa-phone"
                   handleChange={formik.handleChange}
-                  placeholder="Enter Your Contact"
+                  placeholder="Phone number"
                 />
               </div>
               {formik.errors.contact && formik.touched.contact && (
@@ -214,8 +214,20 @@ export default function SignUp() {
                 style={{
                   width: "100%",
                   borderRadius: "100px",
-                  background: "#3B4456",
-                  color: "white",
+                  background:
+                    formik.values.user_name &&
+                    formik.values.email_id &&
+                    formik.values.password &&
+                    formik.values.contact
+                      ? "rgba(255,255,255,0.8)"
+                      : "#3B4456",
+                  color:
+                    formik.values.user_name &&
+                    formik.values.email_id &&
+                    formik.values.password &&
+                    formik.values.contact
+                      ? "black"
+                      : "white",
                   padding: "10px",
                 }}
                 onClick={formik.handleSubmit}
@@ -232,7 +244,9 @@ export default function SignUp() {
                 {!isLoading && <span id="login-text-span">Sign Up</span>}
               </button>
 
-              <p className="mb-3">or sign up using</p>
+              <p className="mb-3" style={{ color: "rgba(255,255,255,0.5)" }}>
+                or sign up using
+              </p>
 
               <button
                 type="submit"
@@ -242,7 +256,7 @@ export default function SignUp() {
                   borderRadius: "120px",
                   background: "rgba(244, 244, 245, 0.10)",
                   color: "white",
-                  padding: "10px",
+                  padding: "15px",
                 }}
                 onClick={formik.handleSubmit}
               >
@@ -307,10 +321,13 @@ export default function SignUp() {
             // onClick={navigate("/login")}
             to={"/login"}
           >
-            Already a User? Log In
+            Already have an account? <u style={{ color: "#fff" }}>Sign in</u>
           </Link>
         </div>
       </div>
+      <button className="signup-close" onClick={() => navigate(-1)}>
+        &#x2715;
+      </button>
     </div>
   );
 }
