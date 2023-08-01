@@ -4,6 +4,7 @@ import { useFormik } from "formik";
 import { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
+import GoogleLoginFunc from "../../../common/GoogleLoginFunc";
 import "../../../css/Signup.css";
 
 export default function SignUp() {
@@ -111,8 +112,8 @@ export default function SignUp() {
           <p>Let’s create your account</p>
         </header>
         <div>
-          <form>
-            <div className="mb-3">
+          <form className="signup-form">
+            <div>
               <div className="d-flex">
                 <Input
                   name="user_name"
@@ -132,7 +133,7 @@ export default function SignUp() {
               )}
             </div>
 
-            <div className="mb-3">
+            <div>
               <div className="d-flex">
                 <Input
                   name="email_id"
@@ -157,7 +158,7 @@ export default function SignUp() {
               )}
             </div>
 
-            <div className="mb-3">
+            <div>
               <div className="d-flex">
                 <Input
                   name="password"
@@ -180,7 +181,7 @@ export default function SignUp() {
                 </small>
               )}
             </div>
-            <div className="mb-3">
+            <div>
               <div className="d-flex">
                 <Input
                   name="contact"
@@ -210,25 +211,29 @@ export default function SignUp() {
             >
               <button
                 type="submit"
-                className="btn mb-3"
+                className="btn"
                 style={{
                   width: "100%",
                   borderRadius: "100px",
-                  background:
-                    formik.values.user_name &&
-                    formik.values.email_id &&
-                    formik.values.password &&
-                    formik.values.contact
-                      ? "rgba(255,255,255,0.8)"
-                      : "#3B4456",
-                  color:
-                    formik.values.user_name &&
-                    formik.values.email_id &&
-                    formik.values.password &&
-                    formik.values.contact
-                      ? "black"
-                      : "white",
-                  padding: "10px",
+                  // background:
+                  //   formik.values.user_name &&
+                  //   formik.values.email_id &&
+                  //   formik.values.password &&
+                  //   formik.values.contact
+                  //     ? "rgba(255,255,255,0.8)"
+                  //     : "#3B4456",
+                  // color:
+                  //   formik.values.user_name &&
+                  //   formik.values.email_id &&
+                  //   formik.values.password &&
+                  //   formik.values.contact
+                  //     ? "black"
+                  //     : "white",
+                  // padding: "16px",
+                  background: "rgba(255,255,255)",
+                  fontWeight: "600",
+                  color: "black",
+                  padding: "16px",
                 }}
                 onClick={formik.handleSubmit}
               >
@@ -244,11 +249,11 @@ export default function SignUp() {
                 {!isLoading && <span id="login-text-span">Sign Up</span>}
               </button>
 
-              <p className="mb-3" style={{ color: "rgba(255,255,255,0.5)" }}>
+              <p className="my-4" style={{ color: "rgba(255,255,255,0.5)" }}>
                 or sign up using
               </p>
 
-              <button
+              {/* <button
                 type="submit"
                 className="btn mb-2"
                 style={{
@@ -310,7 +315,8 @@ export default function SignUp() {
                     Sign in with Google
                   </span>
                 )}
-              </button>
+              </button> */}
+              <GoogleLoginFunc />
             </div>
           </form>
         </div>
@@ -325,7 +331,7 @@ export default function SignUp() {
           </Link>
         </div>
       </div>
-      <button className="signup-close" onClick={() => navigate(-1)}>
+      <button className="signup-close" onClick={() => navigate("/")}>
         &#x2715;
       </button>
     </div>

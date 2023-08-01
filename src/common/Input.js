@@ -85,7 +85,7 @@ export default function Input(props) {
             right: "35px",
             borderRadius: "20px",
             top: "0px",
-            width: "0px",
+            // width: "0px",
             zIndex: "1",
             fontSize: "20px",
             color: "gray",
