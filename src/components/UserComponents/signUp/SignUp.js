@@ -3,12 +3,11 @@ import Input from "../../../common/Input";
 import { useFormik } from "formik";
 import { useState } from "react";
 import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
+import { Link  } from "react-router-dom";
 import "../../../css/Signup.css";
 import GoogleLoginFunc from "../../../common/GoogleLoginFunc";
 
 export default function SignUp() {
-  const navigate = useNavigate();
   const [isLoading, setisLoading] = useState(false);
   const [emailError, setEmailError] = useState();
   const [contactError, setContactError] = useState();
@@ -99,7 +98,7 @@ export default function SignUp() {
       <div className="sign-up-right">
         <header className="sign-up-header">
           <img src="./images/LOGO.svg" alt="logo" style={{height: "50px"}} />
-          <h2>Sign up</h2>
+          <h3>Sign up</h3>
           <p>Let's create your account</p>
         </header>
         <div>
