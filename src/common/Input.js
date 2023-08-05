@@ -3,6 +3,7 @@ import { useState } from "react";
 
 export default function Input(props) {
   const [eyeInstance, setEyeInstance] = useState(false);
+  const [isFocused, setIsFocused] = useState(false);
   function hidepassword() {
     var temp = document.getElementById(props.id);
     if (temp.type === "password") {
@@ -20,7 +21,10 @@ export default function Input(props) {
         key={props.key}
         style={{
           ...props.style,
-          borderBottom: "1px solid rgba(255, 255, 255, 0.40)",
+          borderBottom:
+            isFocused || props.value
+              ? "1px solid rgba(255, 255, 255)"
+              : "1px solid rgba(255, 255, 255, 0.40)",
         }}
       >
         {props?.icon && (
@@ -28,8 +32,12 @@ export default function Input(props) {
             className={props.icon}
             style={{
               fontSize: "22px",
-              color: "gray",
+              // color: "gray",
               marginRight: "5px",
+              color:
+                isFocused || props.value
+                  ? "rgba(255, 255, 255)"
+                  : "rgba(255, 255, 255, 0.40)",
             }}
           ></i>
         )}
@@ -47,7 +55,10 @@ export default function Input(props) {
               borderRadius: "10px",
               fontSize: "12px",
               padding: "12px",
+              color: "rgba(255,255,255, 0.8)",
             }}
+            onFocus={() => setIsFocused(true)}
+            onBlur={() => setIsFocused(false)}
           ></input>
         ) : (
           <input
@@ -62,7 +73,10 @@ export default function Input(props) {
               borderRadius: "0",
               background: "transparent",
               border: "none",
+              color: "rgba(255,255,255, 0.8)",
             }}
+            onFocus={() => setIsFocused(true)}
+            onBlur={() => setIsFocused(false)}
           ></input>
         )}
         <i
@@ -71,7 +85,7 @@ export default function Input(props) {
             right: "35px",
             borderRadius: "20px",
             top: "0px",
-            width: "0px",
+            // width: "0px",
             zIndex: "1",
             fontSize: "20px",
             color: "gray",
