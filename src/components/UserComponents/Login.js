@@ -60,14 +60,14 @@ export default function Login() {
 
   return (
     <div className='d-flex position-relative' style={{backgroundColor: "#0B0B0B", color: "white", minHeight: "100vh", gap: "60px"}}>
-      <div className='position-relative p-4' style={{flex: "0 0 52%", background: `url(${process.env.PUBLIC_URL + "/images/new-signup.png"}) no-repeat center 43%`,backgroundSize: 'cover', borderRadius: "20px"}}>
+      <div className='position-relative p-4 d-lg-block d-none' style={{flex: "0 0 52%", background: `url(${process.env.PUBLIC_URL + "/images/new-signup.png"}) no-repeat center 43%`,backgroundSize: 'cover', borderRadius: "20px"}}>
           <div className="col p-4" style={{ border: "1px solid #ffffff26", borderRadius: "15px", background: "#ffffff1a", backdropFilter: "blur(17px)", position: "sticky", bottom: "0px", top: "69vh", margin: "0 auto 25px"}}>
             <h2 className='headerFont mt-3'>WELCOME BACK!</h2>
             <p className="m-0 mb-3 " style={{ color: "#ffffff", opacity: "0.6" }}>It's good to see you back. We have multiple events waiting for you, can't wait for you to catch up</p>
         </div>
       </div>
-      <div className='col mt-5 pt-5 pr-5 mr-4'>
-        <div className='mr-5 d-flex flex-column text-center px-3' style={{color: "#ffffff99"}}>
+      <div className='col mt-lg-5 pt-lg-5 pr-lg-5 mr-lg-4 d-flex justify-content-center align-items-center'>
+        <div className='mr-lg-5 d-flex flex-column text-center px-lg-3' style={{color: "#ffffff99"}}>
           <div className='mb-4'>
             <h2 className='headerFont'>Log In</h2>
             <p>Login to your account to see what is happening in your town</p>
