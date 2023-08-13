@@ -301,3 +301,8 @@ select.QuantityFields option {
   margin-left: 10px;
   margin-right: 10px;
 }
+
+
+.form-control:focus{
+  box-shadow: none !important
+}
