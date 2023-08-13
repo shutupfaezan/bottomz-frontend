@@ -152,20 +152,7 @@ export default function SignUp() {
 
             <div>
               <div className="d-flex">
-                <Input
-                  name="password"
-                  type="password"
-                  value={formik.values.password}
-                  id="password"
-                  style={inputStyle}
-                  bi
-                  bi-lock-fill
-                  icon="fa-solid fa-lock"
-                  handleChange={formik.handleChange}
-                  placeholder="Set a password!"
-                  icon2="fa-regular fa-eye"
-                  icon3="fa-regular fa-eye-slash"
-                />
+                <Input name="password" type="password" value={formik.values.password} id="password" style={inputStyle} bi bi-lock-fill icon="fa-solid fa-lock" handleChange={formik.handleChange} placeholder="Set a password!" icon2="fa-regular fa-eye" icon3="fa-regular fa-eye-slash"/>
               </div>
               {formik.errors.password && formik.touched.password && (
                 <small className="text-danger ml-2 mx-5 px-4">

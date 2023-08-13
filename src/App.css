@@ -4,14 +4,21 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Sora:wght@400;600;700&display=swap");
 
 * {
-  /* font-family: 'Poppins', sans-serif; */
-  /* font-family: 'DM Sans', sans-serif; */
   font-family: "Sora", sans-serif;
   /* font-weight: 700; */
 }
 
 .primary-header {
   font-family: "Righteous", cursive !important;
+}
+
+.headerFont{
+  color: #fff;
+  font-family: "Sora", sans-serif;
+  font-style: normal;
+  font-weight: 800;
+  line-height: normal;
+  text-transform: uppercase;
 }
 small {
   font-weight: 700 !important;
