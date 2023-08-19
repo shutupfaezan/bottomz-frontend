@@ -96,7 +96,7 @@ export default function Login() {
           </form>
           <p className="my-4" style={{ color: "rgba(255,255,255,0.5)" }}>or sign up using</p>
           <GoogleLoginFunc />
-          <div className="d-flex justify-content-center my-4"><span className="ml-4" style={{ color: "gray", textDecoration: "none" }}> Already have an account? <u style={{ color: "#fff" }} onClick={()=>{navigate('/sign-up')}}>Sign in</u></span></div>
+          <div className="d-flex justify-content-center my-4"><span className="ml-4" style={{ color: "gray", textDecoration: "none" }}> Create an account? <u style={{ color: "#fff" }} onClick={()=>{navigate('/sign-up')}}>Sign Up</u></span></div>
         </div>
       </div>
       <button className="position-absolute d-flex justify-content-center align-items-center" style={{height: "36px", width: "36px", border: "solid white 1px", borderRadius: "50%", backgroundColor: "transparent", color: "white", top: "4%", right: "4%"}} onClick={()=>{navigate("/")}}>
