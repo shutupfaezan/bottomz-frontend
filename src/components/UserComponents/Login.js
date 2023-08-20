@@ -2,11 +2,12 @@ import React from 'react'
 import Input from '../../common/Input'
 import { useFormik } from 'formik'
 import { useState } from 'react';
+import {useNavigate} from "react-router-dom"
 import axios from 'axios'
-import { Link } from 'react-router-dom'
 import GoogleLoginFunc from '../../common/GoogleLoginFunc'
 
 export default function Login() {
+  const navigate = useNavigate()
   const [isLoading, setisLoading] = useState(false);
   const formik = useFormik({
     initialValues: {
@@ -50,49 +51,57 @@ export default function Login() {
     },
     
   });
-  
+
+  const inputStyle = {
+    display: "flex",
+    padding: "8px 20px",
+    gap: "12px",
+    width: "100%",
+  };
 
   return (
-      <div className='d-flex flex-column justify-content-center align-items-center'>
-        <div className='col-md-6 align-items-center m-md-5' style={{border: "1px solid black", borderRadius: "10px"}}>
-          <h3 className="d-flex justify-content-center mt-5 mb-3">
-            <strong>
-            Log In
-            </strong>
-          </h3>
-          <div className='d-flex mx-auto justify-content-center'>
-            <GoogleLoginFunc/>
-            {/* <button type="button" className="btn btn-light" style={{border: "2px solid darkGray", borderRadius: "10px"}}><img src={process.env.PUBLIC_URL + "/images/apple-icon.png"} width="25px" alt=""/>Sign In</button> */}
-          </div>
-          <hr className='rounded mx-auto mt-3 hrsp' style={{width: "55%"}}/>
-          <div>
-            <form>
-              <div className=' mb-2'>
-              <div className="d-flex justify-content-center"><Input name="email_id" style={{width: "85%"}} type="email" value={formik.values.email_id} id="email_id"  handleChange={formik.handleChange} placeholder="Enter Your Email" onBlur={formik.handleBlur}/></div>
-              {formik.touched.email_id && formik.errors.email_id ? (
-              <small className="text-danger mx-5">{formik.errors.email_id}</small>
-            ) : null}
-              </div>
-          <div>
-              <div className="d-flex justify-content-center"><Input name="password" style={{width: "85%"}} type="password" value={formik.values.password} id="password"  handleChange={formik.handleChange} placeholder="Enter Your Password!" icon2="bi bi-eye-fill position-relative" icon3="bi bi-eye-slash-fill position-relative" onBlur={formik.handleBlur} useInput={2}/></div>
-              {formik.touched.password && formik.errors.password ? (
-                <small className="text-danger mx-5">{formik.errors.password}</small>
-              ) : null}
-              </div>
-              <div className="mt-3 d-flex justify-content-center">
-                <button type="submit" className="btn mb-3" style={{borderRadius: "20px", background: "#7d10bf", color: "white"}} onClick={formik.handleSubmit} disabled={formik.isSubmitting}>
-                {isLoading && (<span id="login-loader-span" className="spinner-border spinner-border-sm mx-1" role="status" aria-hidden="true"></span>)}
-                {isLoading && (<span id="login-loading-text-span">Loading</span>)}
-                {!isLoading && <span id="login-text-span">Continue</span>}
-                </button>
-              </div>
-            </form>
-          </div>
-          <div className='d-flex my-3'>
-            <Link className='ml-4'style={{color: "gray"}} to="/sign-up">Newbie? Sign Up</Link>
-            <Link className='mr-4 ml-auto' style={{color: "gray"}}  to="/forgot-password" >Forgot Password?</Link>
-          </div>
+    <div className='d-flex position-relative' style={{backgroundColor: "#0B0B0B", color: "white", minHeight: "100vh", gap: "60px"}}>
+      <div className='position-relative p-4 d-lg-block d-none' style={{flex: "0 0 52%", background: `url(${process.env.PUBLIC_URL + "/images/new-signup.png"}) no-repeat center 43%`,backgroundSize: 'cover', borderRadius: "20px"}}>
+      <img src="./images/LOGO.svg" alt="logo" className="col-lg-4"/>
+          <div className="col p-4" style={{ border: "1px solid #ffffff26", borderRadius: "15px", background: "#ffffff1a", backdropFilter: "blur(17px)", position: "sticky", bottom: "0px", top: "69vh", margin: "0 auto 25px"}}>
+            <h2 className='headerFont mt-3'>WELCOME BACK!</h2>
+            <p className="m-0 mb-3 " style={{ color: "#ffffff", opacity: "0.6" }}>It's good to see you back. We have multiple events waiting for you, can't wait for you to catch up</p>
         </div>
       </div>
-  )
+      <div className='col mt-lg-5 mt-md-0 mt-5 pt-lg-5 pr-lg-5 mr-lg-4 d-flex justify-content-center align-items-center'>
+        <div className='mr-lg-5 d-flex flex-column text-center p-lg-3' style={{color: "#ffffff99"}}>
+          <div className='mb-4'>
+            <h2 className='headerFont'>Log In</h2>
+            <p>Login to your account to see what is happening in your town</p>
+          </div>
+          <form className='d-flex flex-column' style={{gap: "25px"}}>
+            <div className='d-flex flex-column'>
+              <Input name="email_id" type="email" icon="fa-regular fa-envelope" id="email_id" style={inputStyle} placeholder="Email Address" value={formik.values.email_id} handleChange={formik.handleChange} onBlur={formik.handleBlur}/>
+              {formik.touched.email_id && formik.errors.email_id ? (
+              <small className="text-danger text-left ml-5 pl-4 mt-2">{formik.errors.email_id}</small>
+            ) : null}
+            </div>
+            <div className='d-flex flex-column'>
+              <Input name="password" type="password" id="password" style={inputStyle} bi bi-lock-fill icon="fa-solid fa-lock" placeholder="Password" icon2="fa-regular fa-eye" icon3="fa-regular fa-eye-slash" value={formik.values.password} handleChange={formik.handleChange} onBlur={formik.handleBlur}/>
+              {formik.touched.password && formik.errors.password ? (
+                <small className="text-danger text-left ml-5 pl-4 mt-2">{formik.errors.password}</small>
+              ) : null}
+            </div>
+            <a href="/forgot-password" className="text-right" style={{color: "white"}}>Forgot Password?</a>
+            <button type="submit" className="btn mt-3 py-3" style={{borderRadius: "100px", background: "white", color: "black", fontWeight: "600", fontSize: "17px"}} onClick={formik.handleSubmit} disabled={formik.isSubmitting}>
+              {isLoading && (<span id="login-loader-span" className="spinner-border spinner-border-sm mx-1" role="status" aria-hidden="true"></span>)}
+              {isLoading && (<span id="login-loading-text-span">Loading</span>)}
+              {!isLoading && <span id="login-text-span">Sign In</span>}
+            </button>
+          </form>
+          <p className="my-4" style={{ color: "rgba(255,255,255,0.5)" }}>or sign up using</p>
+          <GoogleLoginFunc />
+          <div className="d-flex justify-content-center my-4"><span className="ml-4" style={{ color: "gray", textDecoration: "none" }}> Create an account? <u style={{ color: "#fff" }} onClick={()=>{navigate('/sign-up')}}>Sign Up</u></span></div>
+        </div>
+      </div>
+      <button className="position-absolute d-flex justify-content-center align-items-center" style={{height: "36px", width: "36px", border: "solid white 1px", borderRadius: "50%", backgroundColor: "transparent", color: "white", top: "4%", right: "4%"}} onClick={()=>{navigate("/")}}>
+        &#x2715;
+      </button>
+    </div>
+  );
 }

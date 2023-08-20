@@ -49,6 +49,7 @@ export default function Input(props) {
             value={props.value}
             name={props.name}
             onChange={props.handleChange}
+            maxLength={props.maxLength}
             type={props.type}
             style={{
               border: "2px solid black",
@@ -67,6 +68,7 @@ export default function Input(props) {
             placeholder={props.placeholder}
             value={props.value}
             name={props.name}
+            maxLength={props.maxLength}
             onChange={props.handleChange}
             type={props.type}
             style={{
