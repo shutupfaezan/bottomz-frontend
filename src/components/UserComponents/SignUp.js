@@ -3,13 +3,13 @@ import Input from "../../common/Input";
 import { useFormik } from "formik";
 import { useState } from "react";
 import axios from "axios";
-import { Link, useNavigate  } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../../css/Signup.css";
 import GoogleLoginFunc from "../../common/GoogleLoginFunc";
 import "../../css/Signup.css";
 
 export default function SignUp() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [isLoading, setisLoading] = useState(false);
   const [emailError, setEmailError] = useState();
   const [contactError, setContactError] = useState();
@@ -89,18 +89,18 @@ export default function SignUp() {
   return (
     <div className="sign-up-main">
       <div className="sign-up-left">
-        <img src="./images/LOGO.svg" alt="logo" className="col-lg-4"/>
+        <img src="./images/LOGO.svg" alt="logo" className="col-lg-4" />
         <div className="welcome">
           <h3>Welcome!</h3>
-            <p>
+          <p>
             Lorem ipsum dolor sit amet consectetur. Malesuada parturient tellus
             laoreet tristique. Lorem massa augue pharetra augue.
-            </p>
+          </p>
         </div>
       </div>
       <div className="sign-up-right mt-4">
         <header className="sign-up-header">
-          <img src="./images/LOGO.svg" alt="logo" style={{height: "50px"}} />
+          <img src="./images/LOGO.svg" alt="logo" style={{ height: "50px" }} />
           <h3>Sign up</h3>
           <p>Let's create your account</p>
         </header>
@@ -152,7 +152,20 @@ export default function SignUp() {
 
             <div>
               <div className="d-flex">
-                <Input name="password" type="password" value={formik.values.password} id="password" style={inputStyle} bi bi-lock-fill icon="fa-solid fa-lock" handleChange={formik.handleChange} placeholder="Set a password!" icon2="fa-regular fa-eye" icon3="fa-regular fa-eye-slash"/>
+                <Input
+                  name="password"
+                  type="password"
+                  value={formik.values.password}
+                  id="password"
+                  style={inputStyle}
+                  bi
+                  bi-lock-fill
+                  icon="fa-solid fa-lock"
+                  handleChange={formik.handleChange}
+                  placeholder="Set a password!"
+                  icon2="fa-regular fa-eye"
+                  icon3="fa-regular fa-eye-slash"
+                />
               </div>
               {formik.errors.password && formik.touched.password && (
                 <small className="text-danger ml-2 mx-5 px-4">
@@ -218,14 +231,10 @@ export default function SignUp() {
               </p>
             </div>
           </form>
-              <GoogleLoginFunc />
+          <GoogleLoginFunc />
         </div>
         <div className="d-flex justify-content-center my-2">
-          <Link
-            className="ml-4"
-            style={{ color: "gray" }}
-            to={"/login"}
-          >
+          <Link className="ml-4" style={{ color: "gray" }} to={"/login"}>
             Already have an account? <u style={{ color: "#fff" }}>Sign in</u>
           </Link>
         </div>
