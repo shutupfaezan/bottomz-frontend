@@ -99,144 +99,152 @@ export default function SignUp() {
         </div>
       </div>
       <div className="sign-up-right mt-4">
-        <header className="sign-up-header">
-          <img src="./images/LOGO.svg" alt="logo" style={{ height: "50px" }} />
-          <h3>Sign up</h3>
-          <p>Let's create your account</p>
-        </header>
-        <div>
-          <form className="signup-form">
-            <div>
-              <div className="d-flex">
-                <Input
-                  name="user_name"
-                  type="text"
-                  value={formik.values.user_name}
-                  style={inputStyle}
-                  id="user_name"
-                  icon="fa-regular fa-user"
-                  handleChange={formik.handleChange}
-                  placeholder="Enter Your Name"
-                />
-              </div>
-              {formik.errors.user_name && formik.touched.user_name && (
-                <small className="text-danger ml-2 mx-5 px-4">
-                  {formik.errors.user_name}
-                </small>
-              )}
-            </div>
-            <div>
-              <div className="d-flex">
-                <Input
-                  name="email_id"
-                  type="email"
-                  value={formik.values.email_id}
-                  icon="fa-regular fa-envelope"
-                  id="email_id"
-                  style={inputStyle}
-                  handleChange={formik.handleChange}
-                  placeholder="Email address"
-                />
-              </div>
-              {formik.errors.email_id && formik.touched.email_id && (
-                <small className="text-danger ml-2 mx-5 px-4">
-                  {formik.errors.email_id}
-                </small>
-              )}
-              {emailError && (
-                <small className="text-danger ml-2 mx-5 px-4">
-                  {emailError}
-                </small>
-              )}
-            </div>
-
-            <div>
-              <div className="d-flex">
-                <Input
-                  name="password"
-                  type="password"
-                  value={formik.values.password}
-                  id="password"
-                  style={inputStyle}
-                  bi
-                  bi-lock-fill
-                  icon="fa-solid fa-lock"
-                  handleChange={formik.handleChange}
-                  placeholder="Set a password!"
-                  icon2="fa-regular fa-eye"
-                  icon3="fa-regular fa-eye-slash"
-                />
-              </div>
-              {formik.errors.password && formik.touched.password && (
-                <small className="text-danger ml-2 mx-5 px-4">
-                  {formik.errors.password}
-                </small>
-              )}
-            </div>
-            <div>
-              <div className="d-flex">
-                <Input
-                  name="contact"
-                  type="number"
-                  value={formik.values.contact}
-                  id="contact"
-                  style={{ ...inputStyle, marginBottom: "10px" }}
-                  icon="fa-solid fa-phone"
-                  handleChange={formik.handleChange}
-                  placeholder="Phone number"
-                />
-              </div>
-              {formik.errors.contact && formik.touched.contact && (
-                <small className="text-danger ml-2 mx-5 px-4">
-                  {formik.errors.contact}
-                </small>
-              )}
-              {contactError && (
-                <small className="text-danger ml-2 mx-5 px-4">
-                  {contactError}
-                </small>
-              )}
-            </div>
-            <div
-              className="d-flex flex-column justify-content-center align-items-center"
-              style={{ marginTop: "20px", color: "white" }}
-            >
-              <button
-                type="submit"
-                className="btn"
-                style={{
-                  width: "100%",
-                  borderRadius: "100px",
-                  background: "rgba(255,255,255)",
-                  fontWeight: "600",
-                  color: "black",
-                  padding: "16px",
-                }}
-                onClick={formik.handleSubmit}
-              >
-                {isLoading && (
-                  <span
-                    id="login-loader-span"
-                    className="spinner-border spinner-border-sm mx-1"
-                    role="status"
-                    aria-hidden="true"
-                  ></span>
+        <div className="sign-up-right-container">
+          <header className="sign-up-header">
+            <img
+              src="./images/LOGO.svg"
+              alt="logo"
+              style={{ height: "50px" }}
+            />
+            <h3>Sign up</h3>
+            <p>Let's create your account</p>
+          </header>
+          <div>
+            <form className="signup-form">
+              <div>
+                <div className="d-flex">
+                  <Input
+                    name="user_name"
+                    type="text"
+                    value={formik.values.user_name}
+                    style={inputStyle}
+                    id="user_name"
+                    icon="fa-regular fa-user"
+                    handleChange={formik.handleChange}
+                    placeholder="Enter Your Name"
+                  />
+                </div>
+                {formik.errors.user_name && formik.touched.user_name && (
+                  <small className="text-danger ml-2 mx-5 px-4">
+                    {formik.errors.user_name}
+                  </small>
                 )}
-                {isLoading && <span id="login-loading-text-span">Loading</span>}
-                {!isLoading && <span id="login-text-span">Sign Up</span>}
-              </button>
+              </div>
+              <div>
+                <div className="d-flex">
+                  <Input
+                    name="email_id"
+                    type="email"
+                    value={formik.values.email_id}
+                    icon="fa-regular fa-envelope"
+                    id="email_id"
+                    style={inputStyle}
+                    handleChange={formik.handleChange}
+                    placeholder="Email address"
+                  />
+                </div>
+                {formik.errors.email_id && formik.touched.email_id && (
+                  <small className="text-danger ml-2 mx-5 px-4">
+                    {formik.errors.email_id}
+                  </small>
+                )}
+                {emailError && (
+                  <small className="text-danger ml-2 mx-5 px-4">
+                    {emailError}
+                  </small>
+                )}
+              </div>
 
-              <p className="my-4" style={{ color: "rgba(255,255,255,0.5)" }}>
-                or sign up using
-              </p>
-            </div>
-          </form>
-          <GoogleLoginFunc />
-        </div>
-        <div className="d-flex justify-content-center my-2">
-          <Link className="ml-4" style={{ color: "gray" }} to={"/login"}>
-            Already have an account? <u style={{ color: "#fff" }}>Sign in</u>
-          </Link>
+              <div>
+                <div className="d-flex">
+                  <Input
+                    name="password"
+                    type="password"
+                    value={formik.values.password}
+                    id="password"
+                    style={inputStyle}
+                    bi
+                    bi-lock-fill
+                    icon="fa-solid fa-lock"
+                    handleChange={formik.handleChange}
+                    placeholder="Set a password!"
+                    icon2="fa-regular fa-eye"
+                    icon3="fa-regular fa-eye-slash"
+                  />
+                </div>
+                {formik.errors.password && formik.touched.password && (
+                  <small className="text-danger ml-2 mx-5 px-4">
+                    {formik.errors.password}
+                  </small>
+                )}
+              </div>
+              <div>
+                <div className="d-flex">
+                  <Input
+                    name="contact"
+                    type="number"
+                    value={formik.values.contact}
+                    id="contact"
+                    style={{ ...inputStyle, marginBottom: "10px" }}
+                    icon="fa-solid fa-phone"
+                    handleChange={formik.handleChange}
+                    placeholder="Phone number"
+                  />
+                </div>
+                {formik.errors.contact && formik.touched.contact && (
+                  <small className="text-danger ml-2 mx-5 px-4">
+                    {formik.errors.contact}
+                  </small>
+                )}
+                {contactError && (
+                  <small className="text-danger ml-2 mx-5 px-4">
+                    {contactError}
+                  </small>
+                )}
+              </div>
+              <div
+                className="d-flex flex-column justify-content-center align-items-center"
+                style={{ marginTop: "20px", color: "white" }}
+              >
+                <button
+                  type="submit"
+                  className="btn"
+                  style={{
+                    width: "100%",
+                    borderRadius: "100px",
+                    background: "rgba(255,255,255)",
+                    fontWeight: "600",
+                    color: "black",
+                    padding: "16px",
+                  }}
+                  onClick={formik.handleSubmit}
+                >
+                  {isLoading && (
+                    <span
+                      id="login-loader-span"
+                      className="spinner-border spinner-border-sm mx-1"
+                      role="status"
+                      aria-hidden="true"
+                    ></span>
+                  )}
+                  {isLoading && (
+                    <span id="login-loading-text-span">Loading</span>
+                  )}
+                  {!isLoading && <span id="login-text-span">Sign Up</span>}
+                </button>
+
+                <p className="my-4" style={{ color: "rgba(255,255,255,0.5)" }}>
+                  or sign up using
+                </p>
+              </div>
+            </form>
+            <GoogleLoginFunc />
+          </div>
+          <div className="d-flex justify-content-center my-2">
+            <Link className="ml-4" style={{ color: "gray" }} to={"/login"}>
+              Already have an account? <u style={{ color: "#fff" }}>Sign in</u>
+            </Link>
+          </div>
         </div>
       </div>
       <button className="signup-close" onClick={() => navigate("/")}>

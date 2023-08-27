@@ -72,6 +72,7 @@ export default function Input(props) {
             onChange={props.handleChange}
             type={props.type}
             style={{
+              ...props.style,
               borderRadius: "0",
               background: "transparent",
               border: "none",
