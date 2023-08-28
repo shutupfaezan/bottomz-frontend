@@ -55,8 +55,18 @@
 }
 
 .sign-up-right {
-  padding: 16px 120px 16px 0;
+  padding: 16px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   flex-grow: 1;
+  /* flex-basis: ; */
+}
+
+.sign-up-right-container {
+  flex-basis: 500px;
+  /* max-width: 600px; */
+  margin: 0 auto;
 }
 
 .sign-up-img {
@@ -74,7 +84,6 @@
   margin-bottom: 15px;
   display: none;
 }
-
 
 .sign-up-header h3 {
   color: #ffffff;
