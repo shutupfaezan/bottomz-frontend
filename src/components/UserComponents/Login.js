@@ -5,6 +5,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import GoogleLoginFunc from "../../common/GoogleLoginFunc";
+import "../../css/Login.css";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -107,6 +108,12 @@ export default function Login() {
           style={{ color: "#ffffff99" }}
         >
           <div className="mb-4">
+            <img
+              src="./images/LOGO.svg"
+              alt="logo"
+              style={{ height: "50px" }}
+              className="login-content-logo-img"
+            />
             <h2 className="headerFont">Log In</h2>
             <p>Login to your account to see what is happening in your town</p>
           </div>
