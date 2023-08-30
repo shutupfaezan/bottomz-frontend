@@ -1,17 +1,17 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 export default function Input(props) {
+  const inputRef = useRef(null);
   const [eyeInstance, setEyeInstance] = useState(false);
   const [isFocused, setIsFocused] = useState(false);
-  function hidepassword() {
-    var temp = document.getElementById(props.id);
-    if (temp.type === "password") {
+  function hidePassword() {
+    if (inputRef.current.type === "password") {
       setEyeInstance(true);
-      temp.type = "text";
+      inputRef.current.type = "text";
     } else {
-      temp.type = "password";
       setEyeInstance(false);
+      inputRef.current.type = "password";
     }
   }
   return (
@@ -44,6 +44,7 @@ export default function Input(props) {
         {props.useInput === 1 ? (
           <input
             className="form-control w-100"
+            ref={inputRef}
             id={props.id}
             placeholder={props.placeholder}
             value={props.value}
@@ -65,6 +66,7 @@ export default function Input(props) {
           <input
             className="form-control w-100"
             id={props.id}
+            ref={inputRef}
             placeholder={props.placeholder}
             value={props.value}
             name={props.name}
@@ -93,7 +95,7 @@ export default function Input(props) {
             fontSize: "20px",
             color: "gray",
           }}
-          onClick={hidepassword}
+          onClick={hidePassword}
           className={eyeInstance ? props.icon3 : props.icon2}
         ></i>
       </div>
