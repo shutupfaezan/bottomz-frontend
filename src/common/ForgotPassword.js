@@ -5,7 +5,7 @@ import { Formik } from 'formik';
 import axios from 'axios';
 
 export default function ForgotPassword() {
-  const [step, setStep] = useState(2);
+  const [step, setStep] = useState(3);
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
   const [userEmail, setUserEmail] = useState(null);
@@ -136,13 +136,13 @@ async function handleThirdStepSubmit(values, { setSubmitting }) {
 }
 
   return (
-    <div className="p-5" style={{ background: '#0B0B0B', height: 'auto' }}>
-      <div className="d-flex justify-content-center py-5 my-5">
-        <div className="col-lg-9 position-relative py-5" style={{ border: '1px solid rgba(255, 255, 255, 0.3)', borderRadius: '20px', height: 'max-content' }}>
+    <div className="vh-100" style={{ background: '#0B0B0B', height: 'auto' }}>
+      <div className="d-flex justify-content-center" style={{height: "100%"}}>
+        <div className="col-lg-8 position-relative my-auto" style={{borderRadius: '20px', height: 'max-content' }}>
           {/* Stage 1 */}
           {step === 0 && (
             <>
-              <div className="d-flex mx-auto rounded-circle my-4" style={{border: '1px solid rgba(255, 255, 255, 0.1)', width: 'fit-content', background: 'rgba(255, 255, 255, 0.07)'}}>
+              <div className="d-flex mx-auto rounded-circle mb-4" style={{border: '1px solid rgba(255, 255, 255, 0.1)', width: 'fit-content', background: 'rgba(255, 255, 255, 0.07)'}}>
                 <img src={process.env.PUBLIC_URL + "./images/forgot-password 1.png"} alt="logo" style={{ width: '120px' }}/>
               </div>
               <div className="d-flex justify-content-center flex-column text-center">
@@ -179,7 +179,7 @@ async function handleThirdStepSubmit(values, { setSubmitting }) {
           {step === 1 && (
               <>
                 <div
-                  className="d-flex mx-auto rounded-circle my-4"
+                  className="d-flex mx-auto rounded-circle mb-4"
                   style={{ border: "1px solid rgba(255, 255, 255, 0.1)", width: "120px", height: "120px", background: "rgba(255, 255, 255, 0.07)"}}>
                   <img src={ process.env.PUBLIC_URL + "./images/forgot-password-2.svg"} alt="logo" style={{ width: "76px", margin: "0 auto" }}/>
                 </div>
@@ -239,7 +239,7 @@ async function handleThirdStepSubmit(values, { setSubmitting }) {
           {step === 2 && (
               <>
                 <div
-                  className="d-flex mx-auto rounded-circle my-4"
+                  className="d-flex mx-auto rounded-circle mb-4"
                   style={{ border: "1px solid rgba(255, 255, 255, 0.1)", width: "120px", height: "120px", background: "rgba(255, 255, 255, 0.07)"}}>
                   <img src={ process.env.PUBLIC_URL + "./images/forgot-password-2.svg"} alt="logo" style={{ width: "76px", margin: "0 auto" }}/>
                 </div>
@@ -279,15 +279,15 @@ async function handleThirdStepSubmit(values, { setSubmitting }) {
           {/* Stage 4 */}
           {step === 3 && (
             <>
-            <div className='my-5'>
+            <div className='my-md-5'>
                 <div className="d-flex mx-auto rounded-circle flex-column my-4" style={{width: "120px", height: "120px"}}>
                   <img src={ process.env.PUBLIC_URL + "./images/success.png"} alt="logo" style={{ width: "100%", margin: "0 auto" }}/>
                 </div>
-                <div className='px-5 mx-5'>
-                  <h4 className="text-center text-white px-5 mx-5" style={{fontWeight: "800"}}>Password has been Changed Successfully!</h4>
-                  <p className='mx-5 text-center px-5' style={{color: "rgba(255, 255, 255, 0.7)", fontSize: "15px"}}>Lorem ipsum dolor sit amet consectetur. Sagittis pellentesque aliquet venenatis vitae. Vulputate ligula ut.</p>
+                <div className='px-md-5 mx-md-5'>
+                  <h4 className="text-center text-white px-md-5 mx-md-5 mb-md-2 mb-3" style={{fontWeight: "800"}}>Password has been Changed Successfully!</h4>
+                  <p className='mx-lg-5 text-center px-md-5 col-lg-10 col-md-11 mx-auto' style={{color: "rgba(255, 255, 255, 0.7)", fontSize: "15px", opacity: "70%"}}>Lorem ipsum dolor sit amet consectetur. Sagittis pellentesque aliquet venenatis vitae. Vulputate ligula ut.</p>
                 </div>
-                <button onClick={()=>navigate("/")} className="btn mt-4 py-3 col-lg-3 d-flex mx-auto justify-content-center align-items-center" style={{ borderRadius: "100px", background: "white", color: "black", fontWeight: "600", fontSize: "17px"}}>
+                <button onClick={()=>navigate("/")} className="btn mt-4 py-3 col-md-3 d-flex mx-auto justify-content-center align-items-center" style={{ borderRadius: "100px", background: "white", color: "black", fontWeight: "600", fontSize: "17px"}}>
                   {isLoading && (<span id="login-loader-span" className="spinner-border spinner-border-sm mx-1" role="status" aria-hidden="true"></span>)}
                   {isLoading && (<span id="login-loading-text-span">Loading</span>)}
                   {!isLoading && <span id="login-text-span">Done</span>}
@@ -295,7 +295,7 @@ async function handleThirdStepSubmit(values, { setSubmitting }) {
               </div>
             </>
           )}
-          <img src="./images/LOGO.svg" alt="logo" className="col-lg-2 position-absolute" style={{ top: '30px' }} />
+          {/* <img src="./images/LOGO.svg" alt="logo" className="col-lg-2 position-absolute" style={{ top: '30px' }} /> */}
         </div>
       </div>
     </div>
