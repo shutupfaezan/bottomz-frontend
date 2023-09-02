@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import Input from '../common/Input';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Formik } from 'formik';
 import axios from 'axios';
 
 export default function ForgotPassword() {
-  const [step, setStep] = useState(0);
+  const [step, setStep] = useState(2);
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
   const [userEmail, setUserEmail] = useState(null);
+  const navigate = useNavigate()
 
   // -------------------------------- Stage 1 Logic -------------------------------------------------------------------------
   const handleFirstStepSubmit = async (values) => {
@@ -138,7 +139,7 @@ async function handleThirdStepSubmit(values, { setSubmitting }) {
     <div className="p-5" style={{ background: '#0B0B0B', height: 'auto' }}>
       <div className="d-flex justify-content-center py-5 my-5">
         <div className="col-lg-9 position-relative py-5" style={{ border: '1px solid rgba(255, 255, 255, 0.3)', borderRadius: '20px', height: 'max-content' }}>
-          {/* {Stage 1} */}
+          {/* Stage 1 */}
           {step === 0 && (
             <>
               <div className="d-flex mx-auto rounded-circle my-4" style={{border: '1px solid rgba(255, 255, 255, 0.1)', width: 'fit-content', background: 'rgba(255, 255, 255, 0.07)'}}>
@@ -174,7 +175,7 @@ async function handleThirdStepSubmit(values, { setSubmitting }) {
               </div>
             </>
           )}
-          {/* Stage 2*/}
+          {/* Stage 2 */}
           {step === 1 && (
               <>
                 <div
@@ -233,8 +234,8 @@ async function handleThirdStepSubmit(values, { setSubmitting }) {
                   </span>
                 </div>
               </>
-            )}
-          {/* Stage 3*/}
+          )}
+          {/* Stage 3 */}
           {step === 2 && (
               <>
                 <div
@@ -274,7 +275,26 @@ async function handleThirdStepSubmit(values, { setSubmitting }) {
                   }
                 </Formik>
               </>
-            )}
+          )}
+          {/* Stage 4 */}
+          {step === 3 && (
+            <>
+            <div className='my-5'>
+                <div className="d-flex mx-auto rounded-circle flex-column my-4" style={{width: "120px", height: "120px"}}>
+                  <img src={ process.env.PUBLIC_URL + "./images/success.png"} alt="logo" style={{ width: "100%", margin: "0 auto" }}/>
+                </div>
+                <div className='px-5 mx-5'>
+                  <h4 className="text-center text-white px-5 mx-5" style={{fontWeight: "800"}}>Password has been Changed Successfully!</h4>
+                  <p className='mx-5 text-center px-5' style={{color: "rgba(255, 255, 255, 0.7)", fontSize: "15px"}}>Lorem ipsum dolor sit amet consectetur. Sagittis pellentesque aliquet venenatis vitae. Vulputate ligula ut.</p>
+                </div>
+                <button onClick={()=>navigate("/")} className="btn mt-4 py-3 col-lg-3 d-flex mx-auto justify-content-center align-items-center" style={{ borderRadius: "100px", background: "white", color: "black", fontWeight: "600", fontSize: "17px"}}>
+                  {isLoading && (<span id="login-loader-span" className="spinner-border spinner-border-sm mx-1" role="status" aria-hidden="true"></span>)}
+                  {isLoading && (<span id="login-loading-text-span">Loading</span>)}
+                  {!isLoading && <span id="login-text-span">Done</span>}
+                </button>
+              </div>
+            </>
+          )}
           <img src="./images/LOGO.svg" alt="logo" className="col-lg-2 position-absolute" style={{ top: '30px' }} />
         </div>
       </div>
