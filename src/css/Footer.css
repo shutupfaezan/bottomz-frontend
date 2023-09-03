@@ -96,7 +96,7 @@ li {
 
 @media (max-width: 576px) {
   .footer {
-    padding: 60px 60px;
+    padding: 60px 28px;
   }
 
   .footer-right {

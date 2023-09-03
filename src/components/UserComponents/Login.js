@@ -108,12 +108,6 @@ export default function Login() {
           style={{ color: "#ffffff99" }}
         >
           <div className="mb-4">
-            <img
-              src="./images/LOGO.svg"
-              alt="logo"
-              style={{ height: "50px" }}
-              className="login-content-logo-img"
-            />
             <h2 className="headerFont">Log In</h2>
             <p>Login to your account to see what is happening in your town</p>
           </div>
@@ -228,10 +222,7 @@ export default function Login() {
           top: "4%",
           right: "4%",
         }}
-        onClick={() => {
-          navigate("/");
-        }}
-      >
+        onClick={() => {navigate("/");}}>
         &#x2715;
       </button>
     </div>
