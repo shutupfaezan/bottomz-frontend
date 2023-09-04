@@ -58,6 +58,7 @@ export default function SignUp() {
           sessionStorage.setItem("token", response.data.access_token);
           sessionStorage.setItem("username", response?.data?.User_name);
           setisLoading(false);
+          navigate("/")
         })
         .catch((error) => {
           console.log(error);
@@ -101,11 +102,6 @@ export default function SignUp() {
       <div className="sign-up-right mt-4">
         <div className="sign-up-right-container">
           <header className="sign-up-header">
-            <img
-              src="./images/LOGO.svg"
-              alt="logo"
-              style={{ height: "50px" }}
-            />
             <h3>Sign up</h3>
             <p>Let's create your account</p>
           </header>

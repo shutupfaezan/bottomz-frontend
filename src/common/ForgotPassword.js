@@ -5,7 +5,7 @@ import { Formik } from 'formik';
 import axios from 'axios';
 
 export default function ForgotPassword() {
-  const [step, setStep] = useState(3);
+  const [step, setStep] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
   const [userEmail, setUserEmail] = useState(null);
