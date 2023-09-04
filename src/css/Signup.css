@@ -127,9 +127,9 @@ input:focus {
     display: none;
   }
 
-  .sign-up-right {
+  /* .sign-up-right {
     padding: 40px 20px 30px;
-  }
+  } */
 
   .sign-up-header {
     display: flex;
