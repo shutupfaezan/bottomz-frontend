@@ -73,6 +73,7 @@ export default function Input(props) {
             maxLength={props.maxLength}
             onChange={props.handleChange}
             type={props.type}
+            onKeyDown={props.onKeyDown}
             style={{
               ...props.style,
               borderRadius: "0",
