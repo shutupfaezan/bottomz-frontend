@@ -177,64 +177,81 @@ async function handleThirdStepSubmit(values, { setSubmitting }) {
           )}
           {/* Stage 2 */}
           {step === 1 && (
-              <>
-                <div
-                  className="d-flex mx-auto rounded-circle mb-4"
-                  style={{ border: "1px solid rgba(255, 255, 255, 0.1)", width: "120px", height: "120px", background: "rgba(255, 255, 255, 0.07)"}}>
-                  <img src={ process.env.PUBLIC_URL + "./images/forgot-password-2.svg"} alt="logo" style={{ width: "76px", margin: "0 auto" }}/>
-                </div>
-                <div className="d-flex justify-content-center flex-column text-center">
-                  <h4 className="text-white" style={{ fontWeight: "700" }}>Enter the OTP</h4>
-                  <h6 className="text-white my-2" style={{ fontWeight: "700" }}>No Worries! 😎</h6>
-                  <p className="my-2" style={{ fontWeight: "400", color: "rgba(255, 255, 255, 0.7)"}}>A 6-digit OTP has been sent to this email</p>
-                </div>
-                  <Formik initialValues={otp} onSubmit={handleSecondStepSubmit} validate={validateStep2} validateOnChange={false} validateOnBlur={false}>
-                    {(formik) => (
-                      <>
-                        <div className="col-lg-6 mx-auto my-3 d-flex flex-column p-1">
-                          <div className="d-flex justify-content-space-between">
-                            <div className="mx-2">
-                              <Input maxLength={1} placeholder="" style={{ textAlign: "center" }} name="digit1" value={formik.values.digit1} handleChange={formik.handleChange} />
-                            </div>
-                            <div className="mx-2">
-                              <Input maxLength={1} placeholder="" style={{ textAlign: "center" }} name="digit2" value={formik.values.digit2} handleChange={formik.handleChange} />
-                            </div>
-                            <div className="mx-2">
-                              <Input maxLength={1} placeholder="" style={{ textAlign: "center" }} name="digit3" value={formik.values.digit3} handleChange={formik.handleChange} />
-                            </div>
-                            <div className="mx-2">
-                              <Input maxLength={1} placeholder="" style={{ textAlign: "center" }} name="digit4" value={formik.values.digit4} handleChange={formik.handleChange} />
-                            </div>
-                            <div className="mx-2">
-                              <Input maxLength={1} placeholder="" style={{ textAlign: "center" }} name="digit5" value={formik.values.digit5} handleChange={formik.handleChange} />
-                            </div>
-                            <div className="mx-2">
-                              <Input maxLength={1} placeholder="" style={{ textAlign: "center" }} name="digit6" value={formik.values.digit6} handleChange={formik.handleChange} />
-                            </div>
+            <>
+             <div
+                className="d-flex mx-auto rounded-circle mb-4"
+                style={{ border: "1px solid rgba(255, 255, 255, 0.1)", width: "120px", height: "120px", background: "rgba(255, 255, 255, 0.07)"}}>
+                <img src={ process.env.PUBLIC_URL + "./images/forgot-password-2.svg"} alt="logo" style={{ width: "76px", margin: "0 auto" }}/>
+              </div>
+              <div className="d-flex justify-content-center flex-column text-center">
+                <h4 className="text-white" style={{ fontWeight: "700" }}>Enter the OTP</h4>
+                <h6 className="text-white my-2" style={{ fontWeight: "700" }}>No Worries! 😎</h6>
+                <p className="my-2" style={{ fontWeight: "400", color: "rgba(255, 255, 255, 0.7)"}}>A 6-digit OTP has been sent to this email</p>
+              </div>
+              <Formik initialValues={otp} onSubmit={handleSecondStepSubmit} validate={validateStep2} validateOnChange={false} validateOnBlur={false}>
+                {(formik) => (
+                  <>
+                    <div className="col-lg-6 mx-auto my-3 d-flex flex-column p-1">
+                      <div className="d-flex justify-content-space-between">
+                        {Array.from({ length: 6 }, (_, i) => (
+                          <div className="mx-2" key={i}>
+                            <Input
+                              id={`digit${i + 1}`}
+                              maxLength={"1"}
+                              placeholder=""
+                              style={{ textAlign: "center" }}
+                              name={`digit${i + 1}`}
+                              value={formik.values[`digit${i + 1}`]}
+                              handleChange={(e) => {
+                                formik.handleChange(e);
+                                if (e.target.value !== "") {
+                                  const nextInput = document.getElementById(`digit${i + 2}`);
+                                  if (nextInput) {
+                                    nextInput.focus();
+                                  }
+                                }
+                              }}
+                              onKeyDown={(e) => {
+                                if (e.key === 'Backspace') {
+                                  if (formik.values[`digit${i + 1}`] === '') {
+                                    const prevInput = document.getElementById(`digit${i}`);
+                                    if (prevInput) {
+                                      formik.setFieldValue(`digit${i}`, '');
+                                      prevInput.focus();
+                                    }
+                                  } else {
+                                    formik.setFieldValue(`digit${i + 1}`, '');
+                                  }
+                                }
+                              }}
+                            />
                           </div>
-                        </div>
-                        {/* Error Message */}
-                        {formik.errors.digit1 || formik.errors.digit2 || formik.errors.digit3 || formik.errors.digit4 || formik.errors.digit5 || formik.errors.digit6 ?
-                          <div  className="text-center mt-4" style={{ color: 'crimson', fontSize: '14px', marginTop: '5px' }}>All digits must be filled and valid.</div> : null}
-                        {errorMessage && <div className="text-center mt-4" style={{ color: 'crimson', fontSize: '14px', marginTop: '5px' }}>{errorMessage}</div>}
-                        <button type="submit" className="btn mt-4 py-3 col-lg-6 d-flex mx-auto justify-content-center align-items-center" onClick={formik.handleSubmit} style={{ borderRadius: "100px", background: "white", color: "black", fontWeight: "600", fontSize: "17px"}}>
-                        {isLoading && (<span id="login-loader-span" className="spinner-border spinner-border-sm mx-1" role="status" aria-hidden="true"></span>)}
-                        {isLoading && (<span id="login-loading-text-span">Loading</span>)}
-                        {!isLoading && <span id="login-text-span">Verify</span>}
-                        </button>
-                      </>
-                    )}
-                  </Formik>
-                <div className="text-white mt-4 text-center">
-                  <span>
-                    Go back to{" "}
-                    <Link to="/login" className="text-white" style={{ textDecoration: "underline" }}>
-                      Sign In
-                    </Link>
-                  </span>
-                </div>
-              </>
+                        ))}
+                      </div>
+                    </div>
+                    {/* Error Message */}
+                    {formik.errors.digit1 || formik.errors.digit2 || formik.errors.digit3 || formik.errors.digit4 || formik.errors.digit5 || formik.errors.digit6 ?
+                    <div  className="text-center mt-4" style={{ color: 'crimson', fontSize: '14px', marginTop: '5px' }}>All digits must be filled and valid.</div> : null}
+                    {errorMessage && <div className="text-center mt-4" style={{ color: 'crimson', fontSize: '14px', marginTop: '5px' }}>{errorMessage}</div>}
+                    <button type="submit" className="btn mt-4 py-3 col-lg-6 d-flex mx-auto justify-content-center align-items-center" onClick={formik.handleSubmit} style={{ borderRadius: "100px", background: "white", color: "black", fontWeight: "600", fontSize: "17px"}}>
+                    {isLoading && (<span id="login-loader-span" className="spinner-border spinner-border-sm mx-1" role="status" aria-hidden="true"></span>)}
+                    {isLoading && (<span id="login-loading-text-span">Loading</span>)}
+                    {!isLoading && <span id="login-text-span">Verify</span>}
+                    </button>
+                  </>
+                )}
+              </Formik>
+              <div className="text-white mt-4 text-center">
+                <span>
+                  Go back to{" "}
+                  <Link to="/login" className="text-white" style={{ textDecoration: "underline" }}>
+                    Sign In
+                  </Link>
+                </span>
+              </div>
+            </>
           )}
+
           {/* Stage 3 */}
           {step === 2 && (
               <>
