@@ -1,11 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Input from '../common/Input';
 import { Link, useNavigate } from 'react-router-dom';
 import { Formik } from 'formik';
+import moment from 'moment';
 import axios from 'axios';
 
 export default function ForgotPassword() {
   const [step, setStep] = useState(0);
+  const [remainingTime, setRemainingTime] = useState(100); // 5 minutes in seconds
+  const [intervalId, setIntervalId] = useState(null);
+  const [timerExpired, setTimerExpired] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
   const [userEmail, setUserEmail] = useState(null);
@@ -33,7 +37,7 @@ export default function ForgotPassword() {
   const validateStep1 = (values) => {
     const errors = {};
     if (!values.email_id) {
-        errors.email_id = 'Required';
+        errors.email_id = 'Email is Required';
     } else if (!/\S+@\S+\.\S+/.test(values.email_id)) {
         errors.email_id = 'Invalid email address';
     }
@@ -68,7 +72,7 @@ const handleSecondStepSubmit = async (values) => {
     const response = await axios.post('https://nightlife-2710.herokuapp.com/verify-otp', {email_id: userEmail, otp: otpValue });
     setIsLoading(false);
     setStep(2);
-    } catch (error) {
+  } catch (error) {
     setIsLoading(false);
     if (error?.response) {
       setErrorMessage(error.response.data.detail);
@@ -91,6 +95,54 @@ const validateStep2 = (values) => {
   }
   return errors;
 };
+
+useEffect(() => {
+  const startTime = moment();
+  const endTime = moment().add(5, 'minutes');
+
+  const initialRemainingTime = endTime.diff(startTime, 'seconds');
+
+  setRemainingTime(initialRemainingTime);
+
+  const id = setInterval(() => {
+    setRemainingTime((prevRemainingTime) => {
+      // Check if the timer has expired
+      if (prevRemainingTime <= 1) {
+        setTimerExpired(true);
+      }
+      
+      return prevRemainingTime - 1;
+    });
+  }, 1000);
+
+  // Store the interval ID
+  setIntervalId(id);
+
+  // Clean up the interval when the component unmounts
+  return () => {
+    clearInterval(id);
+  };
+}, []);
+
+useEffect(() => {
+  if (remainingTime === 0) {
+    setTimerExpired(true);
+  }
+}, [remainingTime]);
+
+// Handle step change when the timer expires
+useEffect(() => {
+  if (timerExpired) {
+    setStep(0);
+  }
+}, [timerExpired]);
+
+function formatTime(seconds) {
+  const minutes = Math.floor(seconds / 60);
+  const remainingSeconds = seconds % 60;
+  return `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
+}
+
 
 //----------------------------------- Stage 3 Logic -----------------------------------------------------------------------------
 function validateThirdStep(values) {
@@ -134,7 +186,6 @@ async function handleThirdStepSubmit(values, { setSubmitting }) {
   setIsLoading(false);
   setSubmitting(false);
 }
-
   return (
     <div className="vh-100" style={{ background: '#0B0B0B', height: 'auto' }}>
       <div className="d-flex justify-content-center" style={{height: "100%"}}>
@@ -181,7 +232,7 @@ async function handleThirdStepSubmit(values, { setSubmitting }) {
              <div
                 className="d-flex mx-auto rounded-circle mb-4"
                 style={{ border: "1px solid rgba(255, 255, 255, 0.1)", width: "120px", height: "120px", background: "rgba(255, 255, 255, 0.07)"}}>
-                <img src={ process.env.PUBLIC_URL + "./images/forgot-password-2.svg"} alt="logo" style={{ width: "76px", margin: "0 auto" }}/>
+                <span className='d-flex justify-content-center align-self-center w-100 text-white' style={{fontSize: "30px", fontWeight: "700"}}>{formatTime(Math.max(remainingTime, 0))}</span> 
               </div>
               <div className="d-flex justify-content-center flex-column text-center">
                 <h4 className="text-white" style={{ fontWeight: "700" }}>Enter the OTP</h4>
