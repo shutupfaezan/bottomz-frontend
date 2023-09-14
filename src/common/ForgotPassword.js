@@ -7,13 +7,15 @@ import axios from 'axios';
 
 export default function ForgotPassword() {
   const [step, setStep] = useState(0);
-  const [remainingTime, setRemainingTime] = useState(100); // 5 minutes in seconds
+  const [remainingTime, setRemainingTime] = useState(300); // 5 minutes in seconds
   const [intervalId, setIntervalId] = useState(null);
   const [timerExpired, setTimerExpired] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
   const [userEmail, setUserEmail] = useState(null);
-  const navigate = useNavigate()
+  const [timerRunning, setTimerRunning] = useState(false); // New state for timer
+
+  const navigate = useNavigate();
 
   // -------------------------------- Stage 1 Logic -------------------------------------------------------------------------
   const handleFirstStepSubmit = async (values) => {
@@ -24,6 +26,7 @@ export default function ForgotPassword() {
       setIsLoading(false);
       setUserEmail(values.email_id);
       setStep(1);
+      setTimerRunning(true); // Start the timer when the user proceeds to the second step
     } catch (error) {
       setIsLoading(false);
       if (error?.response) {
@@ -37,11 +40,11 @@ export default function ForgotPassword() {
   const validateStep1 = (values) => {
     const errors = {};
     if (!values.email_id) {
-        errors.email_id = 'Email is Required';
+      errors.email_id = 'Email is Required';
     } else if (!/\S+@\S+\.\S+/.test(values.email_id)) {
-        errors.email_id = 'Invalid email address';
+      errors.email_id = 'Invalid email address';
     }
-      return errors;
+    return errors;
   }
 
   const inputStyle = {
@@ -51,141 +54,142 @@ export default function ForgotPassword() {
     width: '100%',
   };
 
-//----------------------------------- Stage 2 Logic ----------------------------------------------------------------------------------
-const [otp] = useState({
-  digit1: '',
-  digit2: '',
-  digit3: '',
-  digit4: '',
-  digit5: '',
-  digit6: '',
-});
+  //----------------------------------- Stage 2 Logic ----------------------------------------------------------------------------------
+  const [otp] = useState({
+    digit1: '',
+    digit2: '',
+    digit3: '',
+    digit4: '',
+    digit5: '',
+    digit6: '',
+  });
 
-const handleSecondStepSubmit = async (values) => {
-  setIsLoading(true);
-  setErrorMessage(null);
+  const handleSecondStepSubmit = async (values) => {
+    setIsLoading(true);
+    setErrorMessage(null);
 
-  const otpValue = `${values.digit1}${values.digit2}${values.digit3}${values.digit4}${values.digit5}${values.digit6}`;
+    const otpValue = `${values.digit1}${values.digit2}${values.digit3}${values.digit4}${values.digit5}${values.digit6}`;
 
-  try {
-    setErrorMessage(null)
-    const response = await axios.post('https://nightlife-2710.herokuapp.com/verify-otp', {email_id: userEmail, otp: otpValue });
-    setIsLoading(false);
-    setStep(2);
-  } catch (error) {
-    setIsLoading(false);
-    if (error?.response) {
-      setErrorMessage(error.response.data.detail);
-    } else {
-      setErrorMessage('An error occurred');
-    }
-  }
-};
-
-const validateStep2 = (values) => {
-  const errors = {};
-
-  for (let i = 1; i <= 6; i++) {
-    const field = `digit${i}`;
-    if (!values[field]) {
-      errors[field] = 'Required';
-    } else if (!/^[0-9]$/.test(values[field])) {
-      errors[field] = 'Invalid digit';
-    }
-  }
-  return errors;
-};
-
-useEffect(() => {
-  const startTime = moment();
-  const endTime = moment().add(5, 'minutes');
-
-  const initialRemainingTime = endTime.diff(startTime, 'seconds');
-
-  setRemainingTime(initialRemainingTime);
-
-  const id = setInterval(() => {
-    setRemainingTime((prevRemainingTime) => {
-      // Check if the timer has expired
-      if (prevRemainingTime <= 1) {
-        setTimerExpired(true);
+    try {
+      setErrorMessage(null);
+      const response = await axios.post('https://nightlife-2710.herokuapp.com/verify-otp', { email_id: userEmail, otp: otpValue });
+      setIsLoading(false);
+      setStep(2);
+    } catch (error) {
+      setIsLoading(false);
+      if (error?.response) {
+        setErrorMessage(error.response.data.detail);
+      } else {
+        setErrorMessage('An error occurred');
       }
-      
-      return prevRemainingTime - 1;
-    });
-  }, 1000);
-
-  // Store the interval ID
-  setIntervalId(id);
-
-  // Clean up the interval when the component unmounts
-  return () => {
-    clearInterval(id);
-  };
-}, []);
-
-useEffect(() => {
-  if (remainingTime === 0) {
-    setTimerExpired(true);
-  }
-}, [remainingTime]);
-
-// Handle step change when the timer expires
-useEffect(() => {
-  if (timerExpired) {
-    setStep(0);
-  }
-}, [timerExpired]);
-
-function formatTime(seconds) {
-  const minutes = Math.floor(seconds / 60);
-  const remainingSeconds = seconds % 60;
-  return `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
-}
-
-
-//----------------------------------- Stage 3 Logic -----------------------------------------------------------------------------
-function validateThirdStep(values) {
-  const errors = {};
-  if (!values.newPassword) {
-    errors.newPassword = 'Required';
-  } else if (values.newPassword.length < 8) {
-    errors.newPassword = 'Password must be at least 8 characters long';
-  }
-
-  if (!values.confirmPassword) {
-    errors.confirmPassword = 'Required';
-  } else if (values.newPassword !== values.confirmPassword) {
-    errors.confirmPassword = 'Passwords do not match';
-  }
-
-  return errors;
-}
-
-async function handleThirdStepSubmit(values, { setSubmitting }) {
-  setIsLoading(true);
-  setErrorMessage(null);
-
-  const finalPassObj = {
-    email_id: userEmail,
-    new_password: values.newPassword
-  };
-
-  try {
-    const response = await axios.put('https://nightlife-2710.herokuapp.com/update-password', finalPassObj);
-    sessionStorage.setItem("token", response?.data?.access_token);
-    sessionStorage.setItem("username", response?.data?.User_name);
-    setStep(3);
-  } catch (error) {
-    if (error?.response) {
-      setErrorMessage(error.response.data.detail);
-    } else {
-      setErrorMessage('An error occurred');
     }
+  };
+
+  const validateStep2 = (values) => {
+    const errors = {};
+
+    for (let i = 1; i <= 6; i++) {
+      const field = `digit${i}`;
+      if (!values[field]) {
+        errors[field] = 'Required';
+      } else if (!/^[0-9]$/.test(values[field])) {
+        errors[field] = 'Invalid digit';
+      }
+    }
+    return errors;
+  };
+
+  useEffect(() => {
+    if (timerRunning && remainingTime === 0) {
+      setTimerExpired(true);
+    }
+  }, [timerRunning, remainingTime]);
+
+  useEffect(() => {
+    if (timerExpired) {
+      setStep(0);
+    }
+  }, [timerExpired]);
+
+  // Handle the timer logic when it's running
+  useEffect(() => {
+    let id;
+    if (timerRunning) {
+      const startTime = moment();
+      const endTime = moment().add(5, 'minutes');
+
+      const initialRemainingTime = endTime.diff(startTime, 'seconds');
+      setRemainingTime(initialRemainingTime);
+
+      id = setInterval(() => {
+        setRemainingTime((prevRemainingTime) => {
+          if (prevRemainingTime <= 1) {
+            setTimerExpired(true);
+            clearInterval(id);
+          }
+
+          return prevRemainingTime - 1;
+        });
+      }, 1000);
+    }
+
+    // Clean up the interval when the component unmounts or timer stops
+    return () => {
+      if (id) {
+        clearInterval(id);
+      }
+    };
+  }, [timerRunning]);
+
+  //----------------------------------- Stage 3 Logic -----------------------------------------------------------------------------
+  function validateThirdStep(values) {
+    const errors = {};
+    if (!values.newPassword) {
+      errors.newPassword = 'Required';
+    } else if (values.newPassword.length < 8) {
+      errors.newPassword = 'Password must be at least 8 characters long';
+    }
+
+    if (!values.confirmPassword) {
+      errors.confirmPassword = 'Required';
+    } else if (values.newPassword !== values.confirmPassword) {
+      errors.confirmPassword = 'Passwords do not match';
+    }
+
+    return errors;
   }
-  setIsLoading(false);
-  setSubmitting(false);
-}
+
+  async function handleThirdStepSubmit(values, { setSubmitting }) {
+    setIsLoading(true);
+    setErrorMessage(null);
+
+    const finalPassObj = {
+      email_id: userEmail,
+      new_password: values.newPassword
+    };
+
+    try {
+      const response = await axios.put('https://nightlife-2710.herokuapp.com/update-password', finalPassObj);
+      sessionStorage.setItem("token", response?.data?.access_token);
+      sessionStorage.setItem("username", response?.data?.User_name);
+      setStep(3);
+    } catch (error) {
+      if (error?.response) {
+        setErrorMessage(error.response.data.detail);
+      } else {
+        setErrorMessage('An error occurred');
+      }
+    }
+    setIsLoading(false);
+    setSubmitting(false);
+  }
+
+  function formatTime(seconds) {
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = seconds % 60;
+    return `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
+  }
+
   return (
     <div className="vh-100" style={{ background: '#0B0B0B', height: 'auto' }}>
       <div className="d-flex justify-content-center" style={{height: "100%"}}>
