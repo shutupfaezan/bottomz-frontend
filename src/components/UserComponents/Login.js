@@ -73,10 +73,7 @@ export default function Login() {
         </div>
       </div>
       <div className="col mt-lg-5 mt-md-0 mt-5 pt-lg-5 pr-lg-5 mr-lg-4 d-flex justify-content-center align-items-center">
-        <div
-          className="mr-lg-5 d-flex flex-column text-center p-lg-3"
-          style={{ color: "#ffffff99" }}
-        >
+        <div className="mr-lg-3 d-flex flex-column text-center p-lg-3" style={{ color: "#ffffff99" }}>
           <div className="mb-4">
             <h2 className="headerFont">Log In</h2>
             <p>Login to your account to see what is happening in your town</p>
@@ -159,23 +156,8 @@ export default function Login() {
           </p>
           <GoogleLoginFunc />
           <div className="d-flex justify-content-center my-4">
-            <span
-              className="ml-4"
-              style={{
-                color: "gray",
-                textDecoration: "none",
-              }}
-            >
-              {" "}
-              Create an account?{" "}
-              <u
-                style={{ color: "#fff", cursor: "pointer" }}
-                onClick={() => {
-                  navigate("/sign-up");
-                }}
-              >
-                Sign Up
-              </u>
+            <span className="ml-4" style={{ color: "gray", textDecoration: "none"}}>Create an account?{" "}
+              <u style={{ color: "#fff", cursor: "pointer" }} onClick={() => {navigate("/sign-up")}}>Sign Up</u>
             </span>
           </div>
         </div>

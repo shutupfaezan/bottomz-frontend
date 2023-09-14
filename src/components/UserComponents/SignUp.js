@@ -24,11 +24,11 @@ export default function SignUp() {
       const errors = {};
 
       if (!values.user_name) {
-        errors.user_name = "Required";
+        errors.user_name = "Name is Required";
       }
 
       if (!values.email_id) {
-        errors.email_id = "Required";
+        errors.email_id = "Email is Required";
       } else if (
         !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email_id)
       ) {
@@ -36,12 +36,12 @@ export default function SignUp() {
       }
 
       if (!values.password) {
-        errors.password = "Required";
+        errors.password = "Password is Required";
       } else if (values.password.length < 8) {
         errors.password = "Password must be at least 8 characters long";
       }
       if (!values.contact) {
-        errors.contact = "Required";
+        errors.contact = "Contact Info is Required";
       } else if (!/^[789]\d{9}$/.test(values.contact)) {
         errors.contact = "Invalid contact number";
       }
@@ -98,16 +98,15 @@ export default function SignUp() {
           </p>
         </div>
       </div>
-      <div className="sign-up-right mt-4">
-        <div className="sign-up-right-container">
-          <header className="sign-up-header">
-            <h3>Sign up</h3>
+      <div className="col col-md-8 mx-auto col-lg mt-lg-5 mt-md-0 mt-5 pt-lg-5 pt-5 pr-lg-5 mr-lg-4 d-flex justify-content-center align-items-center">
+        <div className="mr-lg-3 d-flex flex-column text-center py-lg-3 w-100" style={{ color: "#ffffff99" }}>
+          <div className="mb-4">
+            <h2 className="headerFont">Sign Up</h2>
             <p>Let's create your account</p>
-          </header>
-          <div>
-            <form className="signup-form">
-              <div>
-                <div className="d-flex">
+          </div>
+            <form className="d-flex flex-column" style={{gap: "25px"}}>
+              <div className="d-flex flex-column">
+                <div className="d-flex flex-column">
                   <Input
                     name="user_name"
                     type="text"
@@ -120,12 +119,12 @@ export default function SignUp() {
                   />
                 </div>
                 {formik.errors.user_name && formik.touched.user_name && (
-                  <small className="text-danger ml-2 mx-5 px-4">
-                    {formik.errors.user_name}
+                  <small className="text-danger text-left ml-5 pl-4 mt-2">
+                   {formik.errors.user_name}
                   </small>
                 )}
               </div>
-              <div>
+              <div className="d-flex flex-column">
                 <div className="d-flex">
                   <Input
                     name="email_id"
@@ -139,18 +138,17 @@ export default function SignUp() {
                   />
                 </div>
                 {formik.errors.email_id && formik.touched.email_id && (
-                  <small className="text-danger ml-2 mx-5 px-4">
+                  <small className="text-danger text-left ml-5 pl-4 mt-2">
                     {formik.errors.email_id}
                   </small>
                 )}
                 {emailError && (
-                  <small className="text-danger ml-2 mx-5 px-4">
-                    {emailError}
+                  <small className="text-danger text-left ml-5 pl-4 mt-2">
+                   Email is {emailError}
                   </small>
                 )}
               </div>
-
-              <div>
+              <div className="d-flex flex-column">
                 <div className="d-flex">
                   <Input
                     name="password"
@@ -168,39 +166,36 @@ export default function SignUp() {
                   />
                 </div>
                 {formik.errors.password && formik.touched.password && (
-                  <small className="text-danger ml-2 mx-5 px-4">
+                  <small className="text-danger text-left ml-5 pl-4 mt-2">
                     {formik.errors.password}
                   </small>
                 )}
               </div>
-              <div>
+              <div className="d-flex flex-column">
                 <div className="d-flex">
                   <Input
                     name="contact"
                     type="number"
                     value={formik.values.contact}
                     id="contact"
-                    style={{ ...inputStyle, marginBottom: "10px" }}
+                    style={{ ...inputStyle}}
                     icon="fa-solid fa-phone"
                     handleChange={formik.handleChange}
                     placeholder="Phone number"
                   />
                 </div>
                 {formik.errors.contact && formik.touched.contact && (
-                  <small className="text-danger ml-2 mx-5 px-4">
+                  <small className="text-danger text-left ml-5 pl-4 mt-2">
                     {formik.errors.contact}
                   </small>
                 )}
                 {contactError && (
-                  <small className="text-danger ml-2 mx-5 px-4">
+                  <small className="text-danger text-left ml-5 pl-4 mt-2">
                     {contactError}
                   </small>
                 )}
               </div>
-              <div
-                className="d-flex flex-column justify-content-center align-items-center"
-                style={{ marginTop: "20px", color: "white" }}
-              >
+              <div className="d-flex flex-column justify-content-center align-items-center" style={{ marginTop: "20px", color: "white" }}>
                 <button
                   type="submit"
                   className="btn"
@@ -234,15 +229,17 @@ export default function SignUp() {
               </div>
             </form>
             <GoogleLoginFunc />
-          </div>
-          <div className="d-flex justify-content-center my-2">
-            <Link className="ml-4" style={{ color: "gray" }} to={"/login"}>
-              Already have an account? <u style={{ color: "#fff" }}>Sign in</u>
-            </Link>
+            <div className="d-flex justify-content-center my-4">
+            <span className="ml-4" style={{ color: "gray", textDecoration: "none"}}>Already have an account?{" "}
+              <u style={{ color: "#fff", cursor: "pointer" }} onClick={() => {navigate("/login")}}>Sign In</u>
+            </span>
           </div>
         </div>
       </div>
-      <button className="signup-close" onClick={() => navigate("/")}>
+      <button
+        className="position-absolute d-flex justify-content-center align-items-center"
+        style={{ height: "36px", width: "36px", border: "solid white 1px", borderRadius: "50%", backgroundColor: "transparent", color: "white", top: "4%", right: "4%"}}
+        onClick={() => {navigate("/");}}>
         &#x2715;
       </button>
     </div>
