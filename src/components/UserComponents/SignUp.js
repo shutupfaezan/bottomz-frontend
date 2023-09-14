@@ -88,14 +88,13 @@ export default function SignUp() {
   };
 
   return (
-    <div className="sign-up-main">
-      <div className="sign-up-left">
+    <div className="d-flex position-relative" style={{ backgroundColor: "#0B0B0B", color: "white", minHeight: "100vh", gap: "60px"}}>
+      <div className="position-relative p-4 d-lg-block d-none m-3" style={{ flex: "0 0 52%", background: `url(${process.env.PUBLIC_URL + "/images/new-signup.png"}) no-repeat center 43%`, backgroundSize: "cover", borderRadius: "20px"}}>
         <img src="./images/LOGO.svg" alt="logo" className="col-lg-4" />
-        <div className="welcome">
-          <h3>Welcome!</h3>
-          <p>
-            Lorem ipsum dolor sit amet consectetur. Malesuada parturient tellus
-            laoreet tristique. Lorem massa augue pharetra augue.
+        <div className="col p-4" style={{ border: "1px solid #ffffff26", borderRadius: "15px", background: "#ffffff1a", backdropFilter: "blur(17px)", position: "sticky", bottom: "0px", top: "69vh", margin: "0 auto 25px"}}>
+          <h2 className="headerFont mt-3">Welcome To The Club!</h2>
+          <p className="m-0 mb-3 " style={{ color: "#ffffff", opacity: "0.6" }}>
+            Its good to see you join us. Create an account to particpate in featured events. Have a great day!
           </p>
         </div>
       </div>
