@@ -3,7 +3,7 @@ import Input from "../../common/Input";
 import { useFormik } from "formik";
 import { useState } from "react";
 import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "../../css/Signup.css";
 import GoogleLoginFunc from "../../common/GoogleLoginFunc";
 import "../../css/Signup.css";
