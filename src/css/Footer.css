@@ -22,7 +22,7 @@ li {
   display: flex;
   flex-direction: column;
   gap: 60px;
-  align-items: start;
+  align-items: flex-start;
   max-width: 600px;
 }
 
@@ -52,7 +52,7 @@ li {
   flex-grow: 1;
   flex-shrink: 0;
   justify-content: space-between;
-  align-items: end;
+  align-items: flex-end;
 }
 
 .footer-right-col {
