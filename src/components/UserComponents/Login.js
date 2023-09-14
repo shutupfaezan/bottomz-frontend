@@ -61,40 +61,10 @@ export default function Login() {
   };
 
   return (
-    <div
-      className="d-flex position-relative"
-      style={{
-        backgroundColor: "#0B0B0B",
-        color: "white",
-        minHeight: "100vh",
-        gap: "60px",
-      }}
-    >
-      <div
-        className="position-relative p-4 d-lg-block d-none"
-        style={{
-          flex: "0 0 52%",
-          background: `url(${
-            process.env.PUBLIC_URL + "/images/new-signup.png"
-          }) no-repeat center 43%`,
-          backgroundSize: "cover",
-          borderRadius: "20px",
-        }}
-      >
+    <div className="d-flex position-relative" style={{ backgroundColor: "#0B0B0B", color: "white", minHeight: "100vh", gap: "60px"}}>
+      <div className="position-relative p-4 d-lg-block d-none m-3" style={{ flex: "0 0 52%", background: `url(${process.env.PUBLIC_URL + "/images/new-signup.png"}) no-repeat center 43%`, backgroundSize: "cover", borderRadius: "20px"}}>
         <img src="./images/LOGO.svg" alt="logo" className="col-lg-4" />
-        <div
-          className="col p-4"
-          style={{
-            border: "1px solid #ffffff26",
-            borderRadius: "15px",
-            background: "#ffffff1a",
-            backdropFilter: "blur(17px)",
-            position: "sticky",
-            bottom: "0px",
-            top: "69vh",
-            margin: "0 auto 25px",
-          }}
-        >
+        <div className="col p-4" style={{ border: "1px solid #ffffff26", borderRadius: "15px", background: "#ffffff1a", backdropFilter: "blur(17px)", position: "sticky", bottom: "0px", top: "69vh", margin: "0 auto 25px"}}>
           <h2 className="headerFont mt-3">WELCOME BACK!</h2>
           <p className="m-0 mb-3 " style={{ color: "#ffffff", opacity: "0.6" }}>
             It's good to see you back. We have multiple events waiting for you,
@@ -212,16 +182,7 @@ export default function Login() {
       </div>
       <button
         className="position-absolute d-flex justify-content-center align-items-center"
-        style={{
-          height: "36px",
-          width: "36px",
-          border: "solid white 1px",
-          borderRadius: "50%",
-          backgroundColor: "transparent",
-          color: "white",
-          top: "4%",
-          right: "4%",
-        }}
+        style={{ height: "36px", width: "36px", border: "solid white 1px", borderRadius: "50%", backgroundColor: "transparent", color: "white", top: "4%", right: "4%"}}
         onClick={() => {navigate("/");}}>
         &#x2715;
       </button>
