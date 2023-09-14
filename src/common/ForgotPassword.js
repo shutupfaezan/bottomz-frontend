@@ -8,7 +8,6 @@ import axios from 'axios';
 export default function ForgotPassword() {
   const [step, setStep] = useState(0);
   const [remainingTime, setRemainingTime] = useState(300); // 5 minutes in seconds
-  const [intervalId, setIntervalId] = useState(null);
   const [timerExpired, setTimerExpired] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
@@ -22,7 +21,7 @@ export default function ForgotPassword() {
     setIsLoading(true);
     setErrorMessage(null);
     try {
-      const response = await axios.post('https://nightlife-2710.herokuapp.com/forgot-password', values);
+      await axios.post('https://nightlife-2710.herokuapp.com/forgot-password', values);
       setIsLoading(false);
       setUserEmail(values.email_id);
       setStep(1);
@@ -72,7 +71,7 @@ export default function ForgotPassword() {
 
     try {
       setErrorMessage(null);
-      const response = await axios.post('https://nightlife-2710.herokuapp.com/verify-otp', { email_id: userEmail, otp: otpValue });
+      await axios.post('https://nightlife-2710.herokuapp.com/verify-otp', { email_id: userEmail, otp: otpValue });
       setIsLoading(false);
       setStep(2);
     } catch (error) {
@@ -193,7 +192,7 @@ export default function ForgotPassword() {
   return (
     <div className="vh-100" style={{ background: '#0B0B0B', height: 'auto' }}>
       <div className="d-flex justify-content-center" style={{height: "100%"}}>
-        <div className="col-lg-8 position-relative my-auto" style={{borderRadius: '20px', height: 'max-content' }}>
+        <div className="col-md-8 position-relative my-auto" style={{borderRadius: '20px', height: 'max-content' }}>
           {/* Stage 1 */}
           {step === 0 && (
             <>
@@ -219,7 +218,6 @@ export default function ForgotPassword() {
                 </>
                 )}
               </Formik>
-
               <div className="text-white mt-4 text-center">
                 <span>
                   Go back to{' '}
@@ -246,20 +244,23 @@ export default function ForgotPassword() {
               <Formik initialValues={otp} onSubmit={handleSecondStepSubmit} validate={validateStep2} validateOnChange={false} validateOnBlur={false}>
                 {(formik) => (
                   <>
+                  <form>
                     <div className="col-lg-6 mx-auto my-3 d-flex flex-column p-1">
                       <div className="d-flex justify-content-space-between">
                         {Array.from({ length: 6 }, (_, i) => (
                           <div className="mx-2" key={i}>
                             <Input
                               id={`digit${i + 1}`}
-                              maxLength={"1"}
+                              maxLength="1" // Limit input length to 1 character
                               placeholder=""
                               style={{ textAlign: "center" }}
                               name={`digit${i + 1}`}
                               value={formik.values[`digit${i + 1}`]}
                               handleChange={(e) => {
-                                formik.handleChange(e);
-                                if (e.target.value !== "") {
+                                // Use a regular expression to allow only numeric input
+                                const newValue = e.target.value.replace(/\D/g, "");
+                                formik.setFieldValue(`digit${i + 1}`, newValue);
+                                if (newValue !== "") {
                                   const nextInput = document.getElementById(`digit${i + 2}`);
                                   if (nextInput) {
                                     nextInput.focus();
@@ -267,15 +268,15 @@ export default function ForgotPassword() {
                                 }
                               }}
                               onKeyDown={(e) => {
-                                if (e.key === 'Backspace') {
-                                  if (formik.values[`digit${i + 1}`] === '') {
+                                if (e.key === "Backspace") {
+                                  if (formik.values[`digit${i + 1}`] === "") {
                                     const prevInput = document.getElementById(`digit${i}`);
                                     if (prevInput) {
-                                      formik.setFieldValue(`digit${i}`, '');
+                                      formik.setFieldValue(`digit${i}`, "");
                                       prevInput.focus();
                                     }
                                   } else {
-                                    formik.setFieldValue(`digit${i + 1}`, '');
+                                    formik.setFieldValue(`digit${i + 1}`, "");
                                   }
                                 }
                               }}
@@ -293,6 +294,7 @@ export default function ForgotPassword() {
                     {isLoading && (<span id="login-loading-text-span">Loading</span>)}
                     {!isLoading && <span id="login-text-span">Verify</span>}
                     </button>
+                  </form>
                   </>
                 )}
               </Formik>
@@ -319,7 +321,7 @@ export default function ForgotPassword() {
                   <h4 className="text-white" style={{ fontWeight: "700" }}>
                   Create New Password
                   </h4>
-                  <p className="my-2 col-lg-6 mx-auto" style={{ fontWeight: "400", color: "rgba(255, 255, 255, 0.7)",}}>
+                  <p className="my-2 col-lg-6 mx-auto px-md-3" style={{ fontWeight: "400", color: "rgba(255, 255, 255, 0.7)",}}>
                   Password must include at least combination of 8 characters, numbers and special character
                   </p>
                 </div>
@@ -355,7 +357,7 @@ export default function ForgotPassword() {
                 <div className="d-flex mx-auto rounded-circle flex-column my-4" style={{width: "120px", height: "120px"}}>
                   <img src={ process.env.PUBLIC_URL + "./images/success.png"} alt="logo" style={{ width: "100%", margin: "0 auto" }}/>
                 </div>
-                <div className='px-md-5 mx-md-5'>
+                <div className='px-lg-5 mx-lg-5'>
                   <h4 className="text-center text-white px-md-5 mx-md-5 mb-md-2 mb-3" style={{fontWeight: "800"}}>Password has been Changed Successfully!</h4>
                   <p className='mx-lg-5 text-center px-md-5 col-lg-10 col-md-11 mx-auto' style={{color: "rgba(255, 255, 255, 0.7)", fontSize: "15px", opacity: "70%"}}>Lorem ipsum dolor sit amet consectetur. Sagittis pellentesque aliquet venenatis vitae. Vulputate ligula ut.</p>
                 </div>
