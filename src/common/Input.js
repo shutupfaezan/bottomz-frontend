@@ -97,7 +97,7 @@ export default function Input(props) {
             color: "gray",
           }}
           onClick={hidePassword}
-          className={eyeInstance ? props.icon3 : props.icon2}
+          className={eyeInstance ? props.icon2 : props.icon3}
         ></i>
       </div>
     </>

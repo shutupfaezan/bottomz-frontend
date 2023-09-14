@@ -202,7 +202,7 @@ export default function ForgotPassword() {
               <div className="d-flex justify-content-center flex-column text-center">
                 <h4 className="text-white" style={{ fontWeight: '700' }}>Forgot Password?</h4>
                 <h6 className="text-white my-2" style={{ fontWeight: '700' }}>No Worries! 😎</h6>
-                <p className="my-2" style={{ fontWeight: '400', color: 'rgba(255, 255, 255, 0.7)' }}>We'll send an otp to this email</p>
+                <p className="my-2" style={{ fontWeight: '400', color: 'rgba(255, 255, 255, 0.7)' }}>We'll send an OTP to this email</p>
               </div>
               <Formik initialValues={{ email_id: '' }} onSubmit={handleFirstStepSubmit} validate={validateStep1} validateOnChange={false} validateOnBlur={false}>
               {formik => (<><div className="col-lg-6 mx-auto my-3">
@@ -251,7 +251,8 @@ export default function ForgotPassword() {
                           <div className="mx-2" key={i}>
                             <Input
                               id={`digit${i + 1}`}
-                              maxLength="1" // Limit input length to 1 character
+                              maxLength="1"
+                              inputMode="numeric"
                               placeholder=""
                               style={{ textAlign: "center" }}
                               name={`digit${i + 1}`}
