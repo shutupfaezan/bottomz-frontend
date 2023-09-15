@@ -1,3 +1,92 @@
-.allclubs:hover{
-    filter: brightness(0.5);
+.allclubs:hover {
+  filter: brightness(0.5);
+}
+
+.all-clubs-hero {
+  height: 100vh;
+  background: black;
+  position: relative;
+  max-height: 685px;
+  border-radius: 20px;
+  overflow: hidden;
+  margin: 10px;
+}
+
+.all-clubs-heading {
+  font-family: "Sora", sans-serif;
+  color: #fff;
+  font-size: 80px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: normal;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.all-clubs-hero-content {
+  color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  font-family: Sora;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 35px; /* 175% */
+  max-width: 770px;
+}
+
+.clubs-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  /* grid-template-rows: repeat(auto-fit, minmax(400px, 480px)); */
+  grid-auto-rows: minmax(400px, 480px);
+  gap: 30px;
+  margin-top: 70px;
+  margin-bottom: 120px;
+  padding: 0 60px;
+}
+
+.club-card {
+  height: 100%;
+  font-family: "Sora", sans-serif;
+}
+
+.club-card-rating {
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  color: white;
+  gap: 10px;
+  padding: 10px 15px;
+  border-radius: 100px;
+  border: 1px solid var(--Stroke, #fff);
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  font-size: 20px;
+}
+
+@media (max-width: 1140px) {
+  .all-clubs-heading {
+    font-size: 30px;
   }
+
+  .all-clubs-hero-content {
+    font-size: 16px;
+  }
+
+  .clubs-grid {
+    grid-template-columns: repeat(2, 1fr);
+    margin-top: 40px;
+    padding: 0 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .all-clubs-hero {
+    margin: 0;
+    border-radius: 0 0 20px 20px;
+  }
+
+  .clubs-grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
