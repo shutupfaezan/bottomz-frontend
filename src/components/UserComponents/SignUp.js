@@ -4,9 +4,7 @@ import { useFormik } from "formik";
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import "../../css/Signup.css";
 import GoogleLoginFunc from "../../common/GoogleLoginFunc";
-import "../../css/Signup.css";
 
 export default function SignUp() {
   const navigate = useNavigate();
