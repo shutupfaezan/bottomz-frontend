@@ -306,3 +306,10 @@ select.QuantityFields option {
 .form-control:focus{
   box-shadow: none !important
 }
+
+.breadcrumb-item+.breadcrumb-item::before {
+  float: left;
+  padding-right: 0.5rem;
+  color: white !important;
+  content: ">" !important;
+}
