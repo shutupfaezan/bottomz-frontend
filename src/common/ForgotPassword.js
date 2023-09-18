@@ -206,7 +206,7 @@ export default function ForgotPassword() {
               </div>
               <Formik initialValues={{ email_id: '' }} onSubmit={handleFirstStepSubmit} validate={validateStep1} validateOnChange={false} validateOnBlur={false}>
               {formik => (<><div className="col-lg-6 mx-auto my-3">
-                  <Input icon="fa-regular fa-envelope" style={inputStyle} placeholder="Email Address" type="email" name="email_id" value={formik.values.email_id} id="email_id" handleChange={formik.handleChange} />
+                  <Input icon="fa-regular fa-envelope" style={{...inputStyle}} placeholder="Email Address" type="email" name="email_id" value={formik.values.email_id} id="email_id" handleChange={formik.handleChange} />
                   {formik.errors.email_id && <div style={{ color: 'red', fontSize: '14px', marginTop: '5px' }}>{formik.errors.email_id}</div>}
                   {errorMessage && <div style={{ color: 'red', fontSize: '14px', marginTop: '5px' }}>{errorMessage}</div>}
                 </div>

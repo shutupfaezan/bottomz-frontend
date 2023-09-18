@@ -20,10 +20,10 @@ export default function GlobalHeader() {
   return (
     <>
       <div
-        className="w-100 mx-md-auto px-3"
+        className="w-100 mx-md-auto px-3 px-md-5"
         style={{ position: "fixed", top: "30px", zIndex: "3", color: "white" }}
       >
-        <nav className="navbar navbar-expand navbar-light align-items-center headerback py-3 py-md-4 px-3 px-lg-5 px-md-3 col-md-11 mx-auto nav-filter-backdrop">
+        <nav className="navbar navbar-expand navbar-light align-items-center headerback py-3 py-md-4 px-3 px-lg-5 px-md-3 col-md-12 mx-auto nav-filter-backdrop">
           <Link
             className=" navbar-brand py-0 d-flex mx-auto logo-modulator"
             style={{ fontWeight: "800" }}

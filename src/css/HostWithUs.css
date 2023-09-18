@@ -1,0 +1,17 @@
+@media screen and (max-width: 900px) and (min-width: 481px) {
+    .ContactCard {
+      height: 500px !important;
+    }
+  }
+@media screen and (max-width: 480px) {
+    .ContactCard {
+      height: 500px;
+    }
+    .topHeading h4{
+        font-size: 1.40rem !important;
+    }
+    .headerHeightModifier{
+      height: 320px !important;
+    }
+  }
+  

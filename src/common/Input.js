@@ -21,23 +21,22 @@ export default function Input(props) {
         key={props.key}
         style={{
           ...props.style,
-          borderBottom:
-            isFocused || props.value
+          borderBottom: props?.style?.borderSelfStyles ? props?.style?.borderSelfStyles :
+            (isFocused || props.value
               ? "1px solid rgba(255, 255, 255)"
-              : "1px solid rgba(255, 255, 255, 0.40)",
+              : "1px solid rgba(255, 255, 255, 0.40)")
         }}
       >
         {props?.icon && (
           <i
             className={props.icon}
             style={{
-              fontSize: "22px",
-              // color: "gray",
+              fontSize: !props.style.fontSize ? "22px" : props?.style?.fontSize,
               marginRight: "5px",
-              color:
-                isFocused || props.value
+              color: !props.style.iconColor ? 
+                (isFocused || props.value
                   ? "rgba(255, 255, 255)"
-                  : "rgba(255, 255, 255, 0.40)",
+                  : "rgba(255, 255, 255, 0.40)") : props.style.iconColor,
             }}
           ></i>
         )}
@@ -79,7 +78,7 @@ export default function Input(props) {
               borderRadius: "0",
               background: "transparent",
               border: "none",
-              color: "rgba(255,255,255, 0.8)",
+              color: props?.style?.color ? props?.style?.color : "rgba(255,255,255, 0.8)",
             }}
             onFocus={() => setIsFocused(true)}
             onBlur={() => setIsFocused(false)}
