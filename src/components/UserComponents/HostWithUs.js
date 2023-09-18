@@ -78,24 +78,26 @@ export default function HostWithUs() {
             </div>
           </div>
         </section>
-        <section className='d-flex flex-column-reverse flex-md-row my-3 my-md-5 pb-5 pt-3 px-md-5'>
-          <div className='p-4 mt-lg-4 mt-lg-4 mt-md-0 pl-md-3 col-lg-4 col-md-6 d-flex flex-column ContactCard' style={{background: "rgba(15, 15, 15, 1)", borderRadius: "20px"}}>
-            <h4 className='text-white px-3' style={{fontWeight: "700"}}>Contact Information</h4>
-            <p className="px-3" style={{fontWeight:  "400", color: "rgba(255, 255, 255, 0.6)"}}>Contact us below to hear back from us.</p>
-            <div className='position-absolute text-white d-flex flex-column px-3' style={{top: "50%", transform: "translateY(-50%)", gap: "15px", fontWeight: "400", fontSize: "14px"}}>
-              <p><i class="fa-solid fa-phone-volume mr-3"></i> 8104217764</p>
-              <p><i class="fa-solid fa-envelope mr-3"></i> info@bottmzup.com</p>
-              <p><i class="fa-solid fa-location-dot mr-3"></i> 201/B, Vaishali Apts, Mazgaon Mumbai-10</p>
-            </div>
-            <div className='d-flex mt-auto  px-3' style={{columnGap: "20px"}}>
-              <span className="d-flex p-2" style={{background: "white", width: "fit-content", borderRadius: "60px"}}><i class="fa-brands fa-instagram" style={{fontSize: "15px"}}></i></span>
-              <span className="d-flex p-2" style={{background: "white", width: "fit-content", borderRadius: "60px"}}><i class="fa-brands fa-linkedin-in" style={{fontSize: "15px"}}></i></span>
-              <span className="d-flex p-2" style={{background: "white", width: "fit-content", borderRadius: "60px"}}><i class="fa-solid fa-envelope" style={{fontSize: "15px"}}></i></span>
-            </div>
-            <img className="position-absolute w-100" style={{bottom: "0", left: "0"}} src={ process.env.PUBLIC_URL + "./images/Contactlines.png"} alt=""></img>
-           <div>
-            <img className="position-absolute"  style={{top: "0", right: "0"}} src={ process.env.PUBLIC_URL + "./images/Ellipse 23058.png"} alt=""></img>
-            <img className="position-absolute"  style={{top: "0", right: "0"}} src={ process.env.PUBLIC_URL + "./images/Ellipse 23057.png"} alt=""></img>
+        <section className='d-flex flex-column-reverse flex-md-row my-3 my-lg-5 my-md-0 pb-lg-5 pb-md-0 pt-3 px-md-4 px-lg-5'>
+          <div className='col-lg-4 col-md-6 p-md-0 ContactCard' >
+            <div className='p-4 mt-lg-4 mt-lg-4 mt-md-0 pl-md-3 d-flex flex-column col' style={{background: "rgba(15, 15, 15, 1)", borderRadius: "20px", height: "100%"}}>
+              <h4 className='text-white px-3' style={{fontWeight: "700"}}>Contact Information</h4>
+              <p className="px-3" style={{fontWeight:  "400", color: "rgba(255, 255, 255, 0.6)"}}>Contact us below to hear back from us.</p>
+              <div className='position-absolute text-white d-flex flex-column px-3' style={{top: "50%", transform: "translateY(-50%)", gap: "15px", fontWeight: "400", fontSize: "14px"}}>
+                <p><i class="fa-solid fa-phone-volume mr-3"></i> 8104217764</p>
+                <p><i class="fa-solid fa-envelope mr-3"></i> info@bottmzup.com</p>
+                <p><i class="fa-solid fa-location-dot mr-3"></i> 201/B, Vaishali Apts, Mazgaon Mumbai-10</p>
+              </div>
+              <div className='d-flex mt-auto  px-3' style={{columnGap: "20px"}}>
+                <span className="d-flex p-2" style={{background: "white", width: "fit-content", borderRadius: "60px"}}><i class="fa-brands fa-instagram" style={{fontSize: "15px"}}></i></span>
+                <span className="d-flex p-2" style={{background: "white", width: "fit-content", borderRadius: "60px"}}><i class="fa-brands fa-linkedin-in" style={{fontSize: "15px"}}></i></span>
+                <span className="d-flex p-2" style={{background: "white", width: "fit-content", borderRadius: "60px"}}><i class="fa-solid fa-envelope" style={{fontSize: "15px"}}></i></span>
+              </div>
+              <img className="position-absolute w-100" style={{bottom: "0", left: "0"}} src={ process.env.PUBLIC_URL + "./images/Contactlines.png"} alt=""></img>
+            <div>
+              <img className="position-absolute"  style={{top: "0", right: "0"}} src={ process.env.PUBLIC_URL + "./images/Ellipse 23058.png"} alt=""></img>
+              <img className="position-absolute"  style={{top: "0", right: "0"}} src={ process.env.PUBLIC_URL + "./images/Ellipse 23057.png"} alt=""></img>
+              </div>
             </div>
           </div>
           <div className='pl-md-5 mt-4 pl-md-3 pl-2 pr-2 col-lg-8 pb-5'>
