@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import RenderClubs from "../UserComponents/RenderClubs";
 import "../../css/AllClubs.css";
+import Footer from "../../common/Footer"
 import Breadcrumbs from '../../extra/Breadcrumb'
 import GlobalHeader from "../../common/GlobalHeader";
 
@@ -46,7 +47,7 @@ export default function AllClubs() {
             </div>
           </div>
           {/* Clubs individual section */}
-          <div className="px-3 px-md-5 py-md-3 p-lg-5 py-xl-5 px-xl-3">
+          <div className="px-3 px-md-5 pt-3 pb-5 p-lg-5 py-xl-5 px-xl-3">
             <div className="d-flex w-100 flex-wrap px-lg-3 px-xl-2">
               {recentClubs?.data?.reverse().filter((val) => {
                   return ( searchTerm === undefined || searchTerm === "" || val.club_name.toLowerCase().includes(searchTerm?.toLowerCase()));})
@@ -58,6 +59,7 @@ export default function AllClubs() {
             </div>
           </div>
         </>
+        <Footer/>
       </div>
     </>
   );
