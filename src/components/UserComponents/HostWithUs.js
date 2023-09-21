@@ -69,7 +69,7 @@ export default function HostWithUs() {
         <GlobalHeader/>
         <section className='position-relative p-1'>
           <div className='mb-4 mb-md-3 d-flex flex-column justify-content-end headerHeightModifier' style={{height: "350px", background: "black", borderRadius: '20px'}}>
-            <div className='position-absolute d-none d-md-block' style={{top: "130px"}}>
+            <div className='position-absolute d-none d-md-block' style={{top: "120px"}}>
                 <Breadcrumbs/>
             </div>
             <div className='text-center mb-5 topHeading'>
