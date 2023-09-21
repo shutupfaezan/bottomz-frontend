@@ -3,12 +3,10 @@ import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import RenderClubs from "../UserComponents/RenderClubs";
 import "../../css/AllClubs.css";
-import "../../css/ClubsRow.css";
+import Breadcrumbs from '../../extra/Breadcrumb'
 import GlobalHeader from "../../common/GlobalHeader";
-import Footer from "../../common/Footer";
 
 export default function AllClubs() {
-  const [loading, setLoading] = useState(true);
   const [searchTerm, setSearhTerm] = useState();
   const [recentClubs, setRecentClubs] = useState();
   const clubList = async () => {
@@ -19,7 +17,6 @@ export default function AllClubs() {
     clubList()
       .then((response) => {
         setRecentClubs(response);
-        setLoading(false);
       })
       .catch((error) => {
         console.log(error);
@@ -28,146 +25,39 @@ export default function AllClubs() {
   return (
     <>
       <div>
-        {loading && (
-          <div className="d-flex justify-content-center mt-auto">
-            <div className="d-flex align-items-center">
-              <span>
-                <img
-                  src={
-                    process.env.PUBLIC_URL + "/images/output-onlinegiftools.gif"
-                  }
-                  style={{
-                    height: "100px",
-                    width: "100px",
-                    transform: "translate(-50%, -50%)",
-                    position: "absolute",
-                    top: "50%",
-                    left: "50%",
-                  }}
-                  alt=""
-                />
-              </span>
+        <>
+          <GlobalHeader />
+          {/* Main Hero Component */}
+          <div className="mb-5 mb-2 mb-md-3 all-clubs-hero">
+            <img src={`${process.env.PUBLIC_URL}/images/hero-img.png`} alt="All clubs background" style={{ height: "100%", width: "100%", position: "absolute", top: "0", left: "0", objectFit: "cover", zIndex: "0"}}/>
+            <div className='position-absolute d-none d-md-block' style={{top: "110px"}}>
+                <Breadcrumbs/>
+            </div>
+            <div className="col-lg-8 all-clubs-hero-textdiv" style={{ position: "absolute", top: "58%", left: "50%", transform: "translate(-50%,-50%)"}}>
+              <h1 className="text-center" style={{lineHeight: "normal", color: "white", textTransform: "uppercase", fontWeight: "800", fontSize: "60px"}}>Explore clubs</h1>
+              <p className="all-clubs-hero-content" style={{fontWeight: "400"}}> These clubs have partnered exclusively with us to bring you events. Select any club to view available events are what they offer.</p>
+            </div>
+            {/* Search Bar Code */}
+            <div className="col-lg-11" style={{ position: "absolute", bottom: "56px", left: "50%", transform: "translateX(-50%)", padding: "0 20px"}}>
+              <form className="position-relative" role="search">
+                <input className="form-control py-4" type="search" style={{ height: "60px", fontSize: "16px", paddingLeft: "66px", borderRadius: "12px", border: "1.5px solid rgba(255, 255, 255, 0.20)", background: "rgba(255, 255, 255, 0.10)", backdropFilter: "blur(32.5px)", color: "white", fontFamily: "Sora, sans-serif"}} onChange={(event) => setSearhTerm(event.target.value)} placeholder="Search clubs by name...." aria-label="Search"/>
+                <i className="bi bi-search" style={{ position: "absolute", left: "20px", borderRadius: "20px", top: "50%", transform: "translateY(-50%)", fontSize: "24px", color: "white"}}></i>
+              </form>
             </div>
           </div>
-        )}
-        {!loading && (
-          <>
-            <GlobalHeader />
-            {/* <div style={{ padding: "10px" }} className="all-clubs-hero-container"> */}
-            <div
-              className="mb-5 mb-2 mb-md-3 all-clubs-hero"
-              // style={{
-              //   height: "100vh",
-              //   background: "black",
-              //   position: "relative",
-              //   maxHeight: "685px",
-              //   borderRadius: "20px",
-              //   overflow: "hidden",
-              // }}
-            >
-              <img
-                src={`${process.env.PUBLIC_URL}/images/clubsHeroBg.jpg`}
-                alt="All clubs background"
-                style={{
-                  height: "100%",
-                  width: "100%",
-                  position: "absolute",
-                  top: "0",
-                  left: "0",
-                  objectFit: "cover",
-                  zIndex: "0",
-                }}
-              />
-              <div
-                style={{
-                  position: "absolute",
-                  top: "50%",
-                  left: "50%",
-                  transform: "translate(-50%,-50%)",
-                }}
-              >
-                <h1 className="all-clubs-heading">Explore clubs</h1>
-                <p className="all-clubs-hero-content">
-                  Lorem ipsum dolor sit amet consectetur. Dui iaculis nibh
-                  ultricies pretium sit semper fusce. Lectus nec ipsum ultrices
-                  facilisi fermentum.
-                </p>
-              </div>
-
-              <div
-                style={{
-                  position: "absolute",
-                  bottom: "56px",
-                  left: "50%",
-                  transform: "translateX(-50%)",
-                  maxWidth: "1220px",
-                  padding: "0 20px",
-                  width: "100%",
-                }}
-              >
-                <form className="position-relative" role="search">
-                  <input
-                    className="form-control py-4"
-                    type="search"
-                    style={{
-                      height: "60px",
-                      fontSize: "20px",
-                      paddingLeft: "66px",
-                      borderRadius: "12px",
-                      border: "1.5px solid rgba(255, 255, 255, 0.20)",
-                      background: "rgba(255, 255, 255, 0.10)",
-                      backdropFilter: "blur(32.5px)",
-                      color: "white",
-                      fontFamily: "Sora, sans-serif",
-                    }}
-                    onChange={(event) => setSearhTerm(event.target.value)}
-                    placeholder="Search for ..."
-                    aria-label="Search"
-                  />
-                  <i
-                    className="bi bi-search"
-                    style={{
-                      position: "absolute",
-                      // float: "left",
-                      left: "20px",
-                      borderRadius: "20px",
-                      top: "50%",
-                      transform: "translateY(-50%)",
-                      // width: "0px",
-                      fontSize: "24px",
-                      color: "white",
-                    }}
-                  ></i>
-                </form>
-              </div>
-            </div>
-            {/* </div> */}
-            {/* <div className={`d-flex px-2 flex-wrap m-xl-5 mb-3 mb-md-5`}> */}
-            <div
-              // className={`px-2 m-xl-5 mb-3 mb-md-5 clubs-grid`}
-              className={`clubs-grid`}
-            >
-              {/* eslint-disable-next-line */}
-              {recentClubs?.data
-                ?.reverse()
-                .filter((val) => {
-                  return (
-                    searchTerm === undefined ||
-                    searchTerm === "" ||
-                    val.club_name
-                      .toLowerCase()
-                      .includes(searchTerm?.toLowerCase())
-                  );
-                })
+          {/* Clubs individual section */}
+          <div className="px-3 px-md-5 py-md-3 p-lg-5 py-xl-5 px-xl-3">
+            <div className="d-flex w-100 flex-wrap px-lg-3 px-xl-2">
+              {recentClubs?.data?.reverse().filter((val) => {
+                  return ( searchTerm === undefined || searchTerm === "" || val.club_name.toLowerCase().includes(searchTerm?.toLowerCase()));})
                 .map((fields, index) => {
                   return (
-                    <RenderClubs key={index} identity={fields}></RenderClubs>
+                      <RenderClubs key={index} identity={fields}></RenderClubs>
                   );
                 })}
             </div>
-            <Footer />
-          </>
-        )}
+          </div>
+        </>
       </div>
     </>
   );
