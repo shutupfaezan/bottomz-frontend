@@ -1,17 +1,41 @@
+.contact-social-icon {
+  background-color: white;
+}
+
+.contact-social-icon:hover {
+  background-color: #f2ef1d;
+}
+
+.contact-ul {
+  /* list-style: none; */
+  list-style-position: outside;
+}
+
+.contact-li {
+  position: relative;
+  /* padding-left: 20px; */
+}
+
+/* .contact-li::before {
+  /* content: "\f058"; */
+/* content: "\001E1F"; */
+/* position: absolute;
+  left: 0; */
+/*} */
+
 @media screen and (max-width: 900px) and (min-width: 481px) {
-    .ContactCard {
-      height: 500px !important;
-    }
+  .ContactCard {
+    height: 500px !important;
   }
+}
 @media screen and (max-width: 480px) {
-    .ContactCard {
-      height: 500px;
-    }
-    .topHeading h4{
-        font-size: 1.40rem !important;
-    }
-    .headerHeightModifier{
-      height: 320px !important;
-    }
+  .ContactCard {
+    height: 500px;
   }
-  
+  .topHeading h4 {
+    font-size: 1.4rem !important;
+  }
+  .headerHeightModifier {
+    height: 320px !important;
+  }
+}
