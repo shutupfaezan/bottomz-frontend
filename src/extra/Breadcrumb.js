@@ -14,7 +14,8 @@ const Breadcrumbs = () => {
           </Link>
         </li>
         {pathnames?.map((name, index) => {
-          const cleanName = name.replace(/-/g, ' ');
+          // Decode URL-encoded characters and replace them with spaces
+          const cleanName = decodeURIComponent(name).replace(/-/g, ' ');
           const routeTo = `/${pathnames.slice(0, index + 1).join('')}`;
           const isLast = index === pathnames.length - 1;
 
@@ -22,8 +23,8 @@ const Breadcrumbs = () => {
             <li
               className={`breadcrumb-item ${isLast ? 'active' : ''}`}
               key={cleanName}
-              style={{ background: 'none', color: 'white', textTransform: "uppercase", fontWeight: "700", fontSize: "16px" }}>
-              {isLast ? cleanName : <Link to={routeTo}>{cleanName}</Link>}
+              style={{ background: 'none', color: 'white', textTransform: "uppercase", fontSize: "16px" }}>
+              {isLast ? cleanName : <Link className='text-white' to={routeTo}>{cleanName}</Link>}
             </li>
           );
         })}
@@ -33,3 +34,4 @@ const Breadcrumbs = () => {
 };
 
 export default Breadcrumbs;
+
