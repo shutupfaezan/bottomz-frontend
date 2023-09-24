@@ -1,5 +1,5 @@
 
-@media (max-width: 760px) {
+/* @media (max-width: 760px) {
    #tickselect tr td:first-child,
   tr td:nth-child(2) {
     display: inline-block;
@@ -10,4 +10,7 @@
     display: block;
     border: none !important
   }
+  } */
+  *{
+  scroll-behavior: smooth
   }
