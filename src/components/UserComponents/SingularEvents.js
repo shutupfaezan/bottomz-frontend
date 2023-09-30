@@ -41,7 +41,7 @@ export default function SingularEvents() {
     
     const findLowestPrice = () => {
       if (!priceData || priceData.length === 0) {
-        return "No prices available";
+        return "No Preview";
       }
 
       let lowestPrice = priceData[0].price;
@@ -54,7 +54,37 @@ export default function SingularEvents() {
   
       return lowestPrice;
     };
-
+    useEffect(() => {
+      const handleScroll = () => {
+        const button = document.querySelector('.bookingSpotButton');
+        const eventContainer = document.querySelector('.eventContainer');
+    
+        if (button && eventContainer) {
+          const scrollY = window.scrollY;
+          const eventContainerHeight = eventContainer.clientHeight;
+    
+          // Adjust this threshold as needed
+          const scrollThreshold = eventContainerHeight * 0.65;
+    
+          if (scrollY > scrollThreshold) {
+            button.classList.add('hidden'); // Add the hidden class
+          } else {
+            button.classList.remove('hidden'); // Remove the hidden class
+          }
+        }
+      };
+    
+      // Attach the scroll event listener
+      window.addEventListener('scroll', handleScroll);
+    
+      // Clean up the listener when the component unmounts
+      return () => {
+        window.removeEventListener('scroll', handleScroll);
+      };
+    }, []);
+    
+    
+    
     return (
       <>
         <div className="p-md-2">
@@ -74,7 +104,7 @@ export default function SingularEvents() {
                   <span className='d-flex align-items-baseline mb-2'><i class="fa-solid fa-location-dot mr-2" style={{fontSize: "20px", color: "white"}}></i><h5 style={{fontWeight: "700", color: "rgba(255, 255, 255, 1)", textTransform: "uppercase"}}>Location</h5></span>
                   <span className='d-flex align-items-baseline pl-4'><p style={{fontWeight: "400", color: "rgba(255, 255, 255, 0.7)", fontSize: "18px"}}><a style={{color: "rgba(255, 255, 255, 0.7)"}} href={"/clubs/"+eventData?.event_venue?.split(',')[0]}>{eventData?.event_venue?.split(',')[0]}</a>, {eventData?.event_venue?.split(',').slice(1).join(', ')}</p></span>
                 </div>
-                <div className='d-flex col-lg-11 px-4 bookingSpotButton py-md-1 py-2' style={{border: "1px solid rgba(255, 255, 255, 0.2)", borderRadius: "20px", background: "rgba(255, 255, 255, 0.1)"}}>
+                <div className='d-flex col-lg-11 px-4 bookingSpotButton py-md-1 py-2' style={{border: "1px solid rgba(255, 255, 255, 0.2)", borderRadius: "20px", background: "rgba(255, 255, 255, 0.1)" }}>
                   <div className='mt-3'>
                     <p className="mb-0 bookingSpotButtonText" style={{fontWeight: "400", color: "rgba(255, 255, 255, 1)", fontSize: "16px"}}>Prices start from</p>
                     <p className="mb-1" style={{fontWeight: "700", color: "rgba(255, 255, 255, 1)", fontSize: "25px"}}>{findLowestPrice() === "0" ? "Free" : findLowestPrice()}</p>
