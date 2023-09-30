@@ -1,22 +1,27 @@
-
-/* @media (max-width: 760px) {
-   #tickselect tr td:first-child,
-  tr td:nth-child(2) {
-    display: inline-block;
-    border-bottom: none !important;
-  }
-  
-  #tickselect tr td:nth-child(3) {
-    display: block;
-    border: none !important
-  }
-  } */
-  *{
+ *{
   scroll-behavior: smooth
+  }
+  @media screen and (min-width: 900px){
+    .eventContainer{
+      height: 600px !important;
+    }
+    .event-img{
+      height: 100% !important;
+    }
   }
   @media screen and (max-width: 900px) and (min-width: 481px) {
     .ContactCard {
       height: 500px !important;
+    }
+    .eventContainer{
+      height: 600px !important;
+    }
+    .col-lg-7 h1{
+      font-size: 40px !important;
+    }
+    .btn{
+      padding:  13px 20px !important;
+      font-size: 14px !important;
     }
   }
   @media screen and (max-width: 480px) {

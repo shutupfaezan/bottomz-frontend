@@ -94,7 +94,7 @@ export default function SingularEvents() {
               <Breadcrumb/>
             </div>
             <div className='d-flex flex-column-reverse flex-md-row position-absolute eventContainer px-md-5' style={{top: "200px", height: "100%", overflow: "hidden"}}>
-              <div className='col-lg-7 px-4 pr-md-0 pl-md-3 mb-5 mb-md-0' style={{height: "100%", overflow: "scroll", scrollBehavior: "smooth"}}>
+              <div className='col-lg-7 col-md-7 px-4 pr-md-0 pl-md-3 mb-5 mb-md-0' style={{height: "100%", overflow: "scroll", scrollBehavior: "smooth"}}>
                 <h1 className='mb-4' style={{fontSize: "60px", fontWeight: "800", color: "rgba(255, 255, 255, 1)", textTransform: "uppercase"}}>{eventData?.event_name}</h1>
                 <div className='mt-5'>
                   <span className='d-flex align-items-baseline mb-2'><i class="fa-solid fa-clock mr-2" style={{fontSize: "20px", color: "white"}}></i><h5 style={{fontWeight: "700", color: "rgba(255, 255, 255, 1)", textTransform: "uppercase"}}>Schedule</h5></span>
@@ -108,7 +108,7 @@ export default function SingularEvents() {
                   <div className='mt-3'>
                     <p className="mb-0 bookingSpotButtonText" style={{fontWeight: "400", color: "rgba(255, 255, 255, 1)", fontSize: "16px"}}>Prices start from</p>
                     <p className="mb-1" style={{fontWeight: "700", color: "rgba(255, 255, 255, 1)", fontSize: "25px"}}>{findLowestPrice() === "0" ? "Free" : findLowestPrice()}</p>
-                    <p className="d-none d-md-block" style={{fontWeight: "400", color: "rgba(255, 255, 255, 1)", fontSize: "12px"}}><span style={{color: "#FF334A"}}>*</span>Price may vary depending on the type of purchase</p>
+                    <p className="d-none d-lg-block" style={{fontWeight: "400", color: "rgba(255, 255, 255, 1)", fontSize: "12px"}}><span style={{color: "#FF334A"}}>*</span>Price may vary depending on the type of purchase</p>
                   </div>
                   <button className='btn btn-primary my-auto ml-auto rounded-pill' style={{height: "fit-content", width: "fit-content", color: "black", background: "white", fontSize: "16px", fontWeight: "700", padding: "15px 25px"}}>Book Your Spot</button>
                 </div>
@@ -124,8 +124,8 @@ export default function SingularEvents() {
                   }
                 </div>
               </div>
-              <div className='col-lg-5 px-4 pt-5 mt-5 pt-md-0 mt-md-0 '>
-                <img className="my-5 my-md-0" style={{width: "100%", borderRadius: "20px", height: "100%"}} src={process.env.PUBLIC_URL + "/images/posterevent.png"} alt="Event Poster"></img>
+              <div className='col-lg-5 col-md-5 px-4 pt-5 mt-5 pt-md-0 mt-md-0 '>
+                <img className="my-5 my-md-0 event-img" style={{width: "100%", borderRadius: "20px", objectFit: "contain"}} src={process.env.PUBLIC_URL + "/images/posterevent.png"} alt="Event Poster"></img>
               </div>
             </div>
           </div>
