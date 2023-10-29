@@ -44,10 +44,9 @@
       const { price } = ticketCategory;
     
       const updatedSelectedTickets = [...selectedTickets];
-      const updatedAttendees = [...attendees];
     
-      // Check if the ticket is already selected
-      const existingTicketIndex = updatedSelectedTickets.findIndex(
+      // Find the index of the selected ticket in the array
+      const selectedTicketIndex = updatedSelectedTickets.findIndex(
         (selectedTicket) =>
           selectedTicket.ticket_category === ticketCategory.ticket_category &&
           selectedTicket.cover_description === ticketCategory.cover_description
@@ -63,41 +62,44 @@
           attendees: Array.from({ length: quantity }, () => ({ attendee_name: "" })),
         };
     
-        if (existingTicketIndex !== -1) {
+        if (selectedTicketIndex !== -1) {
           // Update the existing selected ticket
-          updatedSelectedTickets[existingTicketIndex] = newSelectedTicket;
+          updatedSelectedTickets[selectedTicketIndex] = newSelectedTicket;
         } else {
           // Add the new selected ticket
           updatedSelectedTickets.push(newSelectedTicket);
         }
-    
-        // Update attendees
-        const newAttendees = newSelectedTicket.attendees;
-        updatedAttendees.splice(existingTicketIndex * quantity, quantity, ...newAttendees);
       } else {
         // If quantity is 0, remove the selected ticket
-        if (existingTicketIndex !== -1) {
-          updatedSelectedTickets.splice(existingTicketIndex, 1);
-          updatedAttendees.splice(existingTicketIndex * quantity, quantity);
+        if (selectedTicketIndex !== -1) {
+          updatedSelectedTickets.splice(selectedTicketIndex, 1);
         }
       }
     
-      const anyTicketsSelected = updatedSelectedTickets.length > 0;
-    
-      const totalQuantity = updatedSelectedTickets.reduce(
+      // Calculate the total number of attendees based on the selected tickets
+      const totalAttendees = updatedSelectedTickets.reduce(
         (total, selectedTicket) => total + selectedTicket.quantity,
         0
       );
     
-      if (totalQuantity > 10) {
-        setQuantityError("You cannot select more than 10 tickets.");
+      const anyTicketsSelected = updatedSelectedTickets.length > 0;
+    
+      if (totalAttendees > 10) {
+        setQuantityError("You cannot select more than 10 attendees.");
       } else {
         setQuantityError(null);
       }
     
-      setAttendees(updatedAttendees);
       setSelectedTickets(updatedSelectedTickets);
       setAreTicketsSelected(anyTicketsSelected);
+    
+      // Create a new attendees array based on the selected tickets
+      const updatedAttendees = updatedSelectedTickets.reduce((allAttendees, selectedTicket) => {
+        allAttendees.push(...selectedTicket.attendees);
+        return allAttendees;
+      }, []);
+    
+      setAttendees(updatedAttendees);
     };
     
 
