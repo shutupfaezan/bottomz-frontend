@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import axios from 'axios'
 import { useEffect } from 'react'
 import Footer from "../../common/Footer"
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import GlobalHeader from '../../common/GlobalHeader';
 import "../../css/SingularEvent.css"
 import  Breadcrumb  from '../../extra/Breadcrumb';
@@ -12,7 +12,7 @@ export default function SingularEvents() {
     const params = useParams()
     const [eventData, setEventData] = useState()
     const [priceData, setPriceData] = useState()
-    
+    const navigate = useNavigate()
     const event = async ()=> { return await axios.get(`https://nightlife-2710.herokuapp.com/events/${params.event_name}`)}
     useEffect(() => {
       event()
@@ -110,7 +110,7 @@ export default function SingularEvents() {
                     <p className="mb-1" style={{fontWeight: "700", color: "rgba(255, 255, 255, 1)", fontSize: "25px"}}>{findLowestPrice() === "0" ? "Free" : findLowestPrice()}</p>
                     <p className="d-none d-lg-block" style={{fontWeight: "400", color: "rgba(255, 255, 255, 1)", fontSize: "12px"}}><span style={{color: "#FF334A"}}>*</span>Price may vary depending on the type of purchase</p>
                   </div>
-                  <button className='btn btn-primary my-auto ml-auto rounded-pill' style={{height: "fit-content", width: "fit-content", color: "black", background: "white", fontSize: "16px", fontWeight: "700", padding: "15px 25px"}}>Book Your Spot</button>
+                  <button className='btn btn-primary my-auto ml-auto rounded-pill' style={{height: "fit-content", width: "fit-content", color: "black", background: "white", fontSize: "16px", fontWeight: "700", padding: "15px 25px"}} onClick={()=>{navigate("checkout")}}>Book Your Spot</button>
                 </div>
                 <div className='mt-5 col-lg-11 p-0 px-md-3'>
                   <h5 className="mb-4" style={{fontSize: "25px", fontWeight: "700", color: "white"}}>ABOUT EVENT</h5>

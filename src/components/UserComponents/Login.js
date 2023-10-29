@@ -39,6 +39,8 @@ export default function Login() {
         .then((response) => {
           sessionStorage.setItem("username", response?.data?.User_name);
           sessionStorage.setItem("token", response.data.access_token);
+          navigate(-1)
+          
         })
         .catch((error) => {
           console.log(error);
