@@ -1,199 +1,252 @@
   import axios from 'axios'
-  import React from 'react'
-  import { useNavigate } from 'react-router-dom';
-  import GlobalHeader from '../../common/GlobalHeader'
-  import { useState } from 'react';
-  import {useLocation} from "react-router-dom"
-  import { useEffect } from 'react'
+  import React, { useState, useEffect } from 'react'
   import { useParams } from "react-router-dom";
-  import "react-tooltip/dist/react-tooltip.css";
-  import { Tooltip as ReactTooltip } from "react-tooltip";
-  import Footer from "../../common/Footer"
-  import Modal from 'react-bootstrap/Modal';
-  // import {SingularContext} from '../../contexts/Context';
-  
+  import "../../css/Checkout.css"
+  import Input from "../../common/Input"
+  import {useNavigate} from "react-router-dom"
   
   export default function Checkout() {
-    // const {setOrderId} = useContext(SingularContext);
-    const [updatedCheckoutInfo, setUpdatedCheckoutInfo] = useState()
-    const savedCheckoutInfo = JSON.parse(sessionStorage.getItem('checkoutData'));
-    const [billInfo] = useState(savedCheckoutInfo?.order_details?.filter(item => item?.quantity > 0));
-    const [attendeeInfo] = useState(savedCheckoutInfo?.attendeeValue);
-    const [eventInfo, setEventInfo] = useState()
-    const [error, setError] = useState()
-    const [isLoading, setisLoading] = useState(false);
+    const [eventData, setEventData] = useState()
+    const [quantityError, setQuantityError] = useState()
+    const [attendees, setAttendees] = useState([]);
+    const [ticketData, setTicketsData] = useState()
+    const [areTicketsSelected, setAreTicketsSelected] = useState(false);
+    const [ticketCounts, setTicketCounts] = useState([]);
+    const [isContentVisible, setIsContentVisible] = useState([]);
+    const [selectedTickets, setSelectedTickets] = useState([]);
+    const [checkoutStatus, setCheckoutStatus] = useState(0)
+    const navigate = useNavigate()
     const params = useParams()
-    const location = useLocation();
-    const searchParams = new URLSearchParams(location.search);
-    const subPromoter = searchParams.get('sub_promoter');
+    const bill = async ()=> { return await axios.get(`https://nightlife-2710.herokuapp.com/events/${params?.event_name}`)}
+    useEffect(() => {
+      bill()
+      .then((response) => {
+        setEventData(response?.data?.event_data)
+        setTicketsData(response?.data?.ticket_categories)
+        setTicketCounts(Array(response?.data?.ticket_categories.length).fill(0));
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+      //eslint-disable-next-line
+    }, []);
 
-    console.log(subPromoter)
-      const bill = async ()=> { return await axios.get(`https://nightlife-2710.herokuapp.com/events/${params?.event_name}`)}
-      useEffect(() => {
-        bill().then((response) => {
-          setEventInfo(response?.data?.event_data);
-          const newCheckout = {
-            ...savedCheckoutInfo,
-            request: {
-              "event_name": response?.data?.event_data?.event_name,
-              "event_venue": response?.data?.event_data?.event_venue,
-              "timings": response?.data?.event_data?.timings,
-              "date": response?.data?.event_data?.date,
-              "images_url": response?.data?.event_data?.images_url
-            }
-          };
-          setUpdatedCheckoutInfo(newCheckout)
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-        // eslint-disable-next-line
-      }, [])
+    const inputStyle = {
+      display: "flex",
+      padding: "8px 20px",
+      gap: "12px",
+      width: "100%",
+      borderSelfStyles: "1px solid rgba(0, 0, 0, 0.4)",
+    };
 
-      const date = new Date(eventInfo?.date);
-      const day = date.getDate();
-      const month = date.toLocaleString('default', { month: 'long' });
-      const year = date.toLocaleString('default', { year: 'numeric' });
-      const formattedDate = `${day} ${month} ${year}`;
-      const navigate = useNavigate()
-      let sum = 0
-      for (var i = 0; i < billInfo?.length; i++) {
-        sum += parseInt(billInfo?.[i]?.total_price);
+
+    const addSelectedTicket = (ticketCategory, quantity) => {
+      const { price } = ticketCategory;
+      const updatedSelectedTickets = [...selectedTickets];
+    
+      if (quantity > 0) {
+        const newSelectedTicket = {
+          ticket_category: ticketCategory.ticket_category,
+          cover_description: ticketCategory.cover_description,
+          quantity,
+          description: ticketCategory.description,
+          total_price: quantity * price,
+        };
+    
+        const updatedAttendees = [...attendees];
+        if (checkoutStatus === 1) {
+          for (let i = 0; i < quantity; i++) {
+            updatedAttendees.push({
+              attendee_name: "",
+            });
+          }
+        }
+    
+        // Check if the same ticket category already exists in the selected tickets array
+        const existingTicketIndex = updatedSelectedTickets.findIndex(
+          (selectedTicket) =>
+            selectedTicket.ticket_category === ticketCategory.ticket_category &&
+            selectedTicket.cover_description === ticketCategory.cover_description
+        );
+    
+        if (existingTicketIndex !== -1) {
+          updatedSelectedTickets[existingTicketIndex] = newSelectedTicket;
+        } else {
+          updatedSelectedTickets.push(newSelectedTicket);
+        }
+    
+        const anyTicketsSelected = updatedSelectedTickets.length > 0;
+    
+        setAreTicketsSelected(anyTicketsSelected);
+    
+        const totalQuantity = updatedSelectedTickets.reduce(
+          (total, selectedTicket) => total + selectedTicket.quantity,
+          0
+        );
+    
+        if (totalQuantity > 10) {
+          setQuantityError("You cannot select more than 10 tickets.");
+        } else {
+          setQuantityError(null);
+        }
+    
+        setSelectedTickets(updatedSelectedTickets);
+        setAttendees(updatedAttendees);
       }
-      // const paymentObj ={
-      //   access_token: sessionStorage?.token,
-      //   purpose: eventInfo?.event_name,
-      //   amount: sum
-      // }
-    // function paymentsCreate(){
-    //   axios.post(`https://nightlife-2710.herokuapp.com/payments/create`, paymentObj)
-    //   .then((response)=>{
-    //     window.location.href = response?.data?.[0];
-    //   })
-    // }
+    };
+    
+    const calculateTotalAmount = () => {
+      const totalAmount = selectedTickets.reduce((total, selectedTicket) => {
+        return total + selectedTicket.total_price;
+      }, 0);
+      return totalAmount;
+    };
+    console.log("attendees", attendees)
+    console.log("Selected tickets", selectedTickets)
+    const incrementCount = (index) => {
+      const newTicketCounts = [...ticketCounts];
+      newTicketCounts[index] += 1;
+      setTicketCounts(newTicketCounts);
+    };
+  
 
+    const decrementCount = (index) => {
+      if (ticketCounts[index] > 0) {
+        const newTicketCounts = [...ticketCounts];
+        newTicketCounts[index] -= 1;
+        setTicketCounts(newTicketCounts);
+      }
+    };
 
+    const toggleContentVisibility = (index) => {
+      const newIsContentVisible = [...isContentVisible];
+      newIsContentVisible[index] = !newIsContentVisible[index];
+      setIsContentVisible(newIsContentVisible);
+    };
 
+    const formatDate = (dateStr) => {
+      if (!dateStr) {
+        return "No date available";
+      }
+      const [year, month, day] = dateStr.split("-");
+      const date = new Date(year, month - 1, day);
+      const options = { month: "short", day: "numeric", year: "numeric" };
+      const formattedDate = date.toLocaleDateString("en-US", options);
+      // const weekday = date.toLocaleDateString("en-US", { weekday: "long" });
+      return `${formattedDate}`;
+    };
 
-    function CreateOrder(){
-      setError(false)
-      setisLoading(true)
-      axios.post(`https://nightlife-2710.herokuapp.com/orders?sub_promoter=${subPromoter}&access_token=${sessionStorage.token}`, updatedCheckoutInfo)
-      .then((response)=>{
-        setisLoading(false)
-        sessionStorage.setItem('order_id', response?.data)
-        navigate(`/events/${params.event_name}/confirmation`)
-      })
-      .catch((error)=>{
-        setisLoading(false)
-        console.log(error)
-        setError(error?.response?.data?.detail)
-      })
-    }
     return (
       <>
-      { isLoading && (
-        <Modal className='d-flex align-items-center justify-content-center' centered show={true}>
-          <div className='d-flex align-items-center justify-content-center'>
-          <img src={process.env.PUBLIC_URL + "/images/output-onlinegiftools.gif"} style={{height: '100px', width: "100px"}} alt=""/>
+      <div className='p-2'>
+        <div className='w-100' style={{background: "#0F0F0F", height: "900px", borderRadius: "20px", color: "white"}}>
+          <div className='d-flex align-items-center p-4'>
+            <span className="rounded-pill align-items-center d-flex justify-content-center" style={{border: "2px solid white", width: "40px", height: "40px"}}>
+              <i className="bi bi-arrow-left" style={{fontSize: "20"}}></i>
+            </span>
+            <p className='m-0 ml-3' style={{fontWeight: "700", fontSize: "18px"}}>CHECKOUT</p>
           </div>
-        </Modal>
-      )} 
-      <div>
-        <GlobalHeader/>
-        <div className='mb-5 mb-2 mb-md-3' style={{height: "200px", background: "black"}}>
-        <div className='d-flex justify-content-center align-items-center flex-md-row flex-column px-5 mx-lg-4 mx-md-2' style={{height: "100%"}}>
-          <div className='primary-header ml-2' style={{color: "transparent", WebkitTextStroke: "1px white", fontSize: "40px"}}>Check</div>
-          <div className='primary-header ml-2 text-white' style={{fontSize: "40px"}}>Out</div>
-        </div>
-        </div>
-        <h1 className='primary-header px-lg-5 mx-3 my-md-4 my-5 mpt-lg-5'>Choose your mode of payment</h1>
-        <div className="px-lg-5 py-lg-3 mx-md-3 mx-lg-0 d-flex flex-column flex-lg-row">
-          <div className='col-lg-7 mb-5 mb-lg-0 order-2 order-lg-0 mr-auto'>
-            <div className=' mt-lg-0'>
-              <div>
-                <div className="form-check d-flex align-items-center py-3 p-md-3 mb-4"  style={{border: "2px solid black", borderRadius: "10px", boxShadow: "7px 7px #E8EBEE"}}>
-                  <input className="form-check-input mr-4 align-self-center my-1" style={{border: "5px solid gray"}} type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked={true}/>
-                  <div className='d-flex flex-column'>
-                  <label className="form-check-label mb-2" htmlFor="flexRadioDefault1">
-                      Pay at Venue
-                  </label>
-                  <p  className="mb-1" style={{fontWeight: "100", fontSize: "14px"}}>Usually used for larger amounts and table bookings</p>
+          <div className='d-flex justify-content-center' style={{gap: "15px"}}>
+          <div className='d-flex justify-content-center align-items-center' style={{ gap: "15px" }}>
+            <div className='d-flex flex-column align-items-center'><span className="rounded-pill align-items-center d-flex justify-content-center" style={{ border: checkoutStatus === 0 ? "none" : "2px solid white", width: "50px", height: "50px", background: checkoutStatus === 0 ? "#F2EF1D" : "transparent", color: checkoutStatus === 0 ? "black" : "white", fontWeight: "600"}}>1</span><p className='mt-3 mb-0' style={{fontSize: '14px', color: checkoutStatus === 0 ? "#F2EF1D" : "white"}}>Event Tickets</p></div>
+            <div className="dashed-line" style={{borderTop: "3px dashed #8F8F8F", flexGrow: "1", margin: "0 5px", width: "50px"}}></div>
+            <div className='d-flex flex-column align-items-center'><span className="rounded-pill align-items-center d-flex justify-content-center" style={{ border: checkoutStatus === 1 ? "none" : "2px solid white", width: "50px", height: "50px", background: checkoutStatus === 1 ? "#F2EF1D" : "transparent", color: checkoutStatus === 1 ? "black" : "white", fontWeight: "600"}}>2</span><p className='mt-3 mb-0' style={{fontSize: '14px', color: checkoutStatus === 1 ? "#F2EF1D" : "white"}}>Attendees</p></div>
+            <div className="dashed-line" style={{borderTop: "3px dashed #8F8F8F", flexGrow: "1", margin: "0 5px", width: "50px"}}></div>
+            <div className='d-flex flex-column align-items-center'><span className="rounded-pill align-items-center d-flex justify-content-center" style={{ border: checkoutStatus === 2 ? "none" : "2px solid white", width: "50px", height: "50px", background: checkoutStatus === 2 ? "#F2EF1D" : "transparent", color: checkoutStatus === 2 ? "black" : "white", fontWeight: "600"}}>3</span><p className='mt-3 mb-0' style={{fontSize: '14px', color: checkoutStatus === 2 ? "#F2EF1D" : "white"}}>Payment</p></div>
+            <div className="dashed-line" style={{borderTop: "3px dashed #8F8F8F", flexGrow: "1", margin: "0 5px", width: "50px"}}></div>
+            <div className='d-flex flex-column align-items-center'><span className="rounded-pill align-items-center d-flex justify-content-center" style={{ border: checkoutStatus === 3 ? "none" : "2px solid white", width: "50px", height: "50px", background: checkoutStatus === 3 ? "#F2EF1D" : "transparent", color: checkoutStatus === 3 ? "black" : "white", fontWeight: "600"}}>4</span><p className='mt-3 mb-0' style={{fontSize: '14px', color: checkoutStatus === 3 ? "#F2EF1D" : "white"}}>Confirmation</p></div>
+          </div>
+          </div>
+          <div className='d-flex mt-5 pt-5 px-5'>
+            <div className="pr-1 col-lg-6">
+              <div className='p-0 d-flex'>
+                  <img className="col-lg-5 p-0" style={{height: "215px", width: "215px", objectFit: "cover", borderRadius: "15px"}} src={process.env.PUBLIC_URL + "/images/posterevent.png"} alt=""/>
+                  <div className='pl-4 py-2 col-lg-7 pl-0'>
+                    <h3 className="" style={{fontWeight: "800", color: "rgba(255, 255, 255, 1)", textTransform: "uppercase"}}>{eventData?.event_name.slice(0,26)}</h3>
+                    <div className='d-flex align-items-baseline mt-4'><p className='mb-2' style={{fontWeight: "400", color: "rgba(255, 255, 255, 0.7)", fontSize: "16px"}}><i className="fa-regular fa-calendar mr-2" style={{fontSize: "20px"}}></i>{formatDate(eventData?.date)} | {eventData?.timings}</p></div>
+                    <div className='d-flex align-items-baseline mt-2'><p className='mb-0' style={{fontWeight: "400", color: "rgba(255, 255, 255, 0.7)", fontSize: "16px"}}><i className="fa-solid fa-location-dot mr-2" style={{fontSize: "20px"}}></i>{eventData?.event_venue}</p></div>
                   </div>
-                </div>
-                <div className="form-check d-flex align-items-center py-3 p-md-3" id="payNow" style={{border: "2px solid black", borderRadius: "10px", boxShadow: "7px 7px #E8EBEE"}}>
-                  <input className="form-check-input mr-4 align-self-center my-1" style={{border: "5px solid gray"}} type="radio" name="flexRadioDefault" id="flexRadioDefault1" disabled={true} data-toggle="tooltip" title="Pay at club"/>
-                  <div className='d-flex flex-column'>
-                  <label className="form-check-label mb-2" htmlFor="flexRadioDefault1">
-                      Pay now
-                  </label>
-                  <p  className="mb-1"  style={{fontWeight: "100", fontSize: "14px"}}>If its a small amount, might as well just pay now and be reserved.</p>
-                  </div>
-                </div>
-                <ReactTooltip
-                  anchorId="payNow"
-                  place="bottom"
-                  content="Pay Now is not available for this event"
-                />
-                <p className="ml-2 mt-4" style={{fontSize: "15px"}}>*Pay at Venue does not guarantee entry as such events function as a first come first serve basis.</p>
               </div>
+              {checkoutStatus === 0 && <div className="form-check mt-4 w-100 d-flex align-items-center px-1">
+                <input className="form-check-input" type="checkbox" value="" style={{border: "1px solid white"}}/>
+                <p className="form-check-label ml-2" style={{fontSize: "14px"}}>By clicking you agree to the terms and conditions waiver</p>
+              </div>}
             </div>
-              <h2 className='primary-header ml-2'>Attendee List</h2>
-            <div className='card mt-lg-0 col-lg-10 col p-md-4 p-2' style={{border: "none", borderRadius: "10px", background: "#F4F6F6"}}>
-          <table className="table">
-          <thead>
-            <tr className="" style={{background: "black", color: "white"}}>
-              <th  scope="col" style={{border: "none", borderTopLeftRadius: "10px", borderBottomLeftRadius: "10px"}}>No.</th>
-              <th  scope="col" style={{border: "none", borderTopRightRadius: "10px", borderBottomRightRadius: "10px"}}>Name</th>
-            </tr>
-            </thead> 
-              <tbody>
-              {attendeeInfo?.map((identity, fields)=>{
-            return <><tr >
-            <th style={{border: "none"}} scope="row">{fields + 1}</th>
-            <td>{identity?.attendee_name}</td>
-          </tr></>
-            })}
-              </tbody>
-            </table>
-            </div>
-          </div>
-          <div className='col-lg-4 mb-4 mb-lg-0 px-4 px-mb-2' style={{order: "3"}}>
-            <div className="card p-3" style={{ border: "2px  solid black", borderRadius: "10px"}}>
-            <div className="d-flex w-100 pb-3 mb-3" style={{width: "24rem", borderBottom: "1px solid #E8EBEE"}}>
-            <div className='col-3 p-0'>
-            <img className="align-self-center" style={{width: "70px", height: "70px", borderRadius: "10px"}} src={eventInfo?.images_url} alt="Club"/>
-            </div>
-            <div className="d-flex flex-column ml-2">
-              <p className="m-0 mb-2 primary-header" style={{fontSize: "15px", fontWeight: '400'}}>{eventInfo?.event_name}</p>
-              <div className='d-flex align-items-start' style={{fontSize: "14px", fontWeight: "100"}}><i className="bi bi-geo-alt-fill mr-1"></i><p className='m-0' style={{fontSize: "11px", fontWeight: "400"}}>{eventInfo?.event_venue}</p></div>
-              <div className='d-flex align-items-start' style={{fontSize: "14px", fontWeight: "100"}}><i className="bi bi-calendar mr-1"></i><p className='m-0' style={{fontSize: "11px", fontWeight: "400"}}>{eventInfo?.timings?.slice(0,9)}. {formattedDate}</p></div>
-            </div>
-            </div>
-            <div>
-              <p className='primary-header' style={{fontSize: "18px", fontWeight: "400"}}>Price Info</p>
-              {billInfo?.map((identity, fields)=>{
-                return  <div className='d-flex align-items-center mb-2 pb-3' key={fields} style={{borderBottom: "1px solid #E8EBEE"}}><div className='d-flex flex-column'><p className='m-0'>{identity.ticket_categories}<small className='ml-1' style={{fontSize: "11px", color: "crimson"}}>{identity.quantity}x{identity.total_price/identity.quantity}</small></p>
-                <p className='m-0' style={{fontWeight: "100", fontSize: "12px"}}>{identity.description}</p></div>
-                <div className='ml-auto mr-4' style={{fontSize: "20px", color: "crimson"}}>₹{identity.total_price}</div></div>
-              })}
-              <div className='d-flex align-items-center mb-2 pb-3' style={{borderBottom: "1px solid #E8EBEE"}}><div className='d-flex flex-column'><p className='m-0'>TGST</p>
-                <p className='m-0' style={{fontWeight: "100", fontSize: "12px"}}>CGST + SGST</p></div>
-                <div className='ml-auto mr-4' style={{fontSize: "20px", color: "crimson"}}>₹0</div></div>
-            </div>
-            <div className='d-flex align-items-center mb-2 p-3' style={{background: "#F6F7F8", borderRadius: "10px"}}>
-              <p className='m-0 d-flex flex-column'>Total<small style={{fontSize: "12px", fontWeight: "100"}}>Payable Amount</small></p>
-              <div className='ml-auto mr-2' style={{fontSize: "20px"}}>₹{sum}</div>
-            </div>
-            <button onClick={CreateOrder} className='btn col-lg-12 mt-2 text-white' style={{background: "black", borderRadius: "10px"}}>
-              <span>Pay Now</span>
-            </button>
-            </div>
-            <p className='px-3 mt-2' style={{fontSize: '13px'}}>*By clicking "Pay Now" you agree with the terms and condition set by us. <a href="https://bottmzup.com/terms-and-conditions">View</a></p>
-            {error && <small className='px-3 text-danger'>{error}</small>}
+            {checkoutStatus === 0 && <div className='col-lg-6 px-5'>
+              <div className='col p-3' style={{background: "white", color: "black", borderRadius: "15px"}}>
+                <div style={{background: "#F7F7F7", border: "1px solid rgba(0, 0, 0, 0.10)", borderRadius: "15px"}}>
+                  {ticketData?.map((ticketCategory, index) => (
+                    <>
+                      {index !== 0 && <hr className='mx-auto' style={{width: "90%", background: "rgba(0, 0, 0, 0.20)", height: "1px"}}/>}
+                      <div className='py-3 px-4 d-flex' key={index}>
+                        <div>
+                          <p className="mb-0" style={{fontWeight: "600"}}>{ticketCategory?.ticket_category} <i className="fa-solid fa-chevron-down ml-1" style={{fontSize: "14px"}}  onClick={() => toggleContentVisibility(index)}></i></p>
+                          {isContentVisible[index] && <span className="mb-0" style={{fontWeight: "100", color: "rgba(0, 0, 0, 0.60)", fontSize: "12px"}}>{ticketCategory?.cover_description}</span>}
+                          <p className="mt-1 mb-0" style={{fontWeight: "600"}}>{ticketCategory?.price === "0" ? "FREE" : "₹" + ticketCategory?.price}</p>
+                        </div>
+                        <div className='ml-auto d-flex' style={{background: "#000000", color: "white", borderRadius: "12px", justifyContent: "center", alignItems: "center", height: "50px", alignSelf: "center"}}>
+                        <div><i className="fa-solid fa-minus pl-4 pr-3" onClick={() => { decrementCount(index); addSelectedTicket(ticketCategory, ticketCounts[index] - 1);}}></i><span className=''>{ticketCounts[index]}</span><i className="fa-solid fa-plus pr-4 pl-3" onClick={() => { incrementCount(index); addSelectedTicket(ticketCategory, ticketCounts[index] + 1);}}></i></div>
+                        </div>
+                      </div>
+                    </>
+                  ))}
+                </div>
+                <div className="mt-3" style={{background: "#F7F7F7", border: "1px solid rgba(0, 0, 0, 0.10)", borderRadius: "15px"}}>
+                  <div className='py-3 px-4 d-flex'>
+                    <div>
+                      <p className="mb-0" style={{fontWeight: "400"}}>Total</p>
+                      <p className="mb-0" style={{fontWeight: "700", fontSize: "25px", color: "#646464"}}>₹ {calculateTotalAmount().toFixed(2)}</p>
+                    </div>
+                    <div className='ml-auto my-auto'>
+                    <button className="btn rounded-pill" onClick={()=>{setCheckoutStatus(1)}} style={{ background: "black", color: "white", fontWeight: "600", padding: "12px 30px"}} disabled={!areTicketsSelected}>Book Your Spot <i className="fa-solid fa-arrow-right ml-2"></i></button></div>
+                  </div>
+                </div>
+              </div>
+                {quantityError && <p className="error-message text-center mt-3 text-danger">{quantityError}</p>}
+            </div>}
+            {checkoutStatus === 1 && (
+              <div className="col-lg-6 px-5">
+                <div className="col px-3 py-4" style={{ background: "white", color: "black", borderRadius: "15px" }}>
+                  <h5 style={{ fontWeight: "800", color: "black", textTransform: "uppercase", lineHeight: "35px" }}>
+                    Quite the list. Who’s attending?
+                  </h5>
+                  <p style={{ fontWeight: "400", color: "rgba(0, 0, 0, 0.60)", fontSize: "15px" }}>
+                    These names will be included in the ticket and can’t be changed later
+                  </p>
+                  <div  className="p-3" style={{ background: "#F7F7F7", border: "1px solid rgba(0, 0, 0, 0.10)", borderRadius: "15px" }}>
+                    {selectedTickets?.map((ticket, index) => (
+                      <div key={index} className="mb-3">
+                        <p style={{ fontWeight: "600" }}>{ticket.ticket_category}<span className='p-2'>({ticket.quantity})</span></p>
+                        {Array.from({ length: ticket.quantity }).map((_, i) => (
+                          <div key={i} className="mb-3">
+                            <Input type="text" icon="fa-regular fa-user" style={{ ...inputStyle, color: "black", iconColor: "rgba(0, 0, 0, 0.4)", fontSize: "14px"}} placeholder="Enter Attendee Full Name"  handleChange={(e) => {
+            const updatedAttendees = [...attendees];
+            if (updatedAttendees[index]) {
+              // Update the attendee name for the corresponding ticket category and index
+              updatedAttendees[index].attendee_name = e.target.value;
+            }
+            setAttendees(updatedAttendees);
+          }}/>
+                          </div>
+                        ))}
+                      </div>
+                    ))}
+                  </div>
+                <div className="mt-3" style={{background: "#F7F7F7", border: "1px solid rgba(0, 0, 0, 0.10)", borderRadius: "15px"}}>
+                  <div className='py-3 px-4 d-flex'>
+                    <div className='my-auto col-lg-6 px-0 pr-1'>
+                      <button className="btn rounded-pill col" onClick={()=>{navigate("/")}} style={{ background: "rgba(255, 51, 74, 0.10)", color: "#FF334A", fontWeight: "600", padding: "12px 30px"}} disabled={!areTicketsSelected}>Cancel</button>
+                    </div>
+                    <div className='my-auto col-lg-6 px-0 pl-2'>
+                      <button className="btn rounded-pill col" onClick={()=>{setCheckoutStatus(2)}} style={{ background: "black", color: "white", fontWeight: "600", padding: "12px 30px"}} disabled={!areTicketsSelected}>Next <i className="fa-solid fa-arrow-right ml-2"></i></button>
+                    </div>
+                  </div>
+                </div>
+                </div>
+              </div>
+            )}
           </div>
         </div>
-        <Footer/>
       </div>
       </>
     )
