@@ -41,65 +41,65 @@
 
 
     const addSelectedTicket = (ticketCategory, quantity) => {
-  const { price } = ticketCategory;
-  const updatedSelectedTickets = [...selectedTickets];
-  const updatedAttendees = [...attendees];
-
-  if (quantity > 0) {
-    const newSelectedTicket = {
-      ticket_category: ticketCategory.ticket_category,
-      cover_description: ticketCategory.cover_description,
-      quantity,
-      description: ticketCategory.description,
-      total_price: quantity * price,
-      attendees: Array.from({ length: quantity }, () => ({ attendee_name: "" })),
+      const { price } = ticketCategory;
+    
+      const updatedSelectedTickets = [...selectedTickets];
+      const updatedAttendees = [...attendees];
+    
+      // Check if the ticket is already selected
+      const existingTicketIndex = updatedSelectedTickets.findIndex(
+        (selectedTicket) =>
+          selectedTicket.ticket_category === ticketCategory.ticket_category &&
+          selectedTicket.cover_description === ticketCategory.cover_description
+      );
+    
+      if (quantity > 0) {
+        const newSelectedTicket = {
+          ticket_category: ticketCategory.ticket_category,
+          cover_description: ticketCategory.cover_description,
+          quantity,
+          description: ticketCategory.description,
+          total_price: quantity * price,
+          attendees: Array.from({ length: quantity }, () => ({ attendee_name: "" })),
+        };
+    
+        if (existingTicketIndex !== -1) {
+          // Update the existing selected ticket
+          updatedSelectedTickets[existingTicketIndex] = newSelectedTicket;
+        } else {
+          // Add the new selected ticket
+          updatedSelectedTickets.push(newSelectedTicket);
+        }
+    
+        // Update attendees
+        const newAttendees = newSelectedTicket.attendees;
+        updatedAttendees.splice(existingTicketIndex * quantity, quantity, ...newAttendees);
+      } else {
+        // If quantity is 0, remove the selected ticket
+        if (existingTicketIndex !== -1) {
+          updatedSelectedTickets.splice(existingTicketIndex, 1);
+          updatedAttendees.splice(existingTicketIndex * quantity, quantity);
+        }
+      }
+    
+      const anyTicketsSelected = updatedSelectedTickets.length > 0;
+    
+      const totalQuantity = updatedSelectedTickets.reduce(
+        (total, selectedTicket) => total + selectedTicket.quantity,
+        0
+      );
+    
+      if (totalQuantity > 10) {
+        setQuantityError("You cannot select more than 10 tickets.");
+      } else {
+        setQuantityError(null);
+      }
+    
+      setAttendees(updatedAttendees);
+      setSelectedTickets(updatedSelectedTickets);
+      setAreTicketsSelected(anyTicketsSelected);
     };
-
-    // Update the selected tickets
-    const existingTicketIndex = updatedSelectedTickets.findIndex(
-      (selectedTicket) =>
-        selectedTicket.ticket_category === ticketCategory.ticket_category &&
-        selectedTicket.cover_description === ticketCategory.cover_description
-    );
-
-    if (existingTicketIndex !== -1) {
-      updatedSelectedTickets[existingTicketIndex] = newSelectedTicket;
-    } else {
-      updatedSelectedTickets.push(newSelectedTicket);
-    }
-
-    updatedAttendees.push(...newSelectedTicket.attendees);
-  } else {
-    // If quantity is 0, remove the selected ticket
-    const existingTicketIndex = updatedSelectedTickets.findIndex(
-      (selectedTicket) =>
-        selectedTicket.ticket_category === ticketCategory.ticket_category &&
-        selectedTicket.cover_description === ticketCategory.cover_description
-    );
-
-    if (existingTicketIndex !== -1) {
-      updatedSelectedTickets.splice(existingTicketIndex, 1);
-    }
-  }
-
-  const anyTicketsSelected = updatedSelectedTickets.length > 0;
-
-  setAreTicketsSelected(anyTicketsSelected);
-
-  const totalQuantity = updatedSelectedTickets.reduce(
-    (total, selectedTicket) => total + selectedTicket.quantity,
-    0
-  );
-
-  if (totalQuantity > 10) {
-    setQuantityError("You cannot select more than 10 tickets.");
-  } else {
-    setQuantityError(null);
-  }
-
-  setAttendees(updatedAttendees);
-  setSelectedTickets(updatedSelectedTickets);
-};
+    
 
     const calculateTotalAmount = () => {
       const totalAmount = selectedTickets.reduce((total, selectedTicket) => {
