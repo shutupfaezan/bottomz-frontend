@@ -45,7 +45,6 @@
     
       const updatedSelectedTickets = [...selectedTickets];
     
-      // Find the index of the selected ticket in the array
       const selectedTicketIndex = updatedSelectedTickets.findIndex(
         (selectedTicket) =>
           selectedTicket.ticket_category === ticketCategory.ticket_category &&
@@ -63,20 +62,16 @@
         };
     
         if (selectedTicketIndex !== -1) {
-          // Update the existing selected ticket
           updatedSelectedTickets[selectedTicketIndex] = newSelectedTicket;
         } else {
-          // Add the new selected ticket
           updatedSelectedTickets.push(newSelectedTicket);
         }
       } else {
-        // If quantity is 0, remove the selected ticket
         if (selectedTicketIndex !== -1) {
           updatedSelectedTickets.splice(selectedTicketIndex, 1);
         }
       }
     
-      // Calculate the total number of attendees based on the selected tickets
       const totalAttendees = updatedSelectedTickets.reduce(
         (total, selectedTicket) => total + selectedTicket.quantity,
         0
@@ -93,11 +88,12 @@
       setSelectedTickets(updatedSelectedTickets);
       setAreTicketsSelected(anyTicketsSelected);
     
-      // Create a new attendees array based on the selected tickets
-      const updatedAttendees = updatedSelectedTickets.reduce((allAttendees, selectedTicket) => {
-        allAttendees.push(...selectedTicket.attendees);
-        return allAttendees;
-      }, []);
+      const updatedAttendees = [];
+      updatedSelectedTickets.forEach((selectedTicket) => {
+        selectedTicket.attendees.forEach((attendee) => {
+          updatedAttendees.push(attendee);
+        });
+      });
     
       setAttendees(updatedAttendees);
     };
@@ -125,7 +121,6 @@
         setTicketCounts(newTicketCounts);
         addSelectedTicket(ticketData[index], newTicketCounts[index]);
       } else {
-        // If the count is already 0, remove the selected ticket
         addSelectedTicket(ticketData[index], 0);
       }
     };
@@ -144,7 +139,6 @@
       const date = new Date(year, month - 1, day);
       const options = { month: "short", day: "numeric", year: "numeric" };
       const formattedDate = date.toLocaleDateString("en-US", options);
-      // const weekday = date.toLocaleDateString("en-US", { weekday: "long" });
       return `${formattedDate}`;
     };
 
@@ -231,14 +225,16 @@
                         <p style={{ fontWeight: "600" }}>{ticket.ticket_category}<span className='p-2'>({ticket.quantity})</span></p>
                         {Array.from({ length: ticket.quantity }).map((_, i) => (
                           <div key={i} className="mb-3">
-                            <Input type="text" icon="fa-regular fa-user" style={{ ...inputStyle, color: "black", iconColor: "rgba(0, 0, 0, 0.4)", fontSize: "14px"}} placeholder="Enter Attendee Full Name"  handleChange={(e) => {
-            const updatedAttendees = [...attendees];
-            if (updatedAttendees[index]) {
-              // Update the attendee name for the corresponding ticket category and index
-              updatedAttendees[index].attendee_name = e.target.value;
-            }
-            setAttendees(updatedAttendees);
-          }}/>
+                            <Input type="text" icon="fa-regular fa-user" style={{ ...inputStyle, color: "black", iconColor: "rgba(0, 0, 0, 0.4)", fontSize: "14px"}} placeholder="Enter Attendee Full Name" handleChange={(e) => {
+                              const updatedAttendees = [...attendees];
+                              if (updatedAttendees[index]) {
+                                updatedAttendees[index] = {
+                                  ...updatedAttendees[index],
+                                  attendee_name: e.target.value,
+                                };
+                              }
+                              setAttendees(updatedAttendees);
+                            }}/>
                           </div>
                         ))}
                       </div>
