@@ -41,65 +41,63 @@
 
 
     const addSelectedTicket = (ticketCategory, quantity) => {
-  const { price } = ticketCategory;
-  const updatedSelectedTickets = [...selectedTickets];
-  const updatedAttendees = [...attendees];
-
-  if (quantity > 0) {
-    const newSelectedTicket = {
-      ticket_category: ticketCategory.ticket_category,
-      cover_description: ticketCategory.cover_description,
-      quantity,
-      description: ticketCategory.description,
-      total_price: quantity * price,
-      attendees: Array.from({ length: quantity }, () => ({ attendee_name: "" })),
+      const { price } = ticketCategory;
+    
+      const updatedSelectedTickets = [...selectedTickets];
+    
+      const selectedTicketIndex = updatedSelectedTickets.findIndex(
+        (selectedTicket) =>
+          selectedTicket.ticket_category === ticketCategory.ticket_category &&
+          selectedTicket.cover_description === ticketCategory.cover_description
+      );
+    
+      if (quantity > 0) {
+        const newSelectedTicket = {
+          ticket_category: ticketCategory.ticket_category,
+          cover_description: ticketCategory.cover_description,
+          quantity,
+          description: ticketCategory.description,
+          total_price: quantity * price,
+          attendees: Array.from({ length: quantity }, () => ({ attendee_name: "" })),
+        };
+    
+        if (selectedTicketIndex !== -1) {
+          updatedSelectedTickets[selectedTicketIndex] = newSelectedTicket;
+        } else {
+          updatedSelectedTickets.push(newSelectedTicket);
+        }
+      } else {
+        if (selectedTicketIndex !== -1) {
+          updatedSelectedTickets.splice(selectedTicketIndex, 1);
+        }
+      }
+    
+      const totalAttendees = updatedSelectedTickets.reduce(
+        (total, selectedTicket) => total + selectedTicket.quantity,
+        0
+      );
+    
+      const anyTicketsSelected = updatedSelectedTickets.length > 0;
+    
+      if (totalAttendees > 10) {
+        setQuantityError("You cannot select more than 10 attendees.");
+      } else {
+        setQuantityError(null);
+      }
+    
+      setSelectedTickets(updatedSelectedTickets);
+      setAreTicketsSelected(anyTicketsSelected);
+    
+      const updatedAttendees = [];
+      updatedSelectedTickets.forEach((selectedTicket) => {
+        selectedTicket.attendees.forEach((attendee) => {
+          updatedAttendees.push(attendee);
+        });
+      });
+    
+      setAttendees(updatedAttendees);
     };
-
-    // Update the selected tickets
-    const existingTicketIndex = updatedSelectedTickets.findIndex(
-      (selectedTicket) =>
-        selectedTicket.ticket_category === ticketCategory.ticket_category &&
-        selectedTicket.cover_description === ticketCategory.cover_description
-    );
-
-    if (existingTicketIndex !== -1) {
-      updatedSelectedTickets[existingTicketIndex] = newSelectedTicket;
-    } else {
-      updatedSelectedTickets.push(newSelectedTicket);
-    }
-
-    updatedAttendees.push(...newSelectedTicket.attendees);
-  } else {
-    // If quantity is 0, remove the selected ticket
-    const existingTicketIndex = updatedSelectedTickets.findIndex(
-      (selectedTicket) =>
-        selectedTicket.ticket_category === ticketCategory.ticket_category &&
-        selectedTicket.cover_description === ticketCategory.cover_description
-    );
-
-    if (existingTicketIndex !== -1) {
-      updatedSelectedTickets.splice(existingTicketIndex, 1);
-    }
-  }
-
-  const anyTicketsSelected = updatedSelectedTickets.length > 0;
-
-  setAreTicketsSelected(anyTicketsSelected);
-
-  const totalQuantity = updatedSelectedTickets.reduce(
-    (total, selectedTicket) => total + selectedTicket.quantity,
-    0
-  );
-
-  if (totalQuantity > 10) {
-    setQuantityError("You cannot select more than 10 tickets.");
-  } else {
-    setQuantityError(null);
-  }
-
-  setAttendees(updatedAttendees);
-  setSelectedTickets(updatedSelectedTickets);
-};
+    
 
     const calculateTotalAmount = () => {
       const totalAmount = selectedTickets.reduce((total, selectedTicket) => {
@@ -123,7 +121,6 @@
         setTicketCounts(newTicketCounts);
         addSelectedTicket(ticketData[index], newTicketCounts[index]);
       } else {
-        // If the count is already 0, remove the selected ticket
         addSelectedTicket(ticketData[index], 0);
       }
     };
@@ -142,7 +139,6 @@
       const date = new Date(year, month - 1, day);
       const options = { month: "short", day: "numeric", year: "numeric" };
       const formattedDate = date.toLocaleDateString("en-US", options);
-      // const weekday = date.toLocaleDateString("en-US", { weekday: "long" });
       return `${formattedDate}`;
     };
 
@@ -229,14 +225,16 @@
                         <p style={{ fontWeight: "600" }}>{ticket.ticket_category}<span className='p-2'>({ticket.quantity})</span></p>
                         {Array.from({ length: ticket.quantity }).map((_, i) => (
                           <div key={i} className="mb-3">
-                            <Input type="text" icon="fa-regular fa-user" style={{ ...inputStyle, color: "black", iconColor: "rgba(0, 0, 0, 0.4)", fontSize: "14px"}} placeholder="Enter Attendee Full Name"  handleChange={(e) => {
-            const updatedAttendees = [...attendees];
-            if (updatedAttendees[index]) {
-              // Update the attendee name for the corresponding ticket category and index
-              updatedAttendees[index].attendee_name = e.target.value;
-            }
-            setAttendees(updatedAttendees);
-          }}/>
+                            <Input type="text" icon="fa-regular fa-user" style={{ ...inputStyle, color: "black", iconColor: "rgba(0, 0, 0, 0.4)", fontSize: "14px"}} placeholder="Enter Attendee Full Name" handleChange={(e) => {
+                              const updatedAttendees = [...attendees];
+                              if (updatedAttendees[index]) {
+                                updatedAttendees[index] = {
+                                  ...updatedAttendees[index],
+                                  attendee_name: e.target.value,
+                                };
+                              }
+                              setAttendees(updatedAttendees);
+                            }}/>
                           </div>
                         ))}
                       </div>
