@@ -220,25 +220,34 @@
                     These names will be included in the ticket and can’t be changed later
                   </p>
                   <div  className="p-3" style={{ background: "#F7F7F7", border: "1px solid rgba(0, 0, 0, 0.10)", borderRadius: "15px" }}>
-                    {selectedTickets?.map((ticket, index) => (
-                      <div key={index} className="mb-3">
-                        <p style={{ fontWeight: "600" }}>{ticket.ticket_category}<span className='p-2'>({ticket.quantity})</span></p>
-                        {Array.from({ length: ticket.quantity }).map((_, i) => (
-                          <div key={i} className="mb-3">
-                            <Input type="text" icon="fa-regular fa-user" style={{ ...inputStyle, color: "black", iconColor: "rgba(0, 0, 0, 0.4)", fontSize: "14px"}} placeholder="Enter Attendee Full Name" handleChange={(e) => {
-                              const updatedAttendees = [...attendees];
-                              if (updatedAttendees[index]) {
-                                updatedAttendees[index] = {
-                                  ...updatedAttendees[index],
-                                  attendee_name: e.target.value,
-                                };
+                  {selectedTickets?.map((ticket, ticketIndex) => (
+                    <div key={ticketIndex} className="mb-3">
+                      <p style={{ fontWeight: "600" }}>{ticket.ticket_category} ({ticket.quantity})</p>
+                      {Array.from({ length: ticket.quantity }).map((_, attendeeIndex) => (
+                        <div key={attendeeIndex} className="mb-3">
+                          <Input
+                            type="text"
+                            icon="fa-regular fa-user"
+                            style={{
+                              ...inputStyle,
+                              color: "black",
+                              iconColor: "rgba(0, 0, 0, 0.4)",
+                              fontSize: "14px"
+                            }}
+                            placeholder="Enter Attendee Full Name"
+                            handleChange={(e) => {
+                              const updatedSelectedTickets = [...selectedTickets];
+                              if (updatedSelectedTickets[ticketIndex] && updatedSelectedTickets[ticketIndex].attendees[attendeeIndex]) {
+                                updatedSelectedTickets[ticketIndex].attendees[attendeeIndex].attendee_name = e.target.value;
                               }
-                              setAttendees(updatedAttendees);
-                            }}/>
-                          </div>
-                        ))}
-                      </div>
-                    ))}
+                              setSelectedTickets(updatedSelectedTickets);
+                            }}
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  ))}
+
                   </div>
                 <div className="mt-3" style={{background: "#F7F7F7", border: "1px solid rgba(0, 0, 0, 0.10)", borderRadius: "15px"}}>
                   <div className='py-3 px-4 d-flex'>
