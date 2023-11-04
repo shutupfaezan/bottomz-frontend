@@ -8,6 +8,7 @@
   export default function Checkout() {
     const [eventData, setEventData] = useState()
     const [quantityError, setQuantityError] = useState()
+    // eslint-disable-next-line
     const [attendees, setAttendees] = useState([]);
     const [ticketData, setTicketsData] = useState()
     const [areTicketsSelected, setAreTicketsSelected] = useState(false);
@@ -105,8 +106,8 @@
       }, 0);
       return totalAmount;
     };
-    console.log("attendees", attendees)
-    console.log("Selected tickets", selectedTickets)
+    // console.log("attendees", attendees)
+    // console.log("Selected tickets", selectedTickets)
     const incrementCount = (index) => {
       const newTicketCounts = [...ticketCounts];
       newTicketCounts[index] += 1;
@@ -178,6 +179,7 @@
                 <p className="form-check-label ml-2" style={{fontSize: "14px"}}>By clicking you agree to the terms and conditions waiver</p>
               </div>}
             </div>
+            {/* Stage 1 */}
             {checkoutStatus === 0 && <div className='col-lg-6 px-5'>
               <div className='col p-3' style={{background: "white", color: "black", borderRadius: "15px"}}>
                 <div style={{background: "#F7F7F7", border: "1px solid rgba(0, 0, 0, 0.10)", borderRadius: "15px"}}>
@@ -210,6 +212,7 @@
               </div>
                 {quantityError && <p className="error-message text-center mt-3 text-danger">{quantityError}</p>}
             </div>}
+            {/* Stage 2 */}
             {checkoutStatus === 1 && (
               <div className="col-lg-6 px-5">
                 <div className="col px-3 py-4" style={{ background: "white", color: "black", borderRadius: "15px" }}>
@@ -247,7 +250,6 @@
                       ))}
                     </div>
                   ))}
-
                   </div>
                 <div className="mt-3" style={{background: "#F7F7F7", border: "1px solid rgba(0, 0, 0, 0.10)", borderRadius: "15px"}}>
                   <div className='py-3 px-4 d-flex'>
@@ -259,6 +261,61 @@
                     </div>
                   </div>
                 </div>
+                </div>
+              </div>
+            )}
+            {/* Stage 3 */}
+            {checkoutStatus === 2 && (
+              <div className="col-lg-6 px-5">
+                <div className="col px-3 py-4" style={{ background: "white", color: "black", borderRadius: "15px" }}>
+                  <h5 style={{ fontWeight: "800", color: "black", textTransform: "uppercase", lineHeight: "35px" }}>
+                    Pricing Details
+                  </h5>
+                  <p style={{ fontWeight: "400", color: "rgba(0, 0, 0, 0.60)", fontSize: "15px" }}>
+                    This price might include merchant fees at the payment page when redirected.
+                  </p>
+                  <div style={{background: "#F7F7F7", border: "1px solid rgba(0, 0, 0, 0.10)", borderRadius: "15px"}}>
+                    <div className='py-3 px-2'>
+                      {selectedTickets?.map((ticketInfo, ticketIndex) => (
+                        <>
+                        <div key={ticketIndex} className="mb-3 d-flex">
+                          <div className="col">
+                            <p className='mb-0' style={{ fontWeight: "600" }}>{ticketInfo?.ticket_category}</p>
+                            <span className="mb-0" style={{fontWeight: "100", color: "rgba(0, 0, 0, 0.60)", fontSize: "12px"}}>{ticketInfo?.cover_description} | {ticketInfo?.description}</span>
+                          </div>
+                          <div className="col w-100 d-flex justify-content-center align-items-center" style={{ fontWeight: "600", fontSize: "12px"}}>
+                            <div className="d-flex justify-content-center align-items-center col-lg-9 mx-auto" style={{border: "1px solid black", borderRadius: "6px", padding: "10px 10px"}}>
+                              <span className="mb-0 px-2" style={{fontWeight: "700", color: "black", fontSize: "12px"}}>{ticketInfo?.quantity +`*` + (ticketInfo?.total_price).toFixed(2)/ticketInfo?.quantity}</span>
+                            </div>
+                          </div>
+                          <div className="col d-flex justify-content-center align-items-center" style={{ fontWeight: "600" }}> ₹ {(ticketInfo?.total_price).toFixed(2)}</div>
+                        </div>
+                        <hr className='mx-auto' style={{width: "95%", background: "rgba(0, 0, 0, 0.20)", height: "1px"}}/>
+                        </>
+                      ))}
+                      <div className="mb-3 d-flex p-3 mx-2" style={{background: "rgba(0, 0, 0, 0.10", borderRadius: "10px"}}>
+                        <div className="col">
+                          <p className='mb-0' style={{ fontWeight: "600" }}>Total</p>
+                          <p className="m-0" style={{fontWeight: "100", color: "rgba(0, 0, 0, 0.60)", fontSize: "12px"}}>(Tax Exclusive)</p>
+                        </div>
+                        <div className="col w-100 d-flex justify-content-end align-items-center" style={{ fontWeight: "600"}}>
+                          <span className=" d-flex justify-content-center align-items-end mb-0 px-2" style={{ fontWeight: "600", color: "black" }}>
+                            ₹ {(calculateTotalAmount()).toFixed(2)}
+                          </span>
+                        </div>
+                      </div>
+                      <div className="mt-3" style={{background: "#F7F7F7", border: "1px solid rgba(0, 0, 0, 0.10)", borderRadius: "15px"}}>
+                        <div className='py-3 px-4 d-flex'>
+                          <div className='my-auto col-lg-6 px-0 pr-1'>
+                            <button className="btn rounded-pill col" onClick={()=>{navigate("/")}} style={{ background: "rgba(255, 51, 74, 0.10)", color: "#FF334A", fontWeight: "600", padding: "12px 30px"}} disabled={!areTicketsSelected}>Cancel</button>
+                          </div>
+                          <div className='my-auto col-lg-6 px-0 pl-2'>
+                            <button className="btn rounded-pill col" onClick={()=>{setCheckoutStatus(3)}} style={{ background: "black", color: "white", fontWeight: "600", padding: "12px 30px"}} disabled={!areTicketsSelected}>Next <i className="fa-solid fa-arrow-right ml-2"></i></button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             )}
