@@ -9,6 +9,7 @@
     const [eventData, setEventData] = useState()
     const [orderCreating, setOrderCreating] = useState(false);
     const [quantityError, setQuantityError] = useState()
+    const [validationError, setValidationError] = useState(null);
     const [confirmationMessage, setConfirmationMessage] = useState(null);
     const [qrCodeImageUrl, setQrCodeImageUrl] = useState(null);
     const [termsAndConditionsChecked, setTermsAndConditionsChecked] = useState(false);
@@ -148,6 +149,33 @@
       return `${formattedDate}`;
     };
 
+    const validateOrder = () => {
+      const orderDetails = selectedTickets.map((selectedTicket) => {
+        return {
+          ticket_categories: selectedTicket.ticket_category,
+          cover_description: selectedTicket.cover_description,
+          description: selectedTicket.description,
+          quantity: selectedTicket.quantity,
+          total_price: selectedTicket.total_price,
+        };
+      });
+
+      const order = {
+        event_name: eventData?.event_name,
+        order_details: orderDetails,
+      };
+
+      axios.post(`https://nightlife-2710.herokuapp.com/validating-oSSrders?access_token=${sessionStorage?.token}`, order)
+        .then((response) => {
+          console.log(response)
+          setCheckoutStatus(1)
+        })
+        .catch((error) => {
+          console.error('Error validating the order:', error);
+          setValidationError(error?.message);
+        });
+    };    
+
     const createOrderObject = () => {
       setOrderCreating(true);
     
@@ -191,8 +219,6 @@
           setOrderCreating(false);
         });
     };
-    
-    
 
     const resendConfirmation = () => {
     axios.post(`https://nightlife-2710.herokuapp.com/resend-confirmation?order_id=${orderId}&event_name=${eventData?.event_name}&access_token=${sessionStorage?.token}`, "hii")
@@ -216,10 +242,10 @@
     return (
       <>
       <div className='p-2'>
-        <div className='w-100' style={{background: "#0F0F0F", height: "1000px", borderRadius: "20px", color: "white"}}>
+        <div className='w-100 pb-5' style={{background: "#0F0F0F", borderRadius: "20px", color: "white"}}>
           <div className='d-flex align-items-center p-4'>
             <span className="rounded-pill align-items-center d-flex justify-content-center" style={{border: "2px solid white", width: "40px", height: "40px"}}>
-              <i className="bi bi-arrow-left" style={{fontSize: "20"}}></i>
+              <i className="bi bi-arrow-left" style={{fontSize: "20"}}  onClick={() => navigate(-1)}></i>
             </span>
             <p className='m-0 ml-3' style={{fontWeight: "700", fontSize: "18px"}}>CHECKOUT</p>
           </div>
@@ -254,12 +280,10 @@
                 <p className='mb-0'>Total Attendees</p>
                 <p className='mb-0' style={{fontWeight: "800"}}>{attendees.length < 10 ? `0${attendees.length}` : attendees.length}</p>
               </div></>}
-              {
-                checkoutStatus === 3 && <>
+              { checkoutStatus === 3 && <>
                 <p className='mt-5'><span style={{color: "#FF334A"}}>*</span>Please check promotions/spams as mails may be wrongly flagged at times</p>
                 <p className='mt-3'>For queries, reach out us on <a href="mailto:info@bottmzup.com" target="_blank" rel="noreferrer" style={{color: "#FF334A"}}>info@bottmzup.com</a></p>
-                </>
-              }
+                </>}
             </div>
             {/* Stage 1 */}
             {checkoutStatus === 0 && <div className='col-lg-6 px-5'>
@@ -288,11 +312,12 @@
                       <p className="mb-0" style={{fontWeight: "700", fontSize: "25px", color: "#646464"}}>₹ {calculateTotalAmount().toFixed(2)}</p>
                     </div>
                     <div className='ml-auto my-auto'>
-                    <button className="btn rounded-pill" onClick={()=>{setCheckoutStatus(1)}} style={{ background: "black", color: "white", fontWeight: "600", padding: "12px 30px"}} disabled={!areTicketsSelected || !termsAndConditionsChecked}>Book Your Spot <i className="fa-solid fa-arrow-right ml-2"></i></button></div>
+                    <button className="btn rounded-pill" onClick={()=>{validateOrder()}} style={{ background: "black", color: "white", fontWeight: "600", padding: "12px 30px"}} disabled={!areTicketsSelected || !termsAndConditionsChecked}>Book Your Spot <i className="fa-solid fa-arrow-right ml-2"></i></button></div>
                   </div>
                 </div>
               </div>
-                {quantityError && <p className="error-message text-center mt-3 text-danger">{quantityError}</p>}
+                { quantityError && <p className="error-message text-center mt-3 text-danger">{quantityError}</p>}
+                { validationError && <p className="error-message text-center mt-3 text-danger">{validationError}</p>}
             </div>}
             {/* Stage 2 */}
             {checkoutStatus === 1 && (
