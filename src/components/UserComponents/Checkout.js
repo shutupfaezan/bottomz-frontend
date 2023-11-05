@@ -261,7 +261,7 @@
           </div>
           </div>
           <div className='d-flex mt-lg-5 mt-md-3 pt-5 px-lg-5 px-md-3'>
-            <div className="pr-lg-1 col-md-5 col-lg-6 px-md-1 pl-md-3">
+            <div className={checkoutStatus === 3 ? "pr-lg-1 col-md-6   px-md-1 pl-md-3": "pr-lg-1 col-md-5 col-lg-6 px-md-1 pl-md-3"}>
               <div className='p-0 d-flex flex-md-column flex-lg-row'>
                   <img className="col-lg-5 p-0 col-md-12" style={{height: checkoutStatus !== 3 ? "215px" : "250px", objectFit: "cover", borderRadius: "15px", aspectRatio: "1/1"}} src={process.env.PUBLIC_URL + "/images/posterevent.png"} alt=""/>
                   <div className='pl-lg-4 py-2 col-lg-7 pl-0 mt-md-3 mt-lg-2'>
@@ -310,7 +310,7 @@
                     <div className='py-3 px-4 d-flex'>
                       <div>
                         <p className="mb-0" style={{fontWeight: "400"}}>Total</p>
-                        <p className="mb-0" style={{fontWeight: "700", fontSize: "25px", color: "#646464"}}>₹ {calculateTotalAmount().toFixed(2)}</p>
+                        <p className="mb-0 total-amount" style={{fontWeight: "700", fontSize: "25px", color: "#646464"}}>₹ {calculateTotalAmount().toFixed(2)}</p>
                       </div>
                       <div className='ml-auto my-auto'>
                       <button className="btn rounded-pill" onClick={()=>{validateOrder()}} style={{ background: "black", color: "white", fontWeight: "600", padding: "12px 30px"}} disabled={!areTicketsSelected || !termsAndConditionsChecked}>Book Your Spot <i className="fa-solid fa-arrow-right ml-2"></i></button></div>
@@ -323,7 +323,7 @@
             )}
             {/* Stage 2 */}
             {checkoutStatus === 1 && (
-              <div className="col-lg-6 px-5">
+              <div className="col-lg-6 col-md-7 px-lg-5 pl-md-3 pr-md-2">
                 <div className="col px-3 py-4" style={{ background: "white", color: "black", borderRadius: "15px" }}>
                   <h5 style={{ fontWeight: "800", color: "black", textTransform: "uppercase", lineHeight: "35px" }}>
                     Quite the list. Who’s attending?
@@ -375,7 +375,7 @@
             )}
             {/* Stage 3 */}
             {checkoutStatus === 2 && (
-              <div className="col-lg-6 px-5">
+              <div className="col-lg-6 col-md-7 px-lg-5 pl-md-3 pr-md-2">
                 <div className="col px-3 py-4" style={{ background: "white", color: "black", borderRadius: "15px" }}>
                   <h5 style={{ fontWeight: "800", color: "black", textTransform: "uppercase", lineHeight: "35px" }}>
                     Pricing Details
@@ -397,7 +397,7 @@
                               <span className="mb-0 px-2" style={{fontWeight: "700", color: "black", fontSize: "12px"}}>{ticketInfo?.quantity +`*` + (ticketInfo?.total_price).toFixed(2)/ticketInfo?.quantity}</span>
                             </div>
                           </div>
-                          <div className="col d-flex justify-content-center align-items-center" style={{ fontWeight: "600" }}> ₹ {(ticketInfo?.total_price).toFixed(2)}</div>
+                          <div className="col d-flex justify-content-center align-items-center payment-price" style={{ fontWeight: "600" }}> ₹ {(ticketInfo?.total_price).toFixed(2)}</div>
                         </div>
                         <hr className='mx-auto' style={{width: "95%", background: "rgba(0, 0, 0, 0.20)", height: "1px"}}/>
                         </>
@@ -430,13 +430,12 @@
             )}
             {/* Stage 4 */}
             {checkoutStatus === 3 && qrCodeImageUrl && (
-              <div className='w-100 d-flex flex-column align-items-end pr-5'>
+            <div className='w-100 d-flex flex-column align-items-lg-end align-items-md-center pr-lg-5 col-lg col-md-6'>
               <div className="">
-                <img className='mb-auto' src={qrCodeImageUrl} style={{ objectFit: "contain" }} alt="QR Code" />
+                <img className='mb-auto mx-auto d-flex' src={qrCodeImageUrl} style={{ objectFit: "contain" }} alt="QR Code" />
               </div>
-              <div className='mt-4 col-lg-7 p-0'>
-                <div className="row">
-                  <div className="col pr-0">
+              <div className='mt-4 col-md col-lg-7 p-0'>
+                  <div className="col pr-lg-0">
                     <button className="btn rounded-pill btn-block" onClick={() => { resendConfirmation() }} style={{ background: "white", color: "black", fontWeight: "600", padding: "12px 0" }}
                       disabled={!areTicketsSelected}
                     >
@@ -447,8 +446,7 @@
                     <p className="confirmation-message text-success text-center mt-4">{confirmationMessage}</p>
                   )}
                 </div>
-              </div>
-            </div>            
+              </div>      
             )}
           </div>
         </div>
