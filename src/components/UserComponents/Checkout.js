@@ -249,7 +249,7 @@
             </span>
             <p className='m-0 ml-3' style={{fontWeight: "700", fontSize: "18px"}}>CHECKOUT</p>
           </div>
-          <div className='d-flex justify-content-center' style={{gap: "15px"}}>
+          <div className='d-flex justify-content-center mt-5' style={{gap: "15px"}}>
           <div className='d-flex justify-content-center align-items-center' style={{ gap: "15px" }}>
             <div className='d-flex flex-column align-items-center'><span className="rounded-pill align-items-center d-flex justify-content-center" style={{ border: checkoutStatus === 0 ? "none" : "2px solid white", width: "50px", height: "50px", background: checkoutStatus === 0 ? "#F2EF1D" : "transparent", color: checkoutStatus === 0 ? "black" : "white", fontWeight: "600"}}>1</span><p className='mt-3 mb-0' style={{fontSize: '14px', color: checkoutStatus === 0 ? "#F2EF1D" : "white"}}>Event Tickets</p></div>
             <div className="dashed-line" style={{borderTop: "3px dashed #8F8F8F", flexGrow: "1", margin: "0 5px", width: "50px"}}></div>
@@ -260,19 +260,19 @@
             <div className='d-flex flex-column align-items-center'><span className="rounded-pill align-items-center d-flex justify-content-center" style={{ border: checkoutStatus === 3 ? "none" : "2px solid white", width: "50px", height: "50px", background: checkoutStatus === 3 ? "#F2EF1D" : "transparent", color: checkoutStatus === 3 ? "black" : "white", fontWeight: "600"}}>4</span><p className='mt-3 mb-0' style={{fontSize: '14px', color: checkoutStatus === 3 ? "#F2EF1D" : "white"}}>Confirmation</p></div>
           </div>
           </div>
-          <div className='d-flex mt-5 pt-5 px-5'>
-            <div className="pr-1 col-lg-6">
-              <div className='p-0 d-flex'>
-                  <img className="col-lg-5 p-0" style={{height: checkoutStatus !== 3 ? "215px" : "250px" , width: "215px", objectFit: "cover", borderRadius: "15px"}} src={process.env.PUBLIC_URL + "/images/posterevent.png"} alt=""/>
-                  <div className='pl-4 py-2 col-lg-7 pl-0'>
-                    <h3 className="" style={{fontWeight: "800", color: "rgba(255, 255, 255, 1)", textTransform: "uppercase"}}>{eventData?.event_name.slice(0,26)}</h3>
-                    <div className='d-flex align-items-baseline mt-4'><p className='mb-2' style={{fontWeight: "400", color: "rgba(255, 255, 255, 0.7)", fontSize: "16px"}}><i className="fa-regular fa-calendar mr-2" style={{fontSize: "20px"}}></i>{formatDate(eventData?.date)} | {eventData?.timings}</p></div>
-                    <div className='d-flex align-items-baseline mt-2'><p className='mb-0' style={{fontWeight: "400", color: "rgba(255, 255, 255, 0.7)", fontSize: "16px"}}><i className="fa-solid fa-location-dot mr-2" style={{fontSize: "20px"}}></i>{eventData?.event_venue}</p></div>
+          <div className='d-flex mt-lg-5 mt-md-3 pt-5 px-lg-5 px-md-3'>
+            <div className="pr-lg-1 col-md-5 col-lg-6 px-md-1 pl-md-3">
+              <div className='p-0 d-flex flex-md-column flex-lg-row'>
+                  <img className="col-lg-5 p-0 col-md-12" style={{height: checkoutStatus !== 3 ? "215px" : "250px", objectFit: "cover", borderRadius: "15px", aspectRatio: "1/1"}} src={process.env.PUBLIC_URL + "/images/posterevent.png"} alt=""/>
+                  <div className='pl-lg-4 py-2 col-lg-7 pl-0 mt-md-3 mt-lg-2'>
+                    <h2 className="" style={{fontWeight: "800", color: "rgba(255, 255, 255, 1)", textTransform: "uppercase"}}>{eventData?.event_name.slice(0,26)}</h2>
+                    <div className='d-flex align-items-baseline mt-4'><p className='mb-2 d-flex' style={{fontWeight: "400", color: "rgba(255, 255, 255, 0.7)", fontSize: "16px"}}><i className="fa-regular fa-calendar mr-2" style={{fontSize: "20px"}}></i><span>{formatDate(eventData?.date)} | {eventData?.timings}</span></p></div>
+                    <div className='d-flex align-items-baseline mt-2'><p className='mb-0 d-flex' style={{fontWeight: "400", color: "rgba(255, 255, 255, 0.7)", fontSize: "16px"}}><i className="fa-solid fa-location-dot mr-2" style={{fontSize: "20px"}}></i><span>{eventData?.event_venue}</span></p></div>
                     {checkoutStatus === 3 && <div className='d-flex align-items-baseline mt-4'><p className='mb-0' style={{fontWeight: "400", color: "rgba(255, 255, 255, 0.7)", fontSize: "16px"}}><i className="fa-solid fa-ticket mr-2" style={{fontSize: "20px"}}></i>{attendees.length < 10 ? `0${attendees.length}` : attendees.length} Tickets</p></div>}
                   </div>
               </div>
-              {checkoutStatus === 0 && <div className="form-check mt-4 w-100 d-flex align-items-center px-1">
-                <input className="form-check-input" type="checkbox" value="" style={{border: "1px solid white"}} onChange={(e) => setTermsAndConditionsChecked(e.target.checked)}/>
+              {checkoutStatus === 0 && <div className="form-check mt-4 w-100 d-flex align-items-center px-lg-1 pr-1 pl-0">
+                <input className="form-check-input" type="checkbox" value="" style={{border: "1px solid white", aspectRatio: "1/1"}} onChange={(e) => setTermsAndConditionsChecked(e.target.checked)}/>
                 <p className="form-check-label ml-2" style={{fontSize: "14px"}}>By clicking you agree to the terms and conditions waiver</p>
               </div>}
               {checkoutStatus !== 0 && checkoutStatus !== 3 && <><hr className='mx-auto' style={{background: "white", height: "1px"}}/>
@@ -286,39 +286,41 @@
                 </>}
             </div>
             {/* Stage 1 */}
-            {checkoutStatus === 0 && <div className='col-lg-6 px-5'>
-              <div className='col p-3' style={{background: "white", color: "black", borderRadius: "15px"}}>
-                <div style={{background: "#F7F7F7", border: "1px solid rgba(0, 0, 0, 0.10)", borderRadius: "15px"}}>
-                  {ticketData?.map((ticketCategory, index) => (
-                    <>
-                      {index !== 0 && <hr className='mx-auto' style={{width: "90%", background: "rgba(0, 0, 0, 0.20)", height: "1px"}}/>}
-                      <div className='py-3 px-4 d-flex' key={index}>
-                        <div>
-                          <p className="mb-0" style={{fontWeight: "600"}}>{ticketCategory?.ticket_category} <i className="fa-solid fa-chevron-down ml-1" style={{fontSize: "14px"}}  onClick={() => toggleContentVisibility(index)}></i></p>
-                          {isContentVisible[index] && <span className="mb-0" style={{fontWeight: "100", color: "rgba(0, 0, 0, 0.60)", fontSize: "12px"}}>{ticketCategory?.cover_description} | {ticketCategory?.description}</span>}
-                          <p className="mt-1 mb-0" style={{fontWeight: "600"}}>{ticketCategory?.price === "0" ? "FREE" : "₹" + ticketCategory?.price}</p>
+            {checkoutStatus === 0 && (
+              <div className='col-lg-6 col-md-7 px-lg-5 pl-md-3 pr-md-2'>
+                <div className='col p-3' style={{background: "white", color: "black", borderRadius: "15px"}}>
+                  <div style={{background: "#F7F7F7", border: "1px solid rgba(0, 0, 0, 0.10)", borderRadius: "15px"}}>
+                    {ticketData?.map((ticketCategory, index) => (
+                      <>
+                        {index !== 0 && <hr className='mx-auto' style={{width: "90%", background: "rgba(0, 0, 0, 0.20)", height: "1px"}}/>}
+                        <div className='py-3 px-4 d-flex' key={index}>
+                          <div>
+                            <p className="mb-0" style={{fontWeight: "600"}}>{ticketCategory?.ticket_category} <i className="fa-solid fa-chevron-down ml-1" style={{fontSize: "14px"}}  onClick={() => toggleContentVisibility(index)}></i></p>
+                            {isContentVisible[index] && <span className="mb-0" style={{fontWeight: "100", color: "rgba(0, 0, 0, 0.60)", fontSize: "12px"}}>{ticketCategory?.cover_description} | {ticketCategory?.description}</span>}
+                            <p className="mt-1 mb-0" style={{fontWeight: "600"}}>{ticketCategory?.price === "0" ? "FREE" : "₹" + ticketCategory?.price}</p>
+                          </div>
+                          <div className='ml-auto d-flex' style={{background: "#000000", color: "white", borderRadius: "12px", justifyContent: "center", alignItems: "center", height: "50px", alignSelf: "center"}}>
+                          <div><i className="fa-solid fa-minus pl-4 pr-3" onClick={() => { decrementCount(index); addSelectedTicket(ticketCategory, ticketCounts[index] - 1);}}></i><span className=''>{ticketCounts[index]}</span><i className="fa-solid fa-plus pr-4 pl-3" onClick={() => { incrementCount(index); addSelectedTicket(ticketCategory, ticketCounts[index] + 1);}}></i></div>
+                          </div>
                         </div>
-                        <div className='ml-auto d-flex' style={{background: "#000000", color: "white", borderRadius: "12px", justifyContent: "center", alignItems: "center", height: "50px", alignSelf: "center"}}>
-                        <div><i className="fa-solid fa-minus pl-4 pr-3" onClick={() => { decrementCount(index); addSelectedTicket(ticketCategory, ticketCounts[index] - 1);}}></i><span className=''>{ticketCounts[index]}</span><i className="fa-solid fa-plus pr-4 pl-3" onClick={() => { incrementCount(index); addSelectedTicket(ticketCategory, ticketCounts[index] + 1);}}></i></div>
-                        </div>
+                      </>
+                    ))}
+                  </div>
+                  <div className="mt-3" style={{background: "#F7F7F7", border: "1px solid rgba(0, 0, 0, 0.10)", borderRadius: "15px"}}>
+                    <div className='py-3 px-4 d-flex'>
+                      <div>
+                        <p className="mb-0" style={{fontWeight: "400"}}>Total</p>
+                        <p className="mb-0" style={{fontWeight: "700", fontSize: "25px", color: "#646464"}}>₹ {calculateTotalAmount().toFixed(2)}</p>
                       </div>
-                    </>
-                  ))}
-                </div>
-                <div className="mt-3" style={{background: "#F7F7F7", border: "1px solid rgba(0, 0, 0, 0.10)", borderRadius: "15px"}}>
-                  <div className='py-3 px-4 d-flex'>
-                    <div>
-                      <p className="mb-0" style={{fontWeight: "400"}}>Total</p>
-                      <p className="mb-0" style={{fontWeight: "700", fontSize: "25px", color: "#646464"}}>₹ {calculateTotalAmount().toFixed(2)}</p>
+                      <div className='ml-auto my-auto'>
+                      <button className="btn rounded-pill" onClick={()=>{validateOrder()}} style={{ background: "black", color: "white", fontWeight: "600", padding: "12px 30px"}} disabled={!areTicketsSelected || !termsAndConditionsChecked}>Book Your Spot <i className="fa-solid fa-arrow-right ml-2"></i></button></div>
                     </div>
-                    <div className='ml-auto my-auto'>
-                    <button className="btn rounded-pill" onClick={()=>{validateOrder()}} style={{ background: "black", color: "white", fontWeight: "600", padding: "12px 30px"}} disabled={!areTicketsSelected || !termsAndConditionsChecked}>Book Your Spot <i className="fa-solid fa-arrow-right ml-2"></i></button></div>
                   </div>
                 </div>
+                  { quantityError && <p className="error-message text-center mt-3 text-danger">{quantityError}</p>}
+                  { validationError && <p className="error-message text-center mt-3 text-danger">{validationError}</p>}
               </div>
-                { quantityError && <p className="error-message text-center mt-3 text-danger">{quantityError}</p>}
-                { validationError && <p className="error-message text-center mt-3 text-danger">{validationError}</p>}
-            </div>}
+            )}
             {/* Stage 2 */}
             {checkoutStatus === 1 && (
               <div className="col-lg-6 px-5">
