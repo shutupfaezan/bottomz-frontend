@@ -165,7 +165,7 @@
         order_details: orderDetails,
       };
 
-      axios.post(`https://nightlife-2710.herokuapp.com/validating-oSSrders?access_token=${sessionStorage?.token}`, order)
+      axios.post(`https://nightlife-2710.herokuapp.com/validating-orders?access_token=${sessionStorage?.token}`, order)
         .then((response) => {
           console.log(response)
           setCheckoutStatus(1)
