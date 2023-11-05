@@ -7,7 +7,12 @@
   
   export default function Checkout() {
     const [eventData, setEventData] = useState()
+    const [orderCreating, setOrderCreating] = useState(false);
     const [quantityError, setQuantityError] = useState()
+    const [confirmationMessage, setConfirmationMessage] = useState(null);
+    const [qrCodeImageUrl, setQrCodeImageUrl] = useState(null);
+    const [termsAndConditionsChecked, setTermsAndConditionsChecked] = useState(false);
+    const [orderId, setOrderID] = useState(null);
     // eslint-disable-next-line
     const [attendees, setAttendees] = useState([]);
     const [ticketData, setTicketsData] = useState()
@@ -143,10 +148,75 @@
       return `${formattedDate}`;
     };
 
+    const createOrderObject = () => {
+      setOrderCreating(true);
+    
+      const request = {
+        "event_name": eventData?.event_name,
+        "event_venue": eventData?.event_venue,
+        "timings": eventData?.timings,
+        "date": eventData?.date,
+        "images_url": eventData?.images_url,
+      };
+    
+      // Extract attendee names from the selectedTickets
+      const attendeeValue = selectedTickets
+        .flatMap((selectedTicket) => selectedTicket.attendees)
+        .map((attendee) => ({ "attendee_name": attendee.attendee_name }));
+    
+      // Construct order details from selectedTickets
+      const order_details = selectedTickets.map((selectedTicket) => ({
+        "ticket_categories": selectedTicket.ticket_category,
+        "cover_description": selectedTicket.cover_description,
+        "description": selectedTicket.description,
+        "quantity": selectedTicket.quantity,
+        "total_price": selectedTicket.total_price,
+      }));
+    
+      // Assemble the complete order object
+      const order = {
+        request,
+        attendeeValue,
+        order_details,
+      };
+    
+      axios.post(`https://nightlife-2710.herokuapp.com/orders?access_token=${sessionStorage?.token}`, order)
+        .then((response) => {
+          setOrderID(response?.data[0]);
+          setQrCodeImageUrl(response?.data[1]);
+          setCheckoutStatus(3);
+        })
+        .catch((error) => {
+          console.error('Error creating the order:', error);    
+          setOrderCreating(false);
+        });
+    };
+    
+    
+
+    const resendConfirmation = () => {
+    axios.post(`https://nightlife-2710.herokuapp.com/resend-confirmation?order_id=${orderId}&event_name=${eventData?.event_name}&access_token=${sessionStorage?.token}`, "hii")
+    .then((response) => {
+      setConfirmationMessage('Confirmation sent successfully');
+      setTimeout(() => {
+        setConfirmationMessage(null);
+      }, 7000);
+    })
+    .catch((error) => {
+      console.error('Error resending confirmation', error);
+    });
+  }
+
+  const areAttendeeNamesFilled = () => {
+    return selectedTickets.every((ticket) => {
+      return ticket.attendees.every((attendee) => attendee.attendee_name.trim() !== "");
+    });
+  };  
+    
     return (
       <>
       <div className='p-2'>
-        <div className='w-100' style={{background: "#0F0F0F", height: "900px", borderRadius: "20px", color: "white"}}>
+        <div className='w-100' style={{background: "#0F0F0F", height: "1000px", borderRadius: "20px", color: "white"}}>
           <div className='d-flex align-items-center p-4'>
             <span className="rounded-pill align-items-center d-flex justify-content-center" style={{border: "2px solid white", width: "40px", height: "40px"}}>
               <i className="bi bi-arrow-left" style={{fontSize: "20"}}></i>
@@ -167,17 +237,29 @@
           <div className='d-flex mt-5 pt-5 px-5'>
             <div className="pr-1 col-lg-6">
               <div className='p-0 d-flex'>
-                  <img className="col-lg-5 p-0" style={{height: "215px", width: "215px", objectFit: "cover", borderRadius: "15px"}} src={process.env.PUBLIC_URL + "/images/posterevent.png"} alt=""/>
+                  <img className="col-lg-5 p-0" style={{height: checkoutStatus !== 3 ? "215px" : "250px" , width: "215px", objectFit: "cover", borderRadius: "15px"}} src={process.env.PUBLIC_URL + "/images/posterevent.png"} alt=""/>
                   <div className='pl-4 py-2 col-lg-7 pl-0'>
                     <h3 className="" style={{fontWeight: "800", color: "rgba(255, 255, 255, 1)", textTransform: "uppercase"}}>{eventData?.event_name.slice(0,26)}</h3>
                     <div className='d-flex align-items-baseline mt-4'><p className='mb-2' style={{fontWeight: "400", color: "rgba(255, 255, 255, 0.7)", fontSize: "16px"}}><i className="fa-regular fa-calendar mr-2" style={{fontSize: "20px"}}></i>{formatDate(eventData?.date)} | {eventData?.timings}</p></div>
                     <div className='d-flex align-items-baseline mt-2'><p className='mb-0' style={{fontWeight: "400", color: "rgba(255, 255, 255, 0.7)", fontSize: "16px"}}><i className="fa-solid fa-location-dot mr-2" style={{fontSize: "20px"}}></i>{eventData?.event_venue}</p></div>
+                    {checkoutStatus === 3 && <div className='d-flex align-items-baseline mt-4'><p className='mb-0' style={{fontWeight: "400", color: "rgba(255, 255, 255, 0.7)", fontSize: "16px"}}><i className="fa-solid fa-ticket mr-2" style={{fontSize: "20px"}}></i>{attendees.length < 10 ? `0${attendees.length}` : attendees.length} Tickets</p></div>}
                   </div>
               </div>
               {checkoutStatus === 0 && <div className="form-check mt-4 w-100 d-flex align-items-center px-1">
-                <input className="form-check-input" type="checkbox" value="" style={{border: "1px solid white"}}/>
+                <input className="form-check-input" type="checkbox" value="" style={{border: "1px solid white"}} onChange={(e) => setTermsAndConditionsChecked(e.target.checked)}/>
                 <p className="form-check-label ml-2" style={{fontSize: "14px"}}>By clicking you agree to the terms and conditions waiver</p>
               </div>}
+              {checkoutStatus !== 0 && checkoutStatus !== 3 && <><hr className='mx-auto' style={{background: "white", height: "1px"}}/>
+              <div className="p-3 d-flex justify-content-between mt-4" style={{background: "rgba(255, 255, 255, 0.10", borderRadius: "10px"}}>
+                <p className='mb-0'>Total Attendees</p>
+                <p className='mb-0' style={{fontWeight: "800"}}>{attendees.length < 10 ? `0${attendees.length}` : attendees.length}</p>
+              </div></>}
+              {
+                checkoutStatus === 3 && <>
+                <p className='mt-5'><span style={{color: "#FF334A"}}>*</span>Please check promotions/spams as mails may be wrongly flagged at times</p>
+                <p className='mt-3'>For queries, reach out us on <a href="mailto:info@bottmzup.com" target="_blank" rel="noreferrer" style={{color: "#FF334A"}}>info@bottmzup.com</a></p>
+                </>
+              }
             </div>
             {/* Stage 1 */}
             {checkoutStatus === 0 && <div className='col-lg-6 px-5'>
@@ -189,7 +271,7 @@
                       <div className='py-3 px-4 d-flex' key={index}>
                         <div>
                           <p className="mb-0" style={{fontWeight: "600"}}>{ticketCategory?.ticket_category} <i className="fa-solid fa-chevron-down ml-1" style={{fontSize: "14px"}}  onClick={() => toggleContentVisibility(index)}></i></p>
-                          {isContentVisible[index] && <span className="mb-0" style={{fontWeight: "100", color: "rgba(0, 0, 0, 0.60)", fontSize: "12px"}}>{ticketCategory?.cover_description}</span>}
+                          {isContentVisible[index] && <span className="mb-0" style={{fontWeight: "100", color: "rgba(0, 0, 0, 0.60)", fontSize: "12px"}}>{ticketCategory?.cover_description} | {ticketCategory?.description}</span>}
                           <p className="mt-1 mb-0" style={{fontWeight: "600"}}>{ticketCategory?.price === "0" ? "FREE" : "₹" + ticketCategory?.price}</p>
                         </div>
                         <div className='ml-auto d-flex' style={{background: "#000000", color: "white", borderRadius: "12px", justifyContent: "center", alignItems: "center", height: "50px", alignSelf: "center"}}>
@@ -206,7 +288,7 @@
                       <p className="mb-0" style={{fontWeight: "700", fontSize: "25px", color: "#646464"}}>₹ {calculateTotalAmount().toFixed(2)}</p>
                     </div>
                     <div className='ml-auto my-auto'>
-                    <button className="btn rounded-pill" onClick={()=>{setCheckoutStatus(1)}} style={{ background: "black", color: "white", fontWeight: "600", padding: "12px 30px"}} disabled={!areTicketsSelected}>Book Your Spot <i className="fa-solid fa-arrow-right ml-2"></i></button></div>
+                    <button className="btn rounded-pill" onClick={()=>{setCheckoutStatus(1)}} style={{ background: "black", color: "white", fontWeight: "600", padding: "12px 30px"}} disabled={!areTicketsSelected || !termsAndConditionsChecked}>Book Your Spot <i className="fa-solid fa-arrow-right ml-2"></i></button></div>
                   </div>
                 </div>
               </div>
@@ -254,10 +336,10 @@
                 <div className="mt-3" style={{background: "#F7F7F7", border: "1px solid rgba(0, 0, 0, 0.10)", borderRadius: "15px"}}>
                   <div className='py-3 px-4 d-flex'>
                     <div className='my-auto col-lg-6 px-0 pr-1'>
-                      <button className="btn rounded-pill col" onClick={()=>{navigate("/")}} style={{ background: "rgba(255, 51, 74, 0.10)", color: "#FF334A", fontWeight: "600", padding: "12px 30px"}} disabled={!areTicketsSelected}>Cancel</button>
+                      <button className="btn rounded-pill col" onClick={()=>{navigate("/")}} style={{ background: "rgba(255, 51, 74, 0.10)", color: "#FF334A", fontWeight: "600", padding: "12px 30px"}}>Cancel</button>
                     </div>
                     <div className='my-auto col-lg-6 px-0 pl-2'>
-                      <button className="btn rounded-pill col" onClick={()=>{setCheckoutStatus(2)}} style={{ background: "black", color: "white", fontWeight: "600", padding: "12px 30px"}} disabled={!areTicketsSelected}>Next <i className="fa-solid fa-arrow-right ml-2"></i></button>
+                      <button className="btn rounded-pill col" onClick={()=>{setCheckoutStatus(2)}} style={{ background: "black", color: "white", fontWeight: "600", padding: "12px 30px"}} disabled={!areTicketsSelected || !areAttendeeNamesFilled() }>Next <i className="fa-solid fa-arrow-right ml-2"></i></button>
                     </div>
                   </div>
                 </div>
@@ -310,7 +392,7 @@
                             <button className="btn rounded-pill col" onClick={()=>{navigate("/")}} style={{ background: "rgba(255, 51, 74, 0.10)", color: "#FF334A", fontWeight: "600", padding: "12px 30px"}} disabled={!areTicketsSelected}>Cancel</button>
                           </div>
                           <div className='my-auto col-lg-6 px-0 pl-2'>
-                            <button className="btn rounded-pill col" onClick={()=>{setCheckoutStatus(3)}} style={{ background: "black", color: "white", fontWeight: "600", padding: "12px 30px"}} disabled={!areTicketsSelected}>Next <i className="fa-solid fa-arrow-right ml-2"></i></button>
+                            <button className="btn rounded-pill col" onClick={()=>{createOrderObject()}} style={{ background: "black", color: "white", fontWeight: "600", padding: "12px 30px"}} disabled={!areTicketsSelected || orderCreating}>Next <i className="fa-solid fa-arrow-right ml-2"></i></button>
                           </div>
                         </div>
                       </div>
@@ -318,6 +400,28 @@
                   </div>
                 </div>
               </div>
+            )}
+            {/* Stage 4 */}
+            {checkoutStatus === 3 && qrCodeImageUrl && (
+              <div className='w-100 d-flex flex-column align-items-end pr-5'>
+              <div className="">
+                <img className='mb-auto' src={qrCodeImageUrl} style={{ objectFit: "contain" }} alt="QR Code" />
+              </div>
+              <div className='mt-4 col-lg-7 p-0'>
+                <div className="row">
+                  <div className="col pr-0">
+                    <button className="btn rounded-pill btn-block" onClick={() => { resendConfirmation() }} style={{ background: "white", color: "black", fontWeight: "600", padding: "12px 0" }}
+                      disabled={!areTicketsSelected}
+                    >
+                      Resend Confirmation <i className="fa-solid fa-rotate-right ml-1"></i>
+                    </button>
+                  </div>
+                  {confirmationMessage && (
+                    <p className="confirmation-message text-success text-center mt-4">{confirmationMessage}</p>
+                  )}
+                </div>
+              </div>
+            </div>            
             )}
           </div>
         </div>
