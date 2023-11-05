@@ -2,8 +2,10 @@ import React, { useContext, useState } from "react";
 import { useGoogleLogin } from "@react-oauth/google";
 import { SingularContext } from "../contexts/Context";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export default function GoogleLoginFunc() {
+  const navigate = useNavigate()
   const { setShow } = useContext(SingularContext);
   const [isLoading, setisLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -33,6 +35,7 @@ export default function GoogleLoginFunc() {
           sessionStorage.setItem("token", response?.data?.access_token);
           sessionStorage.setItem("username", response?.data?.User_name);
           setShow(false);
+          navigate("/" )
         })
         .catch((error) => {
           setisLoading(false);
