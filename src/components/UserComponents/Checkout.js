@@ -1,9 +1,10 @@
   import axios from 'axios'
   import React, { useState, useEffect } from 'react'
   import { useParams } from "react-router-dom";
-  import "../../css/Checkout.css"
+  // import "../../css/Checkout.css"
   import Input from "../../common/Input"
   import {useNavigate} from "react-router-dom"
+  import "../../css/Checkout.css"
   
   export default function Checkout() {
     const [eventData, setEventData] = useState()
@@ -250,18 +251,18 @@
             <p className='m-0 ml-3' style={{fontWeight: "700", fontSize: "18px"}}>CHECKOUT</p>
           </div>
           <div className='d-flex justify-content-center mt-5' style={{gap: "15px"}}>
-          <div className='d-flex justify-content-center align-items-center' style={{ gap: "15px" }}>
+          <div className='d-flex justify-content-center align-items-center col col-md-10 col-lg-7' style={{ gap: "15px" }}>
             <div className='d-flex flex-column align-items-center'><span className="rounded-pill align-items-center d-flex justify-content-center" style={{ border: checkoutStatus === 0 ? "none" : "2px solid white", width: "50px", height: "50px", background: checkoutStatus === 0 ? "#F2EF1D" : "transparent", color: checkoutStatus === 0 ? "black" : "white", fontWeight: "600"}}>1</span><p className='mt-3 mb-0' style={{fontSize: '14px', color: checkoutStatus === 0 ? "#F2EF1D" : "white"}}>Event Tickets</p></div>
-            <div className="dashed-line" style={{borderTop: "3px dashed #8F8F8F", flexGrow: "1", margin: "0 5px", width: "50px"}}></div>
+            <div className="dashed-line d-md-block d-none" style={{borderTop: "3px dashed #8F8F8F", flexGrow: "1", margin: "0 5px", width: "50px"}}></div>
             <div className='d-flex flex-column align-items-center'><span className="rounded-pill align-items-center d-flex justify-content-center" style={{ border: checkoutStatus === 1 ? "none" : "2px solid white", width: "50px", height: "50px", background: checkoutStatus === 1 ? "#F2EF1D" : "transparent", color: checkoutStatus === 1 ? "black" : "white", fontWeight: "600"}}>2</span><p className='mt-3 mb-0' style={{fontSize: '14px', color: checkoutStatus === 1 ? "#F2EF1D" : "white"}}>Attendees</p></div>
-            <div className="dashed-line" style={{borderTop: "3px dashed #8F8F8F", flexGrow: "1", margin: "0 5px", width: "50px"}}></div>
+            <div className="dashed-line d-md-block d-none" style={{borderTop: "3px dashed #8F8F8F", flexGrow: "1", margin: "0 5px", width: "50px"}}></div>
             <div className='d-flex flex-column align-items-center'><span className="rounded-pill align-items-center d-flex justify-content-center" style={{ border: checkoutStatus === 2 ? "none" : "2px solid white", width: "50px", height: "50px", background: checkoutStatus === 2 ? "#F2EF1D" : "transparent", color: checkoutStatus === 2 ? "black" : "white", fontWeight: "600"}}>3</span><p className='mt-3 mb-0' style={{fontSize: '14px', color: checkoutStatus === 2 ? "#F2EF1D" : "white"}}>Payment</p></div>
-            <div className="dashed-line" style={{borderTop: "3px dashed #8F8F8F", flexGrow: "1", margin: "0 5px", width: "50px"}}></div>
+            <div className="dashed-line d-md-block d-none" style={{borderTop: "3px dashed #8F8F8F", flexGrow: "1", margin: "0 5px", width: "50px"}}></div>
             <div className='d-flex flex-column align-items-center'><span className="rounded-pill align-items-center d-flex justify-content-center" style={{ border: checkoutStatus === 3 ? "none" : "2px solid white", width: "50px", height: "50px", background: checkoutStatus === 3 ? "#F2EF1D" : "transparent", color: checkoutStatus === 3 ? "black" : "white", fontWeight: "600"}}>4</span><p className='mt-3 mb-0' style={{fontSize: '14px', color: checkoutStatus === 3 ? "#F2EF1D" : "white"}}>Confirmation</p></div>
           </div>
           </div>
-          <div className='d-flex mt-lg-5 mt-md-3 pt-5 px-lg-5 px-md-3'>
-            <div className={checkoutStatus === 3 ? "pr-lg-1 col-md-6   px-md-1 pl-md-3": "pr-lg-1 col-md-5 col-lg-6 px-md-1 pl-md-3"}>
+          <div className='d-flex mt-lg-5 mt-md-3 pt-5 px-lg-5 px-md-3 flex-md-row flex-column'>
+            <div className={checkoutStatus === 3 ? "pr-lg-1 col-md-6   px-md-1 pl-md-3": "pr-lg-1 col-md-5 col-lg-6 px-md-1 pl-md-3 px-4"}>
               <div className='p-0 d-flex flex-md-column flex-lg-row'>
                   <img className="col-lg-5 p-0 col-md-12" style={{height: checkoutStatus !== 3 ? "215px" : "250px", objectFit: "cover", borderRadius: "15px", aspectRatio: "1/1"}} src={process.env.PUBLIC_URL + "/images/posterevent.png"} alt=""/>
                   <div className='pl-lg-4 py-2 col-lg-7 pl-0 mt-md-3 mt-lg-2'>
@@ -307,7 +308,7 @@
                     ))}
                   </div>
                   <div className="mt-3" style={{background: "#F7F7F7", border: "1px solid rgba(0, 0, 0, 0.10)", borderRadius: "15px"}}>
-                    <div className='py-3 px-4 d-flex'>
+                    <div className='py-3 px-md-4 px-3 d-flex'>
                       <div>
                         <p className="mb-0" style={{fontWeight: "400"}}>Total</p>
                         <p className="mb-0 total-amount" style={{fontWeight: "700", fontSize: "25px", color: "#646464"}}>₹ {calculateTotalAmount().toFixed(2)}</p>
