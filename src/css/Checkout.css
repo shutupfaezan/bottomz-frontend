@@ -20,5 +20,11 @@
     .eventV{
         font-size: 12px !important
     }
+    .prgressbarpara{
+        font-size: 12px !important;
+    }
+    .progressbarcontainer{
+        gap: 20px !important;
+    }
 }
   
