@@ -262,17 +262,17 @@
           </div>
           </div>
           <div className='d-flex mt-lg-5 mt-md-3 pt-5 px-lg-5 px-md-3 flex-md-row flex-column'>
-            <div className={checkoutStatus === 3 ? "pr-lg-1 col-md-6   px-md-1 pl-md-3": "pr-lg-1 col-md-5 col-lg-6 px-md-1 pl-md-3 px-4"}>
+            <div className={checkoutStatus === 3 ? "pr-lg-1 col-md-6 px-md-1 pl-md-3": "pr-lg-1 col-md-5 col-lg-6 px-md-1 pl-md-3 px-4"}>
               <div className='p-0 d-flex flex-md-column flex-lg-row'>
-                  <img className="col-lg-5 p-0 col-md-12" style={{height: checkoutStatus !== 3 ? "215px" : "250px", objectFit: "cover", borderRadius: "15px", aspectRatio: "1/1"}} src={process.env.PUBLIC_URL + "/images/posterevent.png"} alt=""/>
-                  <div className='pl-lg-4 py-2 col-lg-7 pl-0 mt-md-3 mt-lg-2'>
-                    <h2 className="" style={{fontWeight: "800", color: "rgba(255, 255, 255, 1)", textTransform: "uppercase"}}>{eventData?.event_name.slice(0,26)}</h2>
-                    <div className='d-flex align-items-baseline mt-4'><p className='mb-2 d-flex' style={{fontWeight: "400", color: "rgba(255, 255, 255, 0.7)", fontSize: "16px"}}><i className="fa-regular fa-calendar mr-2" style={{fontSize: "20px"}}></i><span>{formatDate(eventData?.date)} | {eventData?.timings}</span></p></div>
-                    <div className='d-flex align-items-baseline mt-2'><p className='mb-0 d-flex' style={{fontWeight: "400", color: "rgba(255, 255, 255, 0.7)", fontSize: "16px"}}><i className="fa-solid fa-location-dot mr-2" style={{fontSize: "20px"}}></i><span>{eventData?.event_venue}</span></p></div>
+                  <img className="col-lg-5 p-0 col-md-12 col-4 eventPoster" style={{height: checkoutStatus !== 3 ? "215px" : "250px", objectFit: "cover", borderRadius: "15px", aspectRatio: "1/1"}} src={process.env.PUBLIC_URL + "/images/posterevent.png"} alt=""/>
+                  <div className='pl-lg-4 py-md-2 col-lg-7 pl-0 mt-md-3 mt-lg-2 mt-0 pr-0 px-3'>
+                    <h2 className="eventHeading" style={{fontWeight: "800", color: "rgba(255, 255, 255, 1)", textTransform: "uppercase"}}>{eventData?.event_name.slice(0,26)}</h2>
+                    <div className='d-flex align-items-baseline mt-md-4 mt-2'><p className='mb-md-2 mb-0 d-flex' style={{fontWeight: "400", color: "rgba(255, 255, 255, 0.7)", fontSize: "16px"}}><i className="fa-regular fa-calendar mr-2 d-md-block d-none" style={{fontSize: "20px"}}></i><span className='eventDT'>{formatDate(eventData?.date)} | {eventData?.timings}</span></p></div>
+                    <div className='d-flex align-items-baseline mt-md-2 mt-0'><p className='mb-0 d-flex' style={{fontWeight: "400", color: "rgba(255, 255, 255, 0.7)", fontSize: "16px"}}><i className="fa-solid fa-location-dot mr-2 d-md-block d-none" style={{fontSize: "20px"}}></i><span className='eventV'>{eventData?.event_venue}</span></p></div>
                     {checkoutStatus === 3 && <div className='d-flex align-items-baseline mt-4'><p className='mb-0' style={{fontWeight: "400", color: "rgba(255, 255, 255, 0.7)", fontSize: "16px"}}><i className="fa-solid fa-ticket mr-2" style={{fontSize: "20px"}}></i>{attendees.length < 10 ? `0${attendees.length}` : attendees.length} Tickets</p></div>}
                   </div>
               </div>
-              {checkoutStatus === 0 && <div className="form-check mt-4 w-100 d-flex align-items-center px-lg-1 pr-1 pl-0">
+              {checkoutStatus === 0 && <div className="form-check mt-md-4 mb-md-0 my-4 w-100 d-flex align-items-md-center px-lg-1 pr-1 pl-0">
                 <input className="form-check-input" type="checkbox" value="" style={{border: "1px solid white", aspectRatio: "1/1"}} onChange={(e) => setTermsAndConditionsChecked(e.target.checked)}/>
                 <p className="form-check-label ml-2" style={{fontSize: "14px"}}>By clicking you agree to the terms and conditions waiver</p>
               </div>}
