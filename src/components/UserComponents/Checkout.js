@@ -1,7 +1,7 @@
   import axios from 'axios'
   import React, { useState, useEffect } from 'react'
   import { useParams } from "react-router-dom";
-  // import "../../css/Checkout.css"
+  import "../../css/Checkout.css"
   import Input from "../../common/Input"
   import {useNavigate} from "react-router-dom"
   import "../../css/Checkout.css"
@@ -277,13 +277,13 @@
                 <p className="form-check-label ml-2" style={{fontSize: "14px"}}>By clicking you agree to the terms and conditions waiver</p>
               </div>}
               {checkoutStatus !== 0 && checkoutStatus !== 3 && <><hr className='mx-auto' style={{background: "white", height: "1px"}}/>
-              <div className="p-3 d-flex justify-content-between mt-4" style={{background: "rgba(255, 255, 255, 0.10", borderRadius: "10px"}}>
+              <div className="p-3 d-flex justify-content-between my-4" style={{background: "rgba(255, 255, 255, 0.10", borderRadius: "10px"}}>
                 <p className='mb-0'>Total Attendees</p>
                 <p className='mb-0' style={{fontWeight: "800"}}>{attendees.length < 10 ? `0${attendees.length}` : attendees.length}</p>
               </div></>}
               { checkoutStatus === 3 && <>
-                <p className='mt-5'><span style={{color: "#FF334A"}}>*</span>Please check promotions/spams as mails may be wrongly flagged at times</p>
-                <p className='mt-3'>For queries, reach out us on <a href="mailto:info@bottmzup.com" target="_blank" rel="noreferrer" style={{color: "#FF334A"}}>info@bottmzup.com</a></p>
+                <p className='mt-md-5 mt-4'><span style={{color: "#FF334A"}}>*</span>Please check promotions/spams as mails may be wrongly flagged at times</p>
+                <p className='mt-3 mb-5'>For queries, reach out us on <a href="mailto:info@bottmzup.com" target="_blank" rel="noreferrer" style={{color: "#FF334A"}}>info@bottmzup.com</a></p>
                 </>}
             </div>
             {/* Stage 1 */}
@@ -314,7 +314,7 @@
                         <p className="mb-0 total-amount" style={{fontWeight: "700", fontSize: "25px", color: "#646464"}}>₹ {calculateTotalAmount().toFixed(2)}</p>
                       </div>
                       <div className='ml-auto my-auto'>
-                      <button className="btn rounded-pill" onClick={()=>{validateOrder()}} style={{ background: "black", color: "white", fontWeight: "600", padding: "12px 30px"}} disabled={!areTicketsSelected || !termsAndConditionsChecked}>Book Your Spot <i className="fa-solid fa-arrow-right ml-2"></i></button></div>
+                      <button className="btn rounded-pill Stage1Button" onClick={()=>{validateOrder()}} style={{ background: "black", color: "white", fontWeight: "600", padding: "12px 30px"}} disabled={!areTicketsSelected || !termsAndConditionsChecked}>Book Your Spot <i className="fa-solid fa-arrow-right ml-2"></i></button></div>
                     </div>
                   </div>
                 </div>
