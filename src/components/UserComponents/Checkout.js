@@ -3,7 +3,7 @@
   import { useParams } from "react-router-dom";
   import "../../css/Checkout.css"
   import Input from "../../common/Input"
-  import {useNavigate} from "react-router-dom"
+  import {useNavigate, useLocation} from "react-router-dom"
   import "../../css/Checkout.css"
   
   export default function Checkout() {
@@ -25,6 +25,9 @@
     const [checkoutStatus, setCheckoutStatus] = useState(0)
     const navigate = useNavigate()
     const params = useParams()
+    const location = useLocation();
+    const searchParams = new URLSearchParams(location.search);
+    const subPromoter = searchParams.get('sub_promoter');
     const bill = async ()=> { return await axios.get(`https://nightlife-2710.herokuapp.com/events/${params?.event_name}`)}
     useEffect(() => {
       bill()
@@ -211,8 +214,8 @@
         attendeeValue,
         order_details,
       };
-    
-      axios.post(`https://nightlife-2710.herokuapp.com/orders?access_token=${sessionStorage?.token}`, order)
+
+      axios.post(`https://nightlife-2710.herokuapp.com/orders?access_token=${sessionStorage?.token}&sub_promoter=${subPromoter}`, order)
         .then((response) => {
           setOrderID(response?.data[0]);
           setQrCodeImageUrl(response?.data[1]);
@@ -224,7 +227,7 @@
         });
     };
     const resendConfirmation = () => {
-    axios.post(`https://nightlife-2710.herokuapp.com/resend-confirmation?order_id=${orderId}&event_name=${eventData?.event_name}&access_token=${sessionStorage?.token}`, "hii")
+    axios.post(`https://nightlife-2710.herokuapp.com/resend-confirmation?order_id=${orderId}&event_name=${eventData?.event_name}&access_token=${sessionStorage?.token}`)
     .then((response) => {
       setConfirmationMessage('Confirmation sent successfully');
       setTimeout(() => {
@@ -434,11 +437,11 @@
             )}
             {/* Stage 4 */}
             {checkoutStatus === 3 && qrCodeImageUrl && (
-            <div className='w-100 d-flex flex-column align-items-lg-end align-items-md-center pr-lg-5 col-lg col-md-6'>
+            <div className='w-100 d-flex flex-column align-items-lg-end align-items-md-center align-items-xl-center pr-lg-5 col-lg col-md-6'>
               <div className="">
                 <img className='mb-auto mx-auto d-flex' src={qrCodeImageUrl} style={{ objectFit: "contain" }} alt="QR Code" />
               </div>
-              <div className='mt-4 col-md col-lg-7 p-0'>
+              <div className='mt-4 col-md col-lg-7 col-xl-5 p-0'>
                   <div className="col pr-lg-0">
                     <button className="btn rounded-pill btn-block" onClick={() => { resendConfirmation() }} style={{ background: "white", color: "black", fontWeight: "600", padding: "12px 0" }}
                       disabled={!areTicketsSelected}
