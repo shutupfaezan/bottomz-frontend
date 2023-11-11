@@ -1,4 +1,7 @@
 @media (min-width: 768px) and (max-width: 1024px){
+    .eventBlock{
+        border-radius: 20px !important;
+    }
     .total-amount {
         font-size: 20px !important;
     }
@@ -8,8 +11,12 @@
   }
 
 @media (max-width: 767px){
+    .eventBlock{
+        border-radius: none !important;
+    }
     .payment-price{
         font-size: 12px !important;
+        padding: 10px 7px !important;
     }
     .eventPoster{
         height: 100% !important;
@@ -38,3 +45,8 @@
     }
 }
   
+@media (min-width: 1024px){
+    .eventBlock{
+        border-radius: 20px !important;
+    }
+}

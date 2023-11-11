@@ -151,6 +151,9 @@
     };
 
     const validateOrder = () => {
+      if(!sessionStorage?.token){
+        navigate("/login")
+      }
       const orderDetails = selectedTickets.map((selectedTicket) => {
         return {
           ticket_categories: selectedTicket.ticket_category,
@@ -220,7 +223,6 @@
           setOrderCreating(false);
         });
     };
-
     const resendConfirmation = () => {
     axios.post(`https://nightlife-2710.herokuapp.com/resend-confirmation?order_id=${orderId}&event_name=${eventData?.event_name}&access_token=${sessionStorage?.token}`, "hii")
     .then((response) => {
@@ -234,6 +236,7 @@
     });
   }
 
+
   const areAttendeeNamesFilled = () => {
     return selectedTickets.every((ticket) => {
       return ticket.attendees.every((attendee) => attendee.attendee_name.trim() !== "");
@@ -242,8 +245,8 @@
     
     return (
       <>
-      <div className='p-2'>
-        <div className='w-100 pb-5' style={{background: "#0F0F0F", borderRadius: "20px", color: "white"}}>
+      <div className='p-md-2 p-0'>
+        <div className='w-100 pb-5 eventBlock' style={{background: "#0F0F0F", color: "white"}}>
           <div className='d-flex align-items-center p-4'>
             <span className="rounded-pill align-items-center d-flex justify-content-center" style={{border: "2px solid white", width: "40px", height: "40px"}}>
               <i className="bi bi-arrow-left" style={{fontSize: "20"}}  onClick={() => navigate(-1)}></i>
