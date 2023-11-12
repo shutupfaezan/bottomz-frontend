@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useFormik } from "formik"
 import axios from 'axios'
+import "../../css/Newsletter.css"
 
 export default function Newsletter() {
   const [isLoading, setIsLoading] = useState(false)
@@ -45,17 +46,17 @@ export default function Newsletter() {
 
   return (
     <section className='d-md-flex justify-content-center mx-2 flex-column' style={{borderRadius: "20px", background: "black", height: "550px"}}>
-      <div className='col px-md-5 d-flex flex-column text-center pt-5'>
-        <div className='ml-2 flex-wrap d-flex justify-content-center pt-4'>
+      <div className='px-lg-5 d-flex flex-column text-center pt-5'>
+        <div className='ml-2 flex-wrap d-flex justify-content-center pt-4 mb-lg-0 mb-md-5'>
           <h1 className='mr-2 headerFont' style={{fontWeight: "600"}}>SUBSCRIBE TO OUR NEWSLETTER</h1>
           <p className='my-md-1 my-3 ml-2' style={{color: "#9D9D9D", fontWeight: "400"}}>Get notifications of events in your area and exclusive discount codes</p>
         </div>
-        <div className='d-flex flex-column justify-content-center'>
-          <div className='d-flex col-10 col-md-9 mt-2 mx-auto flex-column flex-md-row justify-content-center px-5 py-5 flex-wrap'>
-            <div className='col-md-9'>
+        <div className='d-flex flex-column justify-content-center mb-md-5 mb-lg-0'>
+          <div className='d-flex col-10 col-md-10 col-lg-9 mt-lg-2 mx-auto flex-column flex-md-row justify-content-center px-lg-5 px-md-2 py-lg-5 flex-wrap'>
+            <div className='col-lg-9 col-md-9'>
               <input style={{width: "100%", border: "1px solid white", borderRadius: "60px", fontSize: "14px", padding: "13px 15px", background: "transparent", color: "white"}} name="email_id" id="email_id" value={formik.values.email_id} onChange={formik.handleChange} placeholder="Enter Your Email Address"></input>
             </div>
-            <button className='col-md-2 col-6 mx-auto mx-md-2 btn  ml-2 mt-2 mt-md-0 btn-events' style={{borderRadius: "40px",background: "white", color: "black", fontWeight: "800"}}  type="submit" onClick={handleButtonClick}>
+            <button className='col-md-3 col-lg-3 mx-lg-auto mx-lg-2 btn ml-lg-2 mt-2 mt-md-0 btn-events' style={{borderRadius: "40px",background: "white", color: "black", fontWeight: "800"}}  type="submit" onClick={handleButtonClick}>
               {!isLoading && <span>Subscribe</span>}
               {isLoading && (<span id="login-loader-span" className="spinner-border spinner-border-sm mx-1" role="status" aria-hidden="true"></span>)}
               {isLoading && (<span id="login-loading-text-span">Loading</span>)}
@@ -64,8 +65,8 @@ export default function Newsletter() {
           </div>
         </div>
       </div>
-      <div className='col px-0 pb-5'> 
-        <img className="w-100" style={{height: "150px"}} src={process.env.PUBLIC_URL + "/images/Newsletter_Img.png"} alt="newsletter here"></img>
+      <div className='col px-0 pb-lg-5 pt-md-4 pt-lg-0'> 
+        <img className="w-100 newsletterImage" src={process.env.PUBLIC_URL + "/images/Newsletter_Img.png"} alt="newsletter here"></img>
       </div> 
     </section>
   )
