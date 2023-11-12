@@ -73,19 +73,19 @@ export default function ClubsRow() {
           <Link to="/clubs" className='mx-auto my-md-auto mt-lg-3 mb-lg-0 mb-0 mt-3 d-flex see-all' style={{color: "blueviolet"}}>See All <i className="bi bi-arrow-right ml-2"></i></Link>
           </div>
         </section>
-        <section className="d-flex flex-md-row flex-column-reverse p-md-5 py-5 px-4 ticketingSection" style={{background: "black"}}>
-            <div className='col-lg-5 col-md-6 p-lg-5 d-flex flex-column p-0 px-md-3'>
-              <div style={{height: "100%"}} className='d-flex flex-column'>
-              <h1 className="mb-md-3 my-3 primary-header" style={{fontWeight: "800", fontSize: "40px", color: "white"}}>More Than Ticketing</h1>
-              <b style={{color: "white"}}>For the world’s best venues, promoters and festivals, a partnership with Bottmzup is so much more than just ticketing.</b>
-              <p style={{background: "crimson", width: "fit-content"}} className='btn mt-lg-auto mt-xl-5 text-white rounded-pill px-3 py-xxl-3 mb-md-0 mt-5 btn-contact-home' onClick={()=> navigate("/contact-us")}>Contact Us</p>
-              </div>
+        <section className="d-flex justify-content-between mx-2" style={{background: "black", borderRadius: "20px"}}>
+          <div className='col-lg-5 col-md-6 p-lg-5 p-0 px-md-3 my-auto'>
+            <div className='d-flex flex-column'>
+              <h1 className="mb-md-3 my-3 headerFont" style={{fontWeight: "800", fontSize: "60px", color: "white"}}>More Than Ticketing</h1>
+              <p className="mb-4" style={{color: "#989898"}}>For the world’s best venues, promoters and festivals, a partnership with Bottmzup is so much more than just ticketing.</p>
+              <button className='col-lg-4' style={{borderRadius: "40px", fontWeight: "800", padding: "12px 10px"}}  type="submit" onClick={()=>navigate("/contact-us")}>Contact Us</button>
             </div>
-            <div className='col-lg-7 col-md-6 p-lg-5 p-0'>
-              <div className='w-100' style={{height: "100%"}}>
-              <img className="w-100" style={{borderRadius: "10px", height:"100%", objectFit: "cover"}} src='https://images.unsplash.com/photo-1492684223066-81342ee5ff30?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80' alt=""></img>
-              </div>
+          </div>
+          <div className='col-lg-5 col-md-6 p-0'>
+            <div  style={{height: "100%"}}>
+              <img className="w-100" style={{borderRadius: "10px", height:"100%", objectFit: "cover"}}  src={process.env.PUBLIC_URL + "/images/MTTHero.png"} alt=""></img>
             </div>
+          </div>
         </section>
       </div>
       }

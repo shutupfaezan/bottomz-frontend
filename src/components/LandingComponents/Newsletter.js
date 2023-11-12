@@ -54,9 +54,9 @@ export default function Newsletter() {
         <div className='d-flex flex-column justify-content-center mb-md-5 mb-lg-0'>
           <div className='d-flex col-10 col-md-10 col-lg-9 mt-lg-2 mx-auto flex-column flex-md-row justify-content-center px-lg-5 px-md-2 py-lg-5 px-0 flex-wrap mb-md-0 mb-5'>
             <div className='col-lg-9 col-md-9 p-0 px-md-3'>
-              <input className="NewletterInput" style={{width: "100%", borderRadius: "60px", fontSize: "14px", padding: "13px 15px", background: "transparent", color: "white"}} name="email_id" id="email_id" value={formik.values.email_id} onChange={formik.handleChange} placeholder="Enter Your Email Address"></input>
+              <input className="NewletterInput" style={{width: "100%", borderRadius: "60px", fontSize: "14px", padding: "13px 15px", background: "transparent"}} name="email_id" id="email_id" value={formik.values.email_id} onChange={formik.handleChange} placeholder="Enter Your Email Address"></input>
             </div>
-            <button className='col-md-3 col-lg-3 mx-lg-auto mx-lg-2 btn ml-lg-2 mt-md-2 mt-3 mt-md-0 btn-events' style={{borderRadius: "40px", fontWeight: "800"}}  type="submit" onClick={handleButtonClick}>
+            <button className='col-md-3 col-lg-3 mx-lg-auto mx-lg-2 btn ml-lg-2 mt-3 mt-md-0 btn-events' style={{borderRadius: "40px", fontWeight: "800"}}  type="submit" onClick={handleButtonClick}>
               {!isLoading && <span>Subscribe</span>}
               {isLoading && (<span id="login-loader-span" className="spinner-border spinner-border-sm mx-1" role="status" aria-hidden="true"></span>)}
               {isLoading && (<span id="login-loading-text-span">Loading</span>)}
