@@ -1,16 +1,57 @@
 @media (max-width: 767px){
     .newsletterImage{
         height: 100px !important;
+        filter: invert(1) !important;
+    }
+    .headerFont{
+        font-size: 30px !important;
+        color: black !important
+    }
+    .NewsletterSection{
+        background: white !important;
+        height: 650px !important;
+        
+    }
+    .btn-events{
+        background: black !important;
+        color: white !important;
+    }
+    .NewletterInput{
+        border: 1px solid black !important;
     }
 }
 @media (min-width: 768px) and (max-width: 1024px){
     .newsletterImage{
         height: 100px !important;
-    }   
+        width: 100% !important;
+    }
+    .NewsletterSection{
+        background: black !important;
+        height: 550 !important;
+    }
+    .btn-events{
+        background: white !important;
+        color: black !important;
+    }
+    .NewletterInput{
+        border: 1px solid white !important;
+    }
 }
   
 @media (min-width: 1024px){
     .newsletterImage{
         height: 150px !important;
+        width: 100% !important;
+    }
+    .NewsletterSection{
+        background: black !important;
+        height: 550px !important;
+    }
+    .btn-events{
+        background: white !important;
+        color: black !important;
+    }
+    .NewletterInput{
+        border: 1px solid white !important;
     }
 }
