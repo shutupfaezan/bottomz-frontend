@@ -73,16 +73,18 @@ export default function ClubsRow() {
           <Link to="/clubs" className='mx-auto my-md-auto mt-lg-3 mb-lg-0 mb-0 mt-3 d-flex see-all' style={{color: "blueviolet"}}>See All <i className="bi bi-arrow-right ml-2"></i></Link>
           </div>
         </section>
-        <section className="d-flex justify-content-between mx-2" style={{background: "black", borderRadius: "20px"}}>
-          <div className='col-lg-5 col-md-6 p-lg-5 p-0 px-md-3 my-auto'>
+        <section className="d-flex flex-md-row flex-column-reverse justify-content-between mx-2 p-md-0 p-4 position-relative" style={{background: "black", borderRadius: "20px"}}>
+          <img className="position-absolute d-md-block d-none" style={{top: "40px", zIndex: "10"}} src={process.env.PUBLIC_URL + "/images/MTTLines1.png"} alt=""></img>
+          <img className="position-absolute d-md-block d-none" style={{bottom: "0px", left: "200px", zIndex: "10"}} src={process.env.PUBLIC_URL + "/images/MTTLines2.png"} alt=""></img>
+          <div className='col-lg-5 col-md-6 p-lg-5 p-md-4 p-0 my-auto'>
             <div className='d-flex flex-column'>
-              <h1 className="mb-md-3 my-3 headerFont" style={{fontWeight: "800", fontSize: "60px", color: "white"}}>More Than Ticketing</h1>
+              <h1 className="mb-md-3 my-md-3 HeaderGlobal my-4" style={{fontWeight: "800", color: "white"}}>More Than Ticketing</h1>
               <p className="mb-4" style={{color: "#989898"}}>For the world’s best venues, promoters and festivals, a partnership with Bottmzup is so much more than just ticketing.</p>
-              <button className='col-lg-4' style={{borderRadius: "40px", fontWeight: "800", padding: "12px 10px"}}  type="submit" onClick={()=>navigate("/contact-us")}>Contact Us</button>
+              <button className='col-md-5 col-6' style={{borderRadius: "40px", fontWeight: "800", padding: "12px 10px", background: "white", color: "black"}}  type="submit" onClick={()=>navigate("/contact-us")}>Contact Us</button>
             </div>
           </div>
           <div className='col-lg-5 col-md-6 p-0'>
-            <div  style={{height: "100%"}}>
+            <div style={{height: "100%"}}>
               <img className="w-100" style={{borderRadius: "10px", height:"100%", objectFit: "cover"}}  src={process.env.PUBLIC_URL + "/images/MTTHero.png"} alt=""></img>
             </div>
           </div>
