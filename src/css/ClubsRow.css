@@ -22,9 +22,16 @@ flex: 0 0 25%;
     text-transform: uppercase;
 }
 
+.plannerSectionMainImg{
+    height: 100vh !important;
+}
+
 @media (max-width: 767px){
     .HeaderGlobal{
         color: white !important;
+    }
+    .plannerSectionMainImg{
+        
     }
 }
 
@@ -32,11 +39,17 @@ flex: 0 0 25%;
     .HeaderGlobal{
         font-size: 40px;
     }
+    .plannerSectionMainImg{
+        height: 50vh !important;
+    }
 }
   
 @media (min-width: 1025px){
     .HeaderGlobal{
         font-size: 60px;
-    }   
+    }
+    .plannerSectionMainImg{
+        height: 100vh !important;
+    }
 }
 
