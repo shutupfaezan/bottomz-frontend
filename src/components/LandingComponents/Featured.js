@@ -73,11 +73,11 @@ export default function ClubsRow() {
           <Link to="/clubs" className='mx-auto my-md-auto mt-lg-3 mb-lg-0 mb-0 mt-3 d-flex see-all' style={{color: "blueviolet"}}>See All <i className="bi bi-arrow-right ml-2"></i></Link>
           </div>
         </section>
-        <section className="d-flex mb-2 p-lg-5 flex-wrap plannerSection" style={{ background: "white" }}>
+        <section className="d-flex mb-2 p-lg-5 p-md-4 flex-wrap plannerSection" style={{ background: "white" }}>
           <div className='col-md-6 plannerSectionMainImg'>
             <img className="w-100 h-100" style={{ objectFit: "cover", borderRadius: "20px" }} src={process.env.PUBLIC_URL + "/images/WPEIMG.png"} alt="Standup Music" />
           </div>
-          <div className='col-md-6 plannerSectionMainImg'>
+          <div className='col-md-6 plannerSectionMainImg px-lg-3 p-md-0'>
             <div className='col-md-8 d-lg-flex flex-column d-lg-none'>
               <h1 className="mb-md-4 mb-xl-4 mb-xxl-0 HeaderGlobal" style={{ fontWeight: "800", color: "black", fontSize: "4vw" }}>We Plan Events and you celebrate</h1>
             </div>
@@ -89,8 +89,8 @@ export default function ClubsRow() {
             <p className="col-md-9" style={{ color: "black" }}>
               Our primary focus is our customer base, and our priority is making hosting events as easy as possible. This includes over the clock assistance so you can party your heart out without the worry of entries.
             </p>
-            <div className='col-md-3 col-6 d-flex flex-column'>
-              <button className='ml-auto col-md-8 col-6' style={{ borderRadius: "40px", fontWeight: "800", padding: "12px 10px", background: "black", color: "white" }} type="submit" onClick={() => navigate("/contact-us")}>Learn More</button>
+            <div className='col-lg-3 col-md-5 col-6 d-flex flex-column'>
+              <button className='ml-lg-auto col-md--8 col-6' style={{ borderRadius: "40px", fontWeight: "800", padding: "12px 10px", background: "black", color: "white" }} type="submit" onClick={() => navigate("/contact-us")}>Learn More</button>
             </div>
           </div>
         </section>
