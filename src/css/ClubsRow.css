@@ -26,17 +26,32 @@ flex: 0 0 25%;
     .HeaderGlobal{
         color: white !important;
     }
+    .plannerSectionMainImg{
+        height: 400px !important;
+    }
 }
 
 @media (min-width: 768px) and (max-width: 1025px){
     .HeaderGlobal{
+        /* color: black !important; */
         font-size: 40px;
+    }
+    .plannerSectionMainImg{
+        height: 450px !important;
+    }
+    .plannerSectionSubImg{
+        /* height: 225px !important */
     }
 }
   
 @media (min-width: 1025px){
     .HeaderGlobal{
         font-size: 60px;
-    }   
+    }
+    .plannerSectionMainImg{
+        height: 650px !important;
+    }
+    .plannerSectionSubImg{
+        /* height: 370px !important */
+    }
 }
-
