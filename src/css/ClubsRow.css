@@ -23,7 +23,9 @@ flex: 0 0 25%;
 }
 
 @media (max-width: 767px){
-     
+    .plannerSectionButton{
+        padding: 14px 10px !important
+    }
 }
 
 @media (min-width: 768px) and (max-width: 1025px){
@@ -37,6 +39,9 @@ flex: 0 0 25%;
     .plannerSectionSubImg{
         /* height: 225px !important */
     }
+    .plannerSectionButton{
+        padding: 12px 10px !important
+    }
 }
   
 @media (min-width: 1025px){
@@ -48,5 +53,8 @@ flex: 0 0 25%;
     }
     .plannerSectionSubImg{
         /* height: 370px !important */
+    }
+    .plannerSectionButton{
+        padding: 12px 10px !important
     }
 }
