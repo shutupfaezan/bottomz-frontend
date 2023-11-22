@@ -48,7 +48,7 @@ export default function Newsletter() {
     <section className='d-md-flex justify-content-center mx-2 flex-column NewsletterSection' style={{borderRadius: "20px", height: "550px"}}>
       <div className='px-lg-5 d-flex flex-column text-center pt-5'>
         <div className='ml-md-2 flex-wrap d-flex justify-content-center pt-md-4 pb-md-0 py-4 mb-lg-0 mb-md-5'>
-          <h1 className='mr-2 headerFont' style={{fontWeight: "600"}}>SUBSCRIBE TO OUR NEWSLETTER</h1>
+          <h1 className='mr-2 newsletterColor' style={{fontWeight: "600"}}>SUBSCRIBE TO OUR NEWSLETTER</h1>
           <p className='my-md-1 my-2 ml-md-2 px-3' style={{color: "#9D9D9D", fontWeight: "400"}}>Get notifications of events in your area and exclusive discount codes</p>
         </div>
         <div className='d-flex flex-column justify-content-center mb-md-5 mb-lg-0'>

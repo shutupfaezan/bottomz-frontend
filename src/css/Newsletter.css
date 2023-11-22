@@ -1,16 +1,20 @@
+.newsletterColor{
+    color: #fff;
+    font-family: "Sora", sans-serif;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+    text-transform: uppercase;
+}
+
 @media (max-width: 767px){
     .newsletterImage{
         height: 100px !important;
         filter: invert(1) !important;
     }
-    .headerFont{
-        font-size: 30px !important;
-        color: black !important
-    }
     .NewsletterSection{
         background: white !important;
         height: 650px !important;
-
     }
     .btn-events{
         background: black !important;
@@ -19,6 +23,16 @@
     .NewletterInput{
         border: 1px solid black !important;
         color: black !important;
+    }
+    .newsletterColor{
+        font-size: 30px !important;
+        color: black !important;
+        color: #fff;
+        font-family: "Sora", sans-serif;
+        font-style: normal;
+        font-weight: 800;
+        line-height: normal;
+        text-transform: uppercase;
     }
 }
 @media (min-width: 768px) and (max-width: 1024px){
