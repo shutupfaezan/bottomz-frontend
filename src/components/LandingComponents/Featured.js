@@ -94,7 +94,7 @@ export default function ClubsRow() {
           <div className='d-flex mt-md-5 mt-3 mb-md-0 mb-3'>
             <p className="col-lg-9 col-md-8 d-md-flex d-none" style={{ color: "black" }}>Our primary focus is our customer base, and our priority is making hosting events as easy as possible. This includes over the clock assistance so you can party your heart out without the worry of entries.</p>
             <div className='col-lg-3 col-md-4 col-7 d-flex flex-column'>
-              <button className='ml-md-auto col-md-8 col' style={{ borderRadius: "40px", fontWeight: "800", padding: "12px 10px", background: "black", color: "white" }} type="submit" onClick={() => navigate("/contact-us")}>Learn More</button>
+              <button className='ml-md-auto col-md-8 col plannerSectionButton' style={{ borderRadius: "40px", fontWeight: "800", background: "black", color: "white" }} type="submit" onClick={() => navigate("/contact-us")}>Learn More</button>
             </div>
           </div>
         </section>

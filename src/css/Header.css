@@ -17,7 +17,6 @@ a {
     }
 }
 
-/* Add this to your CSS file */
 .nav-filter-backdrop::before {
     content: "";
     position: absolute;
@@ -30,5 +29,24 @@ a {
     border-radius: 15px;
     border: 1px solid #ffffff26;
     backdrop-filter: blur(17px);
-  }
-  
+}
+
+.headerHeightClass{
+ height: 120vh !important;
+ border-radius: 25px !important
+}
+
+@media (max-width: 767px){
+    .headerHeightClass{
+        height: 135vh !important;
+        border-radius: 0px !important;
+    }
+}
+@media (min-width: 768px) and (max-width: 1024px){
+    .headerHeightClass{
+        height: 50vh !important;
+        border-radius: 25px
+       }
+}
+@media (min-width: 1024px){
+}
