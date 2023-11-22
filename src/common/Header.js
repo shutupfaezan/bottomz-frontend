@@ -1,9 +1,12 @@
 import React from "react";
 import "../css/Header.css"
 import GlobalHeader from "./GlobalHeader";
+import { useNavigate } from "react-router-dom";
 
 
 export default function Header() {
+
+  const navigate = useNavigate()
 
   return (
     <>
@@ -17,8 +20,8 @@ export default function Header() {
               <p className="mb-4 pb-1">Shop millions of live events and discover can't-miss concerts, games, theater and more.</p>
               <div className="dropleft">
                 <p className="m-0 mr-md-4 ml-md-auto" style={{ fontSize: "19px", cursor: "pointer" }}>
-                  <small className="profile-login-btn rounded-pill" style={{ color: "black", background: "white", padding: "10px 30px", borderRadius: "20px" }}> Sign In</small>
-                  <small className="profile-login-btn rounded-pill ml-5" style={{ color: "white"}}>Sell <i class="fa-solid fa-arrow-right ml-3"></i></small>
+                  <small className="profile-login-btn rounded-pill" style={{ color: "black", background: "white", padding: "10px 30px", borderRadius: "20px" }}  onClick={()=> navigate("/login")}> Sign In</small>
+                  <small className="rounded-pill ml-5" style={{ color: "white"}} onClick={()=> navigate("/contact-us")}>Sell <i class="fa-solid fa-arrow-right ml-3"></i></small>
                 </p>
             </div>
             </div>
