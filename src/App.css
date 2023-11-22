@@ -72,10 +72,8 @@ input::-ms-clear {
   background: white;
 }
 .svgbg {
-  /* background: blueviolet; */
   filter: brightness(0.5);
   background-image: url("../public/images/aleksandr-popov-hTv8aaPziOQ-unsplash.jpg");
-  /* filter: blur(1px) brightness(0.3);  */
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
