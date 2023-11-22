@@ -8,4 +8,7 @@
     margin: 0 auto 40px;
     display: block;
   }
+  .headerFont{
+    color: white !important;
+  }
 }
