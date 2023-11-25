@@ -1,34 +1,35 @@
 import axios from 'axios'
 import React, { useState, useEffect } from 'react'
 import "bootstrap/dist/css/bootstrap.min.css";
-import HPClubs from './HPClubs';
+// import HPClubs from './HPClubs';
 import "../../css/ClubsRow.css"
 import HPEvents from './HPEvents';
 import { Link, useNavigate } from 'react-router-dom';
 
 export default function ClubsRow() {
-    const [recentClubs, setRecentClubs] = useState()
+    // const [recentClubs, setRecentClubs] = useState()
     const [loading, setLoading] = useState(true)
     const [recentEvents, setRecentEvents] = useState()
     const navigate = useNavigate()
-    const club = async ()=> { return await axios.get("https://nightlife-2710.herokuapp.com/club")}
+    // const club = async ()=> { return await axios.get("https://nightlife-2710.herokuapp.com/club")}
     const event = async ()=> { return await axios.get("https://nightlife-2710.herokuapp.com/events")}
     
-    useEffect(() => {
-      club()
-      .then((response) => {
-        setLoading(false)
-        setRecentClubs(response)
-         })
-         .catch((error) => {
-           console.log(error);
-         });
-     }, []);
+    // useEffect(() => {
+    //   club()
+    //   .then((response) => {
+    //     setLoading(false)
+    //     setRecentClubs(response)
+    //      })
+    //      .catch((error) => {
+    //        console.log(error);
+    //      });
+    //  }, []);
 
 
      useEffect(() => {
        event()
          .then((response) => {
+          setLoading(false)
            setRecentEvents(response)
          })
          .catch((error) => {
@@ -37,7 +38,7 @@ export default function ClubsRow() {
 
      }, []);
 
-     const reverseClubs = recentClubs?.data?.reverse()?.slice(0,4)
+    //  const reverseClubs = recentClubs?.data?.reverse()?.slice(0,4)
      const reverseEvents = recentEvents?.data?.slice(0,4  )
      
   return (
