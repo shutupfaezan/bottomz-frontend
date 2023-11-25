@@ -32,20 +32,18 @@ a {
 }
 
 .headerHeightClass{
- height: 120vh !important;
- border-radius: 25px !important
+ border-radius: 25px !important;
+ padding-top: 130px !important;
 }
 
 @media (max-width: 767px){
     .headerHeightClass{
-        height: 135vh !important;
         border-radius: 0px !important;
     }
 }
 @media (min-width: 768px) and (max-width: 1024px){
     .headerHeightClass{
-        height: 50vh !important;
-        border-radius: 25px
+        border-radius: 0px !important;
        }
 }
 @media (min-width: 1024px){

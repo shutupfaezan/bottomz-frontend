@@ -11,10 +11,10 @@ export default function Header() {
   return (
     <>
       <GlobalHeader/>
-      <div className="p-md-2">
+      <div className="p-lg-2">
         <div className='position-relative px-lg-5 px-md-4 headerHeightClass' style={{background: "#0B0B0B"}}>
-          <div className="d-flex flex-column flex-md-row position-relative justify-content-between" style={{top: "140px"}}>
-            <div className="col-lg-6 mb-5">
+          <div className="d-flex flex-column flex-md-row position-relative justify-content-between">
+            <div className="col-lg-6 mb-5 mt-md-3">
               <h1 className="HeaderGlobal pr-5">Immerse Yourself in the Energy of Events</h1>
               <div className="px-3 mt-4 py-1" style={{borderLeft: "2px solid white", color: "white"}}>
                 <p className="mb-4 pb-1">Shop millions of live events and discover can't-miss concerts, games, theater and more.</p>
@@ -27,7 +27,7 @@ export default function Header() {
               </div>
             </div>
             <div className="col-lg-5">
-              <div className="h-100">
+              <div className="h-100 py-4">
                 <img style={{width: '100%'}} src={process.env.PUBLIC_URL + "/images/HomeheaderImg.png"} alt=""/>
               </div>
             </div>

@@ -1,34 +1,35 @@
 import axios from 'axios'
 import React, { useState, useEffect } from 'react'
 import "bootstrap/dist/css/bootstrap.min.css";
-import HPClubs from './HPClubs';
+// import HPClubs from './HPClubs';
 import "../../css/ClubsRow.css"
 import HPEvents from './HPEvents';
 import { Link, useNavigate } from 'react-router-dom';
 
 export default function ClubsRow() {
-    const [recentClubs, setRecentClubs] = useState()
+    // const [recentClubs, setRecentClubs] = useState()
     const [loading, setLoading] = useState(true)
     const [recentEvents, setRecentEvents] = useState()
     const navigate = useNavigate()
-    const club = async ()=> { return await axios.get("https://nightlife-2710.herokuapp.com/club")}
+    // const club = async ()=> { return await axios.get("https://nightlife-2710.herokuapp.com/club")}
     const event = async ()=> { return await axios.get("https://nightlife-2710.herokuapp.com/events")}
     
-    useEffect(() => {
-      club()
-      .then((response) => {
-        setLoading(false)
-        setRecentClubs(response)
-         })
-         .catch((error) => {
-           console.log(error);
-         });
-     }, []);
+    // useEffect(() => {
+    //   club()
+    //   .then((response) => {
+    //     setLoading(false)
+    //     setRecentClubs(response)
+    //      })
+    //      .catch((error) => {
+    //        console.log(error);
+    //      });
+    //  }, []);
 
 
      useEffect(() => {
        event()
          .then((response) => {
+          setLoading(false)
            setRecentEvents(response)
          })
          .catch((error) => {
@@ -37,7 +38,7 @@ export default function ClubsRow() {
 
      }, []);
 
-     const reverseClubs = recentClubs?.data?.reverse()?.slice(0,4)
+    //  const reverseClubs = recentClubs?.data?.reverse()?.slice(0,4)
      const reverseEvents = recentEvents?.data?.slice(0,4  )
      
   return (
@@ -64,15 +65,21 @@ export default function ClubsRow() {
           </div>}
           <Link to="/events" className='mt-3 d-flex justify-content-center see-all' style={{color: "blueviolet"}}>See All<i className="bi bi-arrow-right ml-2"></i></Link>
         </section>
-        <section className='px-lg-5 pt-lg-5 pb-lg-4 px-4 py-5 bg-light'>
-          <div className=' d-flex align-items-baseline mb-2 container-xl p-0 flex-column px-md-5 ml-md-0 ml-3'><h4 className='mt-2 primary-header' style={{fontSize: "40px", color: "transparent", WebkitTextStroke: "1px black"}}>Browse Events</h4><h4 className="primary-header mb-3" style={{fontSize: "40px", color: "black"}}> By Clubs</h4></div>
-          <div className='d-flex col p-0 flex-wrap px-md-4 mx-md-3'>
-            {reverseClubs?.map((fields, index )=> {
-              return <HPClubs key={index} identity={fields}></HPClubs>
-            })}
-          <Link to="/clubs" className='mx-auto my-md-auto mt-lg-3 mb-lg-0 mb-0 mt-3 d-flex see-all' style={{color: "blueviolet"}}>See All <i className="bi bi-arrow-right ml-2"></i></Link>
+        {/* Clubs Section Removed */}
+        {/* <section className='pl-lg-5 pr-lg-0 pt-lg-5 pb-lg-4 px-4 py-5 d-flex' style={{background: "#F7F7F7"}} >
+          <div className='d-flex py-5' style={{height: "100%"}}>
+            <div className='d-flex align-items-baseline mb-2 container-xl p-0 flex-column px-md-4 ml-md-0 ml-3 col-lg-5' style={{height: "100%"}}>
+              <h4 className='mt-2 headerFont' style={{fontSize: "60px", textTransform: "uppercase", color: "black"}}>Browse Events By Clubs</h4>
+              <p className='mt-2' style={{color: "#9D9D9D", fontSize: "14px"}}>Browse events by clubs that fall near you. We collaborate with the most elite clubs in the city to make sure you experience only the best.</p>
+              <button className='col-md-4 col' style={{ borderRadius: "40px", fontWeight: "800", background: "black", color: "white", fontSize: "14px", padding: "12px 10px" }} type="submit" onClick={() => navigate("/contact-us")}>Learn More</button>
+            </div>
+            <div className='d-flex col p-0 px-md-4 overflow-scroll align-items-center'>
+              {reverseClubs?.map((fields, index )=> {
+                return <HPClubs key={index} identity={fields}></HPClubs>
+              })}
+            </div>
           </div>
-        </section>
+        </section> */}
         <section className="mb-2 p-lg-5 p-md-4 py-5 px-1" style={{ background: "white" }}>
           <div className='d-flex flex-column d-md-none'>
             <h1 className= "col-md-8 mb-md-4 mb-xl-4 mb-xxl-0 HeaderGlobal pr-5" style={{ fontWeight: "800", color: "black"}}>We Plan Events and you celebrate</h1>
