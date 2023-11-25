@@ -94,7 +94,7 @@ export default function ClubsRow() {
                   <h1 className= "col-md-8 mb-md-4 mb-xl-4 mb-xxl-0 HeaderGlobal 4vw" style={{ fontWeight: "800", color: "black" }}>We Plan Events and you celebrate</h1>
               </div>
               <div className='px-lg-3 p-md-0 px-3' style={{height: "100%"}}>
-                <img className="w-100 plannerSectionSubImg" style={{ objectFit: "cover", borderRadius: "20px", height: "100%"}} src={process.env.PUBLIC_URL + "/images/WPEIMG2.png"} alt="Concert" />
+                <img className="w-100 plannerSectionSubImg" style={{ objectFit: "cover", borderRadius: "20px", height: "100%", overflow: "hidden"}} src={process.env.PUBLIC_URL + "/images/WPEIMG2.png"} alt="Concert" />
               </div>
             </div>
           </div>
