@@ -37,7 +37,7 @@ export default function GlobalHeader() {
             />
           </Link>
           <ul className="navbar-nav mr-2">
-            <li className="nav-item active d-none d-md-flex hover-underline-animation">
+            {/* <li className="nav-item active d-none d-md-flex hover-underline-animation">
               <Link
                 className="nav-link p-2 mx-2"
                 style={{ fontSize: "19px" }}
@@ -45,14 +45,14 @@ export default function GlobalHeader() {
               >
                 <small style={{ color: "white" }}>Clubs</small>
               </Link>
-            </li>
+            </li> */}
             <li className="nav-item active d-none d-md-flex hover-underline-animation">
               <Link
                 className="nav-link p-2 mx-2"
                 style={{ fontSize: "19px" }}
                 to="/events"
               >
-                <small style={{ color: "white" }}>Events</small>
+                <small style={{ color: "white" }}>Browse Events</small>
               </Link>
             </li>
             <li className="nav-item active d-none d-md-block hover-underline-animation">
@@ -61,7 +61,7 @@ export default function GlobalHeader() {
                 style={{ fontSize: "19px" }}
                 to="/contact-us"
               >
-                <small style={{ color: "white" }}>Help</small>
+                <small style={{ color: "white" }}>Sell</small>
               </Link>
             </li>
           </ul>
@@ -75,7 +75,7 @@ export default function GlobalHeader() {
                 style={{ fontSize: "19px", color: "black" }}
                 to="/contact-us"
               >
-                <small style={{ color: "white" }}>Sell</small>
+                <small style={{ color: "white" }}>Help</small>
               </Link>
             </div>
             <div className="dropleft d-md-block d-none">
