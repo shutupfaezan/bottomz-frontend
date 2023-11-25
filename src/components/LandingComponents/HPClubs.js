@@ -9,7 +9,7 @@ export default function HPClubs(props) {
 
   return (
   <>
- <div className='p-1 m-md-0 col-lg-3 col-xxl-2 col-md-6 m-lg-0' onClick={()=>{navigate("/clubs/" + props.identity.club_name)}}>
+ <div className='p-1 m-md-0 col-lg-5 col-xxl-2 col-md-6 m-lg-0' onClick={()=>{navigate("/clubs/" + props.identity.club_name)}}>
     <div className="card p-1 w-100 shadow cursor-pointer" style={{ borderRadius: "10px"}}>
       <BrowserView>
       <img src={props.identity.images_url}  className="card-img-top p-2" style={{borderRadius: "15px", height: "150px"}} alt="..."/>
