@@ -64,18 +64,21 @@ export default function ClubsRow() {
           </div>}
           <Link to="/events" className='mt-3 d-flex justify-content-center see-all' style={{color: "blueviolet"}}>See All<i className="bi bi-arrow-right ml-2"></i></Link>
         </section>
-        <section className='pl-lg-5 pr-lg-0 pt-lg-5 pb-lg-4 px-4 py-5 d-flex' style={{background: "#F7F7F7"}} >
-          <div className=' d-flex align-items-baseline mb-2 container-xl p-0 flex-column px-md-4 ml-md-0 ml-3 col-lg-5' style={{height: "100%"}}>
-            <h4 className='mt-2 headerFont' style={{fontSize: "60px", textTransform: "uppercase", color: "black"}}>Browse Events By Clubs</h4>
-            <p className='mt-2' style={{color: "#9D9D9D", fontSize: "14px"}}>Browse events by clubs that fall near you. We collaborate with the most elite clubs in the city to make sure you experience only the best.</p>
-            <button className='col-md-4 col' style={{ borderRadius: "40px", fontWeight: "800", background: "black", color: "white", fontSize: "14px", padding: "12px 10px" }} type="submit" onClick={() => navigate("/contact-us")}>Learn More</button>
+        {/* Clubs Section Removed */}
+        {/* <section className='pl-lg-5 pr-lg-0 pt-lg-5 pb-lg-4 px-4 py-5 d-flex' style={{background: "#F7F7F7"}} >
+          <div className='d-flex py-5' style={{height: "100%"}}>
+            <div className='d-flex align-items-baseline mb-2 container-xl p-0 flex-column px-md-4 ml-md-0 ml-3 col-lg-5' style={{height: "100%"}}>
+              <h4 className='mt-2 headerFont' style={{fontSize: "60px", textTransform: "uppercase", color: "black"}}>Browse Events By Clubs</h4>
+              <p className='mt-2' style={{color: "#9D9D9D", fontSize: "14px"}}>Browse events by clubs that fall near you. We collaborate with the most elite clubs in the city to make sure you experience only the best.</p>
+              <button className='col-md-4 col' style={{ borderRadius: "40px", fontWeight: "800", background: "black", color: "white", fontSize: "14px", padding: "12px 10px" }} type="submit" onClick={() => navigate("/contact-us")}>Learn More</button>
+            </div>
+            <div className='d-flex col p-0 px-md-4 overflow-scroll align-items-center'>
+              {reverseClubs?.map((fields, index )=> {
+                return <HPClubs key={index} identity={fields}></HPClubs>
+              })}
+            </div>
           </div>
-          <div className='d-flex col p-0 px-md-4 overflow-scroll'>
-            {reverseClubs?.map((fields, index )=> {
-              return <HPClubs key={index} identity={fields}></HPClubs>
-            })}
-          </div>
-        </section>
+        </section> */}
         <section className="mb-2 p-lg-5 p-md-4 py-5 px-1" style={{ background: "white" }}>
           <div className='d-flex flex-column d-md-none'>
             <h1 className= "col-md-8 mb-md-4 mb-xl-4 mb-xxl-0 HeaderGlobal pr-5" style={{ fontWeight: "800", color: "black"}}>We Plan Events and you celebrate</h1>
