@@ -4,7 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 // import HPClubs from './HPClubs';
 import "../../css/ClubsRow.css"
 import HPEvents from './HPEvents';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 export default function ClubsRow() {
     // const [recentClubs, setRecentClubs] = useState()
@@ -66,8 +66,7 @@ export default function ClubsRow() {
               No Live Events Yet! Check back again in some time
             </div>
           </div>}
-          <button className=' mt-4 mx-auto d-flex justify-content-center col-md-2 col plannerSectionButton' style={{ borderRadius: "40px", fontWeight: "800", background: "black", color: "white" }} type="submit" onClick={() => navigate("/contact-us")}>Browse All Events</button>
-          {/* <Link to="/events" className='mt-3 d-flex justify-content-center see-all' style={{color: "blueviolet"}}>See All<i className="bi bi-arrow-right ml-2"></i></Link> */}
+          <button className=' mt-4 mx-auto d-flex justify-content-center col-md-2 col plannerSectionButton' style={{ borderRadius: "40px", fontWeight: "800", background: "black", color: "white" }} type="submit" onClick={() => navigate("/events")}>Browse All Events</button>
         </section>
         {/* Clubs Section Removed */}
         {/* <section className='pl-lg-5 pr-lg-0 pt-lg-5 pb-lg-4 px-4 py-5 d-flex' style={{background: "#F7F7F7"}} >

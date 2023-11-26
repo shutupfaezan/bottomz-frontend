@@ -6,12 +6,12 @@ import {useContext} from 'react'
 export default function   HPEvents(props) {
   const {setInputValues, setInputModal} = useContext(SingularContext);
   const navigate = useNavigate()
-  const formatDate = (dateStr) => {
-    const [year, month, day] = dateStr.split("-")
-    const date = new Date(year, month - 1, day)
-    const options = {month: 'short', day: 'numeric' }
-    return date.toLocaleDateString('en-US', options)
-  }
+  // const formatDate = (dateStr) => {
+  //   const [year, month, day] = dateStr.split("-")
+  //   const date = new Date(year, month - 1, day)
+  //   const options = {month: 'short', day: 'numeric' }
+  //   return date.toLocaleDateString('en-US', options)
+  // }
   
   return (
     <>
