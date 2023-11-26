@@ -8,7 +8,7 @@ import {
   useLocation
 } from 'react-router-dom';
 import ScrollToTop from './components/UserComponents/ScrollToTop';
-// import AllClubs from './components/UserComponents/AllClubs';
+import AllClubs from './components/UserComponents/AllClubs';
 import AllEvents from './components/UserComponents/AllEvents';
 import HomePage from './components/LandingComponents/HomePage';
 import SingularClubs from './components/UserComponents/SingularClubs';
@@ -58,7 +58,7 @@ function App() {
         <DynamicTitle />
         <Routes basename="/">
           <Route exact path="/" element={<HomePage />} />
-          {/* <Route exact path="/clubs" element={<AllClubs />} /> */}
+          <Route exact path="/clubs" element={<AllClubs />} />
           <Route exact path="/events" element={<AllEvents />} />
           <Route exact path="/clubs/:name" element={<SingularClubs />} />
           <Route exact path="/events/:event_name" element={<SingularEvents />} />

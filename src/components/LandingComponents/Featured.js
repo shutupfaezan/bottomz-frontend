@@ -4,7 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 // import HPClubs from './HPClubs';
 import "../../css/ClubsRow.css"
 import HPEvents from './HPEvents';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 export default function ClubsRow() {
     // const [recentClubs, setRecentClubs] = useState()
@@ -39,7 +39,7 @@ export default function ClubsRow() {
      }, []);
 
     //  const reverseClubs = recentClubs?.data?.reverse()?.slice(0,4)
-     const reverseEvents = recentEvents?.data?.slice(0,4  )
+     const reverseEvents = recentEvents?.data?.slice(0,4)
      
   return (
     <>
@@ -50,11 +50,14 @@ export default function ClubsRow() {
     </div>}
       {!loading && 
       <div className="my-2 px-0">
-        <section className='px-md-5 py-3'>
-          <div className='mt-md-4 d-flex align-items-baseline mb-2 flex-column px-lg-5 px-2'>
-            <h4 className='mt-2 mx-3 primary-header mb-0' style={{fontSize: "40px", color: "transparent", WebkitTextStroke: "1px black"}}>Browse By</h4>
-            <h4 className="primary-header mb-3 mt-2 mx-3" style={{fontSize: "40px"}}>Upcoming Events</h4></div>
-          {reverseEvents?.length !== 0 ?<div className='d-flex flex-wrap align-items-center px-lg-5 p-2'>{reverseEvents?.map((fields, index )=> {
+        <section className='mx-auto py-5' style={{width: "1260px"}}>
+          <div className='my-md-4 d-flex align-items-center mb-2 flex-column px-lg-5 px-2 position-relative'>
+            <h4 className='mt-2 mx-3 headerFont mb-0' style={{fontSize: "40px", color: "black"}}>Browse By Upcoming Events</h4>
+            <p className='mt-2 mx-3 mb-0' style={{color: "#9D9D9D", fontSize: "14px"}}>Find the event you're looking for from our lineup of bestselling</p>
+            <img className="position-absolute" style={{width: "90px", left: "150px"}} src={process.env.PUBLIC_URL + "/images/arrowHeroMain.png"} alt=""></img>
+            <img className="position-absolute" style={{width: "90px", right: "150px"}} src={process.env.PUBLIC_URL + "/images/arrowHeroMain2.png"} alt=""></img>
+          </div>
+          {reverseEvents?.length !== 0 ? <div className='d-flex align-items-center px-lg-5 p-2'>{reverseEvents?.map((fields, index )=> {
             return <HPEvents className="w-100" key={index} index={index} identity={fields}></HPEvents>
           })}
           </div> :
@@ -63,7 +66,7 @@ export default function ClubsRow() {
               No Live Events Yet! Check back again in some time
             </div>
           </div>}
-          <Link to="/events" className='mt-3 d-flex justify-content-center see-all' style={{color: "blueviolet"}}>See All<i className="bi bi-arrow-right ml-2"></i></Link>
+          <button className=' mt-4 mx-auto d-flex justify-content-center col-md-2 col plannerSectionButton' style={{ borderRadius: "40px", fontWeight: "800", background: "black", color: "white" }} type="submit" onClick={() => navigate("/events")}>Browse All Events</button>
         </section>
         {/* Clubs Section Removed */}
         {/* <section className='pl-lg-5 pr-lg-0 pt-lg-5 pb-lg-4 px-4 py-5 d-flex' style={{background: "#F7F7F7"}} >

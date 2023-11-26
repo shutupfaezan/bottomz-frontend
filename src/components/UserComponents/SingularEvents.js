@@ -133,7 +133,8 @@ export default function SingularEvents() {
                 </div>
               </div>
               <div className='col-lg-5 col-md-5 px-4 pt-5 mt-5 pt-md-0 mt-md-0 '>
-                <img className="my-5 my-md-0 event-img" style={{width: "100%", borderRadius: "20px", objectFit: "contain"}} src={process.env.PUBLIC_URL + "/images/posterevent.png"} alt="Event Poster"></img>
+                {/* removes object fit contain from here img style */}
+                <img className="my-5 my-md-0 event-img" style={{width: "100%", borderRadius: "20px" }} src={eventData?.images_url} alt="Event Poster"></img>
               </div>
             </div>
           </div>

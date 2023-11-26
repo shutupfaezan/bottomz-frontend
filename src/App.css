@@ -222,9 +222,6 @@ select.QuantityFields option {
   .react-multi-carousel-dot-list {
     display: none !important;
   }
-  .FeaturedEventsCtrl {
-    aspect-ratio: 1/1 !important;
-  }
 }
 
 .carousel-container {
@@ -269,10 +266,6 @@ select.QuantityFields option {
   }
   .MainHeader {
     height: 100vh !important;
-  }
-  .FeaturedEventsCtrl {
-    aspect-ratio: unset !important;
-    height: 120px !important;
   }
   .MainHeaderText {
     font-size: 40px !important;
