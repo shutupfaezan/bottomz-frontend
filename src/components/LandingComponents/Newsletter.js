@@ -45,7 +45,7 @@ export default function Newsletter() {
   };
 
   return (
-    <section className='d-md-flex justify-content-center mx-2 flex-column NewsletterSection' style={{borderRadius: "20px", height: "550px"}}>
+    <section className='d-md-flex justify-content-center mx-2 flex-column NewsletterSection mx-auto mb-3' style={{borderRadius: "20px", height: "550px"}}>
       <div className='px-lg-5 d-flex flex-column text-center pt-5'>
         <div className='ml-md-2 flex-column d-flex justify-content-center pt-md-4 pb-md-0 py-4 mb-lg-0 mb-md-5'>
           <h1 className='mr-2 newsletterColor' style={{fontWeight: "600"}}>SUBSCRIBE TO OUR NEWSLETTER</h1>
