@@ -54,7 +54,7 @@
     }
 }
   
-@media (min-width: 1024px){
+@media (min-width: 1025px){
     .newsletterImage{
         height: 150px !important;
         width: 100% !important;
@@ -62,6 +62,7 @@
     .NewsletterSection{
         background: black !important;
         height: 550px !important;
+        width: 1260px !important;
     }
     .btn-events{
         background: white !important;

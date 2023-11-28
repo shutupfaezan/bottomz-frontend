@@ -63,3 +63,18 @@
   .btn-contact-home:hover {
     background-color: #b61938!important;
   }
+
+  .headerFontAlt{
+    font-family: "Sora", sans-serif;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+    text-transform: uppercase;
+    color: black
+  }
+
+  @media (min-width: 1025px){
+    .MainpageHero{
+      width: 1260px !important;
+    }
+  }

@@ -49,10 +49,10 @@ export default function ClubsRow() {
     </div>
     </div>}
       {!loading && 
-      <div className="my-2 px-0">
-        <section className='mx-auto py-5' style={{width: "1260px"}}>
+      <div className="my-2 px-0 mx-auto MainpageHero">
+        <section className='mx-auto py-5'>
           <div className='my-md-4 d-flex align-items-center mb-2 flex-column px-lg-5 px-2 position-relative'>
-            <h4 className='mt-2 mx-3 headerFont mb-0' style={{fontSize: "40px", color: "black"}}>Browse By Upcoming Events</h4>
+            <h4 className='mt-2 mx-3 mb-0 headerFontAlt' style={{fontSize: "40px", color: "black"}}>Browse By Upcoming Events</h4>
             <p className='mt-2 mx-3 mb-0' style={{color: "#9D9D9D", fontSize: "14px"}}>Find the event you're looking for from our lineup of bestselling</p>
             <img className="position-absolute" style={{width: "90px", left: "150px"}} src={process.env.PUBLIC_URL + "/images/arrowHeroMain.png"} alt=""></img>
             <img className="position-absolute" style={{width: "90px", right: "150px"}} src={process.env.PUBLIC_URL + "/images/arrowHeroMain2.png"} alt=""></img>
