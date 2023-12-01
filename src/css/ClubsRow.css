@@ -26,6 +26,18 @@ flex: 0 0 25%;
     .plannerSectionButton{
         padding: 14px 10px !important
     }
+    .heroEventHeadImg1{
+        width: 90px;
+        left: 150px
+    }
+    .heroEventHeadImg2{
+        width: 90px;
+        right: 150px
+    }
+    .eventSectionFontAlt{
+        font-size: 30px;
+        text-align: center;
+    }
 }
 
 @media (min-width: 768px) and (max-width: 1025px){
@@ -42,6 +54,17 @@ flex: 0 0 25%;
     .plannerSectionButton{
         padding: 12px 10px !important
     }
+    .heroEventHeadImg1{
+        width: 70px;
+        left: 45px
+    }
+    .heroEventHeadImg2{
+        width: 70px;
+        right: 45px
+    }
+    .eventSectionFontAlt{
+        font-size: 30px;
+    }
 }
   
 @media (min-width: 1025px){
@@ -56,5 +79,16 @@ flex: 0 0 25%;
     }
     .plannerSectionButton{
         padding: 12px 10px !important
+    }
+    .heroEventHeadImg1{
+        width: 90px;
+        left: 150px
+    }
+    .heroEventHeadImg2{
+        width: 90px;
+        right: 150px
+    }
+    .eventSectionFontAlt{
+        font-size: 40px;
     }
 }

@@ -52,12 +52,12 @@ export default function ClubsRow() {
       <div className="my-2 px-0 mx-auto MainpageHero">
         <section className='mx-auto py-5'>
           <div className='my-md-4 d-flex align-items-center mb-2 flex-column px-lg-5 px-2 position-relative'>
-            <h4 className='mt-2 mx-3 mb-0 headerFontAlt' style={{fontSize: "40px", color: "black"}}>Browse By Upcoming Events</h4>
-            <p className='mt-2 mx-3 mb-0' style={{color: "#9D9D9D", fontSize: "14px"}}>Find the event you're looking for from our lineup of bestselling</p>
-            <img className="position-absolute" style={{width: "90px", left: "150px"}} src={process.env.PUBLIC_URL + "/images/arrowHeroMain.png"} alt=""></img>
-            <img className="position-absolute" style={{width: "90px", right: "150px"}} src={process.env.PUBLIC_URL + "/images/arrowHeroMain2.png"} alt=""></img>
+            <h4 className='mt-2 mx-3 mb-0 headerFontAlt eventSectionFontAlt' style={{color: "black"}}>Browse By Upcoming Events</h4>
+            <p className='mt-2 mx-md-3 mx-4 mb-0 text-center' style={{color: "#9D9D9D", fontSize: "14px"}}>Find the event you're looking for from our lineup of bestselling</p>
+            <img className="position-absolute d-md-block d-none heroEventHeadImg1" src={process.env.PUBLIC_URL + "/images/arrowHeroMain.png"} alt=""></img>
+            <img className="position-absolute d-md-block d-none heroEventHeadImg2" src={process.env.PUBLIC_URL + "/images/arrowHeroMain2.png"} alt=""></img>
           </div>
-          {reverseEvents?.length !== 0 ? <div className='d-flex align-items-center px-lg-5 p-2'>{reverseEvents?.map((fields, index )=> {
+          {reverseEvents?.length !== 0 ? <div className='d-flex flex-md-wrap align-items-center px-md-5 p-2 overflow-scroll overflow-md-hidden ml-4 ml-md-0'>{reverseEvents?.map((fields, index )=> {
             return <HPEvents className="w-100" key={index} index={index} identity={fields}></HPEvents>
           })}
           </div> :
@@ -66,7 +66,7 @@ export default function ClubsRow() {
               No Live Events Yet! Check back again in some time
             </div>
           </div>}
-          <button className=' mt-4 mx-auto d-flex justify-content-center col-md-2 col plannerSectionButton' style={{ borderRadius: "40px", fontWeight: "800", background: "black", color: "white" }} type="submit" onClick={() => navigate("/events")}>Browse All Events</button>
+          <button className=' mt-4 mx-auto d-flex justify-content-center col-lg-2 col-md-4 col-7 plannerSectionButton' style={{ borderRadius: "40px", fontWeight: "800", background: "black", color: "white" }} type="submit" onClick={() => navigate("/events")}>Browse All Events</button>
         </section>
         {/* Clubs Section Removed */}
         {/* <section className='pl-lg-5 pr-lg-0 pt-lg-5 pb-lg-4 px-4 py-5 d-flex' style={{background: "#F7F7F7"}} >
