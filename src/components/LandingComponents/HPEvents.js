@@ -15,7 +15,7 @@ export default function   HPEvents(props) {
   
   return (
     <>
-      <div className='col-lg-3 col-md-6 col-10 p-1 w-100 my-1' key={props?.fields} style={{height: "370px"}} onClick={()=>{navigate("/events/" + props.identity.event_name); setInputValues([]); setInputModal(false)}}>
+      <div className='col-lg-3 col-md-6 col-10 p-1 px-2 w-100 my-1' key={props?.fields} style={{height: "370px"}} onClick={()=>{navigate("/events/" + props.identity.event_name); setInputValues([]); setInputModal(false)}}>
         <div className='w-100 d-flex cursor-pointer position-relative' style={{borderRadius: "10px", height: "100%"}}>
           {/* <img className="w-100 p-0 FeaturedEventsCtrl" style={{borderRadius: "20px", height: "100%", objectFit: "cover"}} alt="" src={process.env.PUBLIC_URL + "/images/Rectangle 43022.png"}/> */}
           <img className="w-100 p-0 FeaturedEventsCtrl" style={{borderRadius: "20px", height: "100%", objectFit: "cover", background: "#D9D9D9", backgroundColor: "lightgray", backgroundPosition: "50%"}} alt="" src={props.identity.images_url}/>

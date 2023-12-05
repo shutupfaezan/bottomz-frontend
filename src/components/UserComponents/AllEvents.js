@@ -1,24 +1,27 @@
   import React, { useState, useEffect} from 'react'
   import GlobalHeader from '../../common/GlobalHeader'
   import Footer from "../../common/Footer"
-  import RenderEvents from '../UserComponents/RenderEvents'
+  // import RenderEvents from '../UserComponents/RenderEvents'
   import axios from 'axios'
+  import  Breadcrumb  from '../../extra/Breadcrumb';
   import "../../css/AllEvents.css"
-import CarouselWithInfo from '../../common/CarouselWithInfo'
+// import CarouselWithInfo from '../../common/CarouselWithInfo'
+import HPEvents from '../LandingComponents/HPEvents';
 
   export default function AllEvents() {
     // eslint-disable-next-line
   const [searchTerm, setSearchTerm] = useState('')
   const [recentEvents, setRecentEvents] = useState([])
-  const [loading, setloading] = useState(false)
+  // const [loading, setloading] = useState(false)
   const [filteredEvents, setFilteredEvents] = useState([])
 
   const fetchData = async () => {
     try {
-      setloading(true)
+      // setloading(true)
       const response = await axios.get("https://nightlife-2710.herokuapp.com/events")
+      console.log(response?.data)
       setRecentEvents(response?.data)
-      setloading(false)
+      // setloading(false)
     } catch (error) {
       console.log(error);
     }
@@ -48,7 +51,7 @@ import CarouselWithInfo from '../../common/CarouselWithInfo'
   const formatDate = (dateStr) => {
     const [year, month, day] = dateStr.split("-")
     const date = new Date(year, month - 1, day)
-    const options = {year: 'numeric', month: 'long', day: 'numeric', weekday: "long" }
+    const options = {year: 'numeric', month: 'long', day: 'numeric'}
     return date.toLocaleDateString('en-US', options)
   }
   
@@ -57,10 +60,34 @@ import CarouselWithInfo from '../../common/CarouselWithInfo'
       <div className=''>
       <GlobalHeader/>
         <section className="p-2" style={{height: "450px"}}>
-          <div style={{height: "100%"}} >
-            <img style={{height: "100%", objectFit: "cover", width: "100%", borderRadius: "20px"}} src={process.env.PUBLIC_URL + "/images/AllEventsheaderImg.png"}></img>
+          <div style={{height: "100%", borderRadius: "20px", backgroundImage: `url(${process.env.PUBLIC_URL}/images/AllEventsheaderImg.png)`, backgroundSize: "cover", backgroundPosition: "center"}}>
+            <div style={{height: "100%", borderRadius: "20px", backgroundImage: `url(${process.env.PUBLIC_URL}/images/AllEventsLowerMask.png)`, backgroundSize: "cover", backgroundPosition: "center"}}>
+              <div className="" style={{color: "white"}}>
+                <div style={{paddingTop: "110px"}}>
+                  <Breadcrumb/>
+                  <div className='text-center mt-5 px-5 mx-5'>
+                    <h1 className='headerFont' style={{fontSize: "60px"}}>Upcoming Events</h1>
+                    <p className='mx-5 px-5' style={{fontWeight: "400", color: "rgba(255, 255, 255, 0.5)"}}>Spice up your day even if its a boring wednesday or chilling friday. See you nearest events, chose one and just go. These eevnts are carefully vetted to ensure public safety.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
           <div>
+          </div>
+        </section>
+        <section className="p-2">
+          <div className="d-flex flex-wrap my-3">
+            {Object?.entries(result)?.map(([date, objects]) => (
+                <div className="w-100 px-lg-3" key={date}>
+                  <p className='px-md-4 px-2 ml-2 mb-2' style={{fontWeight: 700, fontSize: "18px"}} >{formatDate(date)} <img src={process.env.PUBLIC_URL + "/images/allEventsVectorArrow.png"} alt=""></img></p>
+                  <div className='d-md-flex w-100 px-md-3 flex-wrap mb-2'>
+                    {objects?.map((obj, index) => (
+                        <HPEvents identity={obj} index={index} key={index}></HPEvents>
+                    ))}
+                  </div>
+                </div>
+              ))}
           </div>
         </section>
         <Footer/>
