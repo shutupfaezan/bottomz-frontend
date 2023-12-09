@@ -58,7 +58,7 @@ export default function ClubsRow() {
             <img className="position-absolute d-md-block d-none heroEventHeadImg2" src={process.env.PUBLIC_URL + "/images/arrowHeroMain2.png"} alt=""></img>
           </div>
           {reverseEvents?.length !== 0 ? <div className='d-flex flex-md-wrap align-items-center px-md-5 p-2 overflow-scroll overflow-md-hidden ml-4 ml-md-0'>{reverseEvents?.map((fields, index )=> {
-            return <HPEvents className="w-100" key={index} index={index} identity={fields}></HPEvents>
+            return <div className='col-lg-3 col-md-6 col-10 p-1 px-1 w-100 my-1'><HPEvents className="w-100" key={index} index={index} identity={fields}></HPEvents></div>
           })}
           </div> :
           <div className='d-flex flex-wrap align-items-center mx-lg-5 p-2'>
