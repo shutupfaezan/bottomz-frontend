@@ -17,6 +17,7 @@
     "bootstrap": "^4.6.0",
     "bootstrap-icons": "^1.9.1",
     "date-fns": "^2.29.3",
+    "embla-carousel-react": "^8.0.0-rc15",
     "formik": "^2.2.9",
     "gh-pages": "^4.0.0",
     "jwt-decode": "^3.1.2",

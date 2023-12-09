@@ -304,3 +304,9 @@ select.QuantityFields option {
   color: white !important;
   content: ">" !important;
 }
+
+.slick-slider{
+  width: 100% !important;
+}
+
+
