@@ -16,6 +16,8 @@ import HPEvents from '../LandingComponents/HPEvents';
   const [searchTerm, setSearchTerm] = useState('')
   const [recentEvents, setRecentEvents] = useState([])
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [selectedGenre, setSelectedGenre] = useState('All');
+  const [genres, setGenres] = useState([]);
 
   function SamplePrevArrow(props) {
     const { onClick } = props;
@@ -73,6 +75,37 @@ import HPEvents from '../LandingComponents/HPEvents';
     ]
   };
   
+  useEffect(() => {
+    const allGenres = recentEvents
+      .flatMap(event => event.genre.split(','))
+      .map(genre => genre.trim());
+    const uniqueGenres = ['All', ...new Set(allGenres)];
+    setGenres(uniqueGenres);
+  }, [recentEvents]);
+
+  // Update filteredEvents logic to include genre filtering
+  useEffect(() => {
+    setFilteredEvents(
+      recentEvents.filter(event => 
+        selectedGenre === 'All' || event.genre.split(',').map(g => g.trim()).includes(selectedGenre)
+      )
+    );
+  }, [selectedGenre, recentEvents]);
+
+  const renderGenreButtons = () => {
+    return genres.map(genre => (
+      <button 
+        className="btn px-3 py-2" 
+        style={{ background: selectedGenre === genre ? "black" : "rgba(0, 0, 0, 0.1)", borderRadius: "60px", color: selectedGenre === genre ? "white" : "black", border: "1px solid rgba(0, 0, 0, 1)", fontSize: "14px", display: "flex", alignItems: "center", justifyContent: "center"}} 
+        key={genre} 
+        onClick={() => setSelectedGenre(genre)}
+      >
+        {genre}
+        {selectedGenre === genre && selectedGenre !== "All" && (
+          <span onClick={(e) => { e.stopPropagation(); setSelectedGenre('All')}} style={{ paddingLeft: "10px", cursor: "pointer" }}>
+            &#x2715;
+            </span>
+          )}</button>));};
 
   // const [loading, setloading] = useState(false)
   const [filteredEvents, setFilteredEvents] = useState([])
@@ -122,7 +155,7 @@ import HPEvents from '../LandingComponents/HPEvents';
       <>
       <div className=''>
       <GlobalHeader/>
-        <section className="p-2" style={{height: "450px"}}>
+        <section className="p-2" style={{height: "500px"}}>
           <div style={{height: "100%", borderRadius: "20px", backgroundImage: `url(${process.env.PUBLIC_URL}/images/AllEventsheaderImg.png)`, backgroundSize: "cover", backgroundPosition: "center"}}>
             <div style={{height: "100%", borderRadius: "20px", backgroundImage: `url(${process.env.PUBLIC_URL}/images/AllEventsLowerMask.png)`, backgroundSize: "cover", backgroundPosition: "center"}}>
               <div className="" style={{color: "white"}}>
@@ -141,6 +174,9 @@ import HPEvents from '../LandingComponents/HPEvents';
         </section>
         <section className="p-2">
           <div className="d-flex flex-wrap my-3">
+            <div className="genre-buttons d-flex mx-auto justify-content-center my-5" style={{ gap: "10px"}}>
+              {renderGenreButtons()}
+            </div>
             {Object.entries(result).map(([date, events]) => (
               <div className="w-100 px-lg-3 mb-4" key={date}>
                 <p className='px-md-4 px-2 ml-2 mb-2' style={{ fontWeight: 700, fontSize: "18px" }}>
