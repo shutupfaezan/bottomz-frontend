@@ -15,3 +15,12 @@ input[type=search]::-ms-reveal { display: none; width : 0; height: 0; }
     content: "";
     z-index: 4;
 } */
+
+.react-datepicker{
+    width: fit-content !important;
+    border: none !important;
+}
+
+.modal-dialog{
+    width: fit-content !important;
+}
