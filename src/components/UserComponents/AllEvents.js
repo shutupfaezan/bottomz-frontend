@@ -3,19 +3,32 @@
   import Footer from "../../common/Footer"
   // import RenderEvents from '../UserComponents/RenderEvents'
   import axios from 'axios'
+  import { Range } from 'react-range';
+  import DatePicker from 'react-datepicker';
+  import 'react-datepicker/dist/react-datepicker.css';
   import  Breadcrumb  from '../../extra/Breadcrumb';
+  import Modal from 'react-bootstrap/Modal';
   import Slider from 'react-slick';
   import "slick-carousel/slick/slick.css"; 
   import "slick-carousel/slick/slick-theme.css";
   import "../../css/AllEvents.css"
-// import CarouselWithInfo from '../../common/CarouselWithInfo'
-import HPEvents from '../LandingComponents/HPEvents';
-
+  // import CarouselWithInfo from '../../common/CarouselWithInfo'
+  import HPEvents from '../LandingComponents/HPEvents';
+  
   export default function AllEvents() {
     // eslint-disable-next-line
+  const [showDatePickerModal, setShowDatePickerModal] = useState(false);
   const [searchTerm, setSearchTerm] = useState('')
   const [recentEvents, setRecentEvents] = useState([])
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [selectedGenre, setSelectedGenre] = useState('All');
+  const [genres, setGenres] = useState([]);
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(null);
+  const [showPriceModal, setShowPriceModal] = useState(false);
+  const [priceRange, setPriceRange] = useState([0, 100]); // Actual price range for filtering
+  const [tempPriceRange, setTempPriceRange] = useState([0, 100]); // Temporary price range for modal
+  const [maxPrice, setMaxPrice] = useState(100); // Maximum price from events
 
   function SamplePrevArrow(props) {
     const { onClick } = props;
@@ -25,8 +38,8 @@ import HPEvents from '../LandingComponents/HPEvents';
       </div>
     );
   }
-  
 
+  
   function SampleNextArrow(props) {
     const { onClick } = props;
     return (
@@ -36,13 +49,14 @@ import HPEvents from '../LandingComponents/HPEvents';
     );
   }
   console.log(recentEvents)
+  // setting
   const settings = {
     dots: true,
     infinite: false,
     speed: 500,
     slidesToShow: 4,
     slidesToScroll: 1,
-    afterChange: (current) => setCurrentSlide(current),
+    afterChange: (current) => {setCurrentSlide(current); console.log(current)},
     nextArrow: currentSlide < recentEvents?.length - 1 ? <SampleNextArrow /> : null,
     prevArrow: currentSlide > 0 ? <SamplePrevArrow /> : null,
     responsive: [
@@ -73,6 +87,46 @@ import HPEvents from '../LandingComponents/HPEvents';
     ]
   };
   
+  useEffect(() => {
+    const allGenres = recentEvents
+      .flatMap(event => event.genre.split(','))
+      .map(genre => genre.trim());
+    const uniqueGenres = ['All', ...new Set(allGenres)];
+    setGenres(uniqueGenres);
+  }, [recentEvents]);
+
+  // Update filteredEvents logic to include genre filtering
+    useEffect(() => {
+      const filteredByGenre = recentEvents.filter(event => 
+        selectedGenre === 'All' || event.genre.split(',').map(g => g.trim()).includes(selectedGenre)
+      );
+
+    const filteredByDate = filteredByGenre.filter(event => {
+      if (!startDate || !endDate) return true;
+      const eventDate = new Date(event.date);
+      return eventDate >= startDate && eventDate <= endDate;
+    });
+
+    setFilteredEvents(filteredByDate);
+  }, [selectedGenre, recentEvents, startDate, endDate]);
+
+  useEffect(() => {
+    const filteredByPrice = recentEvents.filter(event =>
+      event.price_range >= priceRange[0] && event.price_range <= priceRange[1]
+    );
+    setFilteredEvents(filteredByPrice);
+  }, [priceRange, recentEvents]);
+
+  const applyPriceFilter = () => {
+    if (tempPriceRange) {
+      setPriceRange(tempPriceRange);
+    }
+    setShowPriceModal(false);
+  };
+
+  const handleRangeChange = (values) => {
+    setTempPriceRange(values);
+  };
 
   // const [loading, setloading] = useState(false)
   const [filteredEvents, setFilteredEvents] = useState([])
@@ -90,9 +144,22 @@ import HPEvents from '../LandingComponents/HPEvents';
   }
 
   useEffect(() => {
-    fetchData()
-  }, [])
+    const fetchData = async () => {
+      try {
+        const response = await axios.get("https://nightlife-2710.herokuapp.com/events");
+        setRecentEvents(response?.data);
+        const maxEventPrice = response?.data.reduce((max, event) => Math.max(max, event.price_range), 0);
+        setMaxPrice(maxEventPrice);
+        setPriceRange([0, maxEventPrice]);
+        setTempPriceRange([0, maxEventPrice]);
+      } catch (error) {
+        console.error("Error fetching events:", error);
+      }
+    };
+    fetchData();
+  }, []);
 
+  // Normal filter by date to display
   useEffect(() => {
     setFilteredEvents(
       recentEvents.filter(event =>
@@ -110,6 +177,25 @@ import HPEvents from '../LandingComponents/HPEvents';
       result[key].push(obj)
     }
   }
+// Components that handle Date filter
+  const handleDateChange = (dates) => {
+    const [start, end] = dates;
+    setStartDate(start);
+    setEndDate(end);
+  };
+
+  const clearDates = (e) => {
+    e.stopPropagation();
+    setStartDate(null);
+    setEndDate(null);
+  };
+
+  const formatDateForDisplay = (date) => {
+    if (!date) return '';
+    // Format the date as 'MMM DD' (e.g., 'Dec 18')
+    const options = { month: 'short', day: 'numeric' };
+    return date.toLocaleDateString('en-US', options);
+  };
 
   const formatDate = (dateStr) => {
     const [year, month, day] = dateStr.split("-")
@@ -117,12 +203,11 @@ import HPEvents from '../LandingComponents/HPEvents';
     const options = {year: 'numeric', month: 'long', day: 'numeric'}
     return date.toLocaleDateString('en-US', options)
   }
-  
     return (
       <>
       <div className=''>
-      <GlobalHeader/>
-        <section className="p-2" style={{height: "450px"}}>
+        <GlobalHeader/>
+        <section className="p-2" style={{height: "500px"}}>
           <div style={{height: "100%", borderRadius: "20px", backgroundImage: `url(${process.env.PUBLIC_URL}/images/AllEventsheaderImg.png)`, backgroundSize: "cover", backgroundPosition: "center"}}>
             <div style={{height: "100%", borderRadius: "20px", backgroundImage: `url(${process.env.PUBLIC_URL}/images/AllEventsLowerMask.png)`, backgroundSize: "cover", backgroundPosition: "center"}}>
               <div className="" style={{color: "white"}}>
@@ -136,11 +221,82 @@ import HPEvents from '../LandingComponents/HPEvents';
               </div>
             </div>
           </div>
-          <div>
-          </div>
         </section>
         <section className="p-2">
-          <div className="d-flex flex-wrap my-3">
+          <div className="d-flex mx-auto justify-content-center mt-5 mb-3" style={{ gap: "10px" }}>
+            <button className="btn px-3 py-2" style={{  background: startDate && endDate ? "black" : "rgba(0, 0, 0, 0.1)", borderRadius: "60px", color: startDate && endDate ? "white" : "black", border: "1px solid rgba(0, 0, 0, 1)", fontSize: "14px", display: "flex", alignItems: "center", justifyContent: "center" }} onClick={() => setShowDatePickerModal(true)}>
+              <i className="fa-solid fa-calendar mr-2"></i>
+              {startDate && endDate ? `${formatDateForDisplay(startDate)} - ${formatDateForDisplay(endDate)}` : 'Date'}
+              {startDate && endDate && (
+                <span onClick={(e) => clearDates(e)} style={{ paddingLeft: "10px", cursor: "pointer" }}>
+                  &#x2715;
+                </span>
+              )}
+            </button>
+            {showDatePickerModal && (
+              <Modal show={showDatePickerModal} onHide={() => setShowDatePickerModal(false)}>
+                <DatePicker selectsRange startDate={startDate} endDate={endDate} onChange={(dates) => handleDateChange(dates)} inline />
+                <button className='btn col-lg-6 rounded-pill my-3 mx-auto' onClick={() => setShowDatePickerModal(false)} style={{ background: "black", color: "white" }}>Save</button>
+              </Modal>
+            )}
+            <button className="btn px-3 py-2" style={{  background: "rgba(0, 0, 0, 0.1)", borderRadius: "60px", color: "black", border: "1px solid rgba(0, 0, 0, 1)", fontSize: "14px", display: "flex", alignItems: "center", justifyContent: "center" }} onClick={() => setShowPriceModal(true)}> <i className="fa-solid fa-calendar mr-2"></i> Filter by Price</button>
+            {showPriceModal && (
+          <Modal show={showPriceModal} onHide={() => setShowPriceModal(false)}>
+            <Modal.Header closeButton>Select Price Range</Modal.Header>
+            <Modal.Body>
+            <Range
+                step={1}
+                min={0}
+                max={maxPrice}
+                values={tempPriceRange || priceRange}
+                onChange={handleRangeChange}
+              renderTrack={({ props, children }) => (
+                <div
+                  {...props}
+                  style={{
+                    ...props.style,
+                    height: '6px',
+                    width: '100%',
+                    backgroundColor: '#ccc'
+                  }}
+                >
+                  {children}
+                </div>
+              )}
+              renderThumb={({ props }) => (
+                <div
+                  {...props}
+                  style={{
+                    ...props.style,
+                    height: '20px',
+                    width: '20px',
+                    backgroundColor: '#fff',
+                    borderRadius: '50%'
+                  }}
+                />
+              )}
+            />
+              <p>Selected range: ₹{tempPriceRange ? tempPriceRange[0] : priceRange[0]} - ₹{tempPriceRange ? tempPriceRange[1] : priceRange[1]}</p>
+            </Modal.Body>
+            <Modal.Footer>
+              <button className='btn' onClick={applyPriceFilter}>Apply</button>
+            </Modal.Footer>
+          </Modal>
+        )}
+          </div>
+          <div className="d-flex flex-wrap mb-3">
+            <div className="d-flex mx-auto justify-content-center mb-5" style={{ gap: "10px"}}>
+              {genres.map(genre => (
+                <button className="btn px-3 py-2" style={{ background: selectedGenre === genre ? "black" : "rgba(0, 0, 0, 0.1)", borderRadius: "60px", color: selectedGenre === genre ? "white" : "black", border: "1px solid rgba(0, 0, 0, 1)", fontSize: "14px", display: "flex", alignItems: "center", justifyContent: "center"}} key={genre} onClick={() => setSelectedGenre(genre)}>
+                  {genre}
+                  {selectedGenre === genre && selectedGenre !== "All" && (
+                    <span onClick={(e) => { e.stopPropagation(); setSelectedGenre('All')}} style={{ paddingLeft: "10px", cursor: "pointer" }}>
+                      &#x2715;
+                    </span>
+                  )}
+                </button>
+              ))}
+            </div>
             {Object.entries(result).map(([date, events]) => (
               <div className="w-100 px-lg-3 mb-4" key={date}>
                 <p className='px-md-4 px-2 ml-2 mb-2' style={{ fontWeight: 700, fontSize: "18px" }}>
@@ -167,7 +323,6 @@ import HPEvents from '../LandingComponents/HPEvents';
             ))}
           </div>
         </section>
-
         <Footer/>
       </div>
       </>
