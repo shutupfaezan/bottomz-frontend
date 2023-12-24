@@ -3,6 +3,7 @@
   import Footer from "../../common/Footer"
   // import RenderEvents from '../UserComponents/RenderEvents'
   import axios from 'axios'
+  import { Range } from 'react-range';
   import DatePicker from 'react-datepicker';
   import 'react-datepicker/dist/react-datepicker.css';
   import  Breadcrumb  from '../../extra/Breadcrumb';
@@ -24,6 +25,10 @@
   const [genres, setGenres] = useState([]);
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
+  const [showPriceModal, setShowPriceModal] = useState(false);
+  const [priceRange, setPriceRange] = useState([0, 100]); // Actual price range for filtering
+  const [tempPriceRange, setTempPriceRange] = useState([0, 100]); // Temporary price range for modal
+  const [maxPrice, setMaxPrice] = useState(100); // Maximum price from events
 
   function SamplePrevArrow(props) {
     const { onClick } = props;
@@ -34,7 +39,6 @@
     );
   }
 
-  const closeModal = () => setShowDatePickerModal(false)
   
   function SampleNextArrow(props) {
     const { onClick } = props;
@@ -45,6 +49,7 @@
     );
   }
   console.log(recentEvents)
+  // setting
   const settings = {
     dots: true,
     infinite: false,
@@ -105,6 +110,24 @@
     setFilteredEvents(filteredByDate);
   }, [selectedGenre, recentEvents, startDate, endDate]);
 
+  useEffect(() => {
+    const filteredByPrice = recentEvents.filter(event =>
+      event.price_range >= priceRange[0] && event.price_range <= priceRange[1]
+    );
+    setFilteredEvents(filteredByPrice);
+  }, [priceRange, recentEvents]);
+
+  const applyPriceFilter = () => {
+    if (tempPriceRange) {
+      setPriceRange(tempPriceRange);
+    }
+    setShowPriceModal(false);
+  };
+
+  const handleRangeChange = (values) => {
+    setTempPriceRange(values);
+  };
+
   // const [loading, setloading] = useState(false)
   const [filteredEvents, setFilteredEvents] = useState([])
 
@@ -121,9 +144,22 @@
   }
 
   useEffect(() => {
-    fetchData()
-  }, [])
+    const fetchData = async () => {
+      try {
+        const response = await axios.get("https://nightlife-2710.herokuapp.com/events");
+        setRecentEvents(response?.data);
+        const maxEventPrice = response?.data.reduce((max, event) => Math.max(max, event.price_range), 0);
+        setMaxPrice(maxEventPrice);
+        setPriceRange([0, maxEventPrice]);
+        setTempPriceRange([0, maxEventPrice]);
+      } catch (error) {
+        console.error("Error fetching events:", error);
+      }
+    };
+    fetchData();
+  }, []);
 
+  // Normal filter by date to display
   useEffect(() => {
     setFilteredEvents(
       recentEvents.filter(event =>
@@ -141,7 +177,7 @@
       result[key].push(obj)
     }
   }
-
+// Components that handle Date filter
   const handleDateChange = (dates) => {
     const [start, end] = dates;
     setStartDate(start);
@@ -167,7 +203,6 @@
     const options = {year: 'numeric', month: 'long', day: 'numeric'}
     return date.toLocaleDateString('en-US', options)
   }
-  
     return (
       <>
       <div className=''>
@@ -188,23 +223,67 @@
           </div>
         </section>
         <section className="p-2">
-        <div className="d-flex mx-auto justify-content-center mt-5 mb-3" style={{ gap: "10px" }}>
-          <button className="btn px-3 py-2" style={{  background: startDate && endDate ? "black" : "rgba(0, 0, 0, 0.1)", borderRadius: "60px", color: startDate && endDate ? "white" : "black", border: "1px solid rgba(0, 0, 0, 1)", fontSize: "14px", display: "flex", alignItems: "center", justifyContent: "center" }} onClick={() => setShowDatePickerModal(true)}>
-            <i className="fa-solid fa-calendar mr-2"></i>
-            {startDate && endDate ? `${formatDateForDisplay(startDate)} - ${formatDateForDisplay(endDate)}` : 'Date'}
-            {startDate && endDate && (
-              <span onClick={(e) => clearDates(e)} style={{ paddingLeft: "10px", cursor: "pointer" }}>
-                &#x2715;
-              </span>
+          <div className="d-flex mx-auto justify-content-center mt-5 mb-3" style={{ gap: "10px" }}>
+            <button className="btn px-3 py-2" style={{  background: startDate && endDate ? "black" : "rgba(0, 0, 0, 0.1)", borderRadius: "60px", color: startDate && endDate ? "white" : "black", border: "1px solid rgba(0, 0, 0, 1)", fontSize: "14px", display: "flex", alignItems: "center", justifyContent: "center" }} onClick={() => setShowDatePickerModal(true)}>
+              <i className="fa-solid fa-calendar mr-2"></i>
+              {startDate && endDate ? `${formatDateForDisplay(startDate)} - ${formatDateForDisplay(endDate)}` : 'Date'}
+              {startDate && endDate && (
+                <span onClick={(e) => clearDates(e)} style={{ paddingLeft: "10px", cursor: "pointer" }}>
+                  &#x2715;
+                </span>
+              )}
+            </button>
+            {showDatePickerModal && (
+              <Modal show={showDatePickerModal} onHide={() => setShowDatePickerModal(false)}>
+                <DatePicker selectsRange startDate={startDate} endDate={endDate} onChange={(dates) => handleDateChange(dates)} inline />
+                <button className='btn col-lg-6 rounded-pill my-3 mx-auto' onClick={() => setShowDatePickerModal(false)} style={{ background: "black", color: "white" }}>Save</button>
+              </Modal>
             )}
-          </button>
-          {showDatePickerModal && (
-            <Modal show={showDatePickerModal} onHide={() => setShowDatePickerModal(false)}>
-              <DatePicker selectsRange startDate={startDate} endDate={endDate} onChange={(dates) => handleDateChange(dates)} inline />
-              <button className='btn col-lg-6 rounded-pill my-3 mx-auto' onClick={() => setShowDatePickerModal(false)} style={{ background: "black", color: "white" }}>Save</button>
-            </Modal>
-          )}
-        </div>
+            <button className="btn px-3 py-2" style={{  background: "rgba(0, 0, 0, 0.1)", borderRadius: "60px", color: "black", border: "1px solid rgba(0, 0, 0, 1)", fontSize: "14px", display: "flex", alignItems: "center", justifyContent: "center" }} onClick={() => setShowPriceModal(true)}> <i className="fa-solid fa-calendar mr-2"></i> Filter by Price</button>
+            {showPriceModal && (
+          <Modal show={showPriceModal} onHide={() => setShowPriceModal(false)}>
+            <Modal.Header closeButton>Select Price Range</Modal.Header>
+            <Modal.Body>
+            <Range
+                step={1}
+                min={0}
+                max={maxPrice}
+                values={tempPriceRange || priceRange}
+                onChange={handleRangeChange}
+              renderTrack={({ props, children }) => (
+                <div
+                  {...props}
+                  style={{
+                    ...props.style,
+                    height: '6px',
+                    width: '100%',
+                    backgroundColor: '#ccc'
+                  }}
+                >
+                  {children}
+                </div>
+              )}
+              renderThumb={({ props }) => (
+                <div
+                  {...props}
+                  style={{
+                    ...props.style,
+                    height: '20px',
+                    width: '20px',
+                    backgroundColor: '#fff',
+                    borderRadius: '50%'
+                  }}
+                />
+              )}
+            />
+              <p>Selected range: ₹{tempPriceRange ? tempPriceRange[0] : priceRange[0]} - ₹{tempPriceRange ? tempPriceRange[1] : priceRange[1]}</p>
+            </Modal.Body>
+            <Modal.Footer>
+              <button className='btn' onClick={applyPriceFilter}>Apply</button>
+            </Modal.Footer>
+          </Modal>
+        )}
+          </div>
           <div className="d-flex flex-wrap mb-3">
             <div className="d-flex mx-auto justify-content-center mb-5" style={{ gap: "10px"}}>
               {genres.map(genre => (
