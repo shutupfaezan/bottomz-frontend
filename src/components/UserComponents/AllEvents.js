@@ -131,18 +131,6 @@
   // const [loading, setloading] = useState(false)
   const [filteredEvents, setFilteredEvents] = useState([])
 
-  const fetchData = async () => {
-    try {
-      // setloading(true)
-      const response = await axios.get("https://nightlife-2710.herokuapp.com/events")
-      console.log(response?.data)
-      setRecentEvents(response?.data)
-      // setloading(false)
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -250,19 +238,19 @@
                 max={maxPrice}
                 values={tempPriceRange || priceRange}
                 onChange={handleRangeChange}
-              renderTrack={({ props, children }) => (
-                <div
-                  {...props}
-                  style={{
-                    ...props.style,
-                    height: '6px',
-                    width: '100%',
-                    backgroundColor: '#ccc'
-                  }}
-                >
-                  {children}
-                </div>
-              )}
+                renderTrack={({ props, children }) => (
+                  <div
+                    {...props}
+                    style={{
+                      ...props.style,
+                      height: '6px',
+                      width: '100%',
+                      backgroundColor: '#ccc'
+                    }}
+                  >
+                    {children}
+                  </div>
+                )}
               renderThumb={({ props }) => (
                 <div
                   {...props}
