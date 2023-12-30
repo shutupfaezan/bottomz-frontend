@@ -12,10 +12,10 @@ export default function   HPEvents(props) {
   //   const options = {month: 'short', day: 'numeric' }
   //   return date.toLocaleDateString('en-US', options)
   // }
-  
+  console.log(props.fields)
   return (
     <>
-      <div onClick={()=>{navigate("/events/" + props.identity.event_name); setInputValues([]); setInputModal(false)}}  style={{height: "370px"}}>
+      <div onClick={()=>{navigate("/events/" + props?.identity?.event_name); setInputValues([]); setInputModal(false)}}  style={{height: "370px"}}>
         <div className='w-100 d-flex cursor-pointer position-relative' key={props?.fields} style={{borderRadius: "10px", height: "100%"}}>
           <img className="w-100 p-0 FeaturedEventsCtrl" style={{borderRadius: "20px", height: "100%", objectFit: "cover", background: "#D9D9D9", backgroundColor: "lightgray", backgroundPosition: "50%"}} alt="" src={props.identity.images_url}/>
           <div className='col-4 d-flex justify-content-center' style={{background: `rgba(0, 0, 0, 0.20)`, WebkitBackdropFilter: "blur(12px)", backdropFilter: "blur(12px)", color: "white", position: "absolute", left: "50%", transform: "translateX(-50%)", bottom: "120px", width: "100%", border: "1px solid rgba(255, 255, 255, 0.4)", borderRadius: "30px" }}>

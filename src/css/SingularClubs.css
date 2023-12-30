@@ -2,6 +2,13 @@
   font-size: 1rem;
 }
 
+.background-with-gradient{
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../../public/images/SingularClubsExampleImage.png');
+  background-size: cover;
+  background-position: center;
+}
+
+
 .info-link:link,
 .info-link:visited {
   color: white;

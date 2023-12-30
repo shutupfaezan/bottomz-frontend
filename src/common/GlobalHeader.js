@@ -37,15 +37,6 @@ export default function GlobalHeader() {
             />
           </Link>
           <ul className="navbar-nav mr-2">
-            {/* <li className="nav-item active d-none d-md-flex hover-underline-animation">
-              <Link
-                className="nav-link p-2 mx-2"
-                style={{ fontSize: "19px" }}
-                to="/clubs"
-              >
-                <small style={{ color: "white" }}>Clubs</small>
-              </Link>
-            </li> */}
             <li className="nav-item active d-none d-md-flex hover-underline-animation">
               <Link
                 className="nav-link p-2 mx-2"

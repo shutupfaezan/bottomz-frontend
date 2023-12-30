@@ -4,7 +4,6 @@ export const SingularContext = createContext();
 
 const Context = ({ children }) => {
   const [inputModal, setInputModal] = useState(false);
-  const [clubsModal, setClubsModal] = useState(false);
   const [show, setShow] = useState(false);
   const [orderId, setOrderId] = useState(null);
   const [inputValues, setInputValues] = useState([]);
@@ -25,8 +24,6 @@ const Context = ({ children }) => {
         setEventStepper,
         orderId,
         setOrderId,
-        clubsModal,
-        setClubsModal,
       }}
     >
       {children}

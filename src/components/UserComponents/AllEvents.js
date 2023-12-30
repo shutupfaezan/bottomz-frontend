@@ -63,7 +63,7 @@
       {
         breakpoint: 1367,
         settings: {
-          slidesToShow: 3,
+          slidesToShow: 4,
           slidesToScroll: 1,
           infinite: true,
           dots: true,
@@ -251,7 +251,7 @@
               }}
               onClick={() => setShowPriceModal(true)}
             >
-            { priceRange[0] === 0 && priceRange[1] === maxPrice ? <img className='mr-2' src={process.env.PUBLIC_URL + "/images/rupeevector icon.png"} style={{width: "15px"}}></img> : <img className='mr-2' src={process.env.PUBLIC_URL + "/images/rupeevector icon_inverted.png"} style={{width: "15px"}}></img>}
+            { priceRange[0] === 0 && priceRange[1] === maxPrice ? <img className='mr-2' src={process.env.PUBLIC_URL + "/images/rupeevector icon.png"} style={{width: "15px"}} alt=""></img> : <img className='mr-2' src={process.env.PUBLIC_URL + "/images/rupeevector icon_inverted.png"} style={{width: "15px"}} alt=""></img>}
             {priceRange[0] === 0 && priceRange[1] === maxPrice ? 'Filter by Price' : `₹ ${priceRange[0]} - ₹ ${priceRange[1]}`}
             </button>
             {showPriceModal && (
