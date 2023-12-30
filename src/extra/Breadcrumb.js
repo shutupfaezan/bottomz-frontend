@@ -7,7 +7,7 @@ const Breadcrumbs = () => {
 
   return (
     <nav aria-label="breadcrumb" style={{'--bs-breadcrumb-divider': '>'}}>
-      <ol className="breadcrumb mx-md-5 mx-1" style={{ background: 'none', color: 'white' }}>
+      <ol className="breadcrumb mx-md-5 mx-1 mb-0" style={{ background: 'none', color: 'white' }}>
         <li className="breadcrumb-item">
           <Link to="/" style={{ background: 'none', color: 'white', fontWeight: '400' }}>
             HOME

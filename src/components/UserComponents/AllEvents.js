@@ -61,9 +61,19 @@
     prevArrow: currentSlide > 0 ? <SamplePrevArrow /> : null,
     responsive: [
       {
+        breakpoint: 1367,
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 1,
+          infinite: true,
+          dots: true,
+          innerWidth: "100%"
+        }
+      },
+      {
         breakpoint: 1024,
         settings: {
-          slidesToShow: 3,
+          slidesToShow: 2,
           slidesToScroll: 1,
           infinite: true,
           dots: true,
@@ -210,7 +220,7 @@
             </div>
           </div>
         </section>
-        <section className="p-2">
+        <section className="p-lg-2 p-md-5">
           <div className="d-flex mx-auto justify-content-center mt-5 mb-3" style={{ gap: "10px" }}>
             <button className="btn px-3 py-2" style={{  background: startDate && endDate ? "black" : "rgba(0, 0, 0, 0.1)", borderRadius: "60px", color: startDate && endDate ? "white" : "black", border: "1px solid rgba(0, 0, 0, 1)", fontSize: "14px", display: "flex", alignItems: "center", justifyContent: "center" }} onClick={() => setShowDatePickerModal(true)}>
               <i className="fa-solid fa-calendar mr-2"></i>
@@ -227,50 +237,66 @@
                 <button className='btn col-lg-6 rounded-pill my-3 mx-auto' onClick={() => setShowDatePickerModal(false)} style={{ background: "black", color: "white" }}>Save</button>
               </Modal>
             )}
-            <button className="btn px-3 py-2" style={{  background: "rgba(0, 0, 0, 0.1)", borderRadius: "60px", color: "black", border: "1px solid rgba(0, 0, 0, 1)", fontSize: "14px", display: "flex", alignItems: "center", justifyContent: "center" }} onClick={() => setShowPriceModal(true)}> <i className="fa-solid fa-calendar mr-2"></i> Filter by Price</button>
+            <button 
+              className="btn px-3 py-2" 
+              style={{  
+                background: priceRange[0] === 0 && priceRange[1] === maxPrice ? "rgba(0, 0, 0, 0.1)" : "black", 
+                borderRadius: "60px", 
+                color: priceRange[0] === 0 && priceRange[1] === maxPrice ? "black" : "white", 
+                border: "1px solid rgba(0, 0, 0, 1)", 
+                fontSize: "14px", 
+                display: "flex", 
+                alignItems: "center", 
+                justifyContent: "center" 
+              }}
+              onClick={() => setShowPriceModal(true)}
+            >
+            { priceRange[0] === 0 && priceRange[1] === maxPrice ? <img className='mr-2' src={process.env.PUBLIC_URL + "/images/rupeevector icon.png"} style={{width: "15px"}} alt=""></img> : <img className='mr-2' src={process.env.PUBLIC_URL + "/images/rupeevector icon_inverted.png"} style={{width: "15px"}} alt=""></img>}
+            {priceRange[0] === 0 && priceRange[1] === maxPrice ? 'Filter by Price' : `₹ ${priceRange[0]} - ₹ ${priceRange[1]}`}
+            </button>
             {showPriceModal && (
-          <Modal show={showPriceModal} onHide={() => setShowPriceModal(false)}>
-            <Modal.Header closeButton>Select Price Range</Modal.Header>
-            <Modal.Body>
-            <Range
-                step={1}
-                min={0}
-                max={maxPrice}
-                values={tempPriceRange || priceRange}
-                onChange={handleRangeChange}
-                renderTrack={({ props, children }) => (
+            <Modal show={showPriceModal} onHide={() => setShowPriceModal(false)}>
+              <Modal.Header closeButton>Select Price Range</Modal.Header>
+              <Modal.Body>
+              <Range
+                  step={1}
+                  min={0}
+                  max={maxPrice}
+                  values={tempPriceRange || priceRange}
+                  onChange={handleRangeChange}
+                  renderTrack={({ props, children }) => (
+                    <div
+                      {...props}
+                      style={{
+                        ...props.style,
+                        height: '6px',
+                        width: '100%',
+                        backgroundColor: '#ccc'
+                      }}
+                    >
+                      {children}
+                    </div>
+                  )}
+                renderThumb={({ props }) => (
                   <div
                     {...props}
                     style={{
                       ...props.style,
-                      height: '6px',
-                      width: '100%',
-                      backgroundColor: '#ccc'
+                      height: '20px',
+                      width: '20px',
+                      backgroundColor: '#fff',
+                      borderRadius: '50%'
                     }}
-                  >
-                    {children}
-                  </div>
+                  />
                 )}
-              renderThumb={({ props }) => (
-                <div
-                  {...props}
-                  style={{
-                    ...props.style,
-                    height: '20px',
-                    width: '20px',
-                    backgroundColor: '#fff',
-                    borderRadius: '50%'
-                  }}
-                />
-              )}
-            />
-              <p>Selected range: ₹{tempPriceRange ? tempPriceRange[0] : priceRange[0]} - ₹{tempPriceRange ? tempPriceRange[1] : priceRange[1]}</p>
-            </Modal.Body>
-            <Modal.Footer>
-              <button className='btn' onClick={applyPriceFilter}>Apply</button>
-            </Modal.Footer>
-          </Modal>
-        )}
+              />
+                <p>Selected range: ₹{tempPriceRange ? tempPriceRange[0] : priceRange[0]} - ₹{tempPriceRange ? tempPriceRange[1] : priceRange[1]}</p>
+              </Modal.Body>
+              <Modal.Footer>
+                <button className='btn' onClick={applyPriceFilter}>Apply</button>
+              </Modal.Footer>
+            </Modal>
+            )}
           </div>
           <div className="d-flex flex-wrap mb-3">
             <div className="d-flex mx-auto justify-content-center mb-5" style={{ gap: "10px"}}>
