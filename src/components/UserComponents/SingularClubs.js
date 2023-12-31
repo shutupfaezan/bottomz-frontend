@@ -24,14 +24,14 @@ export default function SingularClubs() {
     //eslint-disable-next-line
   }, []);
 
-  console.log(clubVariable)
+  console.log(clubVariable?.Club_info?.images_url)
 
   return (
        <>
     <div className='position-relative'>
       <GlobalHeader/>
       <div className='postion-relative'>
-        <div className='py-md-5 d-flex flex-column d-flex club-header position-relative background-with-gradient' style={{height: "100%", color: "white"}}>
+        <div className='py-md-5 d-flex flex-column d-flex club-header position-relative background-with-gradient' style={{height: "100%", color: "white", backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${clubVariable?.Club_info?.images_url})`}}>
           <div className='' style={{position: "absolute", top: "0px", height: "100%", width: "100%", backdropFilter: "blur(10px)"}}></div>
           <div style={{paddingTop: "70px", zIndex: "2"}}>
             <Breadcrumb/>
@@ -52,14 +52,14 @@ export default function SingularClubs() {
        {clubVariable?.image_url?.slice(0,5)?.map((image, index)=>{
         return(
         <div className='col-lg-2 px-2'>
-         <img style={{width: "100%", height: "225px", objectFit: "cover", borderRadius: "10px", border: "2px solid white"}} src={image}></img>
+         <img style={{width: "100%", height: "225px", objectFit: "cover", borderRadius: "10px", border: "2px solid white"}} src={image} alt=""></img>
         </div>
        )})}
       </div>
       <div className='px-lg-3 px-md-5 px-md-2 d-flex flex-column mb-5'>
         <div className='col-lg-12 p-0 px-3 d-flex flex-column position-relative'>
-          <img style={{position: "absolute", top: "50%", left: "0", transform: "translateY(-50%)"}} src={process.env.PUBLIC_URL + "/images/singularclubpagevectorright.png"}></img>
-          <img style={{position: "absolute", top: "50%", right: "0", transform: "translateY(-50%)"}} src={process.env.PUBLIC_URL + "/images/singularclubpagevectorleft.png"}></img>
+          <img style={{position: "absolute", top: "50%", left: "0", transform: "translateY(-50%)"}} src={process.env.PUBLIC_URL + "/images/singularclubpagevectorright.png"} alt=""></img>
+          <img style={{position: "absolute", top: "50%", right: "0", transform: "translateY(-50%)"}} src={process.env.PUBLIC_URL + "/images/singularclubpagevectorleft.png"} alt=""></img>
           <h3 className='px-2 py-3 mb-0 py-md-4 py-md-0 px-md-2 headerFont mx-auto' style={{color: "black", fontWeight: "800"}}>Upcoming Events</h3>
         </div>
         <div  className='d-flex flex-md-wrap align-items-center px-md-5 p-2 overflow-scroll overflow-md-hidden ml-4 ml-md-0'>
@@ -70,11 +70,14 @@ export default function SingularClubs() {
           })}
         </div>
       </div>
-      <div className='px-lg-5 px-md-2 d-flex flex-column flex-md-row mb-5'>
-        <div className='col-lg-12 p-0 px-3 d-flex position-relative'>
+      <div className='px-lg-5 px-md-2 d-flex flex-column mb-5'>
+        <div className='col-lg-12 p-0 px-3 mb-3 d-flex position-relative'>
           <img style={{position: "absolute", top: "50%", left: "0", transform: "translateY(-50%)"}} src={process.env.PUBLIC_URL + "/images/singularclubpagevectorright.png"} alt=""></img>
           <img style={{position: "absolute", top: "50%", right: "0", transform: "translateY(-50%)"}} src={process.env.PUBLIC_URL + "/images/singularclubpagevectorleft.png"} alt=""></img>
           <h3 className='px-2 py-3 mb-0 py-md-4 py-md-0 px-md-2 headerFont mx-auto' style={{color: "black", fontWeight: "800"}}>Club Menu</h3>
+        </div>
+        <div style={{background: "rgba(244, 244, 244, 1)", height: "225px", borderRadius: "10px", border: "1px solid black"}}>
+          
         </div>
       </div>
     </div>
