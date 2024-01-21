@@ -35,3 +35,7 @@
     font-size: 0.85rem;
   }
 }
+
+.modal-dialogue{
+  width: 700px !important;
+}
