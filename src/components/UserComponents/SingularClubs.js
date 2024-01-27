@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import * as changeCase from "change-case";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import axios from 'axios'
 import GlobalHeader from '../../common/GlobalHeader';
 import { useState } from 'react';
@@ -29,22 +29,12 @@ export default function SingularClubs() {
     //eslint-disable-next-line
   }, []);
 
-  function CustomNextArrow(props) {
-    const { className, style, onClick } = props;
-    return (
-      <div className={className} style={{ display: "block" }} onClick={onClick}>
-        <i class="fa-solid fa-arrow-right" style={{color: "white"}}></i>
-      </div>
-    );
-  }
-
   const singularClubSliderSettings = {
     dots: false,
     infinite: true,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    nextArrow: <CustomNextArrow/>
     // Add any other settings you might need
   };
   
@@ -66,7 +56,7 @@ export default function SingularClubs() {
               <div className='d-flex flex-column p-3 mb-3' style={{border: "0.5px solid white", gap: "8px", borderRadius: "20px", backdropFilter: "blur(10px)", background: "rgba(255, 255, 255, 0.1)"}}>
                 <h6 className='club-info' style={{fontWeight: "400"}}><i className="fa-solid fa-calendar-days mr-2"></i>Opens at {clubVariable?.Club_info?.opening_time}<b></b></h6>
                 <h6 className='d-flex club-info mx-auto' style={{fontWeight: "400"}}><i className="fa-solid fa-location-dot mr-2"></i><div style={{fontWeight: "500"}}>{clubVariable?.Club_info?.full_address}</div></h6>
-                <button className='btn col-lg-3 mx-auto' style={{border: "1.5px solid white", borderRadius: "60px", color: "white"}}>
+                <button onClick={()=>{window.location.href = clubVariable?.Club_info?.direction}} className='btn col-lg-3 mx-auto' style={{border: "1.5px solid white", borderRadius: "60px", color: "white"}}>
                   <div style={{fontWeight: "500"}}><p className='mb-0 p-2' style={{fontWeight: "600", fontSize: "12px"}}>Direction<i className="fa-solid fa-arrow-right ml-2"></i></p></div>
                 </button>
               </div>
@@ -80,16 +70,16 @@ export default function SingularClubs() {
          <img style={{width: "100%", height: "225px", objectFit: "cover", borderRadius: "10px", border: "2px solid white"}} src={image} alt=""  data-bs-toggle="modal" data-bs-target="#staticBackdrop"></img>
         </div>
        )})}
-      {/* Modal */}
+      {/* Modal for Club Images*/}
       <div className="modal fade" id="staticBackdrop" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div className="modal-dialog" style={{maxWidth: "700px"}}>
-          <button type="button" className="btn" data-bs-dismiss="modal" aria-label="Close"><i class="bi bi-x-lg"></i></button>
+          <button type="button" className="btn" data-bs-dismiss="modal" aria-label="Close" style={{position: "relative", left: "655px", color: "white"}}><i class="bi bi-x-lg"></i></button>
           <div className="modal-content" style={{background: "none", border: "none"}}>
             <div className="modal-body" style={{padding: "0px"}}>
               <Slider {...singularClubSliderSettings}>
                 {clubVariable?.image_url?.map((image, index) => (
                   <div key={index} style={{width: "700px"}}>
-                    <img src={image} alt={`Slide ${index}`} style={{ width: '700px', height: "400px", border: "2px solid white", borderRadius: "20px"}} />
+                    <img src={image} alt={`Slide ${index}`} style={{ width: '700px', height: "400px", border: "2px solid white", borderRadius: "20px", objectFit: 'cover'}} />
                   </div>
                 ))}
               </Slider>
@@ -122,17 +112,34 @@ export default function SingularClubs() {
           {clubVariable?.menu_images_url?.splice(0, 6).map((menu_image, index)=>{
             return(
               <>
-                <div className='col-2 d-flex flex-column' style={{height: "100%"}}>
+                <div className='col-2 d-flex flex-column' key={index} style={{height: "100%"}}>
                   <div className='d-flex'>
                     <p className='mx-auto mb-2' style={{fontWeight: "800"}}>0{index + 1}</p>
                   </div>
                   <div className=''>
-                    <img style={{width: "100%", height: "225px"}} src={menu_image}></img>
+                    <img style={{width: "100%", height: "225px"}} src={menu_image}  data-bs-toggle="modal" data-bs-target="#staticBackdrop2" alt=""></img>
                   </div>
                 </div>
               </>
             )
           })}
+        </div>
+      </div>
+      {/* Modal for Menu Images*/}
+      <div className="modal fade" id="staticBackdrop2" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div className="modal-dialog" style={{maxWidth: "300px", maxHeight: "450px"}}>
+          <button type="button" className="btn" data-bs-dismiss="modal" aria-label="Close" style={{position: "relative", left: "280px", color: "white"}}><i class="bi bi-x-lg"></i></button>
+          <div className="modal-content" style={{background: "none", border: "none"}}>
+            <div className="modal-body" style={{padding: "0px"}}>
+              <Slider {...singularClubSliderSettings}>
+                {clubVariable?.menu_images_url?.map((image, index) => (
+                  <div key={index} style={{width: "700px"}}>
+                    <img src={image} alt={`Slide ${index}`} style={{ width: '300px', height: "450px", border: "2px solid white", borderRadius: "20px", objectFit: 'cover'}} />
+                  </div>
+                ))}
+              </Slider>
+            </div>
+          </div>
         </div>
       </div>
     </div>

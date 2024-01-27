@@ -39,3 +39,30 @@
 .modal-dialogue{
   width: 700px !important;
 }
+
+.slick-next:before {
+  font-family: "Font Awesome 5 Free";
+  content: '\f061';
+  font-weight: 900;
+  color: white !important;
+  border-radius: 50px;
+  border: 2px solid white;
+  padding: 10px;
+  background: rgba(217, 217, 217, 0.1);
+  position: relative;
+  left: 5px
+}
+
+.slick-prev:before {
+  font-family: "Font Awesome 5 Free";
+  content: '\f060';
+  font-weight: 900;
+  color: white !important;
+  border-radius: 50px;
+  border: 2px solid white;
+  padding: 10px;
+  margin-right: 40px !important;
+  background: rgba(217, 217, 217, 0.1);
+  position: relative;
+  right: 25px
+}
