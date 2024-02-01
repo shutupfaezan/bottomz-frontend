@@ -211,16 +211,16 @@
               <div className="" style={{color: "white"}}>
                 <div style={{paddingTop: "110px"}}>
                   <Breadcrumb/>
-                  <div className='text-center mt-5 px-5 mx-5'>
+                  <div className='text-center mt-5 px-lg-5 mx-5'>
                     <h1 className='headerFont' style={{fontSize: "60px"}}>Upcoming Events</h1>
-                    <p className='mx-5 px-5' style={{fontWeight: "400", color: "rgba(255, 255, 255, 0.5)"}}>Spice up your day even if its a boring wednesday or chilling friday. See you nearest events, chose one and just go. These eevnts are carefully vetted to ensure public safety.</p>
+                    <p className='mx-5 px-lg-5' style={{fontWeight: "400", color: "rgba(255, 255, 255, 0.5)"}}>Spice up your day even if its a boring wednesday or chilling friday. See you nearest events, chose one and just go. These eevnts are carefully vetted to ensure public safety.</p>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </section>
-        <section className="p-lg-2 p-md-5">
+        <section className="p-lg-2 px-md-5 py-md-2">
           <div className="d-flex mx-auto justify-content-center mt-5 mb-3" style={{ gap: "10px" }}>
             <button className="btn px-3 py-2" style={{  background: startDate && endDate ? "black" : "rgba(0, 0, 0, 0.1)", borderRadius: "60px", color: startDate && endDate ? "white" : "black", border: "1px solid rgba(0, 0, 0, 1)", fontSize: "14px", display: "flex", alignItems: "center", justifyContent: "center" }} onClick={() => setShowDatePickerModal(true)}>
               <i className="fa-solid fa-calendar mr-2"></i>
@@ -301,7 +301,7 @@
           <div className="d-flex flex-wrap mb-3">
             <div className="d-flex mx-auto justify-content-center mb-5" style={{ gap: "10px"}}>
               {genres.map(genre => (
-                <button className="btn px-3 py-2" style={{ background: selectedGenre === genre ? "black" : "rgba(0, 0, 0, 0.1)", borderRadius: "60px", color: selectedGenre === genre ? "white" : "black", border: "1px solid rgba(0, 0, 0, 1)", fontSize: "14px", display: "flex", alignItems: "center", justifyContent: "center"}} key={genre} onClick={() => setSelectedGenre(genre)}>
+                <button className="btn px-3 py-2 text-nowrap" style={{ background: selectedGenre === genre ? "black" : "rgba(0, 0, 0, 0.1)", borderRadius: "60px", color: selectedGenre === genre ? "white" : "black", border: "1px solid rgba(0, 0, 0, 1)", fontSize: "14px", display: "flex", alignItems: "center", justifyContent: "center"}} key={genre} onClick={() => setSelectedGenre(genre)}>
                   {genre}
                   {selectedGenre === genre && selectedGenre !== "All" && (
                     <span onClick={(e) => { e.stopPropagation(); setSelectedGenre('All')}} style={{ paddingLeft: "10px", cursor: "pointer" }}>
@@ -325,9 +325,9 @@
                     ))}
                   </Slider>
                 ) : (
-                  <div className="d-flex    ">
+                  <div className="d-flex">
                     {events.map((event, index) => (
-                      <div className="p-2 col-lg-3" key={index}>
+                      <div className="p-2 col-lg-3 col-md-6" key={index}>
                         <HPEvents identity={event} index={index} />
                       </div>
                     ))}

@@ -66,3 +66,45 @@
   position: relative;
   right: 25px
 }
+
+.club-image-container {
+  display: grid !important;
+  grid-template-columns: repeat(5, 1fr) !important;
+  gap: 10px !important;
+}
+
+/* Media query for tablet screens */
+@media (max-width: 768px) {
+  .club-image-container {
+    grid-template-columns: repeat(4, 1fr) !important;
+  }
+
+  /* Hide the 5th image in the container on tablet screens */
+  .club-image-container div:nth-child(5) {
+    display: none;
+  }
+}
+
+/* Base styling for the menu image container */
+.menu-image-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 10px;
+}
+
+/* Media query for tablet screens */
+@media (max-width: 768px) {
+  .menu-image-container {
+    grid-template-columns: repeat(4, 1fr); /* Show 4 images in a row on tablet screens */
+  }
+}
+
+@media (max-width: 768px) {
+  .SCPVectorLeft{
+    left: -150px !important;
+  }
+  .SCPVectorRight{
+    right: -150px !important;
+  }
+}
+

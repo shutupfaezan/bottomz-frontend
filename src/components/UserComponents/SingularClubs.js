@@ -56,17 +56,17 @@ export default function SingularClubs() {
               <div className='d-flex flex-column p-3 mb-3' style={{border: "0.5px solid white", gap: "8px", borderRadius: "20px", backdropFilter: "blur(10px)", background: "rgba(255, 255, 255, 0.1)"}}>
                 <h6 className='club-info' style={{fontWeight: "400"}}><i className="fa-solid fa-calendar-days mr-2"></i>Opens at {clubVariable?.Club_info?.opening_time}<b></b></h6>
                 <h6 className='d-flex club-info mx-auto' style={{fontWeight: "400"}}><i className="fa-solid fa-location-dot mr-2"></i><div style={{fontWeight: "500"}}>{clubVariable?.Club_info?.full_address}</div></h6>
-                <button onClick={()=>{window.location.href = clubVariable?.Club_info?.direction}} className='btn col-lg-3 mx-auto' style={{border: "1.5px solid white", borderRadius: "60px", color: "white"}}>
-                  <div style={{fontWeight: "500"}}><p className='mb-0 p-2' style={{fontWeight: "600", fontSize: "12px"}}>Direction<i className="fa-solid fa-arrow-right ml-2"></i></p></div>
+                <button onClick={()=>{window.location.href = clubVariable?.Club_info?.direction}} className='btn col-lg-3 col-md-4 mx-auto' style={{border: "1.5px solid white", borderRadius: "60px", color: "white"}}>
+                  <div style={{fontWeight: "500"}}><p className='mb-0 p-lg-2 p-md-0' style={{fontWeight: "600", fontSize: "12px"}}>Direction<i className="fa-solid fa-arrow-right ml-2"></i></p></div>
                 </button>
               </div>
             </div>
         </div>
       </div>
-      <div className='d-flex justify-content-center position-relative' style={{top: "-70px"}}>
+      <div className='d-flex justify-content-center position-relative club-image-container mx-5 px-lg-5' style={{top: "-70px"}}>
        {clubVariable?.image_url?.slice(0,5)?.map((image, index)=>{
         return(
-        <div className='col-lg-2 px-2'>
+        <div className='px-lg-2'>
          <img style={{width: "100%", height: "225px", objectFit: "cover", borderRadius: "10px", border: "2px solid white"}} src={image} alt=""  data-bs-toggle="modal" data-bs-target="#staticBackdrop"></img>
         </div>
        )})}
@@ -88,11 +88,11 @@ export default function SingularClubs() {
         </div>
       </div>
       </div>
-      <div className='px-lg-3 px-md-5 px-md-2 d-flex flex-column mb-5'>
-        <div className='col-lg-12 p-0 px-3 d-flex flex-column position-relative'>
-          <img style={{position: "absolute", top: "50%", left: "0", transform: "translateY(-50%)"}} src={process.env.PUBLIC_URL + "/images/singularclubpagevectorright.png"} alt=""></img>
-          <img style={{position: "absolute", top: "50%", right: "0", transform: "translateY(-50%)"}} src={process.env.PUBLIC_URL + "/images/singularclubpagevectorleft.png"} alt=""></img>
-          <h3 className='px-2 py-3 mb-0 py-md-4 py-md-0 px-md-2 headerFont mx-auto' style={{color: "black", fontWeight: "800"}}>Upcoming Events</h3>
+      <div className='px-lg-3 px-lg-5 px-md-1 d-flex flex-column mb-5'>
+        <div className='col-lg-12 p-0 px-3 d-flex flex-column position-relative' style={{overflow: "hidden"}}>
+          <img className='SCPVectorLeft' style={{position: "absolute", top: "50%", left: "0", transform: "translateY(-50%)"}} src={process.env.PUBLIC_URL + "/images/singularclubpagevectorright.png"} alt=""></img>
+          <img className='SCPVectorRight' style={{position: "absolute", top: "50%", right: "0", transform: "translateY(-50%)"}} src={process.env.PUBLIC_URL + "/images/singularclubpagevectorleft.png"} alt=""></img>
+          <h3 className='px-2 py-3 mb-0 py-md-4 py-md-0 px-md-2 headerFontAlt mx-auto' style={{color: "black", fontWeight: "800"}}>Upcoming Events</h3>
         </div>
         <div  className='d-flex flex-md-wrap align-items-center px-md-5 p-2 overflow-scroll overflow-md-hidden ml-4 ml-md-0'>
           {clubVariable && clubVariable?.Event_info?.map((fields, index)=>{
@@ -102,17 +102,17 @@ export default function SingularClubs() {
           })}
         </div>
       </div>
-      <div className='px-lg-5 px-md-2 d-flex flex-column mb-5'>
-        <div className='col-lg-12 p-0 px-3 mb-3 d-flex position-relative'>
-          <img style={{position: "absolute", top: "50%", left: "0", transform: "translateY(-50%)"}} src={process.env.PUBLIC_URL + "/images/singularclubpagevectorright.png"} alt=""></img>
-          <img style={{position: "absolute", top: "50%", right: "0", transform: "translateY(-50%)"}} src={process.env.PUBLIC_URL + "/images/singularclubpagevectorleft.png"} alt=""></img>
-          <h3 className='px-2 py-3 mb-0 py-md-4 py-md-0 px-md-2 headerFont mx-auto' style={{color: "black", fontWeight: "800"}}>Club Menu</h3>
+      <div className='d-flex flex-column mb-5'>
+        <div className='col-lg-12 p-0 px-3 mb-3 d-flex position-relative'  style={{overflow: "hidden"}}>
+          <img className="SCPVectorLeft" style={{position: "absolute", top: "50%", left: "0", transform: "translateY(-50%)"}} src={process.env.PUBLIC_URL + "/images/singularclubpagevectorright.png"} alt=""></img>
+          <img className="SCPVectorRight" style={{position: "absolute", top: "50%", right: "0", transform: "translateY(-50%)"}} src={process.env.PUBLIC_URL + "/images/singularclubpagevectorleft.png"} alt=""></img>
+          <h3 className='px-2 py-3 mb-0 py-md-4 py-md-0 px-md-2 headerFontAlt mx-auto' style={{color: "black", fontWeight: "800"}}>Club Menu</h3>
         </div>
-        <div className='d-flex py-3 justify-content-center' style={{background: "rgba(244, 244, 244, 1)", borderRadius: "10px", border: "1px solid black"}}>
+        <div className='d-flex py-lg-3 py-md-4 px-lg-0 px-md-2 justify-content-center mx-4 ' style={{background: "rgba(244, 244, 244, 1)", borderRadius: "10px", border: "1px solid black"}}>
           {clubVariable?.menu_images_url?.splice(0, 6).map((menu_image, index)=>{
             return(
               <>
-                <div className='col-2 d-flex flex-column' key={index} style={{height: "100%"}}>
+                <div className='col-lg-2 col-md-3 d-flex flex-column' key={index} style={{height: "100%"}}>
                   <div className='d-flex'>
                     <p className='mx-auto mb-2' style={{fontWeight: "800"}}>0{index + 1}</p>
                   </div>
