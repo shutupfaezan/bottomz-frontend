@@ -66,3 +66,45 @@
   position: relative;
   right: 25px
 }
+
+.club-image-container {
+  display: grid !important;
+  grid-template-columns: repeat(5, 1fr) !important;
+  gap: 10px !important;
+}
+
+/* Media query for tablet screens */
+@media (max-width: 768px) {
+  .club-image-container {
+    grid-template-columns: repeat(4, 1fr) !important;
+  }
+
+  /* Hide the 5th image in the container on tablet screens */
+  .club-image-container div:nth-child(5) {
+    display: none;
+  }
+}
+
+/* Base styles for menu images */
+.menu-image-container div {
+  display: block !important; /* Ensure that this is set so that the display can be toggled */
+}
+
+/* Media query for tablet screens and below */
+@media (max-width: 768px) {
+  /* Hide all menu images starting from the fifth one */
+  .menu-image-container div:nth-of-type(n+5) {
+    display: none !important;
+  }
+}
+
+
+@media (max-width: 768px) {
+  .SCPVectorLeft{
+    left: -150px !important;
+  }
+  .SCPVectorRight{
+    right: -150px !important;
+  }
+}
+
