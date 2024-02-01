@@ -108,13 +108,13 @@ export default function SingularClubs() {
           <img className="SCPVectorRight" style={{position: "absolute", top: "50%", right: "0", transform: "translateY(-50%)"}} src={process.env.PUBLIC_URL + "/images/singularclubpagevectorleft.png"} alt=""></img>
           <h3 className='px-2 py-3 mb-0 py-md-4 py-md-0 px-md-2 headerFontAlt mx-auto' style={{color: "black", fontWeight: "800"}}>Club Menu</h3>
         </div>
-        <div className='d-flex py-lg-3 py-md-4 px-lg-0 px-md-2 justify-content-center mx-4 ' style={{background: "rgba(244, 244, 244, 1)", borderRadius: "10px", border: "1px solid black"}}>
+        <div className='d-flex py-lg-3 py-md-4 px-lg-0 px-md-2 justify-content-center mx-4 menu-image-container' style={{background: "rgba(244, 244, 244, 1)", borderRadius: "10px", border: "1px solid black"}}>
           {clubVariable?.menu_images_url?.splice(0, 6).map((menu_image, index)=>{
             return(
               <>
                 <div className='col-lg-2 col-md-3 d-flex flex-column' key={index} style={{height: "100%"}}>
                   <div className='d-flex'>
-                    <p className='mx-auto mb-2' style={{fontWeight: "800"}}>0{index + 1}</p>
+                    <p className='mx-auto mb-2 text-center' style={{fontWeight: "800"}}>0{index + 1}</p>
                   </div>
                   <div className=''>
                     <img style={{width: "100%", height: "225px"}} src={menu_image}  data-bs-toggle="modal" data-bs-target="#staticBackdrop2" alt=""></img>
