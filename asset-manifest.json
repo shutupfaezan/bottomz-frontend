@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.6abe83e4.css",
-    "main.js": "/static/js/main.ce7a6700.js",
+    "main.css": "/static/css/main.2f4e4dcc.css",
+    "main.js": "/static/js/main.bbda6f1b.js",
     "static/js/787.172a0347.chunk.js": "/static/js/787.172a0347.chunk.js",
     "static/media/SingularClubsExampleImage.png": "/static/media/SingularClubsExampleImage.f7e83e3fdd059fcf53ef.png",
     "static/media/aleksandr-popov-hTv8aaPziOQ-unsplash.jpg": "/static/media/aleksandr-popov-hTv8aaPziOQ-unsplash.92f61981d09009ff3ca3.jpg",
@@ -11,12 +11,12 @@
     "static/media/slick.eot": "/static/media/slick.a4e97f5a2a64f0ab1323.eot",
     "static/media/slick.ttf": "/static/media/slick.c94f7671dcc99dce43e2.ttf",
     "static/media/slick.woff": "/static/media/slick.295183786cd8a1389865.woff",
-    "main.6abe83e4.css.map": "/static/css/main.6abe83e4.css.map",
-    "main.ce7a6700.js.map": "/static/js/main.ce7a6700.js.map",
+    "main.2f4e4dcc.css.map": "/static/css/main.2f4e4dcc.css.map",
+    "main.bbda6f1b.js.map": "/static/js/main.bbda6f1b.js.map",
     "787.172a0347.chunk.js.map": "/static/js/787.172a0347.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.6abe83e4.css",
-    "static/js/main.ce7a6700.js"
+    "static/css/main.2f4e4dcc.css",
+    "static/js/main.bbda6f1b.js"
   ]
 }
