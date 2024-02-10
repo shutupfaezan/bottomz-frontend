@@ -61,6 +61,26 @@
     prevArrow: currentSlide > 0 ? <SamplePrevArrow /> : null,
     responsive: [
       {
+        breakpoint: 2810,
+        settings: {
+          slidesToShow: 6,
+          slidesToScroll: 1,
+          infinite: true,
+          dots: true,
+          innerWidth: "100%"
+        }
+      },
+      {
+        breakpoint: 2300,
+        settings: {
+          slidesToShow: 5,
+          slidesToScroll: 1,
+          infinite: true,
+          dots: true,
+          innerWidth: "100%"
+        }
+      },
+      {
         breakpoint: 1367,
         settings: {
           slidesToShow: 4,
@@ -205,15 +225,15 @@
       <>
       <div className=''>
         <GlobalHeader/>
-        <section className="p-2" style={{height: "500px"}}>
+        <section className="p-2 alleventsheader" style={{height: "500px"}}>
           <div style={{height: "100%", borderRadius: "20px", backgroundImage: `url(${process.env.PUBLIC_URL}/images/AllEventsheaderImg.png)`, backgroundSize: "cover", backgroundPosition: "center"}}>
             <div style={{height: "100%", borderRadius: "20px", backgroundImage: `url(${process.env.PUBLIC_URL}/images/AllEventsLowerMask.png)`, backgroundSize: "cover", backgroundPosition: "center"}}>
               <div className="" style={{color: "white"}}>
                 <div style={{paddingTop: "110px"}}>
                   <Breadcrumb/>
-                  <div className='text-center mt-5 px-lg-5 mx-5'>
-                    <h1 className='headerFont' style={{fontSize: "60px"}}>Upcoming Events</h1>
-                    <p className='mx-5 px-lg-5' style={{fontWeight: "400", color: "rgba(255, 255, 255, 0.5)"}}>Spice up your day even if its a boring wednesday or chilling friday. See you nearest events, chose one and just go. These eevnts are carefully vetted to ensure public safety.</p>
+                  <div className='text-center mt-5 px-lg-5 mx-md-5 px-4'>
+                    <h1 className='headerFont headerTitle'>Upcoming Events</h1>
+                    <p className='mx-md-5 px-lg-5' style={{fontWeight: "400", color: "rgba(255, 255, 255, 0.5)"}}>Say "FUCK YOU" to the world, Search for events, find one that interest you and just leave.</p>
                   </div>
                 </div>
               </div>
@@ -221,7 +241,7 @@
           </div>
         </section>
         <section className="p-lg-2 px-md-5 py-md-2">
-          <div className="d-flex mx-auto justify-content-center mt-5 mb-3" style={{ gap: "10px" }}>
+          <div className="d-flex mx-md-auto justify-content-md-center mt-md-5 mt-3 mb-3 mx-4" style={{ gap: "10px" }}>
             <button className="btn px-3 py-2" style={{  background: startDate && endDate ? "black" : "rgba(0, 0, 0, 0.1)", borderRadius: "60px", color: startDate && endDate ? "white" : "black", border: "1px solid rgba(0, 0, 0, 1)", fontSize: "14px", display: "flex", alignItems: "center", justifyContent: "center" }} onClick={() => setShowDatePickerModal(true)}>
               <i className="fa-solid fa-calendar mr-2"></i>
               {startDate && endDate ? `${formatDateForDisplay(startDate)} - ${formatDateForDisplay(endDate)}` : 'Date'}
@@ -251,7 +271,7 @@
               }}
               onClick={() => setShowPriceModal(true)}
             >
-            { priceRange[0] === 0 && priceRange[1] === maxPrice ? <img className='mr-2' src={process.env.PUBLIC_URL + "/images/rupeevector icon.png"} style={{width: "15px"}} alt=""></img> : <img className='mr-2' src={process.env.PUBLIC_URL + "/images/rupeevector icon_inverted.png"} style={{width: "15px"}} alt=""></img>}
+            {priceRange[0] === 0 && priceRange[1] === maxPrice ? <img className='mr-2' src={process.env.PUBLIC_URL + "/images/rupeevector icon.png"} style={{width: "15px"}} alt=""></img> : <img className='mr-2' src={process.env.PUBLIC_URL + "/images/rupeevector icon_inverted.png"} style={{width: "15px"}} alt=""></img>}
             {priceRange[0] === 0 && priceRange[1] === maxPrice ? 'Filter by Price' : `₹ ${priceRange[0]} - ₹ ${priceRange[1]}`}
             </button>
             {showPriceModal && (
@@ -299,7 +319,7 @@
             )}
           </div>
           <div className="d-flex flex-wrap mb-3">
-            <div className="d-flex mx-auto justify-content-center mb-5" style={{ gap: "10px"}}>
+            <div className="ml-3 ml-md-0 d-flex mx-md-auto justify-content-md-center mb-5 overflow-scroll" style={{ gap: "10px"}}>
               {genres.map(genre => (
                 <button className="btn px-3 py-2 text-nowrap" style={{ background: selectedGenre === genre ? "black" : "rgba(0, 0, 0, 0.1)", borderRadius: "60px", color: selectedGenre === genre ? "white" : "black", border: "1px solid rgba(0, 0, 0, 1)", fontSize: "14px", display: "flex", alignItems: "center", justifyContent: "center"}} key={genre} onClick={() => setSelectedGenre(genre)}>
                   {genre}
@@ -313,26 +333,35 @@
             </div>
             {Object.entries(result).map(([date, events]) => (
               <div className="w-100 px-lg-3 mb-4" key={date}>
-                <p className='px-md-4 px-2 ml-2 mb-2' style={{ fontWeight: 700, fontSize: "18px" }}>
+                <p className='px-md-4 px-4 ml-2 mb-2' style={{ fontWeight: 700, fontSize: "18px" }}>
                   {formatDate(date)}
                 </p>
+                <div className='d-md-block d-none'>
                 {events.length >= 4 ? (
                   <Slider {...settings}>
                     {events.map((event, index) => (
-                      <div className="p-2 col-lg-12" key={index}>
+                      <div className="p-2 px-5 px-md-2 col-lg-12" key={index}>
                         <HPEvents identity={event} index={index} />
                       </div>
                     ))}
                   </Slider>
                 ) : (
-                  <div className="d-flex">
+                  <div className="d-md-flex d-none">
                     {events.map((event, index) => (
-                      <div className="p-2 col-lg-3 col-md-6" key={index}>
+                      <div className="p-2 px-5 col-lg-3 col-md-6" key={index}>
                         <HPEvents identity={event} index={index} />
                       </div>
                     ))}
                   </div>
                 )}
+                </div>
+                 <div className="d-flex d-md-none ml-3 overflow-scroll">
+                    {events.map((event, index) => (
+                      <div className="p-2 col-9" key={index}>
+                        <HPEvents identity={event} index={index} />
+                      </div>
+                    ))}
+                  </div>
               </div>
             ))}
           </div>

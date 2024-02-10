@@ -51,12 +51,12 @@ export default function SingularClubs() {
           <div style={{paddingTop: "70px", zIndex: "2"}}>
             <Breadcrumb/>
           </div>
-            <div className='pb-5 col-lg-6 col-md-8 col-9 p-0 d-flex flex-column text-center mx-auto'>
-              <h1 className='headerFont' style={{fontSize: "2.5rem"}}><b>{clubVariable?.Club_info?.club_name}</b></h1>
+            <div className='pb-md-5 col-lg-6 col-md-8 col-11 p-0 d-flex flex-column text-center mx-auto'>
+              <h1 className='headerFont py-3 py-md-0 clubNameHeader' style={{fontSize: "2.5rem"}}><b>{clubVariable?.Club_info?.club_name}</b></h1>
               <div className='d-flex flex-column p-3 mb-3' style={{border: "0.5px solid white", gap: "8px", borderRadius: "20px", backdropFilter: "blur(10px)", background: "rgba(255, 255, 255, 0.1)"}}>
                 <h6 className='club-info' style={{fontWeight: "400"}}><i className="fa-solid fa-calendar-days mr-2"></i>Opens at {clubVariable?.Club_info?.opening_time}<b></b></h6>
-                <h6 className='d-flex club-info mx-auto' style={{fontWeight: "400"}}><i className="fa-solid fa-location-dot mr-2"></i><div style={{fontWeight: "500"}}>{clubVariable?.Club_info?.full_address}</div></h6>
-                <button onClick={()=>{window.location.href = clubVariable?.Club_info?.direction}} className='btn col-lg-3 col-md-4 mx-auto' style={{border: "1.5px solid white", borderRadius: "60px", color: "white"}}>
+                <h6 className='d-flex club-info mx-auto' style={{fontWeight: "400"}}><i className="fa-solid fa-location-dot mr-2"></i><div style={{fontWeight: "500"}}><p className='mb-md-0'>{clubVariable?.Club_info?.full_address}</p></div></h6>
+                <button onClick={()=>{window.location.href = clubVariable?.Club_info?.direction}} className='btn col-lg-3 col-md-4 col-6 mx-auto' style={{border: "1.5px solid white", borderRadius: "60px", color: "white"}}>
                   <div style={{fontWeight: "500"}}><p className='mb-0 p-lg-2 p-md-0' style={{fontWeight: "600", fontSize: "12px"}}>Direction<i className="fa-solid fa-arrow-right ml-2"></i></p></div>
                 </button>
               </div>

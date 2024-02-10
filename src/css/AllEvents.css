@@ -24,3 +24,19 @@ input[type=search]::-ms-reveal { display: none; width : 0; height: 0; }
 .modal-dialog{
     width: fit-content !important;
 }
+
+.headerTitle{
+    font-size: 60px;
+}
+.alleventsheader{
+    height: 500px
+}
+  
+@media (max-width: 768px) {
+.headerTitle{
+    font-size: 30px !important;
+    }
+.alleventsheader{
+    height: 400px !important
+}
+}
