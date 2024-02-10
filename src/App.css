@@ -166,13 +166,6 @@ input::-webkit-inner-spin-button {
   border-bottom-color: blue;
 }
 
-.offcanvas {
-  opacity: 0 !important;
-  transition: opacity 1s ease !important;
-}
-.offcanvas.show {
-  opacity: 1 !important;
-}
 
 select.QuantityFields option {
   direction: rtl;
