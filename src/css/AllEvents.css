@@ -31,6 +31,11 @@ input[type=search]::-ms-reveal { display: none; width : 0; height: 0; }
 .alleventsheader{
     height: 500px
 }
+
+.slick-dots li{
+ margin: 0px !important;
+ width: 10px !important;
+}
   
 @media (max-width: 768px) {
 .headerTitle{
