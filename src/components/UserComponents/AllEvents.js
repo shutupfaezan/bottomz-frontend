@@ -242,7 +242,7 @@
         </section>
         <section className="p-lg-2 px-md-5 py-md-2">
           <div className="d-flex mx-md-auto justify-content-md-center mt-md-5 mt-3 mb-3 mx-4" style={{ gap: "10px" }}>
-            <button className="btn px-3 py-2" style={{  background: startDate && endDate ? "black" : "rgba(0, 0, 0, 0.1)", borderRadius: "60px", color: startDate && endDate ? "white" : "black", border: "1px solid rgba(0, 0, 0, 1)", fontSize: "14px", display: "flex", alignItems: "center", justifyContent: "center" }} onClick={() => setShowDatePickerModal(true)}>
+            <button className="btn px-3 py-2" style={{  background: startDate && endDate ? "black" : "rgba(0, 0, 0, 0.1)", borderRadius: "60px", color: startDate && endDate ? "white" : "black", border: "2px solid rgba(0, 0, 0, 1)", fontSize: "14px", display: "flex", alignItems: "center", justifyContent: "center" }} onClick={() => setShowDatePickerModal(true)}>
               <i className="fa-solid fa-calendar mr-2"></i>
               {startDate && endDate ? `${formatDateForDisplay(startDate)} - ${formatDateForDisplay(endDate)}` : 'Date'}
               {startDate && endDate && (
@@ -263,7 +263,7 @@
                 background: priceRange[0] === 0 && priceRange[1] === maxPrice ? "rgba(0, 0, 0, 0.1)" : "black", 
                 borderRadius: "60px", 
                 color: priceRange[0] === 0 && priceRange[1] === maxPrice ? "black" : "white", 
-                border: "1px solid rgba(0, 0, 0, 1)", 
+                border: "2px solid rgba(0, 0, 0, 1)", 
                 fontSize: "14px", 
                 display: "flex", 
                 alignItems: "center", 
@@ -272,7 +272,7 @@
               onClick={() => setShowPriceModal(true)}
             >
             {priceRange[0] === 0 && priceRange[1] === maxPrice ? <img className='mr-2' src={process.env.PUBLIC_URL + "/images/rupeevector icon.png"} style={{width: "15px"}} alt=""></img> : <img className='mr-2' src={process.env.PUBLIC_URL + "/images/rupeevector icon_inverted.png"} style={{width: "15px"}} alt=""></img>}
-            {priceRange[0] === 0 && priceRange[1] === maxPrice ? 'Filter by Price' : `₹ ${priceRange[0]} - ₹ ${priceRange[1]}`}
+            {priceRange[0] === 0 && priceRange[1] === maxPrice ? 'Price' : `₹ ${priceRange[0]} - ₹ ${priceRange[1]}`}
             </button>
             {showPriceModal && (
             <Modal show={showPriceModal} onHide={() => setShowPriceModal(false)}>

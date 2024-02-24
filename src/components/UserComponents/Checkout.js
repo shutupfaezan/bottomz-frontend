@@ -215,6 +215,8 @@
         order_details,
       };
 
+      console.log(order)
+
       axios.post(`https://nightlife-2710.herokuapp.com/orders?access_token=${sessionStorage?.token}&sub_promoter=${subPromoter}`, order)
         .then((response) => {
           setOrderID(response?.data[0]);
