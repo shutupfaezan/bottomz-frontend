@@ -51,6 +51,6 @@ input[type=search]::-ms-reveal { display: none; width : 0; height: 0; }
 }
 }
 
-.para-margin-pricerange{
-    margin-right: 200px !important;
+.price-filter-modal-input:active{
+    border: none !important;
 }
