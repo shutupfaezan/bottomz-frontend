@@ -24,7 +24,12 @@ input[type=search]::-ms-reveal { display: none; width : 0; height: 0; }
 .modal-dialog{
     width: fit-content !important;
 }
-
+.modal-content{
+    border-radius: 20px;
+}
+.modal-class{
+    width: 200px;
+}
 .headerTitle{
     font-size: 60px;
 }
@@ -44,4 +49,8 @@ input[type=search]::-ms-reveal { display: none; width : 0; height: 0; }
 .alleventsheader{
     height: 400px !important
 }
+}
+
+.para-margin-pricerange{
+    margin-right: 200px !important;
 }

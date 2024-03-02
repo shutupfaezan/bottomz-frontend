@@ -245,8 +245,9 @@ const formatDate = (dateStr) => {
         </div>
       </section>
       <section className="p-lg-2 px-md-5 py-md-2">
-        <div className="d-flex mx-md-auto justify-content-md-center mt-md-5 mt-3 mb-3 mx-4" style={{ gap: "10px" }}>
-          <button className="btn px-3 py-2" style={{  background: startDate && endDate ? "black" : "rgba(0, 0, 0, 0.1)", borderRadius: "60px", color: startDate && endDate ? "white" : "black", border: "2px solid rgba(0, 0, 0, 1)", fontSize: "14px", display: "flex", alignItems: "center", justifyContent: "center" }} onClick={() => setShowDatePickerModal(true)}>
+      <div className='mx-3 mt-3 d-block d-md-none'><small>Filters</small></div>
+        <div className="d-flex mx-md-auto justify-content-md-center mt-md-5 mt-2 mb-2 mx-3" style={{ gap: "10px" }}>
+          <button className=" px-3 py-2" style={{  background: startDate && endDate ? "black" : "rgba(0, 0, 0, 0.1)", borderRadius: "60px", color: startDate && endDate ? "white" : "black", border: "2px solid rgba(0, 0, 0, 1)", fontSize: "14px", display: "flex", alignItems: "center", justifyContent: "center" }} onClick={() => setShowDatePickerModal(true)}>
             <i className="fa-solid fa-calendar mr-2"></i>
             {startDate && endDate ? `${formatDateForDisplay(startDate)} - ${formatDateForDisplay(endDate)}` : 'Date'}
             {startDate && endDate && (
@@ -262,7 +263,7 @@ const formatDate = (dateStr) => {
             </Modal>
           )}
           <button 
-            className="btn px-3 py-2" 
+            className="px-3 py-2" 
             style={{  
               background: priceRange[0] === 0 && priceRange[1] === maxPrice ? "rgba(0, 0, 0, 0.1)" : "black", 
               borderRadius: "60px", 
@@ -279,53 +280,61 @@ const formatDate = (dateStr) => {
           {priceRange[0] === 0 && priceRange[1] === maxPrice ? 'Price' : `₹ ${priceRange[0]} - ₹ ${priceRange[1]}`}
           </button>
           {showPriceModal && (
-          <Modal show={showPriceModal} onHide={() => setShowPriceModal(false)}>
-            <Modal.Header closeButton>Select Price Range</Modal.Header>
-            <Modal.Body>
-            <Range
-                step={1}
-                min={0}
-                max={maxPrice}
-                values={tempPriceRange || priceRange}
-                onChange={handleRangeChange}
-                renderTrack={({ props, children }) => (
-                  <div
-                    {...props}
-                    style={{
-                      ...props.style,
-                      height: '6px',
-                      width: '100%',
-                      backgroundColor: '#ccc'
-                    }}
-                  >
-                    {children}
-                  </div>
-                )}
-              renderThumb={({ props }) => (
-                <div
-                  {...props}
-                  style={{
-                    ...props.style,
-                    height: '20px',
-                    width: '20px',
-                    backgroundColor: '#fff',
-                    borderRadius: '50%'
-                  }}
-                />
-              )}
-            />
-              <p>Selected range: ₹{tempPriceRange ? tempPriceRange[0] : priceRange[0]} - ₹{tempPriceRange ? tempPriceRange[1] : priceRange[1]}</p>
-            </Modal.Body>
-            <Modal.Footer>
-              <button className='btn' onClick={applyPriceFilter}>Apply</button>
-            </Modal.Footer>
-          </Modal>
+            <Modal show={showPriceModal} onHide={() => setShowPriceModal(false)}>
+              <div className='p-3'>
+                <div>
+                  <p className='para-margin-pricerange' style={{fontWeight: "800", fontSize: "18px", marginBottom: "0px"}}>Price Range</p>
+                  <p style={{fontSize: "14px", color: "rgba(157, 157, 157, 1)"}}>Average Price: ₹{
+                    (tempPriceRange ? tempPriceRange[1] : priceRange[1]) / 2
+                  }</p>
+                  <button className="position-absolute d-flex justify-content-center align-items-center" style={{ height: "28px", width: "28px", border: "solid black 1px", borderRadius: "50%", backgroundColor: "transparent", color: "black", top: "10%", right: "5%"}} onClick={() => setShowPriceModal(false)}>&#x2715;</button>
+                </div>
+                <Range
+                    step={1}
+                    min={0}
+                    max={maxPrice}
+                    values={tempPriceRange || priceRange}
+                    onChange={handleRangeChange}
+                    renderTrack={({ props, children }) => (
+                      <div
+                        {...props}
+                        style={{
+                          ...props.style,
+                          height: '6px',
+                          width: '100%',
+                          backgroundColor: 'rgba(224, 232, 241, 1)'
+                        }}
+                      >
+                        {children}
+                      </div>
+                    )}
+                    renderThumb={({ props }) => (
+                      <div
+                        {...props}
+                        style={{
+                          ...props.style,
+                          height: '20px',
+                          width: '20px',
+                          backgroundColor: 'rgba(0, 98, 252, 1)',
+                          border: '4px solid #fff',
+                          boxShadow: "0px 4px 5px rgba(24, 39, 75, 0.08)",
+                          borderRadius: '50%'
+                        }}
+                      >
+                      </div>
+                    )}
+                  />
+                  <p>Selected range: ₹{tempPriceRange ? tempPriceRange[0] : priceRange[0]} - ₹{tempPriceRange ? tempPriceRange[1] : priceRange[1]}</p>
+                  <button className='btn' onClick={applyPriceFilter}>Apply</button>
+                </div>
+              </Modal>
           )}
         </div>
         <div className="d-flex flex-wrap mb-3 overflow-hidden">
+          <div className='mx-3 my-2 d-block d-md-none'><small>Select by genre</small></div>
           <div className="ml-3 ml-md-0 d-flex mx-md-auto justify-content-md-center mb-5 overflow-scroll" style={{ gap: "10px"}}>
             {genres.map(genre => (
-              <button className="btn px-3 py-2 text-nowrap" style={{ background: selectedGenre === genre ? "black" : "rgba(0, 0, 0, 0.1)", borderRadius: "60px", color: selectedGenre === genre ? "white" : "black", border: "1px solid rgba(0, 0, 0, 1)", fontSize: "14px", display: "flex", alignItems: "center", justifyContent: "center"}} key={genre} onClick={() => setSelectedGenre(genre)}>
+              <button className="px-3 py-2 text-nowrap" style={{ background: selectedGenre === genre ? "black" : "rgba(0, 0, 0, 0.1)", borderRadius: "60px", color: selectedGenre === genre ? "white" : "black", border: "1px solid rgba(0, 0, 0, 1)", fontSize: "14px", display: "flex", alignItems: "center", justifyContent: "center"}} key={genre} onClick={() => setSelectedGenre(genre)}>
                 {genre}
                 {selectedGenre === genre && selectedGenre !== "All" && (
                   <span onClick={(e) => { e.stopPropagation(); setSelectedGenre('All')}} style={{ paddingLeft: "10px", cursor: "pointer" }}>
