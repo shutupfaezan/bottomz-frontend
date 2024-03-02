@@ -289,43 +289,69 @@ const formatDate = (dateStr) => {
                   }</p>
                   <button className="position-absolute d-flex justify-content-center align-items-center" style={{ height: "28px", width: "28px", border: "solid black 1px", borderRadius: "50%", backgroundColor: "transparent", color: "black", top: "10%", right: "5%"}} onClick={() => setShowPriceModal(false)}>&#x2715;</button>
                 </div>
-                <Range
-                    step={1}
-                    min={0}
-                    max={maxPrice}
-                    values={tempPriceRange || priceRange}
-                    onChange={handleRangeChange}
-                    renderTrack={({ props, children }) => (
-                      <div
-                        {...props}
-                        style={{
-                          ...props.style,
-                          height: '6px',
-                          width: '100%',
-                          backgroundColor: 'rgba(224, 232, 241, 1)'
-                        }}
-                      >
-                        {children}
-                      </div>
-                    )}
-                    renderThumb={({ props }) => (
-                      <div
-                        {...props}
-                        style={{
-                          ...props.style,
-                          height: '20px',
-                          width: '20px',
-                          backgroundColor: 'rgba(0, 98, 252, 1)',
-                          border: '4px solid #fff',
-                          boxShadow: "0px 4px 5px rgba(24, 39, 75, 0.08)",
-                          borderRadius: '50%'
-                        }}
-                      >
-                      </div>
-                    )}
-                  />
-                  <p>Selected range: ₹{tempPriceRange ? tempPriceRange[0] : priceRange[0]} - ₹{tempPriceRange ? tempPriceRange[1] : priceRange[1]}</p>
-                  <button className='btn' onClick={applyPriceFilter}>Apply</button>
+                <div className='px-4 d-flex' style={{height: "100px"}}>
+                  <Range
+                      step={1}
+                      min={0}
+                      max={maxPrice}
+                      values={tempPriceRange || priceRange}
+                      onChange={handleRangeChange}
+                      renderTrack={({ props, children }) => (
+                        <div
+                          {...props}
+                          style={{
+                            ...props.style,
+                            height: '6px',
+                            marginTop: "auto",
+                            marginBottom: "auto",
+                            width: '100%',
+                            backgroundColor: 'rgba(224, 232, 241, 1)'
+                          }}
+                        >
+                          {children}
+                        </div>
+                      )}
+                      renderThumb={({ props, value, index }) => (
+                        <div
+                          {...props}
+                          style={{
+                            ...props.style,
+                            height: '20px',
+                            width: '20px',
+                            backgroundColor: 'rgba(0, 98, 252, 1)',
+                            border: '4px solid #fff',
+                            boxShadow: "0px 4px 5px rgba(24, 39, 75, 0.08)",
+                            borderRadius: '50%',
+                            display: 'flex',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            // position: 'relative', // Ensure the thumb is positioned relative to place the tooltip correctly.
+                          }}
+                        >
+                          <div
+                            style={{
+                              position: 'absolute',
+                              // boxShadow: "0px 8px 28px rgba(24, 39, 75, 0.14)",
+                              color: "rgba(102, 112, 133, 1)",
+                              bottom: '30px', // Adjust this value to position the tooltip correctly.
+                              left: '50%',
+                              transform: 'translateX(-50%)',
+                              padding: '5px',
+                              backgroundColor: '#fff',
+                              // color: '#000',
+                              borderRadius: '4px',
+                              fontSize: '12px',
+                              whiteSpace: 'nowrap',
+                            }}
+                          >
+                            ₹{value}
+                          </div>
+                        </div>
+                      )}
+                      
+                    />
+                </div>
+                  <button className='btn d-flex align-items-center rounded-pill' style={{background: "black", color: "white"}} onClick={applyPriceFilter}><p className='my-1 ml-2'>Apply</p><i class="fa-solid fa-arrow-right mx-2"></i></button>
                 </div>
               </Modal>
           )}
