@@ -280,14 +280,14 @@ const formatDate = (dateStr) => {
           {priceRange[0] === 0 && priceRange[1] === maxPrice ? 'Price' : `₹ ${priceRange[0]} - ₹ ${priceRange[1]}`}
           </button>
           {showPriceModal && (
-            <Modal show={showPriceModal} onHide={() => setShowPriceModal(false)}>
-              <div className='p-3'>
+            <Modal className='d-flex flex-column justify-content-center align-items-center' show={showPriceModal} onHide={() => setShowPriceModal(false)}>
+              <div className='p-3' style={{width: "300px"}}>
                 <div>
-                  <p className='para-margin-pricerange' style={{fontWeight: "800", fontSize: "18px", marginBottom: "0px"}}>Price Range</p>
+                  <p style={{fontWeight: "800", fontSize: "18px", marginBottom: "0px"}}>Price Range</p>
                   <p style={{fontSize: "14px", color: "rgba(157, 157, 157, 1)"}}>Average Price: ₹{
                     (tempPriceRange ? tempPriceRange[1] : priceRange[1]) / 2
                   }</p>
-                  <button className="position-absolute d-flex justify-content-center align-items-center" style={{ height: "28px", width: "28px", border: "solid black 1px", borderRadius: "50%", backgroundColor: "transparent", color: "black", top: "10%", right: "5%"}} onClick={() => setShowPriceModal(false)}>&#x2715;</button>
+                  <button className="position-absolute d-flex justify-content-center align-items-center" style={{ height: "28px", width: "28px", border: "solid black 1px", borderRadius: "50%", backgroundColor: "transparent", color: "black", top: "5%", right: "5%"}} onClick={() => setShowPriceModal(false)}>&#x2715;</button>
                 </div>
                 <div className='px-4 d-flex' style={{height: "100px"}}>
                   <Range
@@ -348,10 +348,43 @@ const formatDate = (dateStr) => {
                           </div>
                         </div>
                       )}
-                      
                     />
                 </div>
-                  <button className='btn d-flex align-items-center rounded-pill' style={{background: "black", color: "white"}} onClick={applyPriceFilter}><p className='my-1 ml-2'>Apply</p><i class="fa-solid fa-arrow-right mx-2"></i></button>
+                  <div className="d-flex justify-content-between mb-3" style={{gap: "10px", width: "100%"}}>
+                    <div className='d-flex flex-column py-2 col' style={{border: "1px solid rgba(0, 0, 0, 0.1)", borderRadius: "10px"}}>
+                    <label style={{fontSize: "12px", color: "black"}}>Min Price</label>
+                    <input
+                      style={{border: 'none', outline: 'none', color: "rgba(0, 0, 0, 0.3)", width: "100%"}}
+                      type="text"
+                      value={`₹ ${tempPriceRange ? tempPriceRange[0] : priceRange[0]}`}
+                      onChange={(e) => {
+                        const value = e.target.value.replace(/[^\d]/g, ''); // Remove non-numeric characters
+                        const newMin = Math.min(Math.max(0, value), tempPriceRange[1]);
+                        setTempPriceRange([newMin, tempPriceRange[1]]);
+                      }}                     
+                      min="0"
+                      max={tempPriceRange[1]}
+                      className="price-filter-modal-input"
+                    />
+                    </div>
+                    <div className='d-flex flex-column py-2 col' style={{border: "1px solid rgba(0, 0, 0, 0.1)", borderRadius: "10px"}}>
+                    <label style={{fontSize: "12px", color: "black"}}>Max Price</label>
+                    <input
+                      type="text"
+                      style={{border: 'none', outline: 'none', color: "rgba(0, 0, 0, 0.3)", width: "100%"}}
+                      value={`₹ ${tempPriceRange ? tempPriceRange[1] : priceRange[1]}`}
+                      onChange={(e) => {
+                        const value = e.target.value.replace(/[^\d]/g, ''); // Remove non-numeric characters
+                        const newMax = Math.min(Math.max(value, tempPriceRange[0]), maxPrice);
+                        setTempPriceRange([tempPriceRange[0], newMax]);
+                      }}                   
+                      min={tempPriceRange[0]}
+                      max={maxPrice}
+                      className="price-input"
+                    />
+                    </div>
+                  </div>
+                  <button className='btn d-flex align-items-center rounded-pill py-2' style={{background: "black", color: "white", fontSize: "14px"}} onClick={applyPriceFilter}><p className='mb-0 ml-2' style={{}}>Apply</p><i class="fa-solid fa-arrow-right mx-2"></i></button>
                 </div>
               </Modal>
           )}
