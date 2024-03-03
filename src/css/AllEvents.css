@@ -24,9 +24,9 @@ input[type=search]::-ms-reveal { display: none; width : 0; height: 0; }
 .modal-dialog{
     width: fit-content !important;
 }
-.modal-content{
+/* .modal-content{
     border-radius: 20px;
-}
+} */
 .modal-class{
     width: 200px;
 }
@@ -54,3 +54,36 @@ input[type=search]::-ms-reveal { display: none; width : 0; height: 0; }
 .price-filter-modal-input:active{
     border: none !important;
 }
+
+/* Override the header styles */
+.react-datepicker__header {
+    background-color: white;
+    border-bottom: none;
+  }
+  
+  /* Customizing the selected date */
+  .react-datepicker__day--selected,
+  .react-datepicker__day--keyboard-selected {
+    background-color: #000; /* Replace with the color you want */
+    color: white;
+  }
+  
+  /* Customizing the hover state */
+  .react-datepicker__day:hover {
+    background-color: #f0f0f0; /* Replace with the color you want for hover */
+  }
+  
+  /* Modal customizations */
+  .custom-datepicker-modal {
+    /* background-color: white; */
+    border-radius: 10px;
+    /* Add other styling as required */
+  }
+
+  .react-datepicker__day--in-range{
+    background-color: #000;
+  }
+
+  .react-datepicker__day--in-selecting-range:not(.react-datepicker__day--in-range, .react-datepicker__month-text--in-range, .react-datepicker__quarter-text--in-range, .react-datepicker__year-text--in-range){
+    background-color: #000;
+  }

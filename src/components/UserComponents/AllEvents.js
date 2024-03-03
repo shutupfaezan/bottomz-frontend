@@ -257,9 +257,9 @@ const formatDate = (dateStr) => {
             )}
           </button>
           {showDatePickerModal && (
-            <Modal show={showDatePickerModal} onHide={() => setShowDatePickerModal(false)}>
+            <Modal className="custom-datepicker-modal d-flex justify-content-center align-items-center" show={showDatePickerModal} onHide={() => setShowDatePickerModal(false)}>
               <DatePicker selectsRange startDate={startDate} endDate={endDate} onChange={(dates) => handleDateChange(dates)} inline />
-              <button className='btn col-lg-6 rounded-pill my-3 mx-auto' onClick={() => setShowDatePickerModal(false)} style={{ background: "black", color: "white" }}>Save</button>
+              <button className='btn col-lg-6 col-6 rounded-pill my-3 mx-auto' onClick={() => setShowDatePickerModal(false)} style={{ background: "black", color: "white" }}>Save</button>
             </Modal>
           )}
           <button 
@@ -287,7 +287,7 @@ const formatDate = (dateStr) => {
                   <p style={{fontSize: "14px", color: "rgba(157, 157, 157, 1)"}}>Average Price: ₹{
                     (tempPriceRange ? tempPriceRange[1] : priceRange[1]) / 2
                   }</p>
-                  <button className="position-absolute d-flex justify-content-center align-items-center" style={{ height: "28px", width: "28px", border: "solid black 1px", borderRadius: "50%", backgroundColor: "transparent", color: "black", top: "5%", right: "5%"}} onClick={() => setShowPriceModal(false)}>&#x2715;</button>
+                  <button className="position-absolute d-flex justify-content-center align-items-center p-3" style={{ height: "28px", width: "28px", border: "solid black 1px", borderRadius: "50%", backgroundColor: "transparent", color: "black", top: "5%", right: "5%"}} onClick={() => setShowPriceModal(false)}>&#x2715;</button>
                 </div>
                 <div className='px-4 d-flex' style={{height: "100px"}}>
                   <Range
