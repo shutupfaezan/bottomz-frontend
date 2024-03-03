@@ -257,9 +257,9 @@ const formatDate = (dateStr) => {
             )}
           </button>
           {showDatePickerModal && (
-            <Modal show={showDatePickerModal} onHide={() => setShowDatePickerModal(false)}>
+            <Modal className="custom-datepicker-modal d-flex justify-content-center align-items-center" show={showDatePickerModal} onHide={() => setShowDatePickerModal(false)}>
               <DatePicker selectsRange startDate={startDate} endDate={endDate} onChange={(dates) => handleDateChange(dates)} inline />
-              <button className='btn col-lg-6 rounded-pill my-3 mx-auto' onClick={() => setShowDatePickerModal(false)} style={{ background: "black", color: "white" }}>Save</button>
+              <button className='btn col-lg-6 col-6 rounded-pill my-3 mx-auto' onClick={() => setShowDatePickerModal(false)} style={{ background: "black", color: "white" }}>Save</button>
             </Modal>
           )}
           <button 
